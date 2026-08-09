@@ -1,6 +1,6 @@
 [
   {
-    "source": "examples/photos/rain-greenhouse.png",
+    "source": "photos/rain-greenhouse.png",
     "width": 1536,
     "height": 1024,
     "palette": ["#111817", "#4F6FA4", "#6A8CCA", "#22344F", "#344962"],
@@ -26,7 +26,7 @@
     }
   },
   {
-    "source": "examples/photos/valley-fruit-stand.png",
+    "source": "photos/valley-fruit-stand.png",
     "width": 1536,
     "height": 1024,
     "palette": ["#262113", "#675D54", "#E3E4E9", "#604D2B", "#4D361E"],
@@ -52,7 +52,7 @@
     }
   },
   {
-    "source": "examples/photos/coastal-platform.png",
+    "source": "photos/coastal-platform.png",
     "width": 1536,
     "height": 1024,
     "palette": ["#DBDFE3", "#2C2E2E", "#A4B2C9", "#57595A", "#8F9AAA"],

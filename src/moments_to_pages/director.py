@@ -24,5 +24,7 @@ def recommend_systems(cards: list[SceneCard]) -> list[Recommendation]:
                        "Spatial movement and transitions can become a visible route through the sequence."),
         Recommendation("field-log", .78 if average_saturation < .35 else .62,
                        "Restrained color and observational detail suit a documentary record."),
+        Recommendation("family-archive", .86 if any(word in gestures + intents for word in ("family", "care", "inherit", "home", "shared")) else .52,
+                       "Repeated domestic gestures and relationships can be read as a family record."),
     ]
     return sorted(results, key=lambda item: item.score, reverse=True)

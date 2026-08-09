@@ -18,6 +18,8 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 | --- | --- |
 | ![原始照片接触表](examples/outputs/before-source-photos.png) | ![编辑序列结果](examples/outputs/editorial-sequence.png) |
 
+[查看本案例的三层 Scene Cards](examples/generated-story.json)
+
 ### 案例 2 · Family Archive｜家庭档案
 
 | Before：虚构人物纪实输入 | After：家庭记录 |
@@ -25,6 +27,8 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 | ![家庭档案原始接触表](examples/cases/family-archive/outputs/before.png) | ![家庭档案叙事结果](examples/cases/family-archive/outputs/after.png) |
 
 第二组案例把晾衣、包饺子、整理旧照片这些重复动作，读成一段跨代传递的照料记录。
+
+[查看 Family Archive Scene Cards](examples/cases/family-archive/story.json)
 
 这里发生的不是风格滤镜转换。系统先区分观察事实与解释，再分配故事角色、生成可编辑导演备注、推荐 Narrative System，最后进行确定性渲染。
 
@@ -80,7 +84,10 @@ python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
+scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
 ```
+
+默认使用 `presentation`，隐藏内部导演术语；需要查看观察、理解、角色和导演备注时使用 `--mode workprint`。输出高度会随照片数量动态增长，照片路径以 Scene Card JSON 所在目录为基准解析。
 
 ## Codex Skill
 

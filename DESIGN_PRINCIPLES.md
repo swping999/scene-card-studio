@@ -26,6 +26,10 @@ The three photographs in `examples/photos` and the three fictional documentary p
 
 `examples/photos` 中的三张场景照片，以及 `examples/cases/family-archive/photos` 中的三张虚构人物纪实照片，均于 2026-08-09 使用 OpenAI 内置图像生成工具专门为本仓库生成，不涉及真实人物，也不来源于用户照片，仅用于测试和展示本项目。
 
+The coastal memory-map illustration in `src/moments_to_pages/assets/maps` was generated for this repository with the same built-in image generation tool on 2026-08-09. The bundled Noto Sans CJK SC font is distributed under the SIL Open Font License 1.1; its notice is stored beside the font.
+
+`src/moments_to_pages/assets/maps` 中的海岸记忆地图插画同样于 2026-08-09 使用内置图像生成工具为本仓库生成。随包提供的 Noto Sans CJK SC 字体采用 SIL Open Font License 1.1，许可证提示与字体放置在同一目录。
+
 ## Contribution rule
 
 Contributors must document the origin and usage terms of example assets. Narrative Systems must describe an expressive mechanism and may not depend on unauthorized imitation of a living artist, director, or photographer.

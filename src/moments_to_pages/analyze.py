@@ -12,12 +12,19 @@ def _hex(rgb: tuple[int, int, int]) -> str:
 
 def analyze_image(path: Path) -> SceneCard:
     try:
-        from PIL import Image
+        from PIL import Image, ImageOps
     except ImportError as exc:
         raise RuntimeError("Photo analysis requires Pillow: pip install 'scene-card-studio[images]'") from exc
 
     with Image.open(path) as image:
-        image = image.convert("RGB")
+        image = ImageOps.exif_transpose(image)
+        if image.mode in {"RGBA", "LA"} or "transparency" in image.info:
+            rgba = image.convert("RGBA")
+            background = Image.new("RGBA", rgba.size, "white")
+            background.alpha_composite(rgba)
+            image = background.convert("RGB")
+        else:
+            image = image.convert("RGB")
         width, height = image.size
         sample = image.copy()
         sample.thumbnail((160, 160))
@@ -49,7 +56,12 @@ def assign_story_roles(cards: list[SceneCard], reorder: bool = False) -> list[Sc
     if not cards:
         return cards
     ordered = sorted(cards, key=lambda card: (card.brightness, card.saturation)) if reorder else list(cards)
-    roles = ["opening", "development", "pause", "closing"]
+    role_sets = {
+        1: ["opening"],
+        2: ["opening", "closing"],
+        3: ["opening", "development", "closing"],
+    }
+    roles = role_sets.get(len(ordered), ["opening", "development", "pause", "closing"])
     for index, card in enumerate(ordered):
-        card.direction.story_role = roles[min(index * len(roles) // len(ordered), len(roles) - 1)]
+        card.direction.story_role = roles[index] if len(ordered) <= 3 else roles[min(index * len(roles) // len(ordered), len(roles) - 1)]
     return ordered

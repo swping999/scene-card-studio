@@ -18,6 +18,8 @@ All source photographs below were generated specifically for this repository. Th
 | --- | --- |
 | ![Original photo contact sheet](examples/outputs/before-source-photos.png) | ![Editorial Sequence result](examples/outputs/editorial-sequence.png) |
 
+[Inspect the three-layer Scene Cards for this case](examples/generated-story.json)
+
 ### Case 2 · Family Archive
 
 | Before: fictional documentary inputs | After: family record |
@@ -25,6 +27,8 @@ All source photographs below were generated specifically for this repository. Th
 | ![Family archive source contact sheet](examples/cases/family-archive/outputs/before.png) | ![Family Archive narrative result](examples/cases/family-archive/outputs/after.png) |
 
 This second case reads repeated gestures—laundry, cooking, sorting photographs—as a record of care passed through generations.
+
+[Inspect the Family Archive Scene Cards](examples/cases/family-archive/story.json)
 
 The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and then renders the sequence.
 
@@ -93,7 +97,10 @@ scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style memory-atlas --format svg --output story.svg
+scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
 ```
+
+`presentation` is the default and hides internal director terminology. Use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible. Output height grows with the number of photographs, and source paths are resolved relative to the Scene Card JSON file.
 
 ## Codex Skill
 
