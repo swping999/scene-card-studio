@@ -13,10 +13,10 @@ An After image must change the visual narrative, not merely place the same photo
 
 1. Build Scene Cards and identify evidence that must remain faithful.
 2. Select one Narrative System and describe its expressive mechanism.
-3. Pass the original photos as image references to an image-generation or compositing tool.
-4. State photographic invariants explicitly: recognizable buildings, people, actions, clothing, and identity-bearing details to preserve.
-5. Describe only the non-photographic layer that may transform: map geography, drawing, paper, annotations, artifacts, weather, or spatial transitions.
-6. Inspect the result against the sources. Reject a result that is only a contact sheet, redraws required photographic subjects, distorts people, or adds invented metadata.
+3. Compile the Scene Cards with `scene-card-studio compile`; do not replace the manifest with improvised style keywords.
+4. Pass every listed source as an image reference and use all compiled prompt modules.
+5. Inspect the result with the five-dimension rubric in `prompt-compiler.md`.
+6. Accept every prompt that passes. For failures, create the assessment JSON, run `scene-card-studio retry`, and regenerate only `retry_prompt_ids`.
 
 ## Memory Atlas
 
@@ -46,4 +46,4 @@ An After image must change the visual narrative, not merely place the same photo
 
 ## Delivery
 
-Return paired Before and After images, an optional Before contact sheet for overview, and the Scene Card JSON. Label deterministic layouts as `workprint`; reserve `After` for transformed presentation artifacts.
+Return paired Before and After images, an optional Before contact sheet, the Scene Card JSON, and the accepted Prompt Manifest. Label deterministic layouts as `workprint`; reserve `After` for transformed presentation artifacts.

@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "compiler_version": "0.3.0",
+  "system": "memory-atlas",
+  "story": "examples/generated-story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0,
+        1,
+        2
+      ],
+      "sources": [
+        {
+          "path": "photos/rain-greenhouse.png",
+          "sha256": "0e9cb0b42b2899785c9ae9b4f25d8a1f13522e8c48bb6b8775a42ec9b0a2e4a2"
+        },
+        {
+          "path": "photos/valley-fruit-stand.png",
+          "sha256": "14cb006a6df5e58d2d0d09f24bbc7947d2da7ca3bb19451b84f8a34d21d621cc"
+        },
+        {
+          "path": "photos/coastal-platform.png",
+          "sha256": "987ef5453df78ad562c82a63accbfa5c3efb63b99c2a2f7705afd0a8217f34c6"
+        }
+      ],
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve each photographed place as a recognizable photographic anchor: greenhouse, work lamp, rain; fruit stand, empty chair, mountain road; coastal platform, railway, red signal.",
+          "Keep architecture, landmarks, horizon, entrances, and identity-bearing spatial details faithful to their source photographs.",
+          "Do not redraw the buildings as generic illustrations and do not invent destinations or geographic facts."
+        ],
+        "narrative_intent": [
+          "Connect the places as remembered experience rather than a literal navigation map: patient growth → journey pause → departure."
+        ],
+        "composition": [
+          "Build one coherent travel/space memory field in which real photographic architecture is embedded into drawn geography.",
+          "Create a clear spatial rhythm from departure through distance to return; avoid a row of equal photo cards."
+        ],
+        "lighting": [
+          "Preserve plausible light within each photographic fragment and unify the whole artifact with restrained paper warmth.",
+          "Use watercolor terrain and graphite contours to bridge tonal differences without recoloring every photograph identically."
+        ],
+        "material": [
+          "Combine photographic buildings with watercolor terrain, pencil contour marks, torn archival paper, faint coastline or topographic texture, and subtle travel ephemera.",
+          "Keep paper seams and drawn marks tactile and irregular; they must carry spatial memory rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Let drawn terrain flow behind and between the photographed places; overlap edges selectively so photography and drawing inhabit one geography.",
+          "Use scale changes to suggest remembered distance, not literal cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No arrows, dotted route lines, flowchart connectors, UI map, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, glossy 3D terrain, or named-artist imitation."
+        ],
+        "output": [
+          "Return one integrated photographic-and-hand-drawn spatial memory artifact at 4:5.",
+          "Actual architecture must remain photographic and recognizable."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve each photographed place as a recognizable photographic anchor: greenhouse, work lamp, rain; fruit stand, empty chair, mountain road; coastal platform, railway, red signal.\n- Keep architecture, landmarks, horizon, entrances, and identity-bearing spatial details faithful to their source photographs.\n- Do not redraw the buildings as generic illustrations and do not invent destinations or geographic facts.\n\nNARRATIVE INTENT\n- Connect the places as remembered experience rather than a literal navigation map: patient growth → journey pause → departure.\n\nCOMPOSITION\n- Build one coherent travel/space memory field in which real photographic architecture is embedded into drawn geography.\n- Create a clear spatial rhythm from departure through distance to return; avoid a row of equal photo cards.\n\nLIGHTING AND COLOR\n- Preserve plausible light within each photographic fragment and unify the whole artifact with restrained paper warmth.\n- Use watercolor terrain and graphite contours to bridge tonal differences without recoloring every photograph identically.\n\nMATERIAL AND SURFACE\n- Combine photographic buildings with watercolor terrain, pencil contour marks, torn archival paper, faint coastline or topographic texture, and subtle travel ephemera.\n- Keep paper seams and drawn marks tactile and irregular; they must carry spatial memory rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Let drawn terrain flow behind and between the photographed places; overlap edges selectively so photography and drawing inhabit one geography.\n- Use scale changes to suggest remembered distance, not literal cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No arrows, dotted route lines, flowchart connectors, UI map, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, glossy 3D terrain, or named-artist imitation.\n\nOUTPUT\n- Return one integrated photographic-and-hand-drawn spatial memory artifact at 4:5.\n- Actual architecture must remain photographic and recognizable.",
+      "reference_output": {
+        "path": "outputs/memory-atlas-ai-composite.png",
+        "sha256": "6ed9f25e25434f0581d8acbfbe67d44dd0890f052766a499ba435f66caac06db"
+      }
+    }
+  ],
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    }
+  }
+}

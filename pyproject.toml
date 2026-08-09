@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "scene-card-studio"
-version = "0.2.0"
-description = "Turn personal photos into structured, editable visual narratives."
+version = "0.3.0"
+description = "Compile personal photos into reproducible, editable visual narratives."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }

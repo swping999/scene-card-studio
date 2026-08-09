@@ -4,10 +4,10 @@
 
 > **This is not a style-transfer repository. It is a Scene Card–based visual narrative engine for personal photography.**
 
-Scene Card Studio turns observable photo evidence into editable narrative decisions and deterministic layouts. Instead of asking only *what should these photos look like?*, it asks *how should this story be read?*
+Scene Card Studio turns observable photo evidence into editable narrative decisions, versioned generation prompts, directed images, and deterministic layouts. Instead of asking only *what should these photos look like?*, it asks *how should this story be read?*
 
 ```text
-photos → observation → interpretation → visual direction → sequence → narrative system → editable output
+photos → Scene Cards → Narrative System → Prompt Compiler → image generation → aesthetic review → retry / accept
 ```
 
 ## Before / After
@@ -18,7 +18,7 @@ All source photographs below were generated specifically for this repository. Ev
 | --- | --- |
 | ![Original photo contact sheet](examples/outputs/before-source-photos.png) | ![Photographic architecture fused with a hand-drawn memory map](examples/outputs/memory-atlas-ai-composite.png) |
 
-[Inspect the three-layer Scene Cards for this case](examples/generated-story.json)
+[Inspect the three-layer Scene Cards](examples/generated-story.json) · [Open the versioned Prompt Manifest](examples/prompt-manifest.json)
 
 ### Case 2 · Family Archive
 
@@ -28,7 +28,7 @@ All source photographs below were generated specifically for this repository. Ev
 
 This second case reads repeated gestures—laundry, cooking, sorting photographs—as a record of care passed through generations.
 
-[Inspect the Family Archive Scene Cards](examples/cases/family-archive/story.json)
+[Inspect the Scene Cards](examples/cases/family-archive/story.json) · [Open the Prompt Manifest](examples/cases/family-archive/prompt-manifest.json)
 
 ### Case 3 · Cinematic Storyboard
 
@@ -40,7 +40,7 @@ Three unremarkable phone snapshots become three independent film frames. They ar
 | ![Ordinary phone snapshot of a diner](examples/cases/cinematic-storyboard/photos/raw-diner.png) | ![Directed diner seen through rain](examples/cases/cinematic-storyboard/outputs/after-diner.png) |
 | ![Ordinary phone snapshot of a taxi](examples/cases/cinematic-storyboard/photos/raw-taxi.png) | ![Directed taxi departure frame](examples/cases/cinematic-storyboard/outputs/after-taxi.png) |
 
-[Inspect the three-layer Scene Cards](examples/cases/cinematic-storyboard/story.json) · [View the untouched source contact sheet](examples/cases/cinematic-storyboard/outputs/before.png)
+[Inspect the Scene Cards](examples/cases/cinematic-storyboard/story.json) · [Open the three compiled prompts](examples/cases/cinematic-storyboard/prompt-manifest.json) · [View the source contact sheet](examples/cases/cinematic-storyboard/outputs/before.png)
 
 ### Case 4 · Minimal Editorial
 
@@ -52,7 +52,7 @@ This system does not paste three objects onto a designed page. It gives each ord
 | ![Ordinary phone snapshot of a worn chair](examples/cases/minimal-editorial/photos/raw-chair.png) | ![Sculptural editorial photograph of the same chair](examples/cases/minimal-editorial/outputs/after-chair.png) |
 | ![Ordinary phone snapshot of linen](examples/cases/minimal-editorial/photos/raw-linen.png) | ![Material-focused editorial photograph of the same linen](examples/cases/minimal-editorial/outputs/after-linen.png) |
 
-[Inspect the three-layer Scene Cards](examples/cases/minimal-editorial/story.json) · [View the untouched source contact sheet](examples/cases/minimal-editorial/outputs/before.png)
+[Inspect the Scene Cards](examples/cases/minimal-editorial/story.json) · [Open the three compiled prompts](examples/cases/minimal-editorial/prompt-manifest.json) · [View the source contact sheet](examples/cases/minimal-editorial/outputs/before.png)
 
 The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and can produce either a deterministic workprint or a genuinely transformed presentation image. Spatial and archival systems may use mixed media; cinematic and minimal systems default to one source → one frame.
 
@@ -105,7 +105,25 @@ Scene Cards explicitly separate visible evidence from interpretation:
 - **Direction** records editable sequencing and layout decisions.
 - **Narrative Systems** decide how the sequence can be read.
 
-The distinction prevents inferred meaning from being presented as photographic fact. Advanced narrative fields in the showcase are explicitly marked as manually directed; the current analyzer provides only low-confidence heuristics.
+The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
+
+## v0.3 · Prompt Compiler & Reproducible Art Direction
+
+The compiler turns Scene Card evidence and one Narrative System into a versioned JSON generation contract. Four core systems are supported: `cinematic-storyboard`, `minimal-editorial`, `memory-atlas`, and `family-archive`.
+
+Every compiled prompt contains the same nine modules:
+
+1. subject fidelity;
+2. narrative intent;
+3. composition;
+4. lighting and color;
+5. material and surface;
+6. spatial relationships;
+7. text and label strategy;
+8. exclusions;
+9. output ratio and format.
+
+The manifest records compiler version, source hashes, compiled prompts, benchmark output hashes, and a five-dimension review policy. A failed review produces a targeted correction pass for only the weak dimensions instead of rewriting the whole prompt.
 
 ## Narrative Systems, not style filters
 
@@ -119,12 +137,14 @@ Requires Python 3.10+. Automatic analysis and PNG rendering use Pillow.
 python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
+scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style memory-atlas --format svg --output story.svg
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
+scene-card-studio retry prompt-manifest.json assessment.json --output retry-manifest.json
 ```
 
-`presentation` is the default and hides internal director terminology. Use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible. Output height grows with the number of photographs, and source paths are resolved relative to the Scene Card JSON file.
+`compile` emits one prompt per source for cinematic and minimal systems, and one multi-source prompt for spatial and archival systems. `retry` consumes the five-dimension aesthetic assessment documented in the Skill. `presentation` is the default layout mode; use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible.
 
 ## Codex Skill
 
@@ -149,6 +169,7 @@ See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the complete evidence chain
 - user-editable Visual Director decisions;
 - `contact-sheet` and `journey-sequence` systems;
 - crop-aware subject placement;
+- image-model adapters and queued generation;
 - printable PDF and social carousel renderers;
 - browser preview and drag-to-reorder editor;
 - community-authored Narrative Systems.

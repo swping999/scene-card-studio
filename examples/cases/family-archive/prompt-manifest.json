@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "compiler_version": "0.3.0",
+  "system": "family-archive",
+  "story": "examples/cases/family-archive/story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "family-archive-01",
+      "mode": "archival-synthesis",
+      "source_indexes": [
+        0,
+        1,
+        2
+      ],
+      "sources": [
+        {
+          "path": "photos/rooftop-laundry.png",
+          "sha256": "61440c0b701033e9a3243ac6583f81d86165a8dab24b527a2f3242bc73d12e25"
+        },
+        {
+          "path": "photos/dumpling-table.png",
+          "sha256": "cf6e64d71daed65da3797a003c609990291348364fd40a14e1ce3e4047fcd0ea"
+        },
+        {
+          "path": "photos/photo-box.png",
+          "sha256": "d35bb332f6f712c7119816a7f2f98dcc4ec7a59bc4bd3d3d59ebc518961ba7e5"
+        }
+      ],
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the fictional documentary subjects and their visible actions: older woman, white sheets, rooftop lines; father, daughter, dumpling wrappers; two siblings, printed photographs, wooden box.",
+          "Keep faces, hands, clothing, body proportions, object handling, and gestures faithful: arms lifting fabric into light; two pairs of hands folding dough; hands sorting overlapping photographs.",
+          "Do not beautify, de-age, restage, or invent family identities and relationships."
+        ],
+        "narrative_intent": [
+          "Read repeated domestic gestures as care, inheritance, and continuity without turning them into sentimental advertising.",
+          "Let ordinary work and retained objects carry the emotional meaning."
+        ],
+        "composition": [
+          "Create one coherent archival record with a strong central documentary rhythm, not a tidy equal-cell collage.",
+          "Vary scale and edge treatment according to story role; keep important faces and hands uncropped."
+        ],
+        "lighting": [
+          "Preserve natural documentary light and modest tonal differences between sources.",
+          "Use warm paper and graphite as a unifying ground without applying a generic sepia filter to the people."
+        ],
+        "material": [
+          "Integrate photographic people with graphite object studies, tracing paper, contact-print edges, fabric fibers, thread, photo corners, and restrained archival wear.",
+          "Every non-photographic mark should refer to a supplied object, gesture, or repeated material."
+        ],
+        "spatial_relationships": [
+          "Let archival materials bridge repeated gestures across time; use partial overlaps and breathing room instead of stacked decoration.",
+          "Keep photographic subjects visually primary and drawn object studies secondary."
+        ],
+        "text_strategy": [
+          "Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks."
+        ],
+        "exclusions": [
+          "No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.",
+          "No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation."
+        ],
+        "output": [
+          "Return one integrated documentary-and-archival artifact at 4:5.",
+          "People and gestures must remain photographic, natural, and immediately recognizable."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the fictional documentary subjects and their visible actions: older woman, white sheets, rooftop lines; father, daughter, dumpling wrappers; two siblings, printed photographs, wooden box.\n- Keep faces, hands, clothing, body proportions, object handling, and gestures faithful: arms lifting fabric into light; two pairs of hands folding dough; hands sorting overlapping photographs.\n- Do not beautify, de-age, restage, or invent family identities and relationships.\n\nNARRATIVE INTENT\n- Read repeated domestic gestures as care, inheritance, and continuity without turning them into sentimental advertising.\n- Let ordinary work and retained objects carry the emotional meaning.\n\nCOMPOSITION\n- Create one coherent archival record with a strong central documentary rhythm, not a tidy equal-cell collage.\n- Vary scale and edge treatment according to story role; keep important faces and hands uncropped.\n\nLIGHTING AND COLOR\n- Preserve natural documentary light and modest tonal differences between sources.\n- Use warm paper and graphite as a unifying ground without applying a generic sepia filter to the people.\n\nMATERIAL AND SURFACE\n- Integrate photographic people with graphite object studies, tracing paper, contact-print edges, fabric fibers, thread, photo corners, and restrained archival wear.\n- Every non-photographic mark should refer to a supplied object, gesture, or repeated material.\n\nSPATIAL RELATIONSHIPS\n- Let archival materials bridge repeated gestures across time; use partial overlaps and breathing room instead of stacked decoration.\n- Keep photographic subjects visually primary and drawn object studies secondary.\n\nTEXT AND LABELS\n- Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks.\n\nEXCLUSIONS\n- No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.\n- No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.\n\nOUTPUT\n- Return one integrated documentary-and-archival artifact at 4:5.\n- People and gestures must remain photographic, natural, and immediately recognizable.",
+      "reference_output": {
+        "path": "outputs/family-archive-ai-composite.png",
+        "sha256": "17ff5ef9bfbafbed8a5fde7ee32f6e5a6ff540d05cf8ba7d1e8e19322161e06a"
+      }
+    }
+  ],
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    }
+  }
+}

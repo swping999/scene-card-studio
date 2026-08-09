@@ -1,6 +1,6 @@
 ---
 name: scene-card-studio
-description: Turn a set of user-supplied photos into a coherent visual narrative and editable story layout. Use when the user wants a photo essay, family archive, travel diary, contact sheet, visual journal, social carousel, micro-zine plan, or a sequence of photographs organized into opening, development, pause, and closing roles.
+description: Turn user-supplied photos into a coherent visual narrative, versioned image-generation prompts, art-directed Before/After images, and editable story layouts. Use when the user wants a photo essay, cinematic photo treatment, minimal editorial still life, family archive, travel memory map, visual journal, contact sheet, social carousel, micro-zine plan, or a sequenced photographic story.
 ---
 
 # Scene Card Studio
@@ -22,17 +22,19 @@ Build a visual story from the user's photographs without imitating a named artis
    - `field-log` when observation and documentary detail matter.
 6. Decide the output tier:
    - **Workprint**: use the deterministic renderer for analysis, sequencing, iteration, and editable layout.
-   - **Presentation synthesis**: use image generation to create a genuinely transformed mixed-media artifact. Read `references/synthesis.md` before prompting. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
+   - **Presentation synthesis**: compile versioned prompts and use image generation to create a genuinely transformed artifact. Read `references/synthesis.md` and `references/prompt-compiler.md`. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
 7. Write the cards to `story.json`. When the package is installed, run:
 
 ```bash
 scene-card-studio recommend story.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
+scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 ```
 
-8. For presentation synthesis, pass the source photographs as image references and translate Scene Card decisions into image instructions. Default to **one source photograph → one standalone After image**. Do not merge several photographs into a collage, multi-panel board, split screen, or designed page merely to demonstrate variety. Combine sources only when the user explicitly requests montage or when the chosen system requires spatial synthesis. For `memory-atlas`, keep real buildings photographic while drawing the geography between them. For `family-archive`, keep people photographic while layering object sketches, paper traces, and archival material.
-9. Inspect the output. Check subject fidelity, photo order, crop safety, caption accuracy, contrast, and whether every element performs a narrative function.
-10. Return paired Before and After artifacts plus a short explanation of the direction and sequence. When several one-to-one transformations exist, show every pair separately.
+8. For presentation synthesis, use every module in each compiled prompt and pass the listed source photographs as image references. Default to **one source photograph → one standalone After image**. Do not merge several photographs into a collage, multi-panel board, split screen, or designed page merely to demonstrate variety. Combine sources only when the user explicitly requests montage or when the chosen system requires spatial or archival synthesis.
+9. Inspect the output with the five-dimension rubric in `references/prompt-compiler.md`. Score subject fidelity, narrative alignment, composition, system distinctiveness, and artifact control. Accept only when every score is at least 4.
+10. If a dimension fails, write the assessment JSON, run `scene-card-studio retry`, and regenerate only the prompts in `retry_prompt_ids`. Do not rewrite successful prompt modules.
+11. Return paired Before and After artifacts, the Scene Cards, the accepted prompt manifest, and a short explanation of the direction and sequence. When several one-to-one transformations exist, show every pair separately.
 
 ## Guardrails
 
@@ -48,4 +50,6 @@ scene-card-studio render story.json --style editorial-sequence --format png --ou
 
 - Read `references/scene-card.md` before manually authoring or revising Scene Cards.
 - Run `scripts/render_story.py` when the package is not installed but the repository source tree is available.
+- Run `scripts/compile_prompt.py` and `scripts/retry_prompt.py` for versioned prompts and targeted retries when the package is not installed.
 - Read `references/synthesis.md` whenever the user asks for an After image or finished visual artifact rather than a layout workprint.
+- Read `references/prompt-compiler.md` whenever compiling, reviewing, retrying, or maintaining a Hero Case.

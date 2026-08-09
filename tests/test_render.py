@@ -17,4 +17,7 @@ def test_roundtrip_and_render(tmp_path: Path):
     assert "SEA WIND" in result
     assert "SCENE CARD STUDIO" in result
     assert result.endswith("</svg>\n")
-    assert recommend_systems(cards)[0].system in {"editorial-sequence", "memory-atlas", "field-log"}
+    assert recommend_systems(cards)[0].system in {
+        "editorial-sequence", "memory-atlas", "field-log", "family-archive",
+        "cinematic-storyboard", "minimal-editorial",
+    }

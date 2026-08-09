@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "prompt_id": "memory-atlas-01",
+      "scores": {
+        "subject_fidelity": 4,
+        "narrative_alignment": 5,
+        "composition": 4,
+        "system_distinctiveness": 5,
+        "artifact_control": 4
+      },
+      "notes": "Accepted: photographed architecture remains legible while drawn geography carries the spatial memory."
+    }
+  ]
+}

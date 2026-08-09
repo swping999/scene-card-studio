@@ -4,10 +4,10 @@
 
 > **这不是一个照片风格转换工具，而是一套基于 Scene Card 的个人照片视觉叙事引擎。**
 
-Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决策和确定性版面。它不只问“照片应该变成什么风格”，而是先判断“这段故事应该如何被阅读”。
+Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策、版本化生成提示词、导演成片和确定性版面。它不只问“照片应该变成什么风格”，而是先判断“这段故事应该如何被阅读”。
 
 ```text
-照片 → 观察事实 → 理解判断 → 视觉导演 → 叙事排序 → Narrative System → 可编辑输出
+照片 → Scene Cards → Narrative System → Prompt Compiler → 图像生成 → 审美检查 → 重试 / 接受
 ```
 
 ## Before / After 首页案例
@@ -18,7 +18,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 | --- | --- |
 | ![原始照片接触表](examples/outputs/before-source-photos.png) | ![真实建筑摄影与手绘记忆地图融合](examples/outputs/memory-atlas-ai-composite.png) |
 
-[查看本案例的三层 Scene Cards](examples/generated-story.json)
+[查看三层 Scene Cards](examples/generated-story.json) · [打开版本化 Prompt Manifest](examples/prompt-manifest.json)
 
 ### 案例 2 · Family Archive｜家庭档案
 
@@ -28,7 +28,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 
 第二组案例把晾衣、包饺子、整理旧照片这些重复动作，读成一段跨代传递的照料记录。
 
-[查看 Family Archive Scene Cards](examples/cases/family-archive/story.json)
+[查看 Scene Cards](examples/cases/family-archive/story.json) · [打开 Prompt Manifest](examples/cases/family-archive/prompt-manifest.json)
 
 ### 案例 3 · Cinematic Storyboard｜电影分镜
 
@@ -40,7 +40,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 | ![普通小餐馆手机随手拍](examples/cases/cinematic-storyboard/photos/raw-diner.png) | ![隔着雨水观看餐馆的电影镜头](examples/cases/cinematic-storyboard/outputs/after-diner.png) |
 | ![普通出租车手机随手拍](examples/cases/cinematic-storyboard/photos/raw-taxi.png) | ![出租车离开的电影镜头](examples/cases/cinematic-storyboard/outputs/after-taxi.png) |
 
-[查看三层 Scene Cards](examples/cases/cinematic-storyboard/story.json) · [查看未经处理的原片接触表](examples/cases/cinematic-storyboard/outputs/before.png)
+[查看 Scene Cards](examples/cases/cinematic-storyboard/story.json) · [打开三条编译提示词](examples/cases/cinematic-storyboard/prompt-manifest.json) · [查看原片接触表](examples/cases/cinematic-storyboard/outputs/before.png)
 
 ### 案例 4 · Minimal Editorial｜极简编辑
 
@@ -52,7 +52,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 | ![普通旧椅子手机随手拍](examples/cases/minimal-editorial/photos/raw-chair.png) | ![同一椅子的雕塑感编辑摄影](examples/cases/minimal-editorial/outputs/after-chair.png) |
 | ![普通亚麻布手机随手拍](examples/cases/minimal-editorial/photos/raw-linen.png) | ![同一亚麻布的材质编辑摄影](examples/cases/minimal-editorial/outputs/after-linen.png) |
 
-[查看三层 Scene Cards](examples/cases/minimal-editorial/story.json) · [查看未经处理的原片接触表](examples/cases/minimal-editorial/outputs/before.png)
+[查看 Scene Cards](examples/cases/minimal-editorial/story.json) · [打开三条编译提示词](examples/cases/minimal-editorial/prompt-manifest.json) · [查看原片接触表](examples/cases/minimal-editorial/outputs/before.png)
 
 这里发生的不是简单滤镜或重新排版。系统先区分观察事实与解释，再分配故事角色、生成导演备注、推荐 Narrative System，最终既可以输出确定性 Workprint，也可以生成真正发生视觉二次创作的成品。空间与档案系统可以使用混合媒介；电影与极简系统默认“一张原片 → 一个独立镜头”。
 
@@ -84,7 +84,25 @@ Scene Card 将信息明确分成三层：
 - **Interpretation / 理解层**：记录暂定主题、情绪和置信度。
 - **Direction / 导演层**：记录可编辑的故事角色、导演备注和版面重点。
 
-这种拆分避免把 AI 的推测伪装成照片事实，也允许用户覆盖任何导演判断。首页高级叙事字段明确标记为人工导演示例；当前 analyzer 只提供低置信度启发式判断。
+这种拆分避免把 AI 的推测伪装成照片事实，也允许用户在编译 Prompt 前修改任何导演判断。自动分析保持克制，所有 Scene Card 决策都可以编辑。
+
+## v0.3 · Prompt Compiler 与可复现视觉导演
+
+Prompt Compiler 将 Scene Card 证据和一个 Narrative System 编译成版本化 JSON 生成合约。目前支持四个核心系统：`cinematic-storyboard`、`minimal-editorial`、`memory-atlas` 和 `family-archive`。
+
+每条编译提示词都固定包含九个模块：
+
+1. 主体保真；
+2. 叙事意图；
+3. 构图；
+4. 光线与色彩；
+5. 材质与表面；
+6. 空间关系；
+7. 文字与标签策略；
+8. 禁止项；
+9. 输出比例与格式。
+
+Manifest 会记录编译器版本、源图哈希、完整 Prompt、基准输出哈希和五维审美检查规则。检查失败时，只对不足的维度增加定向修正，不会把整条 Prompt 随机重写。
 
 ## 不是风格菜单
 
@@ -107,11 +125,13 @@ Scene Card 将信息明确分成三层：
 python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
+scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
+scene-card-studio retry prompt-manifest.json assessment.json --output retry-manifest.json
 ```
 
-默认使用 `presentation`，隐藏内部导演术语；需要查看观察、理解、角色和导演备注时使用 `--mode workprint`。输出高度会随照片数量动态增长，照片路径以 Scene Card JSON 所在目录为基准解析。
+电影与极简系统会为每张源图编译一条独立 Prompt；空间与档案系统会编译一条多源合成 Prompt。`retry` 使用 Skill 中定义的五维审美评分。版面默认使用 `presentation`；需要查看观察、理解、角色和导演备注时使用 `--mode workprint`。
 
 ## Codex Skill
 
@@ -136,6 +156,7 @@ scene-card-studio render story.json --style field-log --mode workprint --format 
 - 可由用户修改的视觉导演判断；
 - `contact-sheet`、`journey-sequence`；
 - 主体感知裁切；
+- 图像模型适配器与生成队列；
 - 可打印 PDF 与社交媒体卡片；
 - 浏览器预览和拖拽排序；
 - 社区 Narrative System 插件。

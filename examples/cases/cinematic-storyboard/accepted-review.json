@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "prompt_id": "cinematic-storyboard-01",
+      "scores": {
+        "subject_fidelity": 4,
+        "narrative_alignment": 5,
+        "composition": 5,
+        "system_distinctiveness": 5,
+        "artifact_control": 4
+      },
+      "notes": "Accepted: the waiting figure and shelter remain recognizable; motivated rain light establishes the opening."
+    },
+    {
+      "prompt_id": "cinematic-storyboard-02",
+      "scores": {
+        "subject_fidelity": 4,
+        "narrative_alignment": 5,
+        "composition": 5,
+        "system_distinctiveness": 5,
+        "artifact_control": 5
+      },
+      "notes": "Accepted: the diner remains a plausible continuous scene and wet glass carries the pause."
+    },
+    {
+      "prompt_id": "cinematic-storyboard-03",
+      "scores": {
+        "subject_fidelity": 5,
+        "narrative_alignment": 4,
+        "composition": 5,
+        "system_distinctiveness": 5,
+        "artifact_control": 4
+      },
+      "notes": "Accepted: the taxi, intersection, and red reflection remain coherent as the closing movement."
+    }
+  ]
+}

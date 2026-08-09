@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 from .analyze import analyze_image, assign_story_roles
 from .model import load_cards, save_cards
 from .director import recommend_systems
+from .prompt_compiler import SUPPORTED_SYSTEMS, compile_manifest
 from .render import render_png, render_svg
+from .review import build_retry_manifest
 
 
 def parser() -> argparse.ArgumentParser:
@@ -25,6 +28,16 @@ def parser() -> argparse.ArgumentParser:
     render.add_argument("--mode", choices=["presentation", "workprint"], default="presentation")
     recommend = commands.add_parser("recommend", help="Recommend Narrative Systems with reasons")
     recommend.add_argument("story")
+    compile_cmd = commands.add_parser("compile", help="Compile Scene Cards into versioned image-generation prompts")
+    compile_cmd.add_argument("story")
+    compile_cmd.add_argument("--system", choices=SUPPORTED_SYSTEMS, required=True)
+    compile_cmd.add_argument("--aspect-ratio", default="source", help="source, 3:2, 2:3, 4:5, 1:1, or another target ratio")
+    compile_cmd.add_argument("--reference-output", action="append", default=[], help="Optional benchmark output path; repeat in prompt order")
+    compile_cmd.add_argument("-o", "--output", default="prompt-manifest.json")
+    retry = commands.add_parser("retry", help="Build targeted retry prompts from an aesthetic assessment")
+    retry.add_argument("manifest")
+    retry.add_argument("assessment")
+    retry.add_argument("-o", "--output", default="retry-manifest.json")
     return root
 
 
@@ -35,6 +48,22 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "recommend":
         for item in recommend_systems(load_cards(Path(args.story))):
             print(f"{item.system}\t{item.score:.2f}\t{item.reason}")
+    elif args.command == "compile":
+        story_path = Path(args.story)
+        manifest = compile_manifest(
+            load_cards(story_path, resolve_sources=False),
+            args.system,
+            aspect_ratio=args.aspect_ratio,
+            source_root=story_path.resolve().parent,
+            story_path=str(story_path),
+            reference_outputs=args.reference_output,
+        )
+        Path(args.output).write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+    elif args.command == "retry":
+        manifest = json.loads(Path(args.manifest).read_text())
+        assessment = json.loads(Path(args.assessment).read_text())
+        retry_manifest = build_retry_manifest(manifest, assessment)
+        Path(args.output).write_text(json.dumps(retry_manifest, ensure_ascii=False, indent=2) + "\n")
     elif args.command == "render":
         story_path = Path(args.story)
         output = Path(args.output) if args.output else Path(f"story.{args.format}")

@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.0",
+  "compiler_version": "0.3.0",
+  "system": "cinematic-storyboard",
+  "story": "examples/cases/cinematic-storyboard/story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "cinematic-storyboard-01",
+      "mode": "single-frame",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "photos/raw-bus-stop.png",
+          "sha256": "e64251766ed818abea6dfc99384e44cdbde53a52fc5d74ea34f8fe5b42f74980"
+        }
+      ],
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: woman, glass bus shelter, wet pavement.",
+          "Preserve the observed action or structural gesture: small still figure against wide roadside space.",
+          "Treat the source photograph as visual evidence: do not replace the location, redesign the subject, reconstruct hidden content, or invent people."
+        ],
+        "narrative_intent": [
+          "Narrative intent: waiting before an unseen departure.",
+          "Emotional tone: lonely, suspended. Story role: opening.",
+          "Director note: Crop away accidental pavement and let reflections carry the woman into the next scene."
+        ],
+        "composition": [
+          "Create one continuous cinematic photograph with figure within rain as the visual anchor; no panels or montage.",
+          "Use a natural 35–50 mm observational perspective, deliberate crop, and a legible foreground–midground–background relationship.",
+          "Suppress accidental clutter through framing, depth, and shadow while keeping the place believable and lived-in."
+        ],
+        "lighting": [
+          "Use motivated practical light with one coherent direction; shape the subject rather than bathing the whole frame evenly.",
+          "Build a restrained color grade from the source palette (#201D18, #615A51, #946D56); allow controlled warm–cool contrast without turning the scene neon.",
+          "Protect highlight detail, retain dimensional blacks, and use reflections or weather only when supported by the source."
+        ],
+        "material": [
+          "Keep skin, glass, pavement, fabric, vehicles, and architecture photorealistic with restrained fine film grain.",
+          "Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish."
+        ],
+        "spatial_relationships": [
+          "Keep subject scale plausible and preserve the source scene's directional movement.",
+          "Let negative space and off-center placement create tension; do not center everything by default."
+        ],
+        "text_strategy": [
+          "Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography."
+        ],
+        "exclusions": [
+          "No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.",
+          "No excessive teal-and-orange grade, cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares.",
+          "Do not imitate a named director, cinematographer, photographer, film, or franchise."
+        ],
+        "output": [
+          "Return one standalone photorealistic frame at 3:2.",
+          "Keep the source subject immediately recognizable at first glance."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: woman, glass bus shelter, wet pavement.\n- Preserve the observed action or structural gesture: small still figure against wide roadside space.\n- Treat the source photograph as visual evidence: do not replace the location, redesign the subject, reconstruct hidden content, or invent people.\n\nNARRATIVE INTENT\n- Narrative intent: waiting before an unseen departure.\n- Emotional tone: lonely, suspended. Story role: opening.\n- Director note: Crop away accidental pavement and let reflections carry the woman into the next scene.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure within rain as the visual anchor; no panels or montage.\n- Use a natural 35–50 mm observational perspective, deliberate crop, and a legible foreground–midground–background relationship.\n- Suppress accidental clutter through framing, depth, and shadow while keeping the place believable and lived-in.\n\nLIGHTING AND COLOR\n- Use motivated practical light with one coherent direction; shape the subject rather than bathing the whole frame evenly.\n- Build a restrained color grade from the source palette (#201D18, #615A51, #946D56); allow controlled warm–cool contrast without turning the scene neon.\n- Protect highlight detail, retain dimensional blacks, and use reflections or weather only when supported by the source.\n\nMATERIAL AND SURFACE\n- Keep skin, glass, pavement, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Let negative space and off-center placement create tension; do not center everything by default.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No excessive teal-and-orange grade, cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic frame at 3:2.\n- Keep the source subject immediately recognizable at first glance.",
+      "reference_output": {
+        "path": "outputs/after-bus-stop.png",
+        "sha256": "eb73b3c8730978822096b0b1df55e77486416fe95da7b753a01a3f1111e2562e"
+      }
+    },
+    {
+      "id": "cinematic-storyboard-02",
+      "mode": "single-frame",
+      "source_indexes": [
+        1
+      ],
+      "sources": [
+        {
+          "path": "photos/raw-diner.png",
+          "sha256": "a8d1f4adf03cbd536c198a777283bbe76720c9b22e3e12fafd4c832fecc31b56"
+        }
+      ],
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: man, diner counter, rain-streaked window.",
+          "Preserve the observed action or structural gesture: window divisions isolate the seated figure.",
+          "Treat the source photograph as visual evidence: do not replace the location, redesign the subject, reconstruct hidden content, or invent people."
+        ],
+        "narrative_intent": [
+          "Narrative intent: interior pause between two movements.",
+          "Emotional tone: contained, reflective. Story role: development.",
+          "Director note: Use wet glass as the transition surface; suppress fluorescent flatness into controlled amber."
+        ],
+        "composition": [
+          "Create one continuous cinematic photograph with figure behind glass as the visual anchor; no panels or montage.",
+          "Use a natural 35–50 mm observational perspective, deliberate crop, and a legible foreground–midground–background relationship.",
+          "Suppress accidental clutter through framing, depth, and shadow while keeping the place believable and lived-in."
+        ],
+        "lighting": [
+          "Use motivated practical light with one coherent direction; shape the subject rather than bathing the whole frame evenly.",
+          "Build a restrained color grade from the source palette (#1B1A1B, #A49B9A, #E9E0D9); allow controlled warm–cool contrast without turning the scene neon.",
+          "Protect highlight detail, retain dimensional blacks, and use reflections or weather only when supported by the source."
+        ],
+        "material": [
+          "Keep skin, glass, pavement, fabric, vehicles, and architecture photorealistic with restrained fine film grain.",
+          "Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish."
+        ],
+        "spatial_relationships": [
+          "Keep subject scale plausible and preserve the source scene's directional movement.",
+          "Let negative space and off-center placement create tension; do not center everything by default."
+        ],
+        "text_strategy": [
+          "Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography."
+        ],
+        "exclusions": [
+          "No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.",
+          "No excessive teal-and-orange grade, cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares.",
+          "Do not imitate a named director, cinematographer, photographer, film, or franchise."
+        ],
+        "output": [
+          "Return one standalone photorealistic frame at 3:2.",
+          "Keep the source subject immediately recognizable at first glance."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: man, diner counter, rain-streaked window.\n- Preserve the observed action or structural gesture: window divisions isolate the seated figure.\n- Treat the source photograph as visual evidence: do not replace the location, redesign the subject, reconstruct hidden content, or invent people.\n\nNARRATIVE INTENT\n- Narrative intent: interior pause between two movements.\n- Emotional tone: contained, reflective. Story role: development.\n- Director note: Use wet glass as the transition surface; suppress fluorescent flatness into controlled amber.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure behind glass as the visual anchor; no panels or montage.\n- Use a natural 35–50 mm observational perspective, deliberate crop, and a legible foreground–midground–background relationship.\n- Suppress accidental clutter through framing, depth, and shadow while keeping the place believable and lived-in.\n\nLIGHTING AND COLOR\n- Use motivated practical light with one coherent direction; shape the subject rather than bathing the whole frame evenly.\n- Build a restrained color grade from the source palette (#1B1A1B, #A49B9A, #E9E0D9); allow controlled warm–cool contrast without turning the scene neon.\n- Protect highlight detail, retain dimensional blacks, and use reflections or weather only when supported by the source.\n\nMATERIAL AND SURFACE\n- Keep skin, glass, pavement, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Let negative space and off-center placement create tension; do not center everything by default.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No excessive teal-and-orange grade, cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic frame at 3:2.\n- Keep the source subject immediately recognizable at first glance.",
+      "reference_output": {
+        "path": "outputs/after-diner.png",
+        "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3"
+      }
+    },
+    {
+      "id": "cinematic-storyboard-03",
+      "mode": "single-frame",
+      "source_indexes": [
+        2
+      ],
+      "sources": [
+        {
+          "path": "photos/raw-taxi.png",
+          "sha256": "5b52d6724609e553d0882839904210bfe52b817acacb689a8b012be072f130de"
+        }
+      ],
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: taxi, residential intersection, red reflection.",
+          "Preserve the observed action or structural gesture: vehicle turns across the frame.",
+          "Treat the source photograph as visual evidence: do not replace the location, redesign the subject, reconstruct hidden content, or invent people."
+        ],
+        "narrative_intent": [
+          "Narrative intent: departure without explanation.",
+          "Emotional tone: final, open-ended. Story role: closing.",
+          "Director note: Let the red reflection resolve the amber light carried through the earlier scenes."
+        ],
+        "composition": [
+          "Create one continuous cinematic photograph with tail light and turn as the visual anchor; no panels or montage.",
+          "Use a natural 35–50 mm observational perspective, deliberate crop, and a legible foreground–midground–background relationship.",
+          "Suppress accidental clutter through framing, depth, and shadow while keeping the place believable and lived-in."
+        ],
+        "lighting": [
+          "Use motivated practical light with one coherent direction; shape the subject rather than bathing the whole frame evenly.",
+          "Build a restrained color grade from the source palette (#222126, #739ED6, #2C3648); allow controlled warm–cool contrast without turning the scene neon.",
+          "Protect highlight detail, retain dimensional blacks, and use reflections or weather only when supported by the source."
+        ],
+        "material": [
+          "Keep skin, glass, pavement, fabric, vehicles, and architecture photorealistic with restrained fine film grain.",
+          "Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish."
+        ],
+        "spatial_relationships": [
+          "Keep subject scale plausible and preserve the source scene's directional movement.",
+          "Let negative space and off-center placement create tension; do not center everything by default."
+        ],
+        "text_strategy": [
+          "Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography."
+        ],
+        "exclusions": [
+          "No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.",
+          "No excessive teal-and-orange grade, cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares.",
+          "Do not imitate a named director, cinematographer, photographer, film, or franchise."
+        ],
+        "output": [
+          "Return one standalone photorealistic frame at 3:2.",
+          "Keep the source subject immediately recognizable at first glance."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: taxi, residential intersection, red reflection.\n- Preserve the observed action or structural gesture: vehicle turns across the frame.\n- Treat the source photograph as visual evidence: do not replace the location, redesign the subject, reconstruct hidden content, or invent people.\n\nNARRATIVE INTENT\n- Narrative intent: departure without explanation.\n- Emotional tone: final, open-ended. Story role: closing.\n- Director note: Let the red reflection resolve the amber light carried through the earlier scenes.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with tail light and turn as the visual anchor; no panels or montage.\n- Use a natural 35–50 mm observational perspective, deliberate crop, and a legible foreground–midground–background relationship.\n- Suppress accidental clutter through framing, depth, and shadow while keeping the place believable and lived-in.\n\nLIGHTING AND COLOR\n- Use motivated practical light with one coherent direction; shape the subject rather than bathing the whole frame evenly.\n- Build a restrained color grade from the source palette (#222126, #739ED6, #2C3648); allow controlled warm–cool contrast without turning the scene neon.\n- Protect highlight detail, retain dimensional blacks, and use reflections or weather only when supported by the source.\n\nMATERIAL AND SURFACE\n- Keep skin, glass, pavement, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Let negative space and off-center placement create tension; do not center everything by default.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No excessive teal-and-orange grade, cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic frame at 3:2.\n- Keep the source subject immediately recognizable at first glance.",
+      "reference_output": {
+        "path": "outputs/after-taxi.png",
+        "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d"
+      }
+    }
+  ],
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    }
+  }
+}
