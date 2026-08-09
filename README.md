@@ -14,23 +14,23 @@ photos → observation → interpretation → visual direction → sequence → 
 
 All source photographs below were generated specifically for this repository. The Before board shows the untouched inputs; each After board uses the same Scene Cards with a different recording mechanism.
 
-| Before: original photo set | After: directed narrative |
+| Before: original travel photographs | After: AI-composited Memory Atlas |
 | --- | --- |
-| ![Original photo contact sheet](examples/outputs/before-source-photos.png) | ![Editorial Sequence result](examples/outputs/editorial-sequence.png) |
+| ![Original photo contact sheet](examples/outputs/before-source-photos.png) | ![Photographic architecture fused with a hand-drawn memory map](examples/outputs/memory-atlas-ai-composite.png) |
 
 [Inspect the three-layer Scene Cards for this case](examples/generated-story.json)
 
 ### Case 2 · Family Archive
 
-| Before: fictional documentary inputs | After: family record |
+| Before: fictional documentary inputs | After: AI-composited family record |
 | --- | --- |
-| ![Family archive source contact sheet](examples/cases/family-archive/outputs/before.png) | ![Family Archive narrative result](examples/cases/family-archive/outputs/after.png) |
+| ![Family archive source contact sheet](examples/cases/family-archive/outputs/before.png) | ![Documentary photographs fused with drawings and archive materials](examples/cases/family-archive/outputs/family-archive-ai-composite.png) |
 
 This second case reads repeated gestures—laundry, cooking, sorting photographs—as a record of care passed through generations.
 
 [Inspect the Family Archive Scene Cards](examples/cases/family-archive/story.json)
 
-The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and then renders the sequence.
+The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and can produce either a deterministic workprint or a genuinely transformed mixed-media presentation image. In the After examples above, the real photographic buildings and fictional people remain recognizable while illustration, cartography, paper, and archival marks carry the narrative.
 
 ### Editorial Sequence
 
@@ -40,9 +40,9 @@ A spacious photo essay that keeps the photographs primary and makes each frame's
 
 ### Memory Atlas
 
-![Memory Atlas example](examples/outputs/memory-atlas.png)
+![Memory Atlas mixed-media example](examples/outputs/memory-atlas-ai-composite.png)
 
-A route-led system for departure, distance, return, and spatial memory.
+A mixed-media system for departure, distance, return, and spatial memory. It keeps actual architecture photographic while allowing the geography between places to become drawn memory.
 
 ### Field Log
 

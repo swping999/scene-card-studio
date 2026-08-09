@@ -18,15 +18,19 @@ Build a visual story from the user's photographs without imitating a named artis
    - `family-archive` for recurring gestures, inheritance, and domestic memory;
    - `memory-atlas` when movement, route, distance, or return matters;
    - `field-log` when observation and documentary detail matter.
-6. Write the cards to `story.json`. When the package is installed, run:
+6. Decide the output tier:
+   - **Workprint**: use the deterministic renderer for analysis, sequencing, iteration, and editable layout.
+   - **Presentation synthesis**: use image generation to create a genuinely transformed mixed-media artifact. Read `references/synthesis.md` before prompting. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
+7. Write the cards to `story.json`. When the package is installed, run:
 
 ```bash
 scene-card-studio recommend story.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 ```
 
-7. Inspect the output. Check photo order, crop safety, caption accuracy, contrast, and whether every element performs a narrative function.
-8. Return the requested artifact and a short explanation of the direction and sequence.
+8. For presentation synthesis, pass the source photographs as image references and translate Scene Card decisions into compositing instructions. For `memory-atlas`, keep real buildings photographic while drawing the geography between them. For `family-archive`, keep people photographic while layering object sketches, paper traces, and archival material.
+9. Inspect the output. Check subject fidelity, photo order, crop safety, caption accuracy, contrast, and whether every element performs a narrative function.
+10. Return both Before and After artifacts plus a short explanation of the direction and sequence.
 
 ## Guardrails
 
@@ -42,3 +46,4 @@ scene-card-studio render story.json --style editorial-sequence --format png --ou
 
 - Read `references/scene-card.md` before manually authoring or revising Scene Cards.
 - Run `scripts/render_story.py` when the package is not installed but the repository source tree is available.
+- Read `references/synthesis.md` whenever the user asks for an After image or finished visual artifact rather than a layout workprint.

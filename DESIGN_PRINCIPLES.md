@@ -30,6 +30,10 @@ The coastal memory-map illustration in `src/moments_to_pages/assets/maps` was ge
 
 `src/moments_to_pages/assets/maps` 中的海岸记忆地图插画同样于 2026-08-09 使用内置图像生成工具为本仓库生成。随包提供的 Noto Sans CJK SC 字体采用 SIL Open Font License 1.1，许可证提示与字体放置在同一目录。
 
+The final mixed-media Before/After synthesis records, including source lists and direction summaries, are documented in [`examples/GENERATIVE_CASES.md`](examples/GENERATIVE_CASES.md). Deterministic renderer outputs are labeled workprints; AI-composited images are labeled presentation synthesis.
+
+最终混合媒介 Before/After 的源图列表与导演摘要记录在 [`examples/GENERATIVE_CASES.md`](examples/GENERATIVE_CASES.md)。确定性渲染结果标记为 Workprint，AI 复合图标记为 Presentation Synthesis。
+
 ## Contribution rule
 
 Contributors must document the origin and usage terms of example assets. Narrative Systems must describe an expressive mechanism and may not depend on unauthorized imitation of a living artist, director, or photographer.

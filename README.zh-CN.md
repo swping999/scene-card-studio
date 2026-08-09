@@ -14,23 +14,23 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 
 以下原始照片均为本项目专门生成的原创示例。Before 展示未经叙事处理的输入照片组；After 使用同一组 Scene Cards，通过不同记录机制输出。
 
-| Before：原始照片组 | After：视觉导演结果 |
+| Before：原始旅行照片 | After：AI 复合 Memory Atlas |
 | --- | --- |
-| ![原始照片接触表](examples/outputs/before-source-photos.png) | ![编辑序列结果](examples/outputs/editorial-sequence.png) |
+| ![原始照片接触表](examples/outputs/before-source-photos.png) | ![真实建筑摄影与手绘记忆地图融合](examples/outputs/memory-atlas-ai-composite.png) |
 
 [查看本案例的三层 Scene Cards](examples/generated-story.json)
 
 ### 案例 2 · Family Archive｜家庭档案
 
-| Before：虚构人物纪实输入 | After：家庭记录 |
+| Before：虚构人物纪实输入 | After：AI 复合家庭档案 |
 | --- | --- |
-| ![家庭档案原始接触表](examples/cases/family-archive/outputs/before.png) | ![家庭档案叙事结果](examples/cases/family-archive/outputs/after.png) |
+| ![家庭档案原始接触表](examples/cases/family-archive/outputs/before.png) | ![人物纪实摄影与素描、档案材料融合](examples/cases/family-archive/outputs/family-archive-ai-composite.png) |
 
 第二组案例把晾衣、包饺子、整理旧照片这些重复动作，读成一段跨代传递的照料记录。
 
 [查看 Family Archive Scene Cards](examples/cases/family-archive/story.json)
 
-这里发生的不是风格滤镜转换。系统先区分观察事实与解释，再分配故事角色、生成可编辑导演备注、推荐 Narrative System，最后进行确定性渲染。
+这里发生的不是简单滤镜或重新排版。系统先区分观察事实与解释，再分配故事角色、生成导演备注、推荐 Narrative System，最终既可以输出确定性 Workprint，也可以生成真正发生视觉二次创作的混合媒介成品。上面的 After 保留了可识别的真实建筑摄影和虚构人物，同时让地图、素描、纸张与档案痕迹承担叙事。
 
 ### Editorial Sequence｜编辑序列
 
@@ -40,9 +40,9 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 
 ### Memory Atlas｜记忆地图
 
-![记忆地图案例](examples/outputs/memory-atlas.png)
+![摄影与手绘融合的记忆地图案例](examples/outputs/memory-atlas-ai-composite.png)
 
-适合旅程、离开、距离、返回与空间记忆。
+适合旅程、离开、距离、返回与空间记忆。真实建筑保持摄影质感，地点之间的地理空间则转化为手绘记忆。
 
 ### Field Log｜现场日志
 
