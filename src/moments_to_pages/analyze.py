@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import colorsys
 
-from .model import Direction, Observation, SceneCard
+from .model import Direction, Interpretation, Observation, SceneCard
 
 
 def _hex(rgb: tuple[int, int, int]) -> str:
@@ -14,7 +14,7 @@ def analyze_image(path: Path) -> SceneCard:
     try:
         from PIL import Image
     except ImportError as exc:
-        raise RuntimeError("Photo analysis requires Pillow: pip install 'moments-to-pages[images]'") from exc
+        raise RuntimeError("Photo analysis requires Pillow: pip install 'scene-card-studio[images]'") from exc
 
     with Image.open(path) as image:
         image = image.convert("RGB")
@@ -36,17 +36,19 @@ def analyze_image(path: Path) -> SceneCard:
         brightness=brightness, saturation=saturation, orientation=orientation,
         caption=path.stem.replace("-", " ").replace("_", " ").upper()[:42] or "UNTITLED MOMENT",
         observation=Observation(),
-        direction=Direction(
+        interpretation=Interpretation(
             emotional_tone=["quiet", "luminous"] if brightness > .58 else ["reflective", "intimate"],
-            confidence=.55,
+            confidence=.35,
+            method="heuristic",
         ),
+        direction=Direction(),
     )
 
 
-def assign_story_roles(cards: list[SceneCard]) -> list[SceneCard]:
+def assign_story_roles(cards: list[SceneCard], reorder: bool = False) -> list[SceneCard]:
     if not cards:
         return cards
-    ordered = sorted(cards, key=lambda card: (card.brightness, card.saturation))
+    ordered = sorted(cards, key=lambda card: (card.brightness, card.saturation)) if reorder else list(cards)
     roles = ["opening", "development", "pause", "closing"]
     for index, card in enumerate(ordered):
         card.direction.story_role = roles[min(index * len(roles) // len(ordered), len(roles) - 1)]

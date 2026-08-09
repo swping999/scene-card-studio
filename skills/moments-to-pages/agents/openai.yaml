@@ -1,4 +1,0 @@
-interface:
-  display_name: "Moments to Pages"
-  short_description: "Turn photos into structured visual stories"
-  default_prompt: "Use $moments-to-pages to analyze my photos, arrange them into a visual narrative, and export an editable story layout."

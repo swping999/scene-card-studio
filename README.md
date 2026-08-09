@@ -1,18 +1,32 @@
-# Moments to Pages
+# Scene Card Studio
 
 [中文](README.zh-CN.md) · English
 
 > **This is not a style-transfer repository. It is a Scene Card–based visual narrative engine for personal photography.**
 
-Moments to Pages turns observable photo evidence into editable narrative decisions and deterministic layouts. Instead of asking only *what should these photos look like?*, it asks *how should this story be read?*
+Scene Card Studio turns observable photo evidence into editable narrative decisions and deterministic layouts. Instead of asking only *what should these photos look like?*, it asks *how should this story be read?*
 
 ```text
-photos → observation → visual direction → sequence → narrative system → editable output
+photos → observation → interpretation → visual direction → sequence → narrative system → editable output
 ```
 
-## Showcase
+## Before / After
 
-All source photographs below were generated specifically for this repository. The three boards use the same Scene Cards but express different recording mechanisms.
+All source photographs below were generated specifically for this repository. The Before board shows the untouched inputs; each After board uses the same Scene Cards with a different recording mechanism.
+
+| Before: original photo set | After: directed narrative |
+| --- | --- |
+| ![Original photo contact sheet](examples/outputs/before-source-photos.png) | ![Editorial Sequence result](examples/outputs/editorial-sequence.png) |
+
+### Case 2 · Family Archive
+
+| Before: fictional documentary inputs | After: family record |
+| --- | --- |
+| ![Family archive source contact sheet](examples/cases/family-archive/outputs/before.png) | ![Family Archive narrative result](examples/cases/family-archive/outputs/after.png) |
+
+This second case reads repeated gestures—laundry, cooking, sorting photographs—as a record of care passed through generations.
+
+The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and then renders the sequence.
 
 ### Editorial Sequence
 
@@ -32,7 +46,7 @@ A route-led system for departure, distance, return, and spatial memory.
 
 An observational record for documentary detail, notes, and restrained evidence.
 
-[View source photos](examples/photos) · [View generated Scene Cards](examples/generated-story.json) · [Read the originality statement](ORIGINALITY.md)
+[View source photos](examples/photos) · [View generated Scene Cards](examples/generated-story.json) · [Read the design principles](DESIGN_PRINCIPLES.md)
 
 ## The Visual Director layer
 
@@ -45,21 +59,25 @@ Scene Cards explicitly separate visible evidence from interpretation:
     "dominant_gesture": "repeating window grid",
     "quiet_regions": ["upper evening sky"]
   },
-  "direction": {
-    "story_role": "opening",
+  "interpretation": {
     "narrative_intent": "patient growth",
     "emotional_tone": ["intimate", "hopeful"],
-    "director_note": "Treat the lamp as a sign of care, not dramatic spectacle.",
-    "confidence": 0.82
+    "confidence": 0.82,
+    "method": "manually-directed example"
+  },
+  "direction": {
+    "story_role": "opening",
+    "director_note": "Treat the lamp as a sign of care, not dramatic spectacle."
   }
 }
 ```
 
 - **Observation** records what is visibly present.
-- **Direction** records an editable interpretation.
+- **Interpretation** records a tentative theme and emotional reading.
+- **Direction** records editable sequencing and layout decisions.
 - **Narrative Systems** decide how the sequence can be read.
 
-The distinction prevents inferred meaning from being presented as photographic fact.
+The distinction prevents inferred meaning from being presented as photographic fact. Advanced narrative fields in the showcase are explicitly marked as manually directed; the current analyzer provides only low-confidence heuristics.
 
 ## Narrative Systems, not style filters
 
@@ -71,18 +89,18 @@ Requires Python 3.10+. Automatic analysis and PNG rendering use Pillow.
 
 ```bash
 python -m pip install -e '.[images]'
-moments-to-pages analyze photos/*.jpg --output story.json
-moments-to-pages recommend story.json
-moments-to-pages render story.json --style editorial-sequence --format png --output story.png
-moments-to-pages render story.json --style memory-atlas --format svg --output story.svg
+scene-card-studio analyze photos/*.jpg --output story.json
+scene-card-studio recommend story.json
+scene-card-studio render story.json --style editorial-sequence --format png --output story.png
+scene-card-studio render story.json --style memory-atlas --format svg --output story.svg
 ```
 
 ## Codex Skill
 
-Copy `skills/moments-to-pages` into your Codex skills directory, restart Codex, then ask:
+Copy `skills/scene-card-studio` into your Codex skills directory, restart Codex, then ask:
 
 ```text
-Use $moments-to-pages to direct these photos as a quiet family archive.
+Use $scene-card-studio to direct these photos as a quiet family archive.
 ```
 
 ## Originality and privacy
@@ -93,12 +111,12 @@ Use $moments-to-pages to direct these photos as a quiet family archive.
 - the core contribution is the Scene Card + Visual Director + narrative rendering workflow;
 - source photos stay local unless the user explicitly chooses otherwise.
 
-See [ORIGINALITY.md](ORIGINALITY.md) for the complete evidence chain.
+See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the complete evidence chain.
 
 ## Roadmap
 
 - user-editable Visual Director decisions;
-- `family-archive`, `contact-sheet`, and `journey-sequence` systems;
+- `contact-sheet` and `journey-sequence` systems;
 - crop-aware subject placement;
 - printable PDF and social carousel renderers;
 - browser preview and drag-to-reorder editor;

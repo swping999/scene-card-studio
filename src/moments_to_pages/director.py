@@ -16,7 +16,7 @@ def recommend_systems(cards: list[SceneCard]) -> list[Recommendation]:
     if not cards:
         return []
     gestures = " ".join(card.observation.dominant_gesture for card in cards).lower()
-    intents = " ".join(card.direction.narrative_intent for card in cards).lower()
+    intents = " ".join(card.interpretation.narrative_intent for card in cards).lower()
     average_saturation = sum(card.saturation for card in cards) / len(cards)
     results = [
         Recommendation("editorial-sequence", .72, "A flexible sequence keeps photographs primary and makes story roles legible."),

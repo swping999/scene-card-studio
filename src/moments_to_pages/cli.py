@@ -10,15 +10,16 @@ from .render import render_png, render_svg
 
 
 def parser() -> argparse.ArgumentParser:
-    root = argparse.ArgumentParser(prog="moments-to-pages")
+    root = argparse.ArgumentParser(prog="scene-card-studio")
     commands = root.add_subparsers(dest="command", required=True)
     analyze = commands.add_parser("analyze", help="Create Scene Cards from photos")
     analyze.add_argument("photos", nargs="+")
     analyze.add_argument("-o", "--output", default="story.json")
+    analyze.add_argument("--reorder", action="store_true", help="Allow heuristic reordering; input order is preserved by default")
     render = commands.add_parser("render", help="Render Scene Cards to editable SVG")
     render.add_argument("story")
     render.add_argument("-o", "--output", default="story.svg")
-    render.add_argument("--style", choices=["editorial-sequence", "memory-atlas", "field-log", "editorial-minimal", "memory-map", "field-notes"], default="editorial-sequence")
+    render.add_argument("--style", choices=["source-contact-sheet", "editorial-sequence", "family-archive", "memory-atlas", "field-log", "editorial-minimal", "memory-map", "field-notes"], default="editorial-sequence")
     render.add_argument("--embed-images", action="store_true")
     render.add_argument("--format", choices=["svg", "png"], default="svg")
     recommend = commands.add_parser("recommend", help="Recommend Narrative Systems with reasons")
@@ -29,7 +30,7 @@ def parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
     if args.command == "analyze":
-        save_cards(assign_story_roles([analyze_image(Path(value)) for value in args.photos]), Path(args.output))
+        save_cards(assign_story_roles([analyze_image(Path(value)) for value in args.photos], reorder=args.reorder), Path(args.output))
     elif args.command == "recommend":
         for item in recommend_systems(load_cards(Path(args.story))):
             print(f"{item.system}\t{item.score:.2f}\t{item.reason}")

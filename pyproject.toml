@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "moments-to-pages"
+name = "scene-card-studio"
 version = "0.2.0"
 description = "Turn personal photos into structured, editable visual narratives."
 readme = "README.md"
@@ -17,6 +17,7 @@ images = ["Pillow>=10"]
 dev = ["pytest>=8", "Pillow>=10"]
 
 [project.scripts]
+scene-card-studio = "moments_to_pages.cli:main"
 moments-to-pages = "moments_to_pages.cli:main"
 
 [tool.hatch.build.targets.wheel]

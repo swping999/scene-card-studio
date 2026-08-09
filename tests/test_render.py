@@ -15,6 +15,6 @@ def test_roundtrip_and_render(tmp_path: Path):
     render_svg(load_cards(story), output, "field-notes")
     result = output.read_text()
     assert "SEA WIND" in result
-    assert "MOMENTS TO PAGES" in result
+    assert "SCENE CARD STUDIO" in result
     assert result.endswith("</svg>\n")
     assert recommend_systems(cards)[0].system in {"editorial-sequence", "memory-atlas", "field-log"}

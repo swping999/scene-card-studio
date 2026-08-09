@@ -1,9 +1,9 @@
 ---
-name: moments-to-pages
-description: Turn one to twelve user-supplied photos into a coherent visual narrative and editable SVG story layout. Use when the user wants a photo essay, travel diary, contact sheet, visual journal, social carousel, micro-zine plan, or a sequence of photographs organized into opening, development, pause, and closing roles.
+name: scene-card-studio
+description: Turn a set of user-supplied photos into a coherent visual narrative and editable story layout. Use when the user wants a photo essay, family archive, travel diary, contact sheet, visual journal, social carousel, micro-zine plan, or a sequence of photographs organized into opening, development, pause, and closing roles.
 ---
 
-# Moments to Pages
+# Scene Card Studio
 
 Build a visual story from the user's photographs without imitating a named artist or copying a reference project's protected assets.
 
@@ -12,16 +12,17 @@ Build a visual story from the user's photographs without imitating a named artis
 1. Treat only user-supplied photos as content sources. Do not browse for or upload private photos.
 2. For every photo, create a Scene Card using `references/scene-card.md`. Keep observable evidence separate from interpretive direction.
 3. Add a Visual Director decision: narrative intent, emotional tone, story role, concise director note, and confidence. Never present this interpretation as photographic fact.
-4. Preserve chronology when it is meaningful. Otherwise order frames into opening, development, pause, and closing using contrast, visual energy, and subject continuity.
+4. Preserve the user's input order by default. Reorder only when the user requests it or explicitly approves `--reorder`; then use opening, development, pause, and closing roles.
 5. Recommend one Narrative System with an explicit reason:
    - `editorial-sequence` for a quiet, flexible photo essay;
+   - `family-archive` for recurring gestures, inheritance, and domestic memory;
    - `memory-atlas` when movement, route, distance, or return matters;
    - `field-log` when observation and documentary detail matter.
 6. Write the cards to `story.json`. When the package is installed, run:
 
 ```bash
-moments-to-pages recommend story.json
-moments-to-pages render story.json --style editorial-sequence --format png --output story.png
+scene-card-studio recommend story.json
+scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 ```
 
 7. Inspect the output. Check photo order, crop safety, caption accuracy, contrast, and whether every element performs a narrative function.

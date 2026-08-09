@@ -10,6 +10,27 @@ PAPER = "#F3F0E8"
 INK = "#202321"
 
 
+def _load_font(ImageFont, size: int, mono: bool = False):
+    candidates = ([
+        "assets/fonts/NotoSansMono-Regular.ttf",
+        "/System/Library/Fonts/Menlo.ttc",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+        "C:/Windows/Fonts/consola.ttf",
+    ] if mono else [
+        "assets/fonts/NotoSans-Regular.ttf",
+        "/System/Library/Fonts/Helvetica.ttc",
+        "/System/Library/Fonts/PingFang.ttc",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "C:/Windows/Fonts/arial.ttf",
+    ])
+    for candidate in candidates:
+        try:
+            return ImageFont.truetype(candidate, size)
+        except OSError:
+            continue
+    return ImageFont.load_default()
+
+
 def _image_href(card: SceneCard, embed: bool) -> str:
     path = Path(card.source)
     if not embed:
@@ -31,7 +52,7 @@ def render_svg(cards: list[SceneCard], output: Path, style: str = "editorial-min
     accent = cards[0].palette[0] if cards[0].palette else "#275D78"
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
              f'<rect width="100%" height="100%" fill="{PAPER}"/>',
-             f'<text x="{margin}" y="80" font-family="ui-monospace,monospace" font-size="18" letter-spacing="4" fill="{accent}">MOMENTS TO PAGES</text>',
+             f'<text x="{margin}" y="80" font-family="ui-monospace,monospace" font-size="18" letter-spacing="4" fill="{accent}">SCENE CARD STUDIO</text>',
              f'<text x="{margin}" y="145" font-family="system-ui,sans-serif" font-size="54" fill="{INK}">A visual story in {len(cards)} frame(s)</text>']
     for i, card in enumerate(cards):
         col, row = i % columns, i // columns
@@ -55,39 +76,61 @@ def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-se
     try:
         from PIL import Image, ImageDraw, ImageFont, ImageOps
     except ImportError as exc:
-        raise RuntimeError("PNG rendering requires Pillow: pip install 'moments-to-pages[images]'") from exc
+        raise RuntimeError("PNG rendering requires Pillow: pip install 'scene-card-studio[images]'") from exc
     aliases = {"editorial-minimal": "editorial-sequence", "memory-map": "memory-atlas", "field-notes": "field-log"}
     system = aliases.get(system, system)
     canvas = Image.new("RGB", (1200, 1800), PAPER)
     draw = ImageDraw.Draw(canvas)
-    regular_path = "/System/Library/Fonts/Helvetica.ttc"
-    mono_path = "/System/Library/Fonts/Menlo.ttc"
-    try:
-        title_font = ImageFont.truetype(regular_path, 52)
-        body_font = ImageFont.truetype(regular_path, 24)
-        meta_font = ImageFont.truetype(mono_path, 15)
-    except OSError:
-        title_font = body_font = meta_font = ImageFont.load_default()
+    title_font = _load_font(ImageFont, 52)
+    body_font = _load_font(ImageFont, 24)
+    meta_font = _load_font(ImageFont, 15, mono=True)
     accent = cards[0].palette[0] if cards and cards[0].palette else "#275D78"
-    draw.text((72, 55), "MOMENTS TO PAGES", fill=accent, font=meta_font)
+
+    def fit_text(value: str, font, max_width: int) -> str:
+        if draw.textlength(value, font=font) <= max_width:
+            return value
+        shortened = value
+        while shortened and draw.textlength(shortened + "…", font=font) > max_width:
+            shortened = shortened[:-1]
+        return shortened.rstrip() + "…"
+
+    draw.text((72, 55), "SCENE CARD STUDIO", fill=accent, font=meta_font)
     draw.text((72, 105), system.replace("-", " ").upper(), fill=INK, font=title_font)
-    draw.text((72, 172), "OBSERVATION → DIRECTION → NARRATIVE SYSTEM", fill="#666762", font=meta_font)
+    draw.text((72, 172), "OBSERVATION → INTERPRETATION → DIRECTION → NARRATIVE SYSTEM", fill="#666762", font=meta_font)
     columns, margin, gap = 2, 72, 24
     cell_w, cell_h = 516, 700
     route_points: list[tuple[int, int]] = []
     for index, card in enumerate(cards):
         x = margin + (index % columns) * (cell_w + gap)
         y = 240 + (index // columns) * (cell_h + gap)
-        photo_h = 420 if system == "editorial-sequence" else 360
+        photo_h = 420 if system in {"editorial-sequence", "source-contact-sheet"} else 360
         with Image.open(card.source).convert("RGB") as source:
             photo = ImageOps.fit(source, (cell_w, photo_h), method=Image.Resampling.LANCZOS)
         canvas.paste(photo, (x, y))
+        if system == "family-archive":
+            draw.rectangle((x, y + photo_h - 12, x + cell_w, y + photo_h), fill="#A0664B")
+            draw.text((x + 16, y + 16), f"ARCHIVE / {index + 1:02d}", fill=PAPER, font=meta_font)
         if system == "field-log":
             draw.rectangle((x + cell_w - 130, y + photo_h - 18, x + cell_w - 12, y + photo_h + 22), fill=accent)
-        draw.text((x, y + photo_h + 30), f"{index + 1:02d} · {card.story_role.upper()}", fill=accent, font=meta_font)
-        draw.text((x, y + photo_h + 65), card.caption, fill=INK, font=body_font)
-        note = card.direction.director_note[:64]
-        draw.text((x, y + photo_h + 112), note, fill="#666762", font=meta_font)
+        if system == "source-contact-sheet":
+            draw.text((x, y + photo_h + 30), f"SOURCE {index + 1:02d} · UNINTERPRETED", fill=accent, font=meta_font)
+            label = fit_text(Path(card.source).stem.replace("-", " ").upper(), body_font, cell_w)
+            draw.text((x, y + photo_h + 65), label, fill=INK, font=body_font)
+            note = "Original input before sequencing or visual direction."
+        elif system == "field-log":
+            draw.text((x, y + photo_h + 30), f"FIELD NOTE {index + 1:02d} · OBSERVATION", fill=accent, font=meta_font)
+            draw.text((x, y + photo_h + 65), fit_text(card.caption, body_font, cell_w), fill=INK, font=body_font)
+            subjects = ", ".join(card.observation.subjects[:3]) or "unclassified subject"
+            note = f"Seen: {subjects} · gesture: {card.observation.dominant_gesture}"[:82]
+        elif system == "family-archive":
+            draw.text((x, y + photo_h + 30), f"{index + 1:02d} · FAMILY RECORD · {card.story_role.upper()}", fill="#A0664B", font=meta_font)
+            draw.text((x, y + photo_h + 65), fit_text(card.caption, body_font, cell_w), fill=INK, font=body_font)
+            note = f"Kept as: {card.interpretation.narrative_intent} · {card.direction.director_note}"[:82]
+        else:
+            draw.text((x, y + photo_h + 30), f"{index + 1:02d} · {card.story_role.upper()}", fill=accent, font=meta_font)
+            draw.text((x, y + photo_h + 65), fit_text(card.caption, body_font, cell_w), fill=INK, font=body_font)
+            note = card.direction.director_note[:64]
+        draw.text((x, y + photo_h + 112), fit_text(note, meta_font, cell_w), fill="#666762", font=meta_font)
         draw.line((x, y + photo_h + 150, x + cell_w, y + photo_h + 150), fill="#C8C4BA", width=1)
         route_points.append((x + cell_w - 24 if index % 2 == 0 else x + 24, y + photo_h - 24))
     if system == "memory-atlas" and len(route_points) > 1:
@@ -96,4 +139,7 @@ def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-se
             px, py = point
             draw.ellipse((px - 13, py - 13, px + 13, py + 13), fill=PAPER, outline=accent, width=5)
             draw.text((px + 18, py - 13), f"{number:02d}", fill=accent, font=meta_font)
+    if system == "family-archive":
+        draw.line((72, 1740, 1128, 1740), fill="#A0664B", width=3)
+        draw.text((72, 1752), "A FAMILY IS REMEMBERED THROUGH REPEATED GESTURES.", fill="#A0664B", font=meta_font)
     canvas.save(output, optimize=True)

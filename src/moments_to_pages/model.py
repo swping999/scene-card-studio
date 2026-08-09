@@ -14,12 +14,18 @@ class Observation:
 
 
 @dataclass
-class Direction:
-    story_role: str = "moment"
+class Interpretation:
     narrative_intent: str = "observation"
     emotional_tone: list[str] = field(default_factory=lambda: ["quiet"])
-    director_note: str = "Preserve the observed scene and let sequencing carry the meaning."
     confidence: float = 0.5
+    method: str = "heuristic"
+
+
+@dataclass
+class Direction:
+    story_role: str = "moment"
+    director_note: str = "Preserve the observed scene and let sequencing carry the meaning."
+    layout_emphasis: str = "photograph"
 
 
 @dataclass
@@ -33,6 +39,7 @@ class SceneCard:
     orientation: str
     caption: str = "UNTITLED MOMENT"
     observation: Observation = field(default_factory=Observation)
+    interpretation: Interpretation = field(default_factory=Interpretation)
     direction: Direction = field(default_factory=Direction)
 
     @property
@@ -53,7 +60,14 @@ class SceneCard:
             legacy_direction["story_role"] = value.pop("story_role")
         observation = value.get("observation", legacy_observation)
         direction = value.get("direction", legacy_direction)
+        interpretation = value.get("interpretation", {})
+        if isinstance(direction, dict):
+            direction = dict(direction)
+            for key in ("narrative_intent", "emotional_tone", "confidence"):
+                if key in direction and key not in interpretation:
+                    interpretation[key] = direction.pop(key)
         value["observation"] = observation if isinstance(observation, Observation) else Observation(**observation)
+        value["interpretation"] = interpretation if isinstance(interpretation, Interpretation) else Interpretation(**interpretation)
         value["direction"] = direction if isinstance(direction, Direction) else Direction(**direction)
         return cls(**value)
 

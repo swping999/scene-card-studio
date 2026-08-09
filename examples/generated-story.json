@@ -13,12 +13,16 @@
       "dominant_gesture": "repeating window grid",
       "quiet_regions": ["upper evening sky"]
     },
-    "direction": {
-      "story_role": "opening",
+    "interpretation": {
       "narrative_intent": "patient growth",
       "emotional_tone": ["intimate", "hopeful"],
+      "confidence": 0.82,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "opening",
       "director_note": "Treat the lamp as a sign of care, not dramatic spectacle.",
-      "confidence": 0.82
+      "layout_emphasis": "warm light within cool environment"
     }
   },
   {
@@ -35,12 +39,16 @@
       "dominant_gesture": "road curving into distant mountains",
       "quiet_regions": ["hazy valley"]
     },
-    "direction": {
-      "story_role": "development",
+    "interpretation": {
       "narrative_intent": "journey pause",
       "emotional_tone": ["warm", "unhurried"],
+      "confidence": 0.86,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "development",
       "director_note": "Frame this as a pause in a journey, not a product display.",
-      "confidence": 0.86
+      "layout_emphasis": "road as transition between foreground and distance"
     }
   },
   {
@@ -57,12 +65,16 @@
       "dominant_gesture": "track receding toward the horizon",
       "quiet_regions": ["sea", "pale morning sky"]
     },
-    "direction": {
-      "story_role": "closing",
+    "interpretation": {
       "narrative_intent": "departure",
       "emotional_tone": ["quiet", "anticipatory"],
+      "confidence": 0.88,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "closing",
       "director_note": "Treat this as a personal departure, not a travel poster.",
-      "confidence": 0.88
+      "layout_emphasis": "railway line and red signal"
     }
   }
 ]
