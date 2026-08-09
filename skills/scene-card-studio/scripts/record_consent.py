@@ -7,4 +7,4 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from moments_to_pages.cli import main
 
-raise SystemExit(main(["render", *sys.argv[1:]]))
+raise SystemExit(main(["consent", *sys.argv[1:]]))

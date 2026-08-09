@@ -1,0 +1,29 @@
+[
+  {
+    "source": "photos/raw-bus-stop.png", "width": 1536, "height": 1024,
+    "palette": ["#201D18", "#615A51", "#946D56"], "brightness": 0.275, "saturation": 0.309, "orientation": "landscape",
+    "caption": "WAITING UNDER MIXED LIGHT",
+    "observation": {"subjects": ["woman", "glass bus shelter", "wet pavement"], "dominant_gesture": "small still figure against wide roadside space", "quiet_regions": ["foreground pavement"]},
+    "interpretation": {"narrative_intent": "waiting before an unseen departure", "emotional_tone": ["lonely", "suspended"], "confidence": 0.83, "method": "manually-directed example"},
+    "direction": {"story_role": "opening", "director_note": "Crop away accidental pavement and let reflections carry the woman into the next scene.", "layout_emphasis": "figure within rain"},
+    "transformation": {"must_preserve": ["woman", "glass bus shelter", "wet pavement"], "may_transform": ["crop", "exposure", "light balance", "rain visibility"], "must_remove": ["accidental roadside clutter"]}
+  },
+  {
+    "source": "photos/raw-diner.png", "width": 1536, "height": 1024,
+    "palette": ["#1B1A1B", "#A49B9A", "#E9E0D9"], "brightness": 0.435, "saturation": 0.156, "orientation": "landscape",
+    "caption": "A ROOM SEEN THROUGH WEATHER",
+    "observation": {"subjects": ["man", "diner counter", "rain-streaked window"], "dominant_gesture": "window divisions isolate the seated figure", "quiet_regions": ["empty counter seats"]},
+    "interpretation": {"narrative_intent": "interior pause between two movements", "emotional_tone": ["contained", "reflective"], "confidence": 0.86, "method": "manually-directed example"},
+    "direction": {"story_role": "development", "director_note": "Use wet glass as the transition surface; suppress fluorescent flatness into controlled amber.", "layout_emphasis": "figure behind glass"},
+    "transformation": {"must_preserve": ["man", "diner counter", "rain-streaked window"], "may_transform": ["crop", "fluorescent exposure", "color balance", "reflection intensity"], "must_remove": ["nonessential counter clutter"]}
+  },
+  {
+    "source": "photos/raw-taxi.png", "width": 1536, "height": 1024,
+    "palette": ["#222126", "#739ED6", "#2C3648"], "brightness": 0.472, "saturation": 0.343, "orientation": "landscape",
+    "caption": "THE LAST RED LIGHT LEAVES",
+    "observation": {"subjects": ["taxi", "residential intersection", "red reflection"], "dominant_gesture": "vehicle turns across the frame", "quiet_regions": ["blue sky", "empty sidewalk"]},
+    "interpretation": {"narrative_intent": "departure without explanation", "emotional_tone": ["final", "open-ended"], "confidence": 0.81, "method": "manually-directed example"},
+    "direction": {"story_role": "closing", "director_note": "Let the red reflection resolve the amber light carried through the earlier scenes.", "layout_emphasis": "tail light and turn"},
+    "transformation": {"must_preserve": ["yellow-red taxi", "residential intersection", "red tail-light reflection"], "may_transform": ["crop", "exposure", "weather atmosphere", "color balance"], "must_remove": ["nonessential curb clutter"]}
+  }
+]

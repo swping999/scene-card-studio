@@ -7,4 +7,6 @@ build/
 *.egg-info/
 story.svg
 story.json
+!examples/generated-story.json
+!examples/**/story.json
 tools/

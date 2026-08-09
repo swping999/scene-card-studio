@@ -1,7 +1,12 @@
 {
-  "schema_version": "1.0",
-  "compiler_version": "0.3.0",
+  "schema_version": "1.1",
+  "compiler_version": "0.3.1",
   "system": "memory-atlas",
+  "expression_profile": "watercolor-contour",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour"
+  ],
   "story": "examples/generated-story.json",
   "source_base": "story-directory",
   "prompts": [
@@ -29,42 +34,57 @@
       ],
       "blocks": {
         "subject_fidelity": [
-          "Preserve each photographed place as a recognizable photographic anchor: greenhouse, work lamp, rain; fruit stand, empty chair, mountain road; coastal platform, railway, red signal.",
-          "Keep architecture, landmarks, horizon, entrances, and identity-bearing spatial details faithful to their source photographs.",
-          "Do not redraw the buildings as generic illustrations and do not invent destinations or geographic facts."
+          "Preserve each supplied place or subject as a recognizable photographic anchor: greenhouse, work lamp, repeating window grid; fruit stand, empty chair, mountain road; coastal platform, railway, red signal.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to each source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards."
+        ],
+        "transformation_policy": [
+          "Frame 01: MUST PRESERVE — greenhouse, work lamp, repeating window grid.",
+          "Frame 01: MAY TRANSFORM — surrounding geography, photo edge, scale, paper transition.",
+          "Frame 01: MUST REMOVE — nothing not explicitly authorized.",
+          "Frame 02: MUST PRESERVE — fruit stand, empty chair, mountain road.",
+          "Frame 02: MAY TRANSFORM — surrounding geography, photo edge, scale, paper transition.",
+          "Frame 02: MUST REMOVE — nothing not explicitly authorized.",
+          "Frame 03: MUST PRESERVE — coastal platform, railway, red signal.",
+          "Frame 03: MAY TRANSFORM — surrounding geography, photo edge, scale, paper transition.",
+          "Frame 03: MUST REMOVE — nothing not explicitly authorized."
         ],
         "narrative_intent": [
-          "Connect the places as remembered experience rather than a literal navigation map: patient growth → journey pause → departure."
+          "Connect the supplied places as remembered spatial experience rather than literal navigation.",
+          "Frame 01 / opening: intent patient growth; tone intimate, hopeful; emphasis warm light within cool environment; director note Treat the lamp as a sign of care, not dramatic spectacle.",
+          "Frame 02 / development: intent journey pause; tone warm, unhurried; emphasis road as transition between foreground and distance; director note Frame this as a pause in a journey, not a product display.",
+          "Frame 03 / closing: intent departure; tone quiet, anticipatory; emphasis railway line and red signal; director note Treat this as a personal departure, not a travel poster."
         ],
         "composition": [
-          "Build one coherent travel/space memory field in which real photographic architecture is embedded into drawn geography.",
-          "Create a clear spatial rhythm from departure through distance to return; avoid a row of equal photo cards."
+          "Follow the supplied source order and story roles; do not force a departure–return arc.",
+          "Avoid a row of equal photo cards; use spatial hierarchy to express the relationships stated in the Scene Cards.",
+          "Embed real photographic places into one hand-drawn geography with varied scale and selective edge overlap."
         ],
         "lighting": [
-          "Preserve plausible light within each photographic fragment and unify the whole artifact with restrained paper warmth.",
-          "Use watercolor terrain and graphite contours to bridge tonal differences without recoloring every photograph identically."
+          "Use the combined source palette (#111817, #4F6FA4, #262113, #675D54, #DBDFE3, #2C2E2E) without recoloring every photograph identically.",
+          "Preserve photographic light while unifying the field with restrained paper warmth."
         ],
         "material": [
-          "Combine photographic buildings with watercolor terrain, pencil contour marks, torn archival paper, faint coastline or topographic texture, and subtle travel ephemera.",
-          "Keep paper seams and drawn marks tactile and irregular; they must carry spatial memory rather than decoration."
+          "Use watercolor terrain, pencil contours, torn archival paper, faint coastline texture, and subtle travel ephemera.",
+          "Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration."
         ],
         "spatial_relationships": [
-          "Let drawn terrain flow behind and between the photographed places; overlap edges selectively so photography and drawing inhabit one geography.",
-          "Use scale changes to suggest remembered distance, not literal cartographic accuracy."
+          "Connect frames through their stated gestures, roles, quiet regions, and layout emphasis.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
         ],
         "text_strategy": [
           "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
         ],
         "exclusions": [
-          "No arrows, dotted route lines, flowchart connectors, UI map, scrapbook grid, postcard collage, or equal photo panels.",
-          "No fantasy architecture, generic tourism poster, glossy 3D terrain, or named-artist imitation."
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation."
         ],
         "output": [
-          "Return one integrated photographic-and-hand-drawn spatial memory artifact at 4:5.",
-          "Actual architecture must remain photographic and recognizable."
+          "Return one integrated spatial-memory artifact at 4:5.",
+          "Every supplied place or subject must remain recognizable."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve each photographed place as a recognizable photographic anchor: greenhouse, work lamp, rain; fruit stand, empty chair, mountain road; coastal platform, railway, red signal.\n- Keep architecture, landmarks, horizon, entrances, and identity-bearing spatial details faithful to their source photographs.\n- Do not redraw the buildings as generic illustrations and do not invent destinations or geographic facts.\n\nNARRATIVE INTENT\n- Connect the places as remembered experience rather than a literal navigation map: patient growth → journey pause → departure.\n\nCOMPOSITION\n- Build one coherent travel/space memory field in which real photographic architecture is embedded into drawn geography.\n- Create a clear spatial rhythm from departure through distance to return; avoid a row of equal photo cards.\n\nLIGHTING AND COLOR\n- Preserve plausible light within each photographic fragment and unify the whole artifact with restrained paper warmth.\n- Use watercolor terrain and graphite contours to bridge tonal differences without recoloring every photograph identically.\n\nMATERIAL AND SURFACE\n- Combine photographic buildings with watercolor terrain, pencil contour marks, torn archival paper, faint coastline or topographic texture, and subtle travel ephemera.\n- Keep paper seams and drawn marks tactile and irregular; they must carry spatial memory rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Let drawn terrain flow behind and between the photographed places; overlap edges selectively so photography and drawing inhabit one geography.\n- Use scale changes to suggest remembered distance, not literal cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No arrows, dotted route lines, flowchart connectors, UI map, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, glossy 3D terrain, or named-artist imitation.\n\nOUTPUT\n- Return one integrated photographic-and-hand-drawn spatial memory artifact at 4:5.\n- Actual architecture must remain photographic and recognizable.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve each supplied place or subject as a recognizable photographic anchor: greenhouse, work lamp, repeating window grid; fruit stand, empty chair, mountain road; coastal platform, railway, red signal.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to each source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n\nTRANSFORMATION POLICY\n- Frame 01: MUST PRESERVE — greenhouse, work lamp, repeating window grid.\n- Frame 01: MAY TRANSFORM — surrounding geography, photo edge, scale, paper transition.\n- Frame 01: MUST REMOVE — nothing not explicitly authorized.\n- Frame 02: MUST PRESERVE — fruit stand, empty chair, mountain road.\n- Frame 02: MAY TRANSFORM — surrounding geography, photo edge, scale, paper transition.\n- Frame 02: MUST REMOVE — nothing not explicitly authorized.\n- Frame 03: MUST PRESERVE — coastal platform, railway, red signal.\n- Frame 03: MAY TRANSFORM — surrounding geography, photo edge, scale, paper transition.\n- Frame 03: MUST REMOVE — nothing not explicitly authorized.\n\nNARRATIVE INTENT\n- Connect the supplied places as remembered spatial experience rather than literal navigation.\n- Frame 01 / opening: intent patient growth; tone intimate, hopeful; emphasis warm light within cool environment; director note Treat the lamp as a sign of care, not dramatic spectacle.\n- Frame 02 / development: intent journey pause; tone warm, unhurried; emphasis road as transition between foreground and distance; director note Frame this as a pause in a journey, not a product display.\n- Frame 03 / closing: intent departure; tone quiet, anticipatory; emphasis railway line and red signal; director note Treat this as a personal departure, not a travel poster.\n\nCOMPOSITION\n- Follow the supplied source order and story roles; do not force a departure–return arc.\n- Avoid a row of equal photo cards; use spatial hierarchy to express the relationships stated in the Scene Cards.\n- Embed real photographic places into one hand-drawn geography with varied scale and selective edge overlap.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#111817, #4F6FA4, #262113, #675D54, #DBDFE3, #2C2E2E) without recoloring every photograph identically.\n- Preserve photographic light while unifying the field with restrained paper warmth.\n\nMATERIAL AND SURFACE\n- Use watercolor terrain, pencil contours, torn archival paper, faint coastline texture, and subtle travel ephemera.\n- Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Connect frames through their stated gestures, roles, quiet regions, and layout emphasis.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n\nOUTPUT\n- Return one integrated spatial-memory artifact at 4:5.\n- Every supplied place or subject must remain recognizable.",
       "reference_output": {
         "path": "outputs/memory-atlas-ai-composite.png",
         "sha256": "6ed9f25e25434f0581d8acbfbe67d44dd0890f052766a499ba435f66caac06db"
@@ -82,8 +102,34 @@
       "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
       "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
       "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
-      "system_distinctiveness": "The result uses the selected Narrative System's mechanism rather than a generic beauty treatment.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
       "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
     }
+  },
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "photos/rain-greenhouse.png",
+        "sha256": "0e9cb0b42b2899785c9ae9b4f25d8a1f13522e8c48bb6b8775a42ec9b0a2e4a2"
+      },
+      {
+        "path": "photos/valley-fruit-stand.png",
+        "sha256": "14cb006a6df5e58d2d0d09f24bbc7947d2da7ca3bb19451b84f8a34d21d621cc"
+      },
+      {
+        "path": "photos/coastal-platform.png",
+        "sha256": "987ef5453df78ad562c82a63accbfa5c3efb63b99c2a2f7705afd0a8217f34c6"
+      }
+    ]
   }
 }

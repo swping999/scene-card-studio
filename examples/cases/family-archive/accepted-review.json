@@ -1,7 +1,12 @@
 {
+  "manifest_sha256": "326997509a88e31dfe35c431b6b0a79244025de749bcc45f2827f4f3dd1fdb10",
+  "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
+  "review_method": "Full-resolution visual inspection against the compiled prompt and source references.",
+  "reviewed_at": "2026-08-09T19:20:00+08:00",
   "results": [
     {
       "prompt_id": "family-archive-01",
+      "output_sha256": "17ff5ef9bfbafbed8a5fde7ee32f6e5a6ff540d05cf8ba7d1e8e19322161e06a",
       "scores": {
         "subject_fidelity": 4,
         "narrative_alignment": 5,

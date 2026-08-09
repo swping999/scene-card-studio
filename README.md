@@ -12,7 +12,7 @@ photos → Scene Cards → Narrative System → Prompt Compiler → image genera
 
 ## Before / After
 
-All source photographs below were generated specifically for this repository. Every comparison keeps the untouched input visible. Unless a Narrative System explicitly depends on spatial montage, one source photograph produces one standalone After image.
+All source photographs below were generated specifically for this repository. Their content is unedited; Before contact sheets use center-cropping only for display. Unless a Narrative System explicitly depends on spatial montage, one source photograph produces one standalone After image.
 
 | Before: original travel photographs | After: AI-composited Memory Atlas |
 | --- | --- |
@@ -40,7 +40,7 @@ Three unremarkable phone snapshots become three independent film frames. They ar
 | ![Ordinary phone snapshot of a diner](examples/cases/cinematic-storyboard/photos/raw-diner.png) | ![Directed diner seen through rain](examples/cases/cinematic-storyboard/outputs/after-diner.png) |
 | ![Ordinary phone snapshot of a taxi](examples/cases/cinematic-storyboard/photos/raw-taxi.png) | ![Directed taxi departure frame](examples/cases/cinematic-storyboard/outputs/after-taxi.png) |
 
-[Inspect the Scene Cards](examples/cases/cinematic-storyboard/story.json) · [Open the three compiled prompts](examples/cases/cinematic-storyboard/prompt-manifest.json) · [View the source contact sheet](examples/cases/cinematic-storyboard/outputs/before.png)
+[Inspect the Scene Cards](examples/cases/cinematic-storyboard/story.json) · [Open the three compiled prompts](examples/cases/cinematic-storyboard/prompt-manifest.json) · [Inspect a real failed → targeted retry → accepted record](examples/cases/cinematic-storyboard/retry-example/README.md) · [View the source contact sheet](examples/cases/cinematic-storyboard/outputs/before.png)
 
 ### Case 4 · Minimal Editorial
 
@@ -66,7 +66,7 @@ A spacious photo essay that keeps the photographs primary and makes each frame's
 
 ![Memory Atlas mixed-media example](examples/outputs/memory-atlas-ai-composite.png)
 
-A mixed-media system for departure, distance, return, and spatial memory. It keeps actual architecture photographic while allowing the geography between places to become drawn memory.
+A mixed-media system for journeys, distance, place, and spatial memory. It keeps actual architecture photographic while allowing the geography between places to become drawn memory; it does not assume that every journey ends in a return.
 
 ### Field Log
 
@@ -107,11 +107,11 @@ Scene Cards explicitly separate visible evidence from interpretation:
 
 The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
 
-## v0.3 · Prompt Compiler & Reproducible Art Direction
+## v0.3.1 · Prompt Compiler & Reproducible Art Direction
 
-The compiler turns Scene Card evidence and one Narrative System into a versioned JSON generation contract. Four core systems are supported: `cinematic-storyboard`, `minimal-editorial`, `memory-atlas`, and `family-archive`.
+The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Four core systems are supported: `cinematic-storyboard`, `minimal-editorial`, `memory-atlas`, and `family-archive`. The system defines how the story is read; the profile defines how that mechanism is visually expressed. `source-led` is the default.
 
-Every compiled prompt contains the same nine modules:
+Every compiled prompt contains the same ten modules:
 
 1. subject fidelity;
 2. narrative intent;
@@ -120,10 +120,11 @@ Every compiled prompt contains the same nine modules:
 5. material and surface;
 6. spatial relationships;
 7. text and label strategy;
-8. exclusions;
-9. output ratio and format.
+8. explicit `must_preserve` / `may_transform` / `must_remove` rules;
+9. exclusions;
+10. output ratio and format.
 
-The manifest records compiler version, source hashes, compiled prompts, benchmark output hashes, and a five-dimension review policy. A failed review produces a targeted correction pass for only the weak dimensions instead of rewriting the whole prompt.
+The manifest records compiler version, source hashes, compiled prompts, optional reference-output hashes, and a five-dimension frame review policy. Sequence systems additionally review subject continuity, light/color continuity, rhythm, and narrative arc. Before review, `bind-outputs` attaches every candidate output hash to its prompt. A review is accepted only when its Manifest hash, Prompt ID, and output hash match; a failed review produces a targeted correction pass for the weak dimensions.
 
 ## Narrative Systems, not style filters
 
@@ -137,14 +138,16 @@ Requires Python 3.10+. Automatic analysis and PNG rendering use Pillow.
 python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
-scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
+scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style memory-atlas --format svg --output story.svg
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
-scene-card-studio retry prompt-manifest.json assessment.json --output retry-manifest.json
+scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
+scene-card-studio retry render-manifest.json assessment.json --output retry-manifest.json
+scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-`compile` emits one prompt per source for cinematic and minimal systems, and one multi-source prompt for spatial and archival systems. `retry` consumes the five-dimension aesthetic assessment documented in the Skill. `presentation` is the default layout mode; use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible.
+`compile` emits one prompt per source for cinematic and minimal systems, and one multi-source prompt for spatial and archival systems. Cloud synthesis requires an explicit consent record containing the provider, purpose, and exact upload list; without it, the Skill stops at local Workprint and Prompt Manifest. `retry` consumes the hash-bound assessment documented in the Skill. `presentation` is the default layout mode; use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible.
 
 ## Codex Skill
 
@@ -162,7 +165,7 @@ Use $scene-card-studio to direct these photos as a quiet family archive.
 - the core contribution is the Scene Card + Visual Director + narrative rendering workflow;
 - source photos stay local unless the user explicitly chooses otherwise.
 
-See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the complete evidence chain.
+See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the versioned provenance record and [example asset terms](examples/ASSET_LICENSE.md) for per-asset licensing.
 
 ## Roadmap
 
@@ -176,4 +179,4 @@ See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the complete evidence chain
 
 ## License
 
-Apache-2.0. Example assets must include clear provenance and usage terms.
+Code and repository-specific demo assets are Apache-2.0; the bundled font remains under SIL OFL 1.1. See [example asset terms](examples/ASSET_LICENSE.md).

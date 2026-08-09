@@ -1,7 +1,12 @@
 {
+  "manifest_sha256": "94e1049a12e49162ed7ae08f2ecca198e9b5330f05dc8815394251c8436a3934",
+  "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
+  "review_method": "Full-resolution visual inspection against the compiled prompt and source references.",
+  "reviewed_at": "2026-08-09T19:20:00+08:00",
   "results": [
     {
       "prompt_id": "memory-atlas-01",
+      "output_sha256": "6ed9f25e25434f0581d8acbfbe67d44dd0890f052766a499ba435f66caac06db",
       "scores": {
         "subject_fidelity": 4,
         "narrative_alignment": 5,

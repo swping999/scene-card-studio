@@ -74,6 +74,10 @@
       "reference_output": {
         "path": "outputs/after-bus-stop.png",
         "sha256": "eb73b3c8730978822096b0b1df55e77486416fe95da7b753a01a3f1111e2562e"
+      },
+      "candidate_output": {
+        "path": "examples/cases/cinematic-storyboard/photos/raw-bus-stop.png",
+        "sha256": "e64251766ed818abea6dfc99384e44cdbde53a52fc5d74ea34f8fe5b42f74980"
       }
     },
     {
@@ -140,6 +144,10 @@
       "reference_output": {
         "path": "outputs/after-diner.png",
         "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3"
+      },
+      "candidate_output": {
+        "path": "examples/cases/cinematic-storyboard/outputs/after-diner.png",
+        "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3"
       }
     },
     {
@@ -205,6 +213,10 @@
       "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: yellow-red taxi, residential intersection, red tail-light reflection.\n- Preserve the observed action or structural gesture: vehicle turns across the frame.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — yellow-red taxi, residential intersection, red tail-light reflection.\n- MAY TRANSFORM — crop, exposure, weather atmosphere, color balance.\n- MUST REMOVE — nonessential curb clutter.\n\nNARRATIVE INTENT\n- Narrative intent: departure without explanation.\n- Emotional tone: final, open-ended. Story role: closing.\n- Director note: Let the red reflection resolve the amber light carried through the earlier scenes.\n- Visual emphasis: tail light and turn.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with tail light and turn as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#222126, #739ED6, #2C3648) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic frame at 3:2.\n- Keep the source subject immediately recognizable at first glance.",
       "reference_output": {
         "path": "outputs/after-taxi.png",
+        "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d"
+      },
+      "candidate_output": {
+        "path": "examples/cases/cinematic-storyboard/outputs/after-taxi.png",
         "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d"
       }
     }

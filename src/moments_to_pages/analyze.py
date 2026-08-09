@@ -32,7 +32,8 @@ def analyze_image(path: Path) -> SceneCard:
         colors = quantized.getcolors(160 * 160) or []
         ranked = sorted(colors, reverse=True)
         palette = [_hex(rgb) for _, rgb in ranked[:5]]
-        pixels = list(sample.getdata())
+        pixel_data = sample.get_flattened_data() if hasattr(sample, "get_flattened_data") else sample.getdata()
+        pixels = list(pixel_data)
 
     hsv = [colorsys.rgb_to_hsv(r / 255, g / 255, b / 255) for r, g, b in pixels]
     brightness = round(sum(v for _, _, v in hsv) / len(hsv), 3)

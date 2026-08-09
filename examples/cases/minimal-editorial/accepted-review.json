@@ -1,7 +1,12 @@
 {
+  "manifest_sha256": "bc886e381dd03b88170864722c2da2ac2330282c1ecd12f795535b3ed29e93f5",
+  "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
+  "review_method": "Full-resolution visual inspection against the compiled prompts and source references.",
+  "reviewed_at": "2026-08-09T19:20:00+08:00",
   "results": [
     {
       "prompt_id": "minimal-editorial-01",
+      "output_sha256": "e82a4f661a822cba6f722c427bd25ea8721ece80e0fcd11c08585f88b290772b",
       "scores": {
         "subject_fidelity": 4,
         "narrative_alignment": 4,
@@ -13,6 +18,7 @@
     },
     {
       "prompt_id": "minimal-editorial-02",
+      "output_sha256": "2628a8170025f0fc82a23c1f4c33d89db4ccc65ea769d078c5d46c3cec54b438",
       "scores": {
         "subject_fidelity": 5,
         "narrative_alignment": 5,
@@ -24,6 +30,7 @@
     },
     {
       "prompt_id": "minimal-editorial-03",
+      "output_sha256": "23ad95d17c0f95cdb0697314c66b21fd53220f9592f2a91c8a6057b252577c52",
       "scores": {
         "subject_fidelity": 4,
         "narrative_alignment": 5,

@@ -1,26 +1,26 @@
 {
-  "manifest_sha256": "d623f8ca402bf17408b5a3e4f3a4c5264a7d61f381b7484b5f230927a0731a3c",
+  "manifest_sha256": "cd70b58be2c1ecf8c77f6c2e9fbb0e8ae669df7a1db15188f09c97bb39201c74",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution frame and sequence inspection against the compiled prompts and source references.",
-  "reviewed_at": "2026-08-09T19:20:00+08:00",
+  "reviewed_at": "2026-08-09T19:25:00+08:00",
   "sequence_scores": {
     "subject_continuity": 4,
-    "light_color_continuity": 5,
+    "light_color_continuity": 4,
     "rhythm": 4,
     "narrative_arc": 4
   },
   "results": [
     {
       "prompt_id": "cinematic-storyboard-01",
-      "output_sha256": "eb73b3c8730978822096b0b1df55e77486416fe95da7b753a01a3f1111e2562e",
+      "output_sha256": "e64251766ed818abea6dfc99384e44cdbde53a52fc5d74ea34f8fe5b42f74980",
       "scores": {
-        "subject_fidelity": 4,
-        "narrative_alignment": 5,
-        "composition": 5,
-        "system_distinctiveness": 5,
+        "subject_fidelity": 5,
+        "narrative_alignment": 2,
+        "composition": 2,
+        "system_distinctiveness": 1,
         "artifact_control": 4
       },
-      "notes": "Accepted: the waiting figure and shelter remain recognizable; motivated rain light establishes the opening."
+      "notes": "Rejected: this is still the undirected source snapshot. Preserve the shelter and waiting figure, but rebuild the crop, motivated rain light, depth, and opening-frame tension."
     },
     {
       "prompt_id": "cinematic-storyboard-02",
@@ -32,7 +32,7 @@
         "system_distinctiveness": 5,
         "artifact_control": 5
       },
-      "notes": "Accepted: the diner remains a plausible continuous scene and wet glass carries the pause."
+      "notes": "Accepted unchanged."
     },
     {
       "prompt_id": "cinematic-storyboard-03",
@@ -44,7 +44,7 @@
         "system_distinctiveness": 5,
         "artifact_control": 4
       },
-      "notes": "Accepted: the taxi, intersection, and red reflection remain coherent as the closing movement."
+      "notes": "Accepted unchanged."
     }
   ]
 }

@@ -2,6 +2,7 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
 from PIL import Image
 
 from moments_to_pages.cli import main
@@ -33,6 +34,20 @@ def test_story_relative_paths_and_default_extension(tmp_path: Path, monkeypatch)
     assert (tmp_path / "story.png").exists()
 
 
+def test_analyze_paths_are_relative_to_nested_story(tmp_path: Path, monkeypatch):
+    photo = tmp_path / "photos" / "a.png"
+    photo.parent.mkdir()
+    Image.new("RGB", (40, 30), "red").save(photo)
+    monkeypatch.chdir(tmp_path)
+    story = tmp_path / "out" / "story.json"
+    assert main(["analyze", "photos/a.png", "-o", str(story)]) == 0
+    assert json.loads(story.read_text())[0]["source"] == "../photos/a.png"
+    assert Path(load_cards(story)[0].source) == photo
+    manifest = tmp_path / "out" / "manifest.json"
+    assert main(["compile", str(story), "--system", "minimal-editorial", "-o", str(manifest)]) == 0
+    assert json.loads(manifest.read_text())["prompts"][0]["sources"][0]["sha256"]
+
+
 def test_svg_systems_are_distinct_and_paths_are_output_relative(tmp_path: Path):
     story = _story(tmp_path)
     hashes = set()
@@ -45,9 +60,38 @@ def test_svg_systems_are_distinct_and_paths_are_output_relative(tmp_path: Path):
     assert len(hashes) == 5
 
 
-def test_dynamic_png_contains_last_of_twelve_frames(tmp_path: Path):
+@pytest.mark.parametrize("system, point", [
+    ("field-log", (100, 240 + 11 * 440 + 20)),
+    ("memory-atlas", (900, 330 + 11 * 260 + 20)),
+])
+def test_dynamic_png_contains_last_of_twelve_frames(tmp_path: Path, system: str, point: tuple[int, int]):
     story = _story(tmp_path, 12)
-    output = tmp_path / "twelve.png"
-    main(["render", str(story), "--style", "field-log", "--format", "png", "-o", str(output)])
+    output = tmp_path / f"twelve-{system}.png"
+    main(["render", str(story), "--style", system, "--format", "png", "-o", str(output)])
     with Image.open(output) as image:
-        assert image.height >= 300 + 12 * 440
+        expected = (30 + 11 * 20, 60, 90)
+        actual = image.getpixel(point)
+        assert all(abs(a - b) < 5 for a, b in zip(actual, expected))
+
+
+def test_embed_images_embeds_memory_map_and_rejects_external_sources(tmp_path: Path, monkeypatch):
+    story = _story(tmp_path, 2)
+    monkeypatch.chdir(tmp_path)
+    output = tmp_path / "embedded.svg"
+    assert main(["render", str(story), "--style", "memory-atlas", "--format", "svg", "--embed-images", "-o", str(output)]) == 0
+    assert output.read_text().count("data:image/") == 3
+
+    external = tmp_path.parent / "outside-scene-card.png"
+    Image.new("RGB", (20, 20), "blue").save(external)
+    data = json.loads(story.read_text())
+    data[0]["source"] = str(external)
+    story.write_text(json.dumps(data))
+    with pytest.raises(PermissionError):
+        main(["render", str(story), "--format", "svg", "--embed-images", "-o", str(tmp_path / "blocked.svg")])
+
+    disguised = tmp_path / "not-an-image.png"
+    disguised.write_text("private text must never be embedded as an image")
+    data[0]["source"] = "not-an-image.png"
+    story.write_text(json.dumps(data))
+    with pytest.raises(ValueError, match="supported raster image"):
+        main(["render", str(story), "--format", "svg", "--embed-images", "-o", str(tmp_path / "disguised.svg")])

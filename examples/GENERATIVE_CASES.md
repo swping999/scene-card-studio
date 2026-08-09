@@ -26,6 +26,7 @@ Generated on 2026-08-09 with OpenAI's built-in image generation tool. All source
 - Scene Cards: `cases/cinematic-storyboard/story.json`
 - Prompt Manifest: `cases/cinematic-storyboard/prompt-manifest.json`
 - Accepted Review: `cases/cinematic-storyboard/accepted-review.json`
+- Failed → retry record: `cases/cinematic-storyboard/retry-example/`
 - Afters: `cases/cinematic-storyboard/outputs/after-bus-stop.png`, `after-diner.png`, `after-taxi.png`
 - Direction: transform three deliberately ordinary rainy-night phone snapshots into three separate film frames. Preserve the recognizable subject of each source; use weather, shot scale, mixed blue/amber light, reflection, and temporal continuity. No collage, split screen, titles, or director imitation.
 
@@ -38,4 +39,4 @@ Generated on 2026-08-09 with OpenAI's built-in image generation tool. All source
 - Afters: `cases/minimal-editorial/outputs/after-mug.png`, `after-chair.png`, `after-linen.png`
 - Direction: give each deliberately cluttered household snapshot its own quiet photographic stage. Preserve the recognizable object and material wear; remove accidental clutter and direct attention through natural light, shadow, negative space, and tactile texture. No collage, panels, typography, or abstract overlays.
 
-The four Prompt Manifests record compiler version `0.3.0`, source hashes, complete modular prompts, reference-output hashes, and the shared aesthetic review policy. PNG renderer outputs in adjacent folders are deterministic workprints. Files named `*-ai-composite.png` and the six `after-*.png` files above are presentation synthesis outputs.
+The four Prompt Manifests record compiler version `0.3.1`, source hashes, complete modular prompts, expression profiles, output hashes, and the shared aesthetic review policy. Reviews are valid only for the recorded Manifest hash, Prompt ID, and output hash; Cinematic Storyboard also records sequence-level continuity, rhythm, and narrative-arc scores. PNG renderer outputs in adjacent folders are deterministic workprints. Files named `*-ai-composite.png` and the six `after-*.png` files above are presentation synthesis outputs. Asset provenance and usage terms are recorded in [`ASSET_LICENSE.md`](ASSET_LICENSE.md).

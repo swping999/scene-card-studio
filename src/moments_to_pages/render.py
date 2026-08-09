@@ -3,6 +3,8 @@ from __future__ import annotations
 from html import escape
 from pathlib import Path
 from urllib.parse import quote
+import base64
+import mimetypes
 import os
 import re
 
@@ -16,6 +18,7 @@ INK = "#202321"
 def _load_font(ImageFont, size: int, mono: bool = False):
     candidates = ([
         str(Path(__file__).resolve().parent / "assets/fonts/NotoSansMono-Regular.ttf"),
+        str(Path(__file__).resolve().parent / "assets/fonts/NotoSansCJKsc-Regular.otf"),
         "/System/Library/Fonts/Menlo.ttc",
         "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
         "C:/Windows/Fonts/consola.ttf",
@@ -35,21 +38,64 @@ def _load_font(ImageFont, size: int, mono: bool = False):
     return ImageFont.load_default()
 
 
-def _image_href(card: SceneCard, embed: bool, output: Path) -> str:
-    path = Path(card.source)
+ALLOWED_EMBED_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp", ".tif", ".tiff"}
+
+
+def _embedded_image_data(path: Path) -> str:
+    if path.suffix.lower() not in ALLOWED_EMBED_SUFFIXES:
+        raise ValueError(f"Unsupported embedded image type: {path.suffix or '<none>'}")
+    data = path.read_bytes()
+    signatures = (
+        data.startswith(b"\x89PNG\r\n\x1a\n"),
+        data.startswith(b"\xff\xd8\xff"),
+        data.startswith((b"GIF87a", b"GIF89a")),
+        data.startswith(b"BM"),
+        data.startswith((b"II*\x00", b"MM\x00*")),
+        len(data) >= 12 and data[:4] == b"RIFF" and data[8:12] == b"WEBP",
+    )
+    if not any(signatures):
+        raise ValueError(f"File does not contain a supported raster image: {path}")
+    mime = mimetypes.guess_type(path.name)[0] or "image/png"
+    return f"data:{mime};base64,{base64.b64encode(data).decode()}"
+
+
+def _image_href(
+    card: SceneCard,
+    embed: bool,
+    output: Path,
+    allowed_source_root: Path | None = None,
+    allow_external_sources: bool = False,
+) -> str:
+    path = Path(card.source).resolve()
     if not embed:
-        relative = os.path.relpath(path.resolve(), output.resolve().parent)
+        relative = os.path.relpath(path, output.resolve().parent)
         return quote(Path(relative).as_posix(), safe="/.-_~")
-    import base64, mimetypes
-    mime = mimetypes.guess_type(path.name)[0] or "image/jpeg"
-    return f"data:{mime};base64,{base64.b64encode(path.read_bytes()).decode()}"
+    if allowed_source_root and not allow_external_sources and not path.is_relative_to(allowed_source_root):
+        raise PermissionError(f"Refusing to embed image outside allowed source root: {path}")
+    return _embedded_image_data(path)
+
+
+def _asset_href(path: Path, embed: bool, output: Path) -> str:
+    if embed:
+        return _embedded_image_data(path.resolve())
+    relative = os.path.relpath(path.resolve(), output.resolve().parent)
+    return quote(Path(relative).as_posix(), safe="/.-_~")
 
 
 def _safe_color(value: str, fallback: str = "#275D78") -> str:
     return value if re.fullmatch(r"#[0-9A-Fa-f]{6}", value or "") else fallback
 
 
-def render_svg(cards: list[SceneCard], output: Path, style: str = "editorial-sequence", embed: bool = False, mode: str = "presentation") -> None:
+def render_svg(
+    cards: list[SceneCard],
+    output: Path,
+    style: str = "editorial-sequence",
+    embed: bool = False,
+    mode: str = "presentation",
+    *,
+    allowed_source_root: Path | None = None,
+    allow_external_sources: bool = False,
+) -> None:
     if not cards:
         raise ValueError("At least one Scene Card is required")
     aliases = {"editorial-minimal": "editorial-sequence", "memory-map": "memory-atlas", "field-notes": "field-log"}
@@ -71,7 +117,8 @@ def render_svg(cards: list[SceneCard], output: Path, style: str = "editorial-seq
              f'<text x="{margin}" y="145" font-family="system-ui,sans-serif" font-size="54" fill="{INK}">{escape(style.replace("-", " ").upper())}</text>']
 
     def image(card: SceneCard, x: int, y: int, w: int, h: int) -> None:
-        parts.append(f'<image href="{escape(_image_href(card, embed, output))}" x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid slice"/>')
+        href = _image_href(card, embed, output, allowed_source_root, allow_external_sources)
+        parts.append(f'<image href="{escape(href)}" x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid slice"/>')
 
     if style == "editorial-sequence":
         image(cards[0], 72, 220, 1056, 580)
@@ -100,7 +147,7 @@ def render_svg(cards: list[SceneCard], output: Path, style: str = "editorial-seq
             parts.append(f'<text x="{x+14}" y="{y+430}" font-family="ui-monospace,monospace" font-size="15" fill="#A0664B">ARCHIVE {i+1:02d} · {escape(card.caption[:32])}</text>')
     elif style == "memory-atlas":
         map_path = Path(__file__).resolve().parent / "assets/maps/coastal-memory-atlas.png"
-        map_href = quote(Path(os.path.relpath(map_path, output.resolve().parent)).as_posix(), safe="/.-_~")
+        map_href = _asset_href(map_path, embed, output)
         parts.append(f'<image href="{escape(map_href)}" x="72" y="220" width="720" height="{height-310}" preserveAspectRatio="xMidYMid slice"/>')
         for i, card in enumerate(cards):
             y = 240 + i * 250
@@ -201,12 +248,13 @@ def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-se
 
     elif system == "memory-atlas":
         map_path = Path(__file__).resolve().parent / "assets/maps/coastal-memory-atlas.png"
+        map_height = canvas_h - 500
         with Image.open(map_path).convert("RGB") as source:
-            memory_map = ImageOps.fit(source, (760, 1260), method=Image.Resampling.LANCZOS)
+            memory_map = ImageOps.fit(source, (760, map_height), method=Image.Resampling.LANCZOS)
         canvas.paste(memory_map, (72, 240))
         draw.rectangle((856, 240, 1128, canvas_h - 300), fill="#E8E1D2")
         draw.text((884, 275), "PLACES HELD", fill="#755D45", font=meta_font)
-        for index, card in enumerate(cards[:3]):
+        for index, card in enumerate(cards):
             y = 330 + index * 260
             paste_photo(card, (884, y, 216, 150))
             label = f"0{index + 1} / {card.story_role.upper()}" if mode == "workprint" else f"PLACE 0{index + 1}"
@@ -216,8 +264,8 @@ def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-se
         draw.text((72, canvas_h - 220), "A SPATIAL MEMORY, NOT A LITERAL ROUTE.", fill="#755D45", font=meta_font)
 
     elif system == "field-log":
-        draw.line((510, 240, 510, 1570), fill="#B8B2A7", width=2)
-        for index, card in enumerate(cards[:3]):
+        draw.line((510, 240, 510, canvas_h - 120), fill="#B8B2A7", width=2)
+        for index, card in enumerate(cards):
             y = 240 + index * 440
             paste_photo(card, (72, y, 390, 300))
             draw.text((550, y), f"FIELD NOTE / 0{index + 1}", fill=accent, font=meta_font)

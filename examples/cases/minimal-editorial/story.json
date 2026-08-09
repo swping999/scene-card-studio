@@ -1,0 +1,29 @@
+[
+  {
+    "source": "photos/raw-mug.png", "width": 1536, "height": 1024,
+    "palette": ["#5F554C", "#DADDE1", "#24201C"], "brightness": 0.535, "saturation": 0.13, "orientation": "landscape",
+    "caption": "A RING LEFT BY WATER",
+    "observation": {"subjects": ["white mug", "window blind", "water ring", "wall outlet"], "dominant_gesture": "small cup interrupted by horizontal blinds", "quiet_regions": ["plain sill"]},
+    "interpretation": {"narrative_intent": "ordinary use reduced to one circular trace", "emotional_tone": ["quiet", "precise"], "confidence": 0.84, "method": "manually-directed example"},
+    "direction": {"story_role": "opening", "director_note": "Remove household clutter; keep the cup photographic and turn the water ring into the graphic motif.", "layout_emphasis": "cup and circle"},
+    "transformation": {"must_preserve": ["white mug", "water ring"], "may_transform": ["windowsill", "background", "crop", "light"], "must_remove": ["wall outlet", "plastic bottle", "household clutter"]}
+  },
+  {
+    "source": "photos/raw-chair.png", "width": 1536, "height": 1024,
+    "palette": ["#C7B7A1", "#684D32", "#163C72"], "brightness": 0.576, "saturation": 0.334, "orientation": "landscape",
+    "caption": "BLUE HOLDS THE EMPTY ROOM",
+    "observation": {"subjects": ["worn blue chair", "charging cable", "beige wall"], "dominant_gesture": "chair back creates a vertical ladder", "quiet_regions": ["unadorned wall"]},
+    "interpretation": {"narrative_intent": "an ordinary object becomes an architectural anchor", "emotional_tone": ["bold", "still"], "confidence": 0.88, "method": "manually-directed example"},
+    "direction": {"story_role": "development", "director_note": "Preserve chipped paint; enlarge the chair until its structure becomes the composition.", "layout_emphasis": "cobalt geometry"},
+    "transformation": {"must_preserve": ["worn blue chair", "chipped paint"], "may_transform": ["wall", "floor", "crop", "light and shadow"], "must_remove": ["charging cable", "furniture edges"]}
+  },
+  {
+    "source": "photos/raw-linen.png", "width": 1536, "height": 1024,
+    "palette": ["#5E5958", "#ADA9A6", "#4D443B"], "brightness": 0.468, "saturation": 0.151, "orientation": "landscape",
+    "caption": "FOLDED, THEN LEFT QUIETLY",
+    "observation": {"subjects": ["folded linen", "olive branch", "plastic bag", "scratched table"], "dominant_gesture": "fabric layers settle horizontally", "quiet_regions": ["plain cloth surface"]},
+    "interpretation": {"narrative_intent": "soft material closes a sequence of hard forms", "emotional_tone": ["tactile", "restful"], "confidence": 0.82, "method": "manually-directed example"},
+    "direction": {"story_role": "closing", "director_note": "Remove the bag; keep fibers photographic and use the branch as a single restrained line.", "layout_emphasis": "linen texture"},
+    "transformation": {"must_preserve": ["folded linen", "linen fibers", "olive branch"], "may_transform": ["fabric folds", "table surface", "crop", "light"], "must_remove": ["plastic bag"]}
+  }
+]

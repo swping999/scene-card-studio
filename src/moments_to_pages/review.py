@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from datetime import datetime
+from hashlib import sha256
+from pathlib import Path
 from typing import Any
 
 from .prompt_compiler import REVIEW_POLICY
@@ -10,13 +13,41 @@ CORRECTIONS = {
     "subject_fidelity": "Restore the exact source identity, count, proportions, pose, action, architecture, and defining material details. Do not redesign the subject.",
     "narrative_alignment": "Strengthen the stated narrative intent, emotional tone, story role, and director note without adding new story facts.",
     "composition": "Rebuild the visual hierarchy, crop, depth, and negative space while preserving the source subject and scene logic.",
-    "system_distinctiveness": "Apply the selected Narrative System's specific spatial, material, and lighting mechanism; remove generic beauty-treatment choices.",
+    "system_distinctiveness": "Apply the selected Narrative System mechanism and expression profile; remove generic beauty-treatment choices.",
     "artifact_control": "Remove distorted anatomy, broken geometry, unwanted text, collage seams, synthetic clutter, and invented metadata.",
 }
 
+SEQUENCE_CORRECTIONS = {
+    "subject_continuity": "Restore recurring people, clothing, objects, locations, and identity-bearing details consistently across every frame.",
+    "light_color_continuity": "Unify motivated light direction, exposure progression, and palette across the sequence without flattening individual scenes.",
+    "rhythm": "Vary shot scale and density to restore intentional pacing and a readable pause; avoid repetitive framing.",
+    "narrative_arc": "Clarify the supplied opening, development, pause, and closing roles without inventing events or chronology.",
+}
 
-def review_decision(scores: dict[str, int]) -> tuple[str, list[str]]:
-    dimensions = REVIEW_POLICY["dimensions"]
+
+def file_sha256(path: Path) -> str:
+    if not path.exists() or not path.is_file():
+        raise FileNotFoundError(f"Output file does not exist: {path}")
+    return sha256(path.read_bytes()).hexdigest()
+
+
+def bind_outputs(manifest: dict[str, Any], bindings: dict[str, str], base: Path | None = None) -> dict[str, Any]:
+    output = deepcopy(manifest)
+    prompts = {item["id"]: item for item in output.get("prompts", [])}
+    unknown = set(bindings) - set(prompts)
+    if unknown:
+        raise ValueError(f"Unknown prompt ids: {', '.join(sorted(unknown))}")
+    if set(prompts) - set(bindings):
+        missing = set(prompts) - set(bindings)
+        raise ValueError(f"Missing output bindings for: {', '.join(sorted(missing))}")
+    for prompt_id, value in bindings.items():
+        supplied = Path(value).expanduser()
+        resolved = supplied if supplied.is_absolute() else ((base or Path.cwd()) / supplied)
+        prompts[prompt_id]["candidate_output"] = {"path": value, "sha256": file_sha256(resolved)}
+    return output
+
+
+def _score_decision(scores: dict[str, int], dimensions: dict[str, str]) -> tuple[str, list[str]]:
     missing = [name for name in dimensions if name not in scores]
     if missing:
         raise ValueError(f"Missing review scores: {', '.join(missing)}")
@@ -28,26 +59,83 @@ def review_decision(scores: dict[str, int]) -> tuple[str, list[str]]:
     return ("accept" if not failed else "retry", failed)
 
 
-def build_retry_manifest(manifest: dict[str, Any], assessment: dict[str, Any]) -> dict[str, Any]:
+def review_decision(scores: dict[str, int]) -> tuple[str, list[str]]:
+    return _score_decision(scores, REVIEW_POLICY["dimensions"])
+
+
+def sequence_review_decision(scores: dict[str, int]) -> tuple[str, list[str]]:
+    return _score_decision(scores, REVIEW_POLICY["sequence_dimensions"])
+
+
+def _validate_assessment_metadata(assessment: dict[str, Any], expected_manifest_sha256: str) -> None:
+    if assessment.get("manifest_sha256") != expected_manifest_sha256:
+        raise ValueError("Assessment manifest_sha256 does not match the reviewed manifest")
+    reviewer = assessment.get("reviewer")
+    if not isinstance(reviewer, dict):
+        raise ValueError("Assessment reviewer metadata is required")
+    for field in ("type", "name", "model"):
+        if not isinstance(reviewer.get(field), str) or not reviewer[field].strip():
+            raise ValueError(f"Assessment reviewer.{field} is required")
+    method = assessment.get("review_method")
+    if not isinstance(method, str) or not method.strip():
+        raise ValueError("Assessment review_method is required")
+    reviewed_at = assessment.get("reviewed_at")
+    if not isinstance(reviewed_at, str):
+        raise ValueError("Assessment reviewed_at is required")
+    try:
+        datetime.fromisoformat(reviewed_at.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError("Assessment reviewed_at must be ISO 8601") from exc
+
+
+def _expected_output_hash(prompt: dict[str, Any]) -> str:
+    record = prompt.get("candidate_output") or prompt.get("reference_output")
+    if not isinstance(record, dict) or not record.get("sha256"):
+        raise ValueError(f"Prompt {prompt.get('id')} has no hash-bound output to review")
+    return str(record["sha256"])
+
+
+def build_retry_manifest(
+    manifest: dict[str, Any],
+    assessment: dict[str, Any],
+    *,
+    manifest_sha256: str,
+) -> dict[str, Any]:
+    _validate_assessment_metadata(assessment, manifest_sha256)
     original = {item["id"]: item for item in manifest.get("prompts", [])}
-    results = {item["prompt_id"]: item for item in assessment.get("results", [])}
+    result_items = assessment.get("results", [])
+    if not isinstance(result_items, list):
+        raise ValueError("Assessment results must be a list")
+    results = {item["prompt_id"]: item for item in result_items}
+    if len(results) != len(result_items):
+        raise ValueError("Assessment contains duplicate prompt ids")
     if set(results) - set(original):
         unknown = ", ".join(sorted(set(results) - set(original)))
         raise ValueError(f"Assessment contains unknown prompt ids: {unknown}")
 
+    sequence_failed: list[str] = []
+    if manifest.get("system") == "cinematic-storyboard" and len(original) > 1:
+        _, sequence_failed = sequence_review_decision(assessment.get("sequence_scores", {}))
+
     output = deepcopy(manifest)
     output["retry_iteration"] = int(manifest.get("retry_iteration", 0)) + 1
-    retry_prompts = []
+    retry_prompts: list[str] = []
     decisions = []
     for item in output.get("prompts", []):
         result = results.get(item["id"])
         if result is None:
             raise ValueError(f"Missing assessment for prompt id: {item['id']}")
+        if result.get("output_sha256") != _expected_output_hash(item):
+            raise ValueError(f"Assessment output_sha256 does not match prompt {item['id']}")
         decision, failed = review_decision(result.get("scores", {}))
-        decisions.append({"prompt_id": item["id"], "decision": decision, "failed_dimensions": failed})
-        if decision == "retry":
+        all_failed = list(failed)
+        if sequence_failed:
+            all_failed.extend(f"sequence.{name}" for name in sequence_failed)
+        decisions.append({"prompt_id": item["id"], "decision": "retry" if all_failed else decision, "failed_dimensions": all_failed})
+        if all_failed:
             notes = str(result.get("notes", "")).strip()
             correction_lines = [f"- {name}: {CORRECTIONS[name]}" for name in failed]
+            correction_lines.extend(f"- sequence.{name}: {SEQUENCE_CORRECTIONS[name]}" for name in sequence_failed)
             if notes:
                 correction_lines.append(f"- Reviewer note: {notes}")
             item["compiled_prompt"] += (
@@ -56,6 +144,13 @@ def build_retry_manifest(manifest: dict[str, Any], assessment: dict[str, Any]) -
                 + "\n".join(correction_lines)
             )
             retry_prompts.append(item["id"])
+    output["review_binding"] = {
+        "reviewed_manifest_sha256": manifest_sha256,
+        "reviewer": assessment["reviewer"],
+        "reviewed_at": assessment["reviewed_at"],
+        "review_method": assessment["review_method"],
+    }
     output["review_decisions"] = decisions
+    output["sequence_review"] = {"decision": "retry" if sequence_failed else "accept", "failed_dimensions": sequence_failed}
     output["retry_prompt_ids"] = retry_prompts
     return output

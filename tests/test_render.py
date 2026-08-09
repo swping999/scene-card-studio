@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from moments_to_pages.director import recommend_systems
 from moments_to_pages.model import Direction, SceneCard, load_cards, save_cards
 from moments_to_pages.render import render_png, render_svg
@@ -21,3 +23,9 @@ def test_roundtrip_and_render(tmp_path: Path):
         "editorial-sequence", "memory-atlas", "field-log", "family-archive",
         "cinematic-storyboard", "minimal-editorial",
     }
+
+
+def test_scene_card_rejects_illegal_svg_controls(tmp_path: Path):
+    card = SceneCard("photo.jpg", 10, 10, ["#112233"], .5, .5, "landscape", "BAD\x01CAPTION")
+    with pytest.raises(ValueError, match="control character"):
+        save_cards([card], tmp_path / "story.json")

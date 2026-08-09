@@ -1,0 +1,95 @@
+[
+  {
+    "source": "photos/rooftop-laundry.png",
+    "width": 1536,
+    "height": 1024,
+    "palette": ["#8B604B", "#D7C6A6", "#52655B"],
+    "brightness": 0.62,
+    "saturation": 0.31,
+    "orientation": "landscape",
+    "caption": "THE SHEETS CARRIED THE AFTERNOON WIND",
+    "observation": {
+      "subjects": ["older woman", "white sheets", "rooftop lines"],
+      "dominant_gesture": "arms lifting fabric into light",
+      "quiet_regions": ["open sky", "pale cloth"]
+    },
+    "interpretation": {
+      "narrative_intent": "care expressed through routine",
+      "emotional_tone": ["quiet", "enduring"],
+      "confidence": 0.78,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "opening",
+      "director_note": "Begin with a solitary household gesture before showing relationships.",
+      "layout_emphasis": "gesture"
+    },
+    "transformation": {
+      "must_preserve": ["older woman", "white sheets", "rooftop lines", "arms lifting fabric"],
+      "may_transform": ["archive ground", "photo edge", "crop", "supporting material traces"],
+      "must_remove": []
+    }
+  },
+  {
+    "source": "photos/dumpling-table.png",
+    "width": 1536,
+    "height": 1024,
+    "palette": ["#A0664B", "#D7B37A", "#51615B"],
+    "brightness": 0.58,
+    "saturation": 0.34,
+    "orientation": "landscape",
+    "caption": "HANDS LEARN WHAT WORDS DO NOT TEACH",
+    "observation": {
+      "subjects": ["father", "daughter", "dumpling wrappers"],
+      "dominant_gesture": "two pairs of hands folding dough",
+      "quiet_regions": ["window light", "table edge"]
+    },
+    "interpretation": {
+      "narrative_intent": "knowledge passed through shared work",
+      "emotional_tone": ["warm", "attentive"],
+      "confidence": 0.84,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "development",
+      "director_note": "Keep the hands central; the archive is about transmission, not portraiture.",
+      "layout_emphasis": "relationship"
+    },
+    "transformation": {
+      "must_preserve": ["father", "daughter", "hands folding dough", "dumpling wrappers"],
+      "may_transform": ["archive ground", "photo edge", "crop", "supporting material traces"],
+      "must_remove": []
+    }
+  },
+  {
+    "source": "photos/photo-box.png",
+    "width": 1536,
+    "height": 1024,
+    "palette": ["#684A3B", "#B99C74", "#48534E"],
+    "brightness": 0.45,
+    "saturation": 0.38,
+    "orientation": "landscape",
+    "caption": "THE BOX REMEMBERED MORE THAN WE DID",
+    "observation": {
+      "subjects": ["two siblings", "printed photographs", "wooden box"],
+      "dominant_gesture": "hands sorting overlapping photographs",
+      "quiet_regions": ["shadowed wall", "closed box lid"]
+    },
+    "interpretation": {
+      "narrative_intent": "memory reconstructed together",
+      "emotional_tone": ["reflective", "tender"],
+      "confidence": 0.81,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "closing",
+      "director_note": "End on the act of looking back, allowing the photographs to become characters.",
+      "layout_emphasis": "artifact"
+    },
+    "transformation": {
+      "must_preserve": ["two siblings", "hands sorting photographs", "printed photographs", "wooden box"],
+      "may_transform": ["archive ground", "photo edge", "crop", "supporting material traces"],
+      "must_remove": []
+    }
+  }
+]

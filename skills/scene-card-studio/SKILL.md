@@ -9,20 +9,20 @@ Build a visual story from the user's photographs without imitating a named artis
 
 ## Workflow
 
-1. Treat only user-supplied photos as content sources. Do not browse for or upload private photos.
+1. Treat only user-supplied photos as content sources. Keep them local during analysis, Scene Card authoring, compilation, and workprint rendering.
 2. For every photo, create a Scene Card using `references/scene-card.md`. Keep observable evidence separate from interpretive direction.
 3. Add a Visual Director decision: narrative intent, emotional tone, story role, concise director note, and confidence. Never present this interpretation as photographic fact.
 4. Preserve the user's input order by default. Reorder only when the user requests it or explicitly approves `--reorder`; then use opening, development, pause, and closing roles.
 5. Recommend one Narrative System with an explicit reason:
    - `editorial-sequence` for a quiet, flexible photo essay;
-   - `family-archive` for recurring gestures, inheritance, and domestic memory;
+   - `family-archive` for repeated people, objects, or domestic gestures; use family relationships or inheritance only when the user supplies them;
    - `cinematic-storyboard` for temporal continuity, light progression, and shot relationships;
    - `minimal-editorial` for object hierarchy, negative space, geometry, and material rhythm;
-   - `memory-atlas` when movement, route, distance, or return matters;
+   - `memory-atlas` when movement, route, distance, place, or spatial memory matters; do not assume a return;
    - `field-log` when observation and documentary detail matter.
 6. Decide the output tier:
    - **Workprint**: use the deterministic renderer for analysis, sequencing, iteration, and editable layout.
-   - **Presentation synthesis**: compile versioned prompts and use image generation to create a genuinely transformed artifact. Read `references/synthesis.md` and `references/prompt-compiler.md`. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
+   - **Presentation synthesis**: compile versioned prompts and use image generation to create a genuinely transformed artifact. Read `references/synthesis.md`, `references/prompt-compiler.md`, and `references/privacy.md`. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
 7. Write the cards to `story.json`. When the package is installed, run:
 
 ```bash
@@ -31,10 +31,11 @@ scene-card-studio render story.json --style editorial-sequence --format png --ou
 scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 ```
 
-8. For presentation synthesis, use every module in each compiled prompt and pass the listed source photographs as image references. Default to **one source photograph → one standalone After image**. Do not merge several photographs into a collage, multi-panel board, split screen, or designed page merely to demonstrate variety. Combine sources only when the user explicitly requests montage or when the chosen system requires spatial or archival synthesis.
-9. Inspect the output with the five-dimension rubric in `references/prompt-compiler.md`. Score subject fidelity, narrative alignment, composition, system distinctiveness, and artifact control. Accept only when every score is at least 4.
-10. If a dimension fails, write the assessment JSON, run `scene-card-studio retry`, and regenerate only the prompts in `retry_prompt_ids`. Do not rewrite successful prompt modules.
-11. Return paired Before and After artifacts, the Scene Cards, the accepted prompt manifest, and a short explanation of the direction and sequence. When several one-to-one transformations exist, show every pair separately.
+8. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. Without consent, stop at local Workprint and Prompt Manifest output. Never treat photo analysis or prompt compilation as upload permission.
+9. After consent, use every module in each compiled prompt and pass only the approved source photographs as image references. Default to **one source photograph → one standalone After image**. Combine sources only when explicitly requested or when spatial or archival synthesis requires it.
+10. Bind generated files with `scene-card-studio bind-outputs`, then inspect them with the rubric in `references/prompt-compiler.md`. For a cinematic sequence, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
+11. If a dimension fails, write the hash-bound assessment JSON, run `scene-card-studio retry`, and regenerate only `retry_prompt_ids`. Do not rewrite successful prompt modules.
+12. Return paired Before and After artifacts, Scene Cards, accepted Render Manifest, review record, and a short explanation. When several one-to-one transformations exist, show every pair separately.
 
 ## Guardrails
 
@@ -51,5 +52,7 @@ scene-card-studio compile story.json --system cinematic-storyboard --output prom
 - Read `references/scene-card.md` before manually authoring or revising Scene Cards.
 - Run `scripts/render_story.py` when the package is not installed but the repository source tree is available.
 - Run `scripts/compile_prompt.py` and `scripts/retry_prompt.py` for versioned prompts and targeted retries when the package is not installed.
+- Run `scripts/record_consent.py` only after the user explicitly approves the exact provider, purpose, and file list.
 - Read `references/synthesis.md` whenever the user asks for an After image or finished visual artifact rather than a layout workprint.
 - Read `references/prompt-compiler.md` whenever compiling, reviewing, retrying, or maintaining a Hero Case.
+- Read `references/privacy.md` before any remote or cloud image generation.

@@ -23,6 +23,11 @@
       "story_role": "opening",
       "director_note": "Treat the lamp as a sign of care, not dramatic spectacle.",
       "layout_emphasis": "warm light within cool environment"
+    },
+    "transformation": {
+      "must_preserve": ["greenhouse", "work lamp", "repeating window grid"],
+      "may_transform": ["surrounding geography", "photo edge", "scale", "paper transition"],
+      "must_remove": []
     }
   },
   {
@@ -49,6 +54,11 @@
       "story_role": "development",
       "director_note": "Frame this as a pause in a journey, not a product display.",
       "layout_emphasis": "road as transition between foreground and distance"
+    },
+    "transformation": {
+      "must_preserve": ["fruit stand", "empty chair", "mountain road"],
+      "may_transform": ["surrounding geography", "photo edge", "scale", "paper transition"],
+      "must_remove": []
     }
   },
   {
@@ -75,6 +85,11 @@
       "story_role": "closing",
       "director_note": "Treat this as a personal departure, not a travel poster.",
       "layout_emphasis": "railway line and red signal"
+    },
+    "transformation": {
+      "must_preserve": ["coastal platform", "railway", "red signal"],
+      "may_transform": ["surrounding geography", "photo edge", "scale", "paper transition"],
+      "must_remove": []
     }
   }
 ]
