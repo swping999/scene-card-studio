@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from hashlib import sha256
+from math import ceil, gcd
 from pathlib import Path
 from typing import Any
 
@@ -9,7 +10,7 @@ from .expression_profiles import expression_profile_names, resolve_expression_pr
 from .model import SceneCard
 
 
-COMPILER_VERSION = "0.3.1"
+COMPILER_VERSION = "0.3.2"
 SUPPORTED_SYSTEMS = (
     "cinematic-storyboard",
     "minimal-editorial",
@@ -84,6 +85,28 @@ def _aspect_ratio(card: SceneCard, requested: str) -> str:
     if card.orientation == "square":
         return "1:1"
     return "3:2"
+
+
+def _output_contract(aspect_ratio: str) -> dict[str, Any]:
+    try:
+        left, right = (int(value) for value in aspect_ratio.split(":", 1))
+    except (ValueError, AttributeError) as exc:
+        raise ValueError("aspect ratio must use positive integer W:H notation") from exc
+    if left <= 0 or right <= 0:
+        raise ValueError("aspect ratio values must be positive")
+    divisor = gcd(left, right)
+    left //= divisor
+    right //= divisor
+    short_ratio = right if left >= right else left
+    scale = ceil(1024 / short_ratio)
+    width = left * scale
+    height = right * scale
+    return {
+        "mime_type": "image/png",
+        "width": width,
+        "height": height,
+        "aspect_ratio": f"{left}:{right}",
+    }
 
 
 def _source_record(source: str, source_root: Path | None) -> dict[str, str]:
@@ -186,7 +209,7 @@ def _cinematic_blocks(
             "No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.",
             "Do not imitate a named director, cinematographer, photographer, film, or franchise.",
         ],
-        output=[f"Return one standalone photorealistic frame at {aspect_ratio}.", "Keep the source subject immediately recognizable at first glance."],
+        output=[f"Return one standalone photorealistic PNG frame at exactly {aspect_ratio}.", "Keep the source subject immediately recognizable at first glance."],
     )
 
 
@@ -213,7 +236,7 @@ def _minimal_blocks(card: SceneCard, aspect_ratio: str, profile: dict[str, Any])
             "No magazine mockup, product advertisement, catalog cutout, multi-object collage, panel, or split screen.",
             "No generic luxury styling, ornamental props, excessive smoothing, floating objects, or unauthorized abstract overlays.",
         ],
-        output=[f"Return one standalone photorealistic editorial still life at {aspect_ratio}.", "Make the result specific to the supplied object and Scene Card."],
+        output=[f"Return one standalone photorealistic PNG editorial still life at exactly {aspect_ratio}.", "Make the result specific to the supplied object and Scene Card."],
     )
 
 
@@ -247,7 +270,7 @@ def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dic
             "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
             "No fantasy architecture, generic tourism poster, or named-artist imitation.",
         ],
-        output=[f"Return one integrated spatial-memory artifact at {aspect_ratio}.", "Every supplied place or subject must remain recognizable."],
+        output=[f"Return one integrated PNG spatial-memory artifact at exactly {aspect_ratio}.", "Every supplied place or subject must remain recognizable."],
     )
 
 
@@ -281,7 +304,7 @@ def _family_archive_blocks(cards: list[SceneCard], aspect_ratio: str, profile: d
             "No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.",
             "No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.",
         ],
-        output=[f"Return one integrated documentary archive artifact at {aspect_ratio}.", "Subjects and gestures must remain photographic, natural, and immediately recognizable."],
+        output=[f"Return one integrated PNG documentary archive artifact at exactly {aspect_ratio}.", "Subjects and gestures must remain photographic, natural, and immediately recognizable."],
     )
 
 
@@ -323,6 +346,7 @@ def compile_manifest(
                 "mode": "single-frame",
                 "source_indexes": [index],
                 "sources": [_source_record(card.source, source_root)],
+                "output_contract": _output_contract(ratio),
                 "blocks": asdict(blocks),
                 "compiled_prompt": blocks.render(),
             }
@@ -341,6 +365,7 @@ def compile_manifest(
             "mode": "spatial-synthesis" if system == "memory-atlas" else "archival-synthesis",
             "source_indexes": list(range(len(cards))),
             "sources": [_source_record(card.source, source_root) for card in cards],
+            "output_contract": _output_contract(ratio),
             "blocks": asdict(blocks),
             "compiled_prompt": blocks.render(),
         }
@@ -350,7 +375,7 @@ def compile_manifest(
 
     upload_files = [record for prompt in prompts for record in prompt["sources"]]
     manifest: dict[str, Any] = {
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "compiler_version": COMPILER_VERSION,
         "system": system,
         "expression_profile": profile["name"],

@@ -137,8 +137,10 @@ class SceneCard:
         if isinstance(direction, dict):
             direction = dict(direction)
             for key in ("narrative_intent", "emotional_tone", "confidence"):
-                if key in direction and key not in interpretation:
-                    interpretation[key] = direction.pop(key)
+                if key in direction:
+                    legacy_value = direction.pop(key)
+                    if key not in interpretation:
+                        interpretation[key] = legacy_value
         value["observation"] = observation if isinstance(observation, Observation) else Observation(**observation)
         value["interpretation"] = interpretation if isinstance(interpretation, Interpretation) else Interpretation(**interpretation)
         value["direction"] = direction if isinstance(direction, Direction) else Direction(**direction)

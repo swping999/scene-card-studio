@@ -1,8 +1,8 @@
 {
-  "manifest_sha256": "326997509a88e31dfe35c431b6b0a79244025de749bcc45f2827f4f3dd1fdb10",
+  "manifest_sha256": "1349df3c02e4743ecde89daf37e9213a4fcb82e158fbbaa48ec7d6021224b2b5",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution visual inspection against the compiled prompt and source references.",
-  "reviewed_at": "2026-08-09T19:20:00+08:00",
+  "reviewed_at": "2026-08-09T11:57:00Z",
   "results": [
     {
       "prompt_id": "family-archive-01",

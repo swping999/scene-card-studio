@@ -81,9 +81,15 @@ def main(argv: list[str] | None = None) -> int:
         Path(args.output).write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     elif args.command == "retry":
         manifest_path = Path(args.manifest)
+        assessment_path = Path(args.assessment)
         manifest = json.loads(manifest_path.read_text())
-        assessment = json.loads(Path(args.assessment).read_text())
-        retry_manifest = build_retry_manifest(manifest, assessment, manifest_sha256=file_sha256(manifest_path))
+        assessment = json.loads(assessment_path.read_text())
+        retry_manifest = build_retry_manifest(
+            manifest,
+            assessment,
+            manifest_sha256=file_sha256(manifest_path),
+            assessment_sha256=file_sha256(assessment_path),
+        )
         Path(args.output).write_text(json.dumps(retry_manifest, ensure_ascii=False, indent=2) + "\n")
     elif args.command == "bind-outputs":
         bindings = {}
@@ -94,8 +100,9 @@ def main(argv: list[str] | None = None) -> int:
             if not prompt_id or not path:
                 raise SystemExit("--result must use PROMPT_ID=OUTPUT_PATH")
             bindings[prompt_id] = path
-        manifest = json.loads(Path(args.manifest).read_text())
-        bound = bind_outputs(manifest, bindings, base=Path.cwd())
+        manifest_path = Path(args.manifest)
+        manifest = json.loads(manifest_path.read_text())
+        bound = bind_outputs(manifest, bindings, manifest_sha256=file_sha256(manifest_path), base=Path.cwd())
         Path(args.output).write_text(json.dumps(bound, ensure_ascii=False, indent=2) + "\n")
     elif args.command == "consent":
         manifest_path = Path(args.manifest)

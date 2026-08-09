@@ -26,9 +26,9 @@ The photographs in `examples/photos`, `examples/cases/family-archive/photos`, `e
 
 `examples/photos`、`examples/cases/family-archive/photos`、`examples/cases/cinematic-storyboard/photos` 与 `examples/cases/minimal-editorial/photos` 中的照片，均于 2026-08-09 使用 OpenAI 内置图像生成工具专门为本仓库生成，不涉及真实人物，也不来源于用户照片，仅用于测试和展示本项目。
 
-The coastal memory-map illustration in `src/moments_to_pages/assets/maps` was generated for this repository with the same built-in image generation tool on 2026-08-09. The bundled Noto Sans CJK SC font is distributed under the SIL Open Font License 1.1; its notice is stored beside the font.
+The coastal memory-map illustration in `src/moments_to_pages/assets/maps` was generated for this repository with the same built-in image generation tool on 2026-08-09. It is retained as an optional project asset, not used as the universal deterministic Memory Atlas background. The bundled Noto Sans CJK SC font is distributed under the SIL Open Font License 1.1; its notice is stored beside the font.
 
-`src/moments_to_pages/assets/maps` 中的海岸记忆地图插画同样于 2026-08-09 使用内置图像生成工具为本仓库生成。随包提供的 Noto Sans CJK SC 字体采用 SIL Open Font License 1.1，许可证提示与字体放置在同一目录。
+`src/moments_to_pages/assets/maps` 中的海岸记忆地图插画同样于 2026-08-09 使用内置图像生成工具为本仓库生成。它作为可选项目资产保留，不再充当所有确定性 Memory Atlas 的固定背景。随包提供的 Noto Sans CJK SC 字体采用 SIL Open Font License 1.1，许可证提示与字体放置在同一目录。
 
 The final Before/After records, including source lists and direction summaries, are documented in [`examples/GENERATIVE_CASES.md`](examples/GENERATIVE_CASES.md). Each Hero Case includes a versioned Prompt Manifest with source hashes, modular prompts, output-bound reviews, and the shared review policy. These records provide versioned provenance rather than a claim that every image model will produce identical pixels. Deterministic renderer outputs are labeled workprints; directed images are labeled presentation synthesis. Per-asset usage terms are in [`examples/ASSET_LICENSE.md`](examples/ASSET_LICENSE.md).
 

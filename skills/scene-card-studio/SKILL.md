@@ -33,9 +33,10 @@ scene-card-studio compile story.json --system cinematic-storyboard --output prom
 
 8. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. Without consent, stop at local Workprint and Prompt Manifest output. Never treat photo analysis or prompt compilation as upload permission.
 9. After consent, use every module in each compiled prompt and pass only the approved source photographs as image references. Default to **one source photograph → one standalone After image**. Combine sources only when explicitly requested or when spatial or archival synthesis requires it.
-10. Bind generated files with `scene-card-studio bind-outputs`, then inspect them with the rubric in `references/prompt-compiler.md`. For a cinematic sequence, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
-11. If a dimension fails, write the hash-bound assessment JSON, run `scene-card-studio retry`, and regenerate only `retry_prompt_ids`. Do not rewrite successful prompt modules.
-12. Return paired Before and After artifacts, Scene Cards, accepted Render Manifest, review record, and a short explanation. When several one-to-one transformations exist, show every pair separately.
+10. Bind generated files with `scene-card-studio bind-outputs`. Require the decoded MIME, width, height, and aspect ratio to match each `output_contract`; do not review mismatched files.
+11. Review only `candidate_output` records in the Render Manifest. A `reference_output` is benchmark evidence and never satisfies formal review. For a cinematic sequence, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
+12. If a dimension fails, write the hash-bound assessment JSON, run `scene-card-studio retry`, regenerate only `retry_prompt_ids`, and bind all resulting candidates to the Retry Manifest. Accept only a review bound to this post-retry Render Manifest. Do not reuse the pre-retry review or candidates.
+13. Return paired Before and After artifacts, Scene Cards, accepted Render Manifest, review record, and a short explanation. When several one-to-one transformations exist, show every pair separately.
 
 ## Guardrails
 
@@ -51,7 +52,7 @@ scene-card-studio compile story.json --system cinematic-storyboard --output prom
 
 - Read `references/scene-card.md` before manually authoring or revising Scene Cards.
 - Run `scripts/render_story.py` when the package is not installed but the repository source tree is available.
-- Run `scripts/compile_prompt.py` and `scripts/retry_prompt.py` for versioned prompts and targeted retries when the package is not installed.
+- Run `scripts/compile_prompt.py`, `scripts/bind_outputs.py`, and `scripts/retry_prompt.py` for versioned prompts, contract-checked output binding, and targeted retries when the package is not installed.
 - Run `scripts/record_consent.py` only after the user explicitly approves the exact provider, purpose, and file list.
 - Read `references/synthesis.md` whenever the user asks for an After image or finished visual artifact rather than a layout workprint.
 - Read `references/prompt-compiler.md` whenever compiling, reviewing, retrying, or maintaining a Hero Case.

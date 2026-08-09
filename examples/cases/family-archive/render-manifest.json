@@ -93,6 +93,14 @@
       "reference_output": {
         "path": "outputs/family-archive-ai-composite.png",
         "sha256": "17ff5ef9bfbafbed8a5fde7ee32f6e5a6ff540d05cf8ba7d1e8e19322161e06a"
+      },
+      "candidate_output": {
+        "path": "examples/cases/family-archive/outputs/family-archive-ai-composite.png",
+        "sha256": "17ff5ef9bfbafbed8a5fde7ee32f6e5a6ff540d05cf8ba7d1e8e19322161e06a",
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
       }
     }
   ],
@@ -136,5 +144,9 @@
         "sha256": "d35bb332f6f712c7119816a7f2f98dcc4ec7a59bc4bd3d3d59ebc518961ba7e5"
       }
     ]
-  }
+  },
+  "artifact_type": "render-manifest",
+  "render_manifest_version": "1.0",
+  "parent_manifest_sha256": "9ddd3a08801039965bb93f74d9a41d33fb8f08f26d58767ac88df0d167b890ef",
+  "bound_at": "2026-08-09T11:56:49.672395Z"
 }

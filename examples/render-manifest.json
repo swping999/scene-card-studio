@@ -94,6 +94,14 @@
       "reference_output": {
         "path": "outputs/memory-atlas-ai-composite.png",
         "sha256": "6ed9f25e25434f0581d8acbfbe67d44dd0890f052766a499ba435f66caac06db"
+      },
+      "candidate_output": {
+        "path": "examples/outputs/memory-atlas-ai-composite.png",
+        "sha256": "6ed9f25e25434f0581d8acbfbe67d44dd0890f052766a499ba435f66caac06db",
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
       }
     }
   ],
@@ -137,5 +145,9 @@
         "sha256": "987ef5453df78ad562c82a63accbfa5c3efb63b99c2a2f7705afd0a8217f34c6"
       }
     ]
-  }
+  },
+  "artifact_type": "render-manifest",
+  "render_manifest_version": "1.0",
+  "parent_manifest_sha256": "d5638b7030a322868e78c03ca812515116c30694709e557b2286f5adb5a9ed9c",
+  "bound_at": "2026-08-09T11:56:49.600637Z"
 }

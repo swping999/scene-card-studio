@@ -1,8 +1,8 @@
 {
-  "manifest_sha256": "94e1049a12e49162ed7ae08f2ecca198e9b5330f05dc8815394251c8436a3934",
+  "manifest_sha256": "8624e3a4009de13ddd0b1ebe6bc91463cd422bbad265860aa99344df5ddff378",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution visual inspection against the compiled prompt and source references.",
-  "reviewed_at": "2026-08-09T19:20:00+08:00",
+  "reviewed_at": "2026-08-09T11:57:00Z",
   "results": [
     {
       "prompt_id": "memory-atlas-01",

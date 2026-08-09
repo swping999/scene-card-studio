@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1",
-  "compiler_version": "0.3.1",
+  "schema_version": "1.2",
+  "compiler_version": "0.3.2",
   "system": "cinematic-storyboard",
   "expression_profile": "rain-nocturne",
   "available_expression_profiles": [
@@ -22,6 +22,12 @@
           "sha256": "e64251766ed818abea6dfc99384e44cdbde53a52fc5d74ea34f8fe5b42f74980"
         }
       ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
+      },
       "blocks": {
         "subject_fidelity": [
           "Preserve the recognizable identity, count, proportions, position, and defining details of: woman, glass bus shelter, wet pavement.",
@@ -66,18 +72,22 @@
           "Do not imitate a named director, cinematographer, photographer, film, or franchise."
         ],
         "output": [
-          "Return one standalone photorealistic frame at 3:2.",
+          "Return one standalone photorealistic PNG frame at exactly 3:2.",
           "Keep the source subject immediately recognizable at first glance."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: woman, glass bus shelter, wet pavement.\n- Preserve the observed action or structural gesture: small still figure against wide roadside space.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — woman, glass bus shelter, wet pavement.\n- MAY TRANSFORM — crop, exposure, light balance, rain visibility.\n- MUST REMOVE — accidental roadside clutter.\n\nNARRATIVE INTENT\n- Narrative intent: waiting before an unseen departure.\n- Emotional tone: lonely, suspended. Story role: opening.\n- Director note: Crop away accidental pavement and let reflections carry the woman into the next scene.\n- Visual emphasis: figure within rain.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure within rain as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#201D18, #615A51, #946D56) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic frame at 3:2.\n- Keep the source subject immediately recognizable at first glance.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: woman, glass bus shelter, wet pavement.\n- Preserve the observed action or structural gesture: small still figure against wide roadside space.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — woman, glass bus shelter, wet pavement.\n- MAY TRANSFORM — crop, exposure, light balance, rain visibility.\n- MUST REMOVE — accidental roadside clutter.\n\nNARRATIVE INTENT\n- Narrative intent: waiting before an unseen departure.\n- Emotional tone: lonely, suspended. Story role: opening.\n- Director note: Crop away accidental pavement and let reflections carry the woman into the next scene.\n- Visual emphasis: figure within rain.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure within rain as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#201D18, #615A51, #946D56) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic PNG frame at exactly 3:2.\n- Keep the source subject immediately recognizable at first glance.",
       "reference_output": {
         "path": "outputs/after-bus-stop.png",
         "sha256": "eb73b3c8730978822096b0b1df55e77486416fe95da7b753a01a3f1111e2562e"
       },
       "candidate_output": {
         "path": "examples/cases/cinematic-storyboard/photos/raw-bus-stop.png",
-        "sha256": "e64251766ed818abea6dfc99384e44cdbde53a52fc5d74ea34f8fe5b42f74980"
+        "sha256": "e64251766ed818abea6dfc99384e44cdbde53a52fc5d74ea34f8fe5b42f74980",
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
       }
     },
     {
@@ -92,6 +102,12 @@
           "sha256": "a8d1f4adf03cbd536c198a777283bbe76720c9b22e3e12fafd4c832fecc31b56"
         }
       ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
+      },
       "blocks": {
         "subject_fidelity": [
           "Preserve the recognizable identity, count, proportions, position, and defining details of: man, diner counter, rain-streaked window.",
@@ -136,18 +152,22 @@
           "Do not imitate a named director, cinematographer, photographer, film, or franchise."
         ],
         "output": [
-          "Return one standalone photorealistic frame at 3:2.",
+          "Return one standalone photorealistic PNG frame at exactly 3:2.",
           "Keep the source subject immediately recognizable at first glance."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: man, diner counter, rain-streaked window.\n- Preserve the observed action or structural gesture: window divisions isolate the seated figure.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — man, diner counter, rain-streaked window.\n- MAY TRANSFORM — crop, fluorescent exposure, color balance, reflection intensity.\n- MUST REMOVE — nonessential counter clutter.\n\nNARRATIVE INTENT\n- Narrative intent: interior pause between two movements.\n- Emotional tone: contained, reflective. Story role: development.\n- Director note: Use wet glass as the transition surface; suppress fluorescent flatness into controlled amber.\n- Visual emphasis: figure behind glass.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure behind glass as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#1B1A1B, #A49B9A, #E9E0D9) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic frame at 3:2.\n- Keep the source subject immediately recognizable at first glance.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: man, diner counter, rain-streaked window.\n- Preserve the observed action or structural gesture: window divisions isolate the seated figure.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — man, diner counter, rain-streaked window.\n- MAY TRANSFORM — crop, fluorescent exposure, color balance, reflection intensity.\n- MUST REMOVE — nonessential counter clutter.\n\nNARRATIVE INTENT\n- Narrative intent: interior pause between two movements.\n- Emotional tone: contained, reflective. Story role: development.\n- Director note: Use wet glass as the transition surface; suppress fluorescent flatness into controlled amber.\n- Visual emphasis: figure behind glass.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure behind glass as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#1B1A1B, #A49B9A, #E9E0D9) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic PNG frame at exactly 3:2.\n- Keep the source subject immediately recognizable at first glance.",
       "reference_output": {
         "path": "outputs/after-diner.png",
         "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3"
       },
       "candidate_output": {
         "path": "examples/cases/cinematic-storyboard/outputs/after-diner.png",
-        "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3"
+        "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3",
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
       }
     },
     {
@@ -162,6 +182,12 @@
           "sha256": "5b52d6724609e553d0882839904210bfe52b817acacb689a8b012be072f130de"
         }
       ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
+      },
       "blocks": {
         "subject_fidelity": [
           "Preserve the recognizable identity, count, proportions, position, and defining details of: yellow-red taxi, residential intersection, red tail-light reflection.",
@@ -206,18 +232,22 @@
           "Do not imitate a named director, cinematographer, photographer, film, or franchise."
         ],
         "output": [
-          "Return one standalone photorealistic frame at 3:2.",
+          "Return one standalone photorealistic PNG frame at exactly 3:2.",
           "Keep the source subject immediately recognizable at first glance."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: yellow-red taxi, residential intersection, red tail-light reflection.\n- Preserve the observed action or structural gesture: vehicle turns across the frame.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — yellow-red taxi, residential intersection, red tail-light reflection.\n- MAY TRANSFORM — crop, exposure, weather atmosphere, color balance.\n- MUST REMOVE — nonessential curb clutter.\n\nNARRATIVE INTENT\n- Narrative intent: departure without explanation.\n- Emotional tone: final, open-ended. Story role: closing.\n- Director note: Let the red reflection resolve the amber light carried through the earlier scenes.\n- Visual emphasis: tail light and turn.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with tail light and turn as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#222126, #739ED6, #2C3648) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic frame at 3:2.\n- Keep the source subject immediately recognizable at first glance.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: yellow-red taxi, residential intersection, red tail-light reflection.\n- Preserve the observed action or structural gesture: vehicle turns across the frame.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — yellow-red taxi, residential intersection, red tail-light reflection.\n- MAY TRANSFORM — crop, exposure, weather atmosphere, color balance.\n- MUST REMOVE — nonessential curb clutter.\n\nNARRATIVE INTENT\n- Narrative intent: departure without explanation.\n- Emotional tone: final, open-ended. Story role: closing.\n- Director note: Let the red reflection resolve the amber light carried through the earlier scenes.\n- Visual emphasis: tail light and turn.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with tail light and turn as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#222126, #739ED6, #2C3648) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic PNG frame at exactly 3:2.\n- Keep the source subject immediately recognizable at first glance.",
       "reference_output": {
         "path": "outputs/after-taxi.png",
         "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d"
       },
       "candidate_output": {
         "path": "examples/cases/cinematic-storyboard/outputs/after-taxi.png",
-        "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d"
+        "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d",
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
       }
     }
   ],
@@ -262,5 +292,9 @@
       }
     ]
   },
-  "sequence_context": "01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended"
+  "sequence_context": "01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended",
+  "artifact_type": "render-manifest",
+  "render_manifest_version": "1.0",
+  "parent_manifest_sha256": "8d0a032eec4cfe3f8b7b52977ac120186400228f1b32c3b47561756dd81b0054",
+  "bound_at": "2026-08-09T11:56:49.824497Z"
 }

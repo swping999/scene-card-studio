@@ -76,10 +76,18 @@
           "Keep the source subject immediately recognizable at first glance."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: woman, glass bus shelter, wet pavement.\n- Preserve the observed action or structural gesture: small still figure against wide roadside space.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — woman, glass bus shelter, wet pavement.\n- MAY TRANSFORM — crop, exposure, light balance, rain visibility.\n- MUST REMOVE — accidental roadside clutter.\n\nNARRATIVE INTENT\n- Narrative intent: waiting before an unseen departure.\n- Emotional tone: lonely, suspended. Story role: opening.\n- Director note: Crop away accidental pavement and let reflections carry the woman into the next scene.\n- Visual emphasis: figure within rain.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure within rain as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#201D18, #615A51, #946D56) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic PNG frame at exactly 3:2.\n- Keep the source subject immediately recognizable at first glance.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: woman, glass bus shelter, wet pavement.\n- Preserve the observed action or structural gesture: small still figure against wide roadside space.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — woman, glass bus shelter, wet pavement.\n- MAY TRANSFORM — crop, exposure, light balance, rain visibility.\n- MUST REMOVE — accidental roadside clutter.\n\nNARRATIVE INTENT\n- Narrative intent: waiting before an unseen departure.\n- Emotional tone: lonely, suspended. Story role: opening.\n- Director note: Crop away accidental pavement and let reflections carry the woman into the next scene.\n- Visual emphasis: figure within rain.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure within rain as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Use a natural 35–50 mm observational perspective with legible foreground, midground, and background.\n\nLIGHTING AND COLOR\n- Build from the source palette (#201D18, #615A51, #946D56) and keep exposure physically plausible.\n- Shape the frame with motivated mixed cool ambient and warm practical light; use wet reflections without neon excess.\n\nMATERIAL AND SURFACE\n- Keep rain, glass, pavement, skin, fabric, vehicles, and architecture photorealistic with restrained fine film grain.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Sequence contract shared with the other frames: 01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended.\n- Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic PNG frame at exactly 3:2.\n- Keep the source subject immediately recognizable at first glance.\n\nTARGETED CORRECTION PASS\nKeep every successful decision unchanged. Correct only the failed dimensions below.\n- narrative_alignment: Strengthen the stated narrative intent, emotional tone, story role, and director note without adding new story facts.\n- composition: Rebuild the visual hierarchy, crop, depth, and negative space while preserving the source subject and scene logic.\n- system_distinctiveness: Apply the selected Narrative System mechanism and expression profile; remove generic beauty-treatment choices.\n- Reviewer note: Rejected: this is still the undirected source snapshot. Preserve the shelter and waiting figure, but rebuild the crop, motivated rain light, depth, and opening-frame tension.",
       "reference_output": {
         "path": "outputs/after-bus-stop.png",
         "sha256": "eb73b3c8730978822096b0b1df55e77486416fe95da7b753a01a3f1111e2562e"
+      },
+      "candidate_output": {
+        "path": "examples/cases/cinematic-storyboard/outputs/after-bus-stop.png",
+        "sha256": "eb73b3c8730978822096b0b1df55e77486416fe95da7b753a01a3f1111e2562e",
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
       }
     },
     {
@@ -152,6 +160,14 @@
       "reference_output": {
         "path": "outputs/after-diner.png",
         "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3"
+      },
+      "candidate_output": {
+        "path": "examples/cases/cinematic-storyboard/outputs/after-diner.png",
+        "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3",
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
       }
     },
     {
@@ -224,6 +240,14 @@
       "reference_output": {
         "path": "outputs/after-taxi.png",
         "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d"
+      },
+      "candidate_output": {
+        "path": "examples/cases/cinematic-storyboard/outputs/after-taxi.png",
+        "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d",
+        "mime_type": "image/png",
+        "width": 1536,
+        "height": 1024,
+        "aspect_ratio": "3:2"
       }
     }
   ],
@@ -268,5 +292,54 @@
       }
     ]
   },
-  "sequence_context": "01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended"
+  "sequence_context": "01 opening: waiting before an unseen departure; tone lonely, suspended | 02 development: interior pause between two movements; tone contained, reflective | 03 closing: departure without explanation; tone final, open-ended",
+  "artifact_type": "render-manifest",
+  "parent_manifest_sha256": "e5210125882abba364beecbbe9ce237162ac0126c91b8baca1ff17d539aa267f",
+  "retry_manifest_version": "1.0",
+  "parent_render_manifest_sha256": "39178caefd3dfc5b44cfc77ecee4dd25e9f7922735b538a9d66f9371b40d2df7",
+  "parent_prompt_manifest_sha256": "8d0a032eec4cfe3f8b7b52977ac120186400228f1b32c3b47561756dd81b0054",
+  "failed_review_sha256": "93ae8ef92cf809a79198b2dde0af02596699d859b66dc7a12721649f87624fd7",
+  "generated_at": "2026-08-09T11:57:49.350012Z",
+  "retry_iteration": 1,
+  "review_binding": {
+    "reviewed_manifest_sha256": "39178caefd3dfc5b44cfc77ecee4dd25e9f7922735b538a9d66f9371b40d2df7",
+    "reviewer": {
+      "type": "human",
+      "name": "repository curator",
+      "model": "visual inspection"
+    },
+    "reviewed_at": "2026-08-09T11:57:00Z",
+    "review_method": "Full-resolution frame and sequence inspection against the compiled prompts and source references.",
+    "assessment_sha256": "93ae8ef92cf809a79198b2dde0af02596699d859b66dc7a12721649f87624fd7"
+  },
+  "review_decisions": [
+    {
+      "prompt_id": "cinematic-storyboard-01",
+      "decision": "retry",
+      "failed_dimensions": [
+        "narrative_alignment",
+        "composition",
+        "system_distinctiveness"
+      ]
+    },
+    {
+      "prompt_id": "cinematic-storyboard-02",
+      "decision": "accept",
+      "failed_dimensions": []
+    },
+    {
+      "prompt_id": "cinematic-storyboard-03",
+      "decision": "accept",
+      "failed_dimensions": []
+    }
+  ],
+  "sequence_review": {
+    "decision": "accept",
+    "failed_dimensions": []
+  },
+  "retry_prompt_ids": [
+    "cinematic-storyboard-01"
+  ],
+  "render_manifest_version": "1.0",
+  "bound_at": "2026-08-09T11:58:12.896808Z"
 }

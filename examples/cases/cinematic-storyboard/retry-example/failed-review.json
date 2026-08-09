@@ -1,8 +1,8 @@
 {
-  "manifest_sha256": "cd70b58be2c1ecf8c77f6c2e9fbb0e8ae669df7a1db15188f09c97bb39201c74",
+  "manifest_sha256": "39178caefd3dfc5b44cfc77ecee4dd25e9f7922735b538a9d66f9371b40d2df7",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution frame and sequence inspection against the compiled prompts and source references.",
-  "reviewed_at": "2026-08-09T19:25:00+08:00",
+  "reviewed_at": "2026-08-09T11:57:00Z",
   "sequence_scores": {
     "subject_continuity": 4,
     "light_color_continuity": 4,

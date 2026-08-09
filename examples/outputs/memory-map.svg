@@ -1,20 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1800" viewBox="0 0 1200 1800">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1400" viewBox="0 0 1200 1400">
 <rect width="100%" height="100%" fill="#F3F0E8"/>
 <text x="72" y="80" font-family="ui-monospace,monospace" font-size="18" letter-spacing="4" fill="#111817">SCENE CARD STUDIO</text>
-<text x="72" y="145" font-family="system-ui,sans-serif" font-size="54" fill="#202321">A visual story in 3 frame(s)</text>
-<path d="M72.0 571.712 C226.79999999999998 176.036, 433.2 703.604, 588.0 329.90999999999997" fill="none" stroke="#4F6FA4" stroke-width="18" opacity=".85"/>
-<image href="examples/photos/rain-greenhouse.png" x="72.0" y="220.0" width="516.0" height="439.64" preserveAspectRatio="xMidYMid slice"/>
-<text x="72.0" y="701.64" font-family="ui-monospace,monospace" font-size="14" letter-spacing="2" fill="#4F6FA4">01 · OPENING</text>
-<text x="72.0" y="741.64" font-family="system-ui,sans-serif" font-size="26" fill="#202321">ONE LIGHT KEPT GROWING</text>
-<line x1="72.0" y1="767.64" x2="588.0" y2="767.64" stroke="#202321" opacity=".2"/>
-<path d="M612.0 571.712 C766.8 176.036, 973.2 703.604, 1128.0 329.90999999999997" fill="none" stroke="#E3E4E9" stroke-width="18" opacity=".85"/>
-<image href="examples/photos/valley-fruit-stand.png" x="612.0" y="220.0" width="516.0" height="439.64" preserveAspectRatio="xMidYMid slice"/>
-<text x="612.0" y="701.64" font-family="ui-monospace,monospace" font-size="14" letter-spacing="2" fill="#E3E4E9">02 · DEVELOPMENT</text>
-<text x="612.0" y="741.64" font-family="system-ui,sans-serif" font-size="26" fill="#202321">FRUIT BY THE MOUNTAIN ROAD</text>
-<line x1="612.0" y1="767.64" x2="1128.0" y2="767.64" stroke="#202321" opacity=".2"/>
-<path d="M72.0 1353.712 C226.79999999999998 958.0360000000001, 433.2 1485.604, 588.0 1111.91" fill="none" stroke="#57595A" stroke-width="18" opacity=".85"/>
-<image href="examples/photos/coastal-platform.png" x="72.0" y="1002.0" width="516.0" height="439.64" preserveAspectRatio="xMidYMid slice"/>
-<text x="72.0" y="1483.6399999999999" font-family="ui-monospace,monospace" font-size="14" letter-spacing="2" fill="#57595A">03 · CLOSING</text>
-<text x="72.0" y="1523.6399999999999" font-family="system-ui,sans-serif" font-size="26" fill="#202321">AFTER THE LAST RAIN</text>
-<line x1="72.0" y1="1549.6399999999999" x2="588.0" y2="1549.6399999999999" stroke="#202321" opacity=".2"/>
+<text x="72" y="145" font-family="system-ui,sans-serif" font-size="54" fill="#202321">MEMORY ATLAS</text>
+<rect x="72" y="220" width="720" height="210" rx="36" fill="#111817" opacity="0.16"/>
+<text x="108" y="285" font-family="system-ui,sans-serif" font-size="25" fill="#202321">patient growth</text>
+<text x="108" y="332" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">EMPHASIS · warm light within cool environment</text>
+<image href="../photos/rain-greenhouse.png" x="850" y="240" width="267" height="170" preserveAspectRatio="xMidYMid slice"/>
+<text x="840" y="445" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">PLACE 01 · ONE LIGHT KEPT GROWING</text>
+<rect x="72" y="470" width="720" height="210" rx="36" fill="#262113" opacity="0.16"/>
+<text x="108" y="535" font-family="system-ui,sans-serif" font-size="25" fill="#202321">journey pause</text>
+<text x="108" y="582" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">EMPHASIS · road as transition between foreground and </text>
+<image href="../photos/valley-fruit-stand.png" x="850" y="490" width="267" height="170" preserveAspectRatio="xMidYMid slice"/>
+<text x="840" y="695" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">PLACE 02 · FRUIT BY THE MOUNTAIN ROAD</text>
+<rect x="72" y="720" width="720" height="210" rx="36" fill="#DBDFE3" opacity="0.16"/>
+<text x="108" y="785" font-family="system-ui,sans-serif" font-size="25" fill="#202321">departure</text>
+<text x="108" y="832" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">EMPHASIS · railway line and red signal</text>
+<image href="../photos/coastal-platform.png" x="854" y="740" width="259" height="170" preserveAspectRatio="xMidYMid slice"/>
+<text x="840" y="945" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">PLACE 03 · AFTER THE LAST RAIN</text>
 </svg>

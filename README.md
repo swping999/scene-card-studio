@@ -18,7 +18,7 @@ All source photographs below were generated specifically for this repository. Th
 | --- | --- |
 | ![Original photo contact sheet](examples/outputs/before-source-photos.png) | ![Photographic architecture fused with a hand-drawn memory map](examples/outputs/memory-atlas-ai-composite.png) |
 
-[Inspect the three-layer Scene Cards](examples/generated-story.json) · [Open the versioned Prompt Manifest](examples/prompt-manifest.json)
+[Inspect the three-layer Scene Cards](examples/generated-story.json) · [Prompt Manifest](examples/prompt-manifest.json) · [Render Manifest](examples/render-manifest.json) · [Accepted Review](examples/accepted-review.json)
 
 ### Case 2 · Family Archive
 
@@ -28,7 +28,7 @@ All source photographs below were generated specifically for this repository. Th
 
 This second case reads repeated gestures—laundry, cooking, sorting photographs—as a record of care passed through generations.
 
-[Inspect the Scene Cards](examples/cases/family-archive/story.json) · [Open the Prompt Manifest](examples/cases/family-archive/prompt-manifest.json)
+[Inspect the Scene Cards](examples/cases/family-archive/story.json) · [Prompt Manifest](examples/cases/family-archive/prompt-manifest.json) · [Render Manifest](examples/cases/family-archive/render-manifest.json) · [Accepted Review](examples/cases/family-archive/accepted-review.json)
 
 ### Case 3 · Cinematic Storyboard
 
@@ -52,7 +52,7 @@ This system does not paste three objects onto a designed page. It gives each ord
 | ![Ordinary phone snapshot of a worn chair](examples/cases/minimal-editorial/photos/raw-chair.png) | ![Sculptural editorial photograph of the same chair](examples/cases/minimal-editorial/outputs/after-chair.png) |
 | ![Ordinary phone snapshot of linen](examples/cases/minimal-editorial/photos/raw-linen.png) | ![Material-focused editorial photograph of the same linen](examples/cases/minimal-editorial/outputs/after-linen.png) |
 
-[Inspect the Scene Cards](examples/cases/minimal-editorial/story.json) · [Open the three compiled prompts](examples/cases/minimal-editorial/prompt-manifest.json) · [View the source contact sheet](examples/cases/minimal-editorial/outputs/before.png)
+[Inspect the Scene Cards](examples/cases/minimal-editorial/story.json) · [Compiled Prompts](examples/cases/minimal-editorial/prompt-manifest.json) · [Render Manifest](examples/cases/minimal-editorial/render-manifest.json) · [Accepted Review](examples/cases/minimal-editorial/accepted-review.json) · [View the source contact sheet](examples/cases/minimal-editorial/outputs/before.png)
 
 The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and can produce either a deterministic workprint or a genuinely transformed presentation image. Spatial and archival systems may use mixed media; cinematic and minimal systems default to one source → one frame.
 
@@ -107,24 +107,26 @@ Scene Cards explicitly separate visible evidence from interpretation:
 
 The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
 
-## v0.3.1 · Prompt Compiler & Reproducible Art Direction
+## v0.3.2 · Auditable generation contracts
 
 The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Four core systems are supported: `cinematic-storyboard`, `minimal-editorial`, `memory-atlas`, and `family-archive`. The system defines how the story is read; the profile defines how that mechanism is visually expressed. `source-led` is the default.
 
 Every compiled prompt contains the same ten modules:
 
 1. subject fidelity;
-2. narrative intent;
-3. composition;
-4. lighting and color;
-5. material and surface;
-6. spatial relationships;
-7. text and label strategy;
-8. explicit `must_preserve` / `may_transform` / `must_remove` rules;
+2. explicit `must_preserve` / `may_transform` / `must_remove` rules;
+3. narrative intent;
+4. composition;
+5. lighting and color;
+6. material and surface;
+7. spatial relationships;
+8. text and label strategy;
 9. exclusions;
 10. output ratio and format.
 
-The manifest records compiler version, source hashes, compiled prompts, optional reference-output hashes, and a five-dimension frame review policy. Sequence systems additionally review subject continuity, light/color continuity, rhythm, and narrative arc. Before review, `bind-outputs` attaches every candidate output hash to its prompt. A review is accepted only when its Manifest hash, Prompt ID, and output hash match; a failed review produces a targeted correction pass for the weak dimensions.
+Every prompt now carries a structured `output_contract` with exact MIME type, width, height, and aspect ratio. `bind-outputs` decodes the candidate and rejects format or dimension mismatches before review. Optional `reference_output` records are benchmark comparisons only: a formal review must target a Render Manifest containing `candidate_output` records.
+
+Sequence systems additionally review subject continuity, light/color continuity, rhythm, and narrative arc. Retry provenance is a closed hash chain: Prompt Manifest → failed Render Manifest → failed Review → Retry Manifest → post-retry Render Manifest → accepted Review. Each link records its parent hash and chronology.
 
 ## Narrative Systems, not style filters
 
@@ -144,10 +146,11 @@ scene-card-studio render story.json --style memory-atlas --format svg --output s
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
 scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
 scene-card-studio retry render-manifest.json assessment.json --output retry-manifest.json
+scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-`compile` emits one prompt per source for cinematic and minimal systems, and one multi-source prompt for spatial and archival systems. Cloud synthesis requires an explicit consent record containing the provider, purpose, and exact upload list; without it, the Skill stops at local Workprint and Prompt Manifest. `retry` consumes the hash-bound assessment documented in the Skill. `presentation` is the default layout mode; use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible.
+`compile` emits one prompt per source for cinematic and minimal systems, and one multi-source prompt for spatial and archival systems. Cloud synthesis requires an explicit consent record containing the provider, purpose, and exact upload list; without it, the Skill stops at local Workprint and Prompt Manifest. Formal review refuses an unbound Prompt Manifest. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits. `presentation` is the default layout mode; use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible.
 
 ## Codex Skill
 

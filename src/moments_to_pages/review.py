@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from datetime import datetime
+from datetime import datetime, timezone
 from hashlib import sha256
+from math import gcd
 from pathlib import Path
 from typing import Any
 
@@ -31,7 +32,56 @@ def file_sha256(path: Path) -> str:
     return sha256(path.read_bytes()).hexdigest()
 
 
-def bind_outputs(manifest: dict[str, Any], bindings: dict[str, str], base: Path | None = None) -> dict[str, Any]:
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _image_record(path: Path, display_path: str) -> dict[str, Any]:
+    try:
+        from PIL import Image, UnidentifiedImageError
+    except ImportError as exc:
+        raise RuntimeError("Output binding requires Pillow: pip install 'scene-card-studio[images]'") from exc
+    try:
+        with Image.open(path) as opened:
+            opened.verify()
+        with Image.open(path) as opened:
+            width, height = opened.size
+            mime = Image.MIME.get(opened.format or "")
+    except (UnidentifiedImageError, OSError) as exc:
+        raise ValueError(f"Candidate output is not a decodable image: {path}") from exc
+    if not mime:
+        raise ValueError(f"Candidate output has an unsupported image format: {path}")
+    divisor = gcd(width, height)
+    return {
+        "path": display_path,
+        "sha256": file_sha256(path),
+        "mime_type": mime,
+        "width": width,
+        "height": height,
+        "aspect_ratio": f"{width // divisor}:{height // divisor}",
+    }
+
+
+def _validate_output_contract(prompt: dict[str, Any], record: dict[str, Any]) -> None:
+    contract = prompt.get("output_contract")
+    if not isinstance(contract, dict):
+        raise ValueError(f"Prompt {prompt.get('id')} has no structured output_contract")
+    mismatches = [
+        field for field in ("mime_type", "width", "height", "aspect_ratio")
+        if record.get(field) != contract.get(field)
+    ]
+    if mismatches:
+        details = ", ".join(f"{field}={record.get(field)!r} (expected {contract.get(field)!r})" for field in mismatches)
+        raise ValueError(f"Candidate output violates {prompt.get('id')} output_contract: {details}")
+
+
+def bind_outputs(
+    manifest: dict[str, Any],
+    bindings: dict[str, str],
+    *,
+    manifest_sha256: str,
+    base: Path | None = None,
+) -> dict[str, Any]:
     output = deepcopy(manifest)
     prompts = {item["id"]: item for item in output.get("prompts", [])}
     unknown = set(bindings) - set(prompts)
@@ -43,7 +93,13 @@ def bind_outputs(manifest: dict[str, Any], bindings: dict[str, str], base: Path 
     for prompt_id, value in bindings.items():
         supplied = Path(value).expanduser()
         resolved = supplied if supplied.is_absolute() else ((base or Path.cwd()) / supplied)
-        prompts[prompt_id]["candidate_output"] = {"path": value, "sha256": file_sha256(resolved)}
+        record = _image_record(resolved, value)
+        _validate_output_contract(prompts[prompt_id], record)
+        prompts[prompt_id]["candidate_output"] = record
+    output["artifact_type"] = "render-manifest"
+    output["render_manifest_version"] = "1.0"
+    output["parent_manifest_sha256"] = manifest_sha256
+    output["bound_at"] = _now()
     return output
 
 
@@ -67,7 +123,9 @@ def sequence_review_decision(scores: dict[str, int]) -> tuple[str, list[str]]:
     return _score_decision(scores, REVIEW_POLICY["sequence_dimensions"])
 
 
-def _validate_assessment_metadata(assessment: dict[str, Any], expected_manifest_sha256: str) -> None:
+def _validate_assessment_metadata(assessment: dict[str, Any], manifest: dict[str, Any], expected_manifest_sha256: str) -> None:
+    if manifest.get("artifact_type") != "render-manifest":
+        raise ValueError("Formal review requires a Render Manifest produced by bind-outputs")
     if assessment.get("manifest_sha256") != expected_manifest_sha256:
         raise ValueError("Assessment manifest_sha256 does not match the reviewed manifest")
     reviewer = assessment.get("reviewer")
@@ -83,15 +141,30 @@ def _validate_assessment_metadata(assessment: dict[str, Any], expected_manifest_
     if not isinstance(reviewed_at, str):
         raise ValueError("Assessment reviewed_at is required")
     try:
-        datetime.fromisoformat(reviewed_at.replace("Z", "+00:00"))
+        reviewed = datetime.fromisoformat(reviewed_at.replace("Z", "+00:00"))
     except ValueError as exc:
         raise ValueError("Assessment reviewed_at must be ISO 8601") from exc
+    if reviewed.tzinfo is None or reviewed.utcoffset() is None:
+        raise ValueError("Assessment reviewed_at must include a timezone")
+    bound_at = manifest.get("bound_at")
+    if isinstance(bound_at, str):
+        try:
+            bound = datetime.fromisoformat(bound_at.replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise ValueError("Render Manifest bound_at must be ISO 8601") from exc
+        if bound.tzinfo is None or bound.utcoffset() is None:
+            raise ValueError("Render Manifest bound_at must include a timezone")
+        if reviewed < bound:
+            raise ValueError("Assessment reviewed_at predates the bound Render Manifest")
+    if reviewed > datetime.now(timezone.utc):
+        raise ValueError("Assessment reviewed_at is in the future")
 
 
 def _expected_output_hash(prompt: dict[str, Any]) -> str:
-    record = prompt.get("candidate_output") or prompt.get("reference_output")
+    record = prompt.get("candidate_output")
     if not isinstance(record, dict) or not record.get("sha256"):
-        raise ValueError(f"Prompt {prompt.get('id')} has no hash-bound output to review")
+        raise ValueError(f"Prompt {prompt.get('id')} has no candidate_output; run bind-outputs before formal review")
+    _validate_output_contract(prompt, record)
     return str(record["sha256"])
 
 
@@ -100,8 +173,9 @@ def build_retry_manifest(
     assessment: dict[str, Any],
     *,
     manifest_sha256: str,
+    assessment_sha256: str,
 ) -> dict[str, Any]:
-    _validate_assessment_metadata(assessment, manifest_sha256)
+    _validate_assessment_metadata(assessment, manifest, manifest_sha256)
     original = {item["id"]: item for item in manifest.get("prompts", [])}
     result_items = assessment.get("results", [])
     if not isinstance(result_items, list):
@@ -118,15 +192,25 @@ def build_retry_manifest(
         _, sequence_failed = sequence_review_decision(assessment.get("sequence_scores", {}))
 
     output = deepcopy(manifest)
+    output["artifact_type"] = "retry-manifest"
+    output["retry_manifest_version"] = "1.0"
+    output["parent_render_manifest_sha256"] = manifest_sha256
+    output["parent_prompt_manifest_sha256"] = manifest.get("parent_manifest_sha256")
+    output["failed_review_sha256"] = assessment_sha256
+    output["generated_at"] = _now()
+    output.pop("bound_at", None)
+    output.pop("render_manifest_version", None)
     output["retry_iteration"] = int(manifest.get("retry_iteration", 0)) + 1
     retry_prompts: list[str] = []
     decisions = []
     for item in output.get("prompts", []):
+        reviewed_item = original[item["id"]]
         result = results.get(item["id"])
         if result is None:
             raise ValueError(f"Missing assessment for prompt id: {item['id']}")
-        if result.get("output_sha256") != _expected_output_hash(item):
+        if result.get("output_sha256") != _expected_output_hash(reviewed_item):
             raise ValueError(f"Assessment output_sha256 does not match prompt {item['id']}")
+        item.pop("candidate_output", None)
         decision, failed = review_decision(result.get("scores", {}))
         all_failed = list(failed)
         if sequence_failed:
@@ -149,6 +233,7 @@ def build_retry_manifest(
         "reviewer": assessment["reviewer"],
         "reviewed_at": assessment["reviewed_at"],
         "review_method": assessment["review_method"],
+        "assessment_sha256": assessment_sha256,
     }
     output["review_decisions"] = decisions
     output["sequence_review"] = {"decision": "retry" if sequence_failed else "accept", "failed_dimensions": sequence_failed}

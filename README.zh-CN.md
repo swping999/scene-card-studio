@@ -18,7 +18,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 | --- | --- |
 | ![原始照片接触表](examples/outputs/before-source-photos.png) | ![真实建筑摄影与手绘记忆地图融合](examples/outputs/memory-atlas-ai-composite.png) |
 
-[查看三层 Scene Cards](examples/generated-story.json) · [打开版本化 Prompt Manifest](examples/prompt-manifest.json)
+[查看三层 Scene Cards](examples/generated-story.json) · [Prompt Manifest](examples/prompt-manifest.json) · [Render Manifest](examples/render-manifest.json) · [通过审核](examples/accepted-review.json)
 
 ### 案例 2 · Family Archive｜家庭档案
 
@@ -28,7 +28,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 
 第二组案例把晾衣、包饺子、整理旧照片这些重复动作，读成一段跨代传递的照料记录。
 
-[查看 Scene Cards](examples/cases/family-archive/story.json) · [打开 Prompt Manifest](examples/cases/family-archive/prompt-manifest.json)
+[查看 Scene Cards](examples/cases/family-archive/story.json) · [Prompt Manifest](examples/cases/family-archive/prompt-manifest.json) · [Render Manifest](examples/cases/family-archive/render-manifest.json) · [通过审核](examples/cases/family-archive/accepted-review.json)
 
 ### 案例 3 · Cinematic Storyboard｜电影分镜
 
@@ -52,7 +52,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 | ![普通旧椅子手机随手拍](examples/cases/minimal-editorial/photos/raw-chair.png) | ![同一椅子的雕塑感编辑摄影](examples/cases/minimal-editorial/outputs/after-chair.png) |
 | ![普通亚麻布手机随手拍](examples/cases/minimal-editorial/photos/raw-linen.png) | ![同一亚麻布的材质编辑摄影](examples/cases/minimal-editorial/outputs/after-linen.png) |
 
-[查看 Scene Cards](examples/cases/minimal-editorial/story.json) · [打开三条编译提示词](examples/cases/minimal-editorial/prompt-manifest.json) · [查看原片接触表](examples/cases/minimal-editorial/outputs/before.png)
+[查看 Scene Cards](examples/cases/minimal-editorial/story.json) · [编译提示词](examples/cases/minimal-editorial/prompt-manifest.json) · [Render Manifest](examples/cases/minimal-editorial/render-manifest.json) · [通过审核](examples/cases/minimal-editorial/accepted-review.json) · [查看原片接触表](examples/cases/minimal-editorial/outputs/before.png)
 
 这里发生的不是简单滤镜或重新排版。系统先区分观察事实与解释，再分配故事角色、生成导演备注、推荐 Narrative System，最终既可以输出确定性 Workprint，也可以生成真正发生视觉二次创作的成品。空间与档案系统可以使用混合媒介；电影与极简系统默认“一张原片 → 一个独立镜头”。
 
@@ -86,24 +86,26 @@ Scene Card 将信息明确分成三层：
 
 这种拆分避免把 AI 的推测伪装成照片事实，也允许用户在编译 Prompt 前修改任何导演判断。自动分析保持克制，所有 Scene Card 决策都可以编辑。
 
-## v0.3.1 · Prompt Compiler 与可复现视觉导演
+## v0.3.2 · 可复核的生成合同
 
 Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持四个核心系统：`cinematic-storyboard`、`minimal-editorial`、`memory-atlas` 和 `family-archive`。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认使用 `source-led`。
 
 每条编译提示词都固定包含十个模块：
 
 1. 主体保真；
-2. 叙事意图；
-3. 构图；
-4. 光线与色彩；
-5. 材质与表面；
-6. 空间关系；
-7. 文字与标签策略；
-8. 明确的 `must_preserve` / `may_transform` / `must_remove`；
+2. 明确的 `must_preserve` / `may_transform` / `must_remove`；
+3. 叙事意图；
+4. 构图；
+5. 光线与色彩；
+6. 材质与表面；
+7. 空间关系；
+8. 文字与标签策略；
 9. 禁止项；
 10. 输出比例与格式。
 
-Manifest 会记录编译器版本、源图哈希、完整 Prompt、可选参考输出哈希和五维单帧审美规则；序列系统还会检查人物一致性、光色连续性、节奏和整体叙事弧线。审核前，`bind-outputs` 会把每个候选输出的哈希绑定到 Prompt。只有 Manifest 哈希、Prompt ID 与输出哈希全部一致，审核才有效；失败时仅对不足维度增加定向修正。
+每条 Prompt 现在都带结构化 `output_contract`，明确 MIME、宽度、高度和比例。`bind-outputs` 会真实解码候选图片，格式或尺寸不符时在审核前直接失败。可选 `reference_output` 仅用于 Benchmark 对照；正式审核必须针对含有 `candidate_output` 的 Render Manifest。
+
+序列系统还会检查人物一致性、光色连续性、节奏和整体叙事弧线。Retry 来源是一条完整哈希链：Prompt Manifest → 失败 Render Manifest → 失败审核 → Retry Manifest → 重试后 Render Manifest → 通过审核。每一段都记录父哈希和时间顺序。
 
 ## 不是风格菜单
 
@@ -131,10 +133,11 @@ scene-card-studio render story.json --style editorial-sequence --format png --ou
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
 scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
 scene-card-studio retry render-manifest.json assessment.json --output retry-manifest.json
+scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-电影与极简系统会为每张源图编译一条独立 Prompt；空间与档案系统会编译一条多源合成 Prompt。云端合成前必须记录 provider、用途和精确上传列表，并由用户明确确认；未同意时 Skill 只生成本地 Workprint 与 Prompt Manifest。`retry` 使用 Skill 中定义的哈希绑定审核。版面默认使用 `presentation`；需要查看观察、理解、角色和导演备注时使用 `--mode workprint`。
+电影与极简系统会为每张源图编译一条独立 Prompt；空间与档案系统会编译一条多源合成 Prompt。云端合成前必须记录 provider、用途和精确上传列表，并由用户明确确认；未同意时 Skill 只生成本地 Workprint 与 Prompt Manifest。正式审核拒绝未经绑定的 Prompt Manifest。SVG 安全嵌入会完整解码并重新编码图片、清除尾随数据与元数据，并限制源文件字节数和像素数。版面默认使用 `presentation`；需要查看观察、理解、角色和导演备注时使用 `--mode workprint`。
 
 ## Codex Skill
 

@@ -1,8 +1,8 @@
 {
-  "manifest_sha256": "bc886e381dd03b88170864722c2da2ac2330282c1ecd12f795535b3ed29e93f5",
+  "manifest_sha256": "533fc3a8153d60aa1faa5e594dbfe1239bd58ae2025984ba01230a5e542d372d",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution visual inspection against the compiled prompts and source references.",
-  "reviewed_at": "2026-08-09T19:20:00+08:00",
+  "reviewed_at": "2026-08-09T11:57:00Z",
   "results": [
     {
       "prompt_id": "minimal-editorial-01",

@@ -29,3 +29,16 @@ def test_scene_card_rejects_illegal_svg_controls(tmp_path: Path):
     card = SceneCard("photo.jpg", 10, 10, ["#112233"], .5, .5, "landscape", "BAD\x01CAPTION")
     with pytest.raises(ValueError, match="control character"):
         save_cards([card], tmp_path / "story.json")
+
+
+def test_mixed_legacy_and_current_schema_migrates_without_direction_crash():
+    value = SceneCard(
+        "photo.jpg", 10, 10, ["#112233"], .5, .5, "landscape", "MOMENT"
+    ).to_dict()
+    value["interpretation"]["narrative_intent"] = "current reading"
+    value["direction"]["narrative_intent"] = "legacy reading"
+    value["direction"]["emotional_tone"] = ["legacy tone"]
+    value["direction"]["confidence"] = 0.2
+    card = SceneCard.from_dict(value)
+    assert card.interpretation.narrative_intent == "current reading"
+    assert card.interpretation.emotional_tone == value["interpretation"]["emotional_tone"]

@@ -24,7 +24,7 @@ Each prompt contains:
 7. spatial relationships;
 8. text and label strategy;
 9. exclusions;
-10. output ratio and format.
+10. output contract and format.
 
 For cinematic and minimal systems, the compiler emits one prompt per source. For memory and archive systems, it emits one multi-source synthesis prompt. A cinematic manifest also includes one shared sequence contract.
 
@@ -40,7 +40,9 @@ scene-card-studio bind-outputs prompt-manifest.json \
   --output render-manifest.json
 ```
 
-The Render Manifest records each output hash. Review the Render Manifest, not an unbound Prompt Manifest.
+The compiler gives each Prompt a structured `output_contract` containing exact `mime_type`, `width`, `height`, and `aspect_ratio`. Binding fully decodes every candidate and rejects any mismatch. The Render Manifest records the validated metadata and output hash.
+
+Review the Render Manifest, not an unbound Prompt Manifest. `reference_output` is optional benchmark comparison data only; formal review requires `candidate_output` for every Prompt.
 
 ## Review
 
@@ -104,8 +106,17 @@ scene-card-studio retry render-manifest.json assessment.json \
   --output retry-manifest.json
 ```
 
-Use only `retry_prompt_ids` for the next generation pass. Preserve successful decisions and correct only failed frame or sequence dimensions. Bind and review the new outputs again before acceptance.
+Use only `retry_prompt_ids` for the next generation pass. Preserve successful decisions and correct only failed frame or sequence dimensions. Then bind the corrected outputs and all accepted unchanged outputs to the Retry Manifest:
+
+```bash
+scene-card-studio bind-outputs retry-manifest.json \
+  --result cinematic-storyboard-01=outputs/frame-01-retry.png \
+  --result cinematic-storyboard-02=outputs/frame-02.png \
+  --output post-retry-render-manifest.json
+```
+
+The Retry Manifest records the failed Render Manifest hash and failed Review hash. The post-retry Render Manifest records the Retry Manifest hash. The accepted Review must record the post-retry Render Manifest hash and have a later timestamp.
 
 ## Hero Case provenance
 
-Maintain a Prompt Manifest, hash-bound Render Manifest, accepted review, and—where available—a failed review plus retry manifest. Compare narrative mechanism and fidelity rather than expecting pixel identity.
+Maintain a Prompt Manifest, hash-bound Render Manifest, accepted review, and—where a retry occurs—the full failed Render → failed Review → Retry → post-retry Render → accepted Review chain. Compare narrative mechanism and fidelity rather than expecting pixel identity.

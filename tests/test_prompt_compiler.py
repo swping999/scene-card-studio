@@ -1,8 +1,10 @@
 import json
+from datetime import datetime, timezone
 from hashlib import sha256
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
 from moments_to_pages.cli import main
 from moments_to_pages.director import recommend_systems
@@ -57,11 +59,11 @@ def _assessment(manifest: dict, manifest_hash: str, scores: dict | None = None) 
         "schema_version": "1.0",
         "manifest_sha256": manifest_hash,
         "reviewer": {"type": "model-assisted", "name": "test reviewer", "model": "test-model"},
-        "reviewed_at": "2026-08-09T10:00:00Z",
+        "reviewed_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "review_method": "side-by-side visual inspection",
         "results": [{
             "prompt_id": prompt["id"],
-            "output_sha256": (prompt.get("candidate_output") or prompt.get("reference_output"))["sha256"],
+            "output_sha256": prompt["candidate_output"]["sha256"],
             "scores": scores or default_scores,
         } for prompt in manifest["prompts"]],
         "sequence_scores": {name: 5 for name in manifest["review_policy"]["sequence_dimensions"]},
@@ -78,10 +80,12 @@ def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Pat
     for system in SUPPORTED_SYSTEMS:
         manifest = compile_manifest(cards, system, source_root=tmp_path)
         manifests[system] = manifest
-        assert manifest["compiler_version"] == "0.3.1"
+        assert manifest["compiler_version"] == "0.3.2"
+        assert manifest["schema_version"] == "1.2"
         assert manifest["expression_profile"] == "source-led"
         assert set(manifest["prompts"][0]["blocks"]) == expected
         assert manifest["prompts"][0]["sources"][0]["sha256"]
+        assert set(manifest["prompts"][0]["output_contract"]) == {"mime_type", "width", "height", "aspect_ratio"}
         assert "MUST REMOVE — plastic sign" in manifest["prompts"][0]["compiled_prompt"]
         assert manifest["privacy"]["upload_requires_explicit_consent"] is True
     assert len(manifests["cinematic-storyboard"]["prompts"]) == 2
@@ -89,6 +93,9 @@ def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Pat
     watercolor = compile_manifest(cards, "memory-atlas", source_root=tmp_path, expression_profile="watercolor-contour")
     assert "watercolor terrain" in watercolor["prompts"][0]["compiled_prompt"]
     assert "watercolor terrain" not in manifests["memory-atlas"]["prompts"][0]["compiled_prompt"]
+    widescreen = compile_manifest(cards[:1], "cinematic-storyboard", source_root=tmp_path, aspect_ratio="16:9")
+    contract = widescreen["prompts"][0]["output_contract"]
+    assert contract["width"] * 9 == contract["height"] * 16
 
 
 def test_compiler_fails_closed_for_missing_source(tmp_path: Path):
@@ -100,17 +107,19 @@ def test_compiler_fails_closed_for_missing_source(tmp_path: Path):
 
 def test_review_is_bound_to_manifest_and_output_hashes(tmp_path: Path):
     output = tmp_path / "accepted.png"
-    output.write_bytes(b"accepted-output")
-    manifest = compile_manifest(_cards(tmp_path)[:1], "minimal-editorial", source_root=tmp_path, reference_outputs=[output.name])
-    manifest_bytes = json.dumps(manifest, sort_keys=True).encode()
-    manifest_hash = sha256(manifest_bytes).hexdigest()
+    Image.new("RGB", (1536, 1024), "navy").save(output)
+    prompt_manifest = compile_manifest(_cards(tmp_path)[:1], "minimal-editorial", source_root=tmp_path)
+    with pytest.raises(ValueError, match="Render Manifest"):
+        build_retry_manifest(prompt_manifest, {}, manifest_sha256="0" * 64, assessment_sha256="1" * 64)
+    manifest = bind_outputs(prompt_manifest, {"minimal-editorial-01": str(output)}, manifest_sha256="a" * 64)
+    manifest_hash = sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
     low_scores = {
         "subject_fidelity": 5, "narrative_alignment": 4, "composition": 3,
         "system_distinctiveness": 4, "artifact_control": 2,
     }
     assessment = _assessment(manifest, manifest_hash, low_scores)
     assessment["results"][0]["notes"] = "Remove the synthetic cable and restore the chair legs."
-    retry = build_retry_manifest(manifest, assessment, manifest_sha256=manifest_hash)
+    retry = build_retry_manifest(manifest, assessment, manifest_sha256=manifest_hash, assessment_sha256="b" * 64)
     assert retry["retry_prompt_ids"] == [manifest["prompts"][0]["id"]]
     correction = retry["prompts"][0]["compiled_prompt"].split("TARGETED CORRECTION PASS", 1)[1]
     assert "composition:" in correction and "artifact_control:" in correction
@@ -118,25 +127,75 @@ def test_review_is_bound_to_manifest_and_output_hashes(tmp_path: Path):
     wrong = json.loads(json.dumps(assessment))
     wrong["results"][0]["output_sha256"] = "0" * 64
     with pytest.raises(ValueError, match="output_sha256"):
-        build_retry_manifest(manifest, wrong, manifest_sha256=manifest_hash)
+        build_retry_manifest(manifest, wrong, manifest_sha256=manifest_hash, assessment_sha256="b" * 64)
     with pytest.raises(ValueError, match="manifest_sha256"):
-        build_retry_manifest(manifest, assessment, manifest_sha256="f" * 64)
+        build_retry_manifest(manifest, assessment, manifest_sha256="f" * 64, assessment_sha256="b" * 64)
     assert review_decision({name: 4 for name in manifest["review_policy"]["dimensions"]}) == ("accept", [])
+
+
+def test_reference_output_cannot_substitute_for_candidate_output(tmp_path: Path):
+    benchmark = tmp_path / "benchmark.png"
+    Image.new("RGB", (1536, 1024), "navy").save(benchmark)
+    manifest = compile_manifest(
+        _cards(tmp_path)[:1],
+        "minimal-editorial",
+        source_root=tmp_path,
+        reference_outputs=[benchmark.name],
+    )
+    manifest["artifact_type"] = "render-manifest"
+    manifest["bound_at"] = "2026-08-09T00:00:00Z"
+    assessment = {
+        "manifest_sha256": "a" * 64,
+        "reviewer": {"type": "human", "name": "test", "model": "visual"},
+        "review_method": "comparison",
+        "reviewed_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "results": [{
+            "prompt_id": "minimal-editorial-01",
+            "output_sha256": manifest["prompts"][0]["reference_output"]["sha256"],
+            "scores": {name: 5 for name in manifest["review_policy"]["dimensions"]},
+        }],
+    }
+    with pytest.raises(ValueError, match="no candidate_output"):
+        build_retry_manifest(manifest, assessment, manifest_sha256="a" * 64, assessment_sha256="b" * 64)
+
+
+def test_review_timestamp_requires_timezone(tmp_path: Path):
+    output = tmp_path / "candidate.png"
+    Image.new("RGB", (1536, 1024), "navy").save(output)
+    prompt_manifest = compile_manifest(_cards(tmp_path)[:1], "minimal-editorial", source_root=tmp_path)
+    manifest = bind_outputs(
+        prompt_manifest,
+        {"minimal-editorial-01": str(output)},
+        manifest_sha256="a" * 64,
+    )
+    manifest_hash = sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
+    assessment = _assessment(manifest, manifest_hash)
+    assessment["reviewed_at"] = "2026-08-09T12:00:00"
+    with pytest.raises(ValueError, match="include a timezone"):
+        build_retry_manifest(manifest, assessment, manifest_sha256=manifest_hash, assessment_sha256="b" * 64)
 
 
 def test_sequence_failure_retries_every_cinematic_frame(tmp_path: Path):
     outputs = []
     for index in range(2):
         path = tmp_path / f"output-{index}.png"
-        path.write_bytes(f"output-{index}".encode())
-        outputs.append(path.name)
-    manifest = compile_manifest(_cards(tmp_path), "cinematic-storyboard", source_root=tmp_path, reference_outputs=outputs)
+        Image.new("RGB", (1536, 1024), (20 + index, 30, 40)).save(path)
+        outputs.append(str(path))
+    prompt_manifest = compile_manifest(_cards(tmp_path), "cinematic-storyboard", source_root=tmp_path)
+    manifest = bind_outputs(
+        prompt_manifest,
+        {f"cinematic-storyboard-{index + 1:02d}": path for index, path in enumerate(outputs)},
+        manifest_sha256="c" * 64,
+    )
     manifest_hash = "a" * 64
     assessment = _assessment(manifest, manifest_hash)
     assessment["sequence_scores"]["light_color_continuity"] = 2
-    retry = build_retry_manifest(manifest, assessment, manifest_sha256=manifest_hash)
+    retry = build_retry_manifest(manifest, assessment, manifest_sha256=manifest_hash, assessment_sha256="d" * 64)
     assert retry["retry_prompt_ids"] == [item["id"] for item in manifest["prompts"]]
     assert all("sequence.light_color_continuity" in item["compiled_prompt"] for item in retry["prompts"])
+    assert retry["parent_render_manifest_sha256"] == manifest_hash
+    assert retry["failed_review_sha256"] == "d" * 64
+    assert all("candidate_output" not in item for item in retry["prompts"])
 
 
 def test_cli_bind_outputs_retry_and_consent(tmp_path: Path):
@@ -146,7 +205,7 @@ def test_cli_bind_outputs_retry_and_consent(tmp_path: Path):
     manifest_path = tmp_path / "prompts.json"
     assert main(["compile", str(story), "--system", "cinematic-storyboard", "-o", str(manifest_path)]) == 0
     output = tmp_path / "generated.png"
-    output.write_bytes(b"generated")
+    Image.new("RGB", (1536, 1024), "green").save(output)
     bound_path = tmp_path / "render-manifest.json"
     assert main(["bind-outputs", str(manifest_path), "--result", f"cinematic-storyboard-01={output}", "-o", str(bound_path)]) == 0
     bound = json.loads(bound_path.read_text())
@@ -188,20 +247,55 @@ def test_recommender_supports_english_and_chinese(tmp_path: Path):
     assert recommend_systems(journey)[0].system in {"memory-atlas", "cinematic-storyboard"}
 
 
-def test_published_example_reviews_match_their_manifests():
+def test_output_contract_rejects_wrong_dimensions(tmp_path: Path):
+    prompt_manifest = compile_manifest(_cards(tmp_path)[:1], "minimal-editorial", source_root=tmp_path)
+    wrong = tmp_path / "wrong.png"
+    Image.new("RGB", (1024, 1024), "red").save(wrong)
+    with pytest.raises(ValueError, match="output_contract"):
+        bind_outputs(prompt_manifest, {"minimal-editorial-01": str(wrong)}, manifest_sha256="e" * 64)
+
+
+def test_published_example_reviews_match_their_render_manifests():
     root = Path(__file__).resolve().parents[1]
     pairs = [
-        (root / "examples/prompt-manifest.json", root / "examples/accepted-review.json"),
-        (root / "examples/cases/family-archive/prompt-manifest.json", root / "examples/cases/family-archive/accepted-review.json"),
-        (root / "examples/cases/cinematic-storyboard/prompt-manifest.json", root / "examples/cases/cinematic-storyboard/accepted-review.json"),
-        (root / "examples/cases/minimal-editorial/prompt-manifest.json", root / "examples/cases/minimal-editorial/accepted-review.json"),
+        (root / "examples/prompt-manifest.json", root / "examples/render-manifest.json", root / "examples/accepted-review.json"),
+        (root / "examples/cases/family-archive/prompt-manifest.json", root / "examples/cases/family-archive/render-manifest.json", root / "examples/cases/family-archive/accepted-review.json"),
+        (root / "examples/cases/cinematic-storyboard/retry-example/retry-manifest.json", root / "examples/cases/cinematic-storyboard/retry-example/post-retry-render-manifest.json", root / "examples/cases/cinematic-storyboard/accepted-review.json"),
+        (root / "examples/cases/minimal-editorial/prompt-manifest.json", root / "examples/cases/minimal-editorial/render-manifest.json", root / "examples/cases/minimal-editorial/accepted-review.json"),
     ]
-    for manifest_path, review_path in pairs:
+    for parent_path, manifest_path, review_path in pairs:
         manifest = json.loads(manifest_path.read_text())
+        assert manifest["parent_manifest_sha256"] == sha256(parent_path.read_bytes()).hexdigest()
         assessment = json.loads(review_path.read_text())
         retry = build_retry_manifest(
             manifest,
             assessment,
             manifest_sha256=sha256(manifest_path.read_bytes()).hexdigest(),
+            assessment_sha256=sha256(review_path.read_bytes()).hexdigest(),
         )
         assert retry["retry_prompt_ids"] == []
+
+
+def test_published_retry_example_is_a_complete_hash_chain():
+    root = Path(__file__).resolve().parents[1] / "examples/cases/cinematic-storyboard"
+    prompt_path = root / "prompt-manifest.json"
+    failed_render_path = root / "retry-example/failed-render-manifest.json"
+    failed_review_path = root / "retry-example/failed-review.json"
+    retry_path = root / "retry-example/retry-manifest.json"
+    post_render_path = root / "retry-example/post-retry-render-manifest.json"
+    accepted_path = root / "accepted-review.json"
+    digest = lambda path: sha256(path.read_bytes()).hexdigest()
+    failed_render = json.loads(failed_render_path.read_text())
+    failed_review = json.loads(failed_review_path.read_text())
+    retry = json.loads(retry_path.read_text())
+    post_render = json.loads(post_render_path.read_text())
+    accepted = json.loads(accepted_path.read_text())
+    assert failed_render["parent_manifest_sha256"] == digest(prompt_path)
+    assert failed_review["manifest_sha256"] == digest(failed_render_path)
+    assert retry["parent_render_manifest_sha256"] == digest(failed_render_path)
+    assert retry["failed_review_sha256"] == digest(failed_review_path)
+    assert post_render["parent_manifest_sha256"] == digest(retry_path)
+    assert accepted["manifest_sha256"] == digest(post_render_path)
+    times = [failed_render["bound_at"], failed_review["reviewed_at"], retry["generated_at"], post_render["bound_at"], accepted["reviewed_at"]]
+    parsed = [datetime.fromisoformat(value.replace("Z", "+00:00")) for value in times]
+    assert parsed == sorted(parsed)

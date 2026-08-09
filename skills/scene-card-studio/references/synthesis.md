@@ -16,9 +16,10 @@ An After image must change the visual narrative, not merely place the same photo
 3. Compile the Scene Cards with `scene-card-studio compile`; do not replace the manifest with improvised style keywords.
 4. If synthesis uses a cloud or remote provider, disclose the provider, purpose, and exact source-file list; obtain explicit user approval and save it with `scene-card-studio consent`. Without approval, stop at the local Workprint and Prompt Manifest.
 5. Pass only the approved files as image references and use all compiled prompt modules.
-6. Bind every generated file to its Prompt ID with `scene-card-studio bind-outputs` before review.
+6. Bind every generated file to its Prompt ID with `scene-card-studio bind-outputs`; reject candidates whose decoded MIME, dimensions, or aspect ratio violate `output_contract`.
 7. Inspect each frame with the five-dimension rubric in `prompt-compiler.md`; for sequence systems, also inspect subject continuity, light/color continuity, rhythm, and narrative arc.
-8. Accept every prompt that passes. For failures, create a hash-bound assessment, run `scene-card-studio retry`, and regenerate only `retry_prompt_ids`.
+8. Review only bound `candidate_output` records; never treat benchmark `reference_output` as a reviewed candidate.
+9. Accept every prompt that passes. For failures, create a hash-bound assessment, run `scene-card-studio retry`, regenerate only `retry_prompt_ids`, bind the post-retry candidates to the Retry Manifest, and review that new Render Manifest.
 
 ## Memory Atlas
 
@@ -48,4 +49,4 @@ An After image must change the visual narrative, not merely place the same photo
 
 ## Delivery
 
-Return paired Before and After images, an optional Before contact sheet, the Scene Card JSON, and the accepted Prompt Manifest. Label deterministic layouts as `workprint`; reserve `After` for transformed presentation artifacts.
+Return paired Before and After images, an optional Before contact sheet, the Scene Card JSON, Prompt Manifest, accepted Render Manifest, and accepted Review. Label deterministic layouts as `workprint`; reserve `After` for transformed presentation artifacts.

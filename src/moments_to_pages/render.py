@@ -4,9 +4,10 @@ from html import escape
 from pathlib import Path
 from urllib.parse import quote
 import base64
-import mimetypes
+from io import BytesIO
 import os
 import re
+import warnings
 
 from .model import SceneCard
 
@@ -39,24 +40,38 @@ def _load_font(ImageFont, size: int, mono: bool = False):
 
 
 ALLOWED_EMBED_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp", ".tif", ".tiff"}
+MAX_EMBED_SOURCE_BYTES = 25 * 1024 * 1024
+MAX_EMBED_PIXELS = 40_000_000
 
 
 def _embedded_image_data(path: Path) -> str:
     if path.suffix.lower() not in ALLOWED_EMBED_SUFFIXES:
         raise ValueError(f"Unsupported embedded image type: {path.suffix or '<none>'}")
     data = path.read_bytes()
-    signatures = (
-        data.startswith(b"\x89PNG\r\n\x1a\n"),
-        data.startswith(b"\xff\xd8\xff"),
-        data.startswith((b"GIF87a", b"GIF89a")),
-        data.startswith(b"BM"),
-        data.startswith((b"II*\x00", b"MM\x00*")),
-        len(data) >= 12 and data[:4] == b"RIFF" and data[8:12] == b"WEBP",
-    )
-    if not any(signatures):
-        raise ValueError(f"File does not contain a supported raster image: {path}")
-    mime = mimetypes.guess_type(path.name)[0] or "image/png"
-    return f"data:{mime};base64,{base64.b64encode(data).decode()}"
+    if len(data) > MAX_EMBED_SOURCE_BYTES:
+        raise ValueError(f"Embedded image exceeds {MAX_EMBED_SOURCE_BYTES} bytes: {path}")
+    try:
+        from PIL import Image, ImageOps, UnidentifiedImageError
+    except ImportError as exc:
+        raise RuntimeError("Safe image embedding requires Pillow: pip install 'scene-card-studio[images]'") from exc
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", Image.DecompressionBombWarning)
+            with Image.open(BytesIO(data)) as opened:
+                width, height = opened.size
+                if width * height > MAX_EMBED_PIXELS:
+                    raise ValueError(f"Embedded image exceeds {MAX_EMBED_PIXELS} pixels: {path}")
+                opened.load()
+                cleaned = ImageOps.exif_transpose(opened)
+                has_alpha = cleaned.mode in {"RGBA", "LA"} or "transparency" in cleaned.info
+                cleaned = cleaned.convert("RGBA" if has_alpha else "RGB")
+                encoded = BytesIO()
+                cleaned.save(encoded, format="PNG", optimize=True)
+    except ValueError:
+        raise
+    except (UnidentifiedImageError, OSError, Image.DecompressionBombError, Image.DecompressionBombWarning) as exc:
+        raise ValueError(f"File does not contain a decodable raster image: {path}") from exc
+    return f"data:image/png;base64,{base64.b64encode(encoded.getvalue()).decode()}"
 
 
 def _image_href(
@@ -75,15 +90,19 @@ def _image_href(
     return _embedded_image_data(path)
 
 
-def _asset_href(path: Path, embed: bool, output: Path) -> str:
-    if embed:
-        return _embedded_image_data(path.resolve())
-    relative = os.path.relpath(path.resolve(), output.resolve().parent)
-    return quote(Path(relative).as_posix(), safe="/.-_~")
-
-
 def _safe_color(value: str, fallback: str = "#275D78") -> str:
     return value if re.fullmatch(r"#[0-9A-Fa-f]{6}", value or "") else fallback
+
+
+def _emphasis_scale(card: SceneCard) -> float:
+    value = card.direction.layout_emphasis.casefold()
+    if any(term in value for term in ("hero", "primary", "figure", "person", "relationship", "gesture", "主体", "人物", "关系", "动作")):
+        return 1.0
+    if any(term in value for term in ("detail", "artifact", "texture", "object", "material", "细节", "物件", "材质", "纹理")):
+        return 0.86
+    if any(term in value for term in ("environment", "distance", "context", "space", "环境", "距离", "空间")):
+        return 0.93
+    return 0.9
 
 
 def render_svg(
@@ -126,7 +145,9 @@ def render_svg(
         parts.append(f'<text x="96" y="768" font-family="system-ui,sans-serif" font-size="28" fill="#FFFFFF">{escape(cards[0].caption)}</text>')
         for i, card in enumerate(cards[1:]):
             x, y = 72 + (i % 2) * 540, 900 + (i // 2) * 500
-            image(card, x, y, 516, 340)
+            scale = _emphasis_scale(card)
+            frame_w = int(516 * scale)
+            image(card, x + (516 - frame_w) // 2, y, frame_w, 340)
             parts.append(f'<text x="{x}" y="{y+390}" font-family="system-ui,sans-serif" font-size="24" fill="{INK}">{escape(card.caption[:42])}</text>')
     elif style == "field-log":
         parts.append('<line x1="500" y1="220" x2="500" y2="95%" stroke="#B8B2A7" stroke-width="2"/>')
@@ -143,15 +164,20 @@ def render_svg(
         for i, card in enumerate(cards):
             x, y = 72 + (i % 2) * 540, 230 + (i // 2) * 570 + (35 if i % 2 else 0)
             parts.append(f'<rect x="{x-10}" y="{y-10}" width="536" height="470" fill="#DED3BF"/>')
-            image(card, x, y, 516, 390)
+            scale = _emphasis_scale(card)
+            frame_w = int(516 * scale)
+            image(card, x + (516 - frame_w) // 2, y, frame_w, 390)
             parts.append(f'<text x="{x+14}" y="{y+430}" font-family="ui-monospace,monospace" font-size="15" fill="#A0664B">ARCHIVE {i+1:02d} · {escape(card.caption[:32])}</text>')
     elif style == "memory-atlas":
-        map_path = Path(__file__).resolve().parent / "assets/maps/coastal-memory-atlas.png"
-        map_href = _asset_href(map_path, embed, output)
-        parts.append(f'<image href="{escape(map_href)}" x="72" y="220" width="720" height="{height-310}" preserveAspectRatio="xMidYMid slice"/>')
         for i, card in enumerate(cards):
             y = 240 + i * 250
-            image(card, 840, y, 288, 170)
+            field_color = _safe_color(card.palette[0] if card.palette else accent)
+            parts.append(f'<rect x="72" y="{y-20}" width="720" height="210" rx="36" fill="{field_color}" opacity="0.16"/>')
+            parts.append(f'<text x="108" y="{y+45}" font-family="system-ui,sans-serif" font-size="25" fill="{INK}">{escape(card.interpretation.narrative_intent[:42])}</text>')
+            parts.append(f'<text x="108" y="{y+92}" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">EMPHASIS · {escape(card.direction.layout_emphasis[:42])}</text>')
+            scale = _emphasis_scale(card)
+            frame_w = int(288 * scale)
+            image(card, 840 + (288 - frame_w) // 2, y, frame_w, 170)
             parts.append(f'<text x="840" y="{y+205}" font-family="ui-monospace,monospace" font-size="14" fill="#755D45">PLACE {i+1:02d} · {escape(card.caption[:26])}</text>')
     else:
         for i, card in enumerate(cards):
@@ -166,7 +192,7 @@ def render_svg(
 
 def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-sequence", mode: str = "presentation") -> None:
     try:
-        from PIL import Image, ImageDraw, ImageFont, ImageOps
+        from PIL import Image, ImageColor, ImageDraw, ImageFont, ImageOps
     except ImportError as exc:
         raise RuntimeError("PNG rendering requires Pillow: pip install 'scene-card-studio[images]'") from exc
     aliases = {"editorial-minimal": "editorial-sequence", "memory-map": "memory-atlas", "field-notes": "field-log"}
@@ -235,23 +261,31 @@ def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-se
         draw.text((96, 780), "01 · OPENING" if mode == "workprint" else "01", fill="#E8E2D5", font=meta_font)
         draw.text((96, 812), fit_text(hero.caption, body_font, 900), fill="#FFFFFF", font=body_font)
         for offset, card in enumerate(cards[1:]):
-            x = 72 + offset * 540
             x = 72 + (offset % 2) * 540
             y = 930 + (offset // 2) * 560
-            paste_photo(card, (x, y, 516, 400))
+            scale = _emphasis_scale(card)
+            frame_w = int(516 * scale)
+            paste_photo(card, (x + (516 - frame_w) // 2, y, frame_w, 400))
             label = f"0{offset + 2} · {card.story_role.upper()}" if mode == "workprint" else f"0{offset + 2}"
             draw.text((x, y + 430), label, fill=accent, font=meta_font)
             draw.text((x, y + 465), fit_text(card.caption, body_font, 516), fill=INK, font=body_font)
             if mode == "workprint":
                 draw.text((x, y + 515), fit_text(card.direction.director_note, meta_font, 516), fill="#666762", font=meta_font)
-        draw.text((72, canvas_h - 80), "CARE → PAUSE → DEPARTURE", fill=accent, font=meta_font)
+        sequence = " → ".join(card.story_role.upper() for card in cards)
+        draw.text((72, canvas_h - 80), fit_text(sequence, meta_font, 1056), fill=accent, font=meta_font)
 
     elif system == "memory-atlas":
-        map_path = Path(__file__).resolve().parent / "assets/maps/coastal-memory-atlas.png"
         map_height = canvas_h - 500
-        with Image.open(map_path).convert("RGB") as source:
-            memory_map = ImageOps.fit(source, (760, map_height), method=Image.Resampling.LANCZOS)
-        canvas.paste(memory_map, (72, 240))
+        draw.rounded_rectangle((72, 240, 832, 240 + map_height), radius=48, fill="#E9E4D9")
+        for index, card in enumerate(cards):
+            y = 275 + index * max(190, min(260, (map_height - 70) // max(1, len(cards))))
+            color = _safe_color(card.palette[0] if card.palette else accent)
+            rgb = ImageColor.getrgb(color)
+            field = tuple(round(channel * .24 + 243 * .76) for channel in rgb)
+            width = int(650 * _emphasis_scale(card))
+            draw.rounded_rectangle((108, y, 108 + width, y + 138), radius=28, fill=field)
+            draw.text((138, y + 28), fit_text(card.interpretation.narrative_intent, body_font, width - 60), fill=INK, font=body_font)
+            draw.text((138, y + 83), fit_text(card.direction.layout_emphasis, meta_font, width - 60), fill="#755D45", font=meta_font)
         draw.rectangle((856, 240, 1128, canvas_h - 300), fill="#E8E1D2")
         draw.text((884, 275), "PLACES HELD", fill="#755D45", font=meta_font)
         for index, card in enumerate(cards):
@@ -260,7 +294,6 @@ def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-se
             label = f"0{index + 1} / {card.story_role.upper()}" if mode == "workprint" else f"PLACE 0{index + 1}"
             draw.text((884, y + 175), label, fill="#755D45", font=meta_font)
             draw.text((884, y + 205), fit_text(card.caption, meta_font, 216), fill=INK, font=meta_font)
-            draw.text((884, y + 245), fit_text(card.interpretation.narrative_intent, meta_font, 216), fill="#666762", font=meta_font)
         draw.text((72, canvas_h - 220), "A SPATIAL MEMORY, NOT A LITERAL ROUTE.", fill="#755D45", font=meta_font)
 
     elif system == "field-log":
@@ -293,11 +326,15 @@ def render_png(cards: list[SceneCard], output: Path, system: str = "editorial-se
         for index, (card, box) in enumerate(zip(cards, placements)):
             x, y, width, height = box
             draw.rectangle((x - 12, y - 12, x + width + 12, y + height + 58), fill="#DED3BF")
-            paste_photo(card, box)
+            scale = _emphasis_scale(card)
+            frame_w = int(width * scale)
+            paste_photo(card, (x + (width - frame_w) // 2, y, frame_w, height))
             label = f"ARCHIVE 0{index + 1} · {card.story_role.upper()}" if mode == "workprint" else f"ARCHIVE 0{index + 1}"
             draw.text((x + 14, y + height + 18), label, fill=archive, font=meta_font)
-        draw.text((72, canvas_h - 170), "REPEATED GESTURES BECOME A FAMILY RECORD.", fill=archive, font=body_font)
-        draw.text((72, canvas_h - 115), "Laundry / shared work / photographs kept and returned to.", fill="#666762", font=meta_font)
+        reading = " → ".join(card.interpretation.narrative_intent for card in cards)
+        emphasis = " / ".join(card.direction.layout_emphasis for card in cards)
+        draw.text((72, canvas_h - 170), fit_text(reading, body_font, 1056), fill=archive, font=body_font)
+        draw.text((72, canvas_h - 115), fit_text(emphasis, meta_font, 1056), fill="#666762", font=meta_font)
         draw.line((72, canvas_h - 55, 1128, canvas_h - 55), fill=archive, width=3)
 
     canvas.save(output, optimize=True)
