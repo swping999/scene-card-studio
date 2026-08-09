@@ -10,20 +10,22 @@ Build a visual story from the user's photographs without imitating a named artis
 ## Workflow
 
 1. Treat only user-supplied photos as content sources. Do not browse for or upload private photos.
-2. For every photo, create a Scene Card using `references/scene-card.md`.
-3. Preserve chronology when it is meaningful. Otherwise order frames into opening, development, pause, and closing using contrast, visual energy, and subject continuity.
-4. Choose one system:
-   - `editorial-minimal` for a quiet, flexible photo essay;
-   - `memory-map` when movement, route, distance, or return matters;
-   - `field-notes` when observation and documentary detail matter.
-5. Write the cards to `story.json`. When the package is installed, run:
+2. For every photo, create a Scene Card using `references/scene-card.md`. Keep observable evidence separate from interpretive direction.
+3. Add a Visual Director decision: narrative intent, emotional tone, story role, concise director note, and confidence. Never present this interpretation as photographic fact.
+4. Preserve chronology when it is meaningful. Otherwise order frames into opening, development, pause, and closing using contrast, visual energy, and subject continuity.
+5. Recommend one Narrative System with an explicit reason:
+   - `editorial-sequence` for a quiet, flexible photo essay;
+   - `memory-atlas` when movement, route, distance, or return matters;
+   - `field-log` when observation and documentary detail matter.
+6. Write the cards to `story.json`. When the package is installed, run:
 
 ```bash
-moments-to-pages render story.json --style editorial-minimal --output story.svg
+moments-to-pages recommend story.json
+moments-to-pages render story.json --style editorial-sequence --format png --output story.png
 ```
 
-6. Inspect the SVG. Check photo order, crop safety, caption accuracy, contrast, and whether every decorative element performs a narrative function.
-7. Return the editable SVG and a short explanation of the sequence. Generate bitmap or PDF derivatives only when the user requests them.
+7. Inspect the output. Check photo order, crop safety, caption accuracy, contrast, and whether every element performs a narrative function.
+8. Return the requested artifact and a short explanation of the direction and sequence.
 
 ## Guardrails
 
@@ -33,6 +35,7 @@ moments-to-pages render story.json --style editorial-minimal --output story.svg
 - Use colors sampled from the photographs unless the user supplies a palette.
 - Keep captions short and concrete. Mark uncertain interpretations as uncertain.
 - Do not save source photos into a repository unless the user explicitly requests it.
+- Do not imitate a living artist, photographer, or director by name. Translate requests into general visual and narrative mechanisms.
 
 ## Bundled resources
 

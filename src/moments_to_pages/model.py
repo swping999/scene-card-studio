@@ -7,6 +7,22 @@ import json
 
 
 @dataclass
+class Observation:
+    subjects: list[str] = field(default_factory=list)
+    dominant_gesture: str = "still"
+    quiet_regions: list[str] = field(default_factory=list)
+
+
+@dataclass
+class Direction:
+    story_role: str = "moment"
+    narrative_intent: str = "observation"
+    emotional_tone: list[str] = field(default_factory=lambda: ["quiet"])
+    director_note: str = "Preserve the observed scene and let sequencing carry the meaning."
+    confidence: float = 0.5
+
+
+@dataclass
 class SceneCard:
     source: str
     width: int
@@ -15,17 +31,30 @@ class SceneCard:
     brightness: float
     saturation: float
     orientation: str
-    story_role: str = "moment"
     caption: str = "UNTITLED MOMENT"
-    subjects: list[str] = field(default_factory=list)
-    dominant_gesture: str = "still"
-    quiet_regions: list[str] = field(default_factory=list)
+    observation: Observation = field(default_factory=Observation)
+    direction: Direction = field(default_factory=Direction)
+
+    @property
+    def story_role(self) -> str:
+        return self.direction.story_role
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "SceneCard":
+        value = dict(value)
+        legacy_observation = {
+            key: value.pop(key) for key in ("subjects", "dominant_gesture", "quiet_regions") if key in value
+        }
+        legacy_direction = {}
+        if "story_role" in value:
+            legacy_direction["story_role"] = value.pop("story_role")
+        observation = value.get("observation", legacy_observation)
+        direction = value.get("direction", legacy_direction)
+        value["observation"] = observation if isinstance(observation, Observation) else Observation(**observation)
+        value["direction"] = direction if isinstance(direction, Direction) else Direction(**direction)
         return cls(**value)
 
 

@@ -1,93 +1,109 @@
 # Moments to Pages
 
-Turn 1–12 personal photos into a structured visual story instead of applying one more photo filter.
+[中文](README.zh-CN.md) · English
 
-Moments to Pages separates observation from rendering. Each photo becomes a portable Scene Card, then one of several deterministic layout systems turns those cards into an editable SVG. The same story data can later drive a social carousel, printable micro-zine, PDF, or website.
+> **This is not a style-transfer repository. It is a Scene Card–based visual narrative engine for personal photography.**
 
-## Why this project
-
-Most photo-to-poster tools lock analysis, prompting, style, and output into one opaque operation. This project keeps the intermediate narrative decisions visible and editable:
+Moments to Pages turns observable photo evidence into editable narrative decisions and deterministic layouts. Instead of asking only *what should these photos look like?*, it asks *how should this story be read?*
 
 ```text
-photos → Scene Cards → story order → visual system → editable output
+photos → observation → visual direction → sequence → narrative system → editable output
 ```
 
-The initial release includes three original systems:
+## Showcase
 
-- `editorial-minimal`: spacious photo essay;
-- `memory-map`: route and movement-led composition;
-- `field-notes`: documentary observation sheet.
+All source photographs below were generated specifically for this repository. The three boards use the same Scene Cards but express different recording mechanisms.
 
-## Generated showcase
+### Editorial Sequence
 
-The repository includes three original AI-generated source photographs and the
-Scene Cards produced from them. No personal photographs or third-party style
-assets are included.
+![Editorial Sequence example](examples/outputs/editorial-sequence.png)
 
-| Editorial Minimal | Memory Map | Field Notes |
-| --- | --- | --- |
-| [Open editable SVG](examples/outputs/editorial-minimal.svg) | [Open editable SVG](examples/outputs/memory-map.svg) | [Open editable SVG](examples/outputs/field-notes.svg) |
+A spacious photo essay that keeps the photographs primary and makes each frame's story role legible.
 
-Source photographs are under [`examples/photos`](examples/photos), and the
-machine-readable narrative is [`examples/generated-story.json`](examples/generated-story.json).
+### Memory Atlas
+
+![Memory Atlas example](examples/outputs/memory-atlas.png)
+
+A route-led system for departure, distance, return, and spatial memory.
+
+### Field Log
+
+![Field Log example](examples/outputs/field-log.png)
+
+An observational record for documentary detail, notes, and restrained evidence.
+
+[View source photos](examples/photos) · [View generated Scene Cards](examples/generated-story.json) · [Read the originality statement](ORIGINALITY.md)
+
+## The Visual Director layer
+
+Scene Cards explicitly separate visible evidence from interpretation:
+
+```json
+{
+  "observation": {
+    "subjects": ["greenhouse", "work lamp"],
+    "dominant_gesture": "repeating window grid",
+    "quiet_regions": ["upper evening sky"]
+  },
+  "direction": {
+    "story_role": "opening",
+    "narrative_intent": "patient growth",
+    "emotional_tone": ["intimate", "hopeful"],
+    "director_note": "Treat the lamp as a sign of care, not dramatic spectacle.",
+    "confidence": 0.82
+  }
+}
+```
+
+- **Observation** records what is visibly present.
+- **Direction** records an editable interpretation.
+- **Narrative Systems** decide how the sequence can be read.
+
+The distinction prevents inferred meaning from being presented as photographic fact.
+
+## Narrative Systems, not style filters
+
+The project expands through recording and reading mechanisms such as `family-archive`, `contact-sheet`, `journey-sequence`, `memory-atlas`, `field-log`, and `exhibition-label`. A system must explain what narrative work it performs; a list of aesthetic keywords is not enough.
 
 ## Quick start
 
-Requires Python 3.10 or newer. Automatic image analysis uses Pillow.
+Requires Python 3.10+. Automatic analysis and PNG rendering use Pillow.
 
 ```bash
 python -m pip install -e '.[images]'
 moments-to-pages analyze photos/*.jpg --output story.json
-moments-to-pages render story.json --style editorial-minimal --output story.svg
-```
-
-Open `story.json` to revise captions, subjects, ordering, or colors, then render again. Add `--embed-images` for a self-contained SVG.
-
-Rendering an existing Scene Card file has no third-party dependencies:
-
-```bash
-PYTHONPATH=src python -m moments_to_pages.cli render examples/story.json -o story.svg
-```
-
-## Scene Card
-
-```json
-{
-  "source": "photos/harbor.jpg",
-  "width": 1600,
-  "height": 1067,
-  "palette": ["#23383D", "#D66549", "#D9D0B8"],
-  "brightness": 0.56,
-  "saturation": 0.31,
-  "orientation": "landscape",
-  "story_role": "opening",
-  "caption": "THE HARBOR BEFORE RAIN",
-  "subjects": ["shoreline", "boat"],
-  "dominant_gesture": "horizontal drift",
-  "quiet_regions": ["upper sky"]
-}
+moments-to-pages recommend story.json
+moments-to-pages render story.json --style editorial-sequence --format png --output story.png
+moments-to-pages render story.json --style memory-atlas --format svg --output story.svg
 ```
 
 ## Codex Skill
 
-Copy `skills/moments-to-pages` into your Codex skills directory and restart Codex. Then ask:
+Copy `skills/moments-to-pages` into your Codex skills directory, restart Codex, then ask:
 
 ```text
-Use $moments-to-pages to arrange these travel photos into a quiet visual story.
+Use $moments-to-pages to direct these photos as a quiet family archive.
 ```
 
-## Privacy and originality
+## Originality and privacy
 
-Photos stay local unless the user explicitly chooses another workflow. This repository does not include third-party style references or prompts from similarly themed source-available projects. Its code is licensed under Apache-2.0.
+- no third-party style assets;
+- no prompts copied from similarly themed repositories;
+- repository examples use newly generated project-owned demo assets;
+- the core contribution is the Scene Card + Visual Director + narrative rendering workflow;
+- source photos stay local unless the user explicitly chooses otherwise.
+
+See [ORIGINALITY.md](ORIGINALITY.md) for the complete evidence chain.
 
 ## Roadmap
 
-- printable eight-page foldable zine PDF;
-- configurable typography and bilingual captions;
+- user-editable Visual Director decisions;
+- `family-archive`, `contact-sheet`, and `journey-sequence` systems;
 - crop-aware subject placement;
+- printable PDF and social carousel renderers;
 - browser preview and drag-to-reorder editor;
-- community-authored visual-system packages.
+- community-authored Narrative Systems.
 
 ## License
 
-Apache-2.0. Example photos added by contributors must include their own clear usage terms.
+Apache-2.0. Example assets must include clear provenance and usage terms.

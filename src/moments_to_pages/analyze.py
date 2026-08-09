@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import colorsys
 
-from .model import SceneCard
+from .model import Direction, Observation, SceneCard
 
 
 def _hex(rgb: tuple[int, int, int]) -> str:
@@ -35,6 +35,11 @@ def analyze_image(path: Path) -> SceneCard:
         source=str(path), width=width, height=height, palette=palette,
         brightness=brightness, saturation=saturation, orientation=orientation,
         caption=path.stem.replace("-", " ").replace("_", " ").upper()[:42] or "UNTITLED MOMENT",
+        observation=Observation(),
+        direction=Direction(
+            emotional_tone=["quiet", "luminous"] if brightness > .58 else ["reflective", "intimate"],
+            confidence=.55,
+        ),
     )
 
 
@@ -44,5 +49,5 @@ def assign_story_roles(cards: list[SceneCard]) -> list[SceneCard]:
     ordered = sorted(cards, key=lambda card: (card.brightness, card.saturation))
     roles = ["opening", "development", "pause", "closing"]
     for index, card in enumerate(ordered):
-        card.story_role = roles[min(index * len(roles) // len(ordered), len(roles) - 1)]
+        card.direction.story_role = roles[min(index * len(roles) // len(ordered), len(roles) - 1)]
     return ordered
