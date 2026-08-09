@@ -16,6 +16,8 @@ Build a visual story from the user's photographs without imitating a named artis
 5. Recommend one Narrative System with an explicit reason:
    - `editorial-sequence` for a quiet, flexible photo essay;
    - `family-archive` for recurring gestures, inheritance, and domestic memory;
+   - `cinematic-storyboard` for temporal continuity, light progression, and shot relationships;
+   - `minimal-editorial` for object hierarchy, negative space, geometry, and material rhythm;
    - `memory-atlas` when movement, route, distance, or return matters;
    - `field-log` when observation and documentary detail matter.
 6. Decide the output tier:
@@ -28,9 +30,9 @@ scene-card-studio recommend story.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 ```
 
-8. For presentation synthesis, pass the source photographs as image references and translate Scene Card decisions into compositing instructions. For `memory-atlas`, keep real buildings photographic while drawing the geography between them. For `family-archive`, keep people photographic while layering object sketches, paper traces, and archival material.
+8. For presentation synthesis, pass the source photographs as image references and translate Scene Card decisions into image instructions. Default to **one source photograph → one standalone After image**. Do not merge several photographs into a collage, multi-panel board, split screen, or designed page merely to demonstrate variety. Combine sources only when the user explicitly requests montage or when the chosen system requires spatial synthesis. For `memory-atlas`, keep real buildings photographic while drawing the geography between them. For `family-archive`, keep people photographic while layering object sketches, paper traces, and archival material.
 9. Inspect the output. Check subject fidelity, photo order, crop safety, caption accuracy, contrast, and whether every element performs a narrative function.
-10. Return both Before and After artifacts plus a short explanation of the direction and sequence.
+10. Return paired Before and After artifacts plus a short explanation of the direction and sequence. When several one-to-one transformations exist, show every pair separately.
 
 ## Guardrails
 

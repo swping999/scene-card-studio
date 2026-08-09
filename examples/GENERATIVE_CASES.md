@@ -16,4 +16,18 @@ Generated on 2026-08-09 with OpenAI's built-in image generation tool. All source
 - After: `cases/family-archive/outputs/family-archive-ai-composite.png`
 - Direction: preserve fictional people, gestures, clothing, faces, and hands as documentary photography; integrate them with graphite studies of domestic objects, torn paper, contact-print edges, thread, and archival traces. No invented names or dates.
 
-The PNG renderer outputs in adjacent folders are deterministic workprints. The two files named `*-ai-composite.png` are presentation synthesis outputs and are the actual After images.
+## Cinematic Storyboard
+
+- Sources: `cases/cinematic-storyboard/photos/raw-bus-stop.png`, `raw-diner.png`, `raw-taxi.png`
+- Scene Cards: `cases/cinematic-storyboard/story.json`
+- Afters: `cases/cinematic-storyboard/outputs/after-bus-stop.png`, `after-diner.png`, `after-taxi.png`
+- Direction: transform three deliberately ordinary rainy-night phone snapshots into three separate film frames. Preserve the recognizable subject of each source; use weather, shot scale, mixed blue/amber light, reflection, and temporal continuity. No collage, split screen, titles, or director imitation.
+
+## Minimal Editorial
+
+- Sources: `cases/minimal-editorial/photos/raw-mug.png`, `raw-chair.png`, `raw-linen.png`
+- Scene Cards: `cases/minimal-editorial/story.json`
+- Afters: `cases/minimal-editorial/outputs/after-mug.png`, `after-chair.png`, `after-linen.png`
+- Direction: give each deliberately cluttered household snapshot its own quiet photographic stage. Preserve the recognizable object and material wear; remove accidental clutter and direct attention through natural light, shadow, negative space, and tactile texture. No collage, panels, typography, or abstract overlays.
+
+The PNG renderer outputs in adjacent folders are deterministic workprints. Files named `*-ai-composite.png` and the six `after-*.png` files above are presentation synthesis outputs and are the actual After images.

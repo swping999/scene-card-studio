@@ -12,7 +12,7 @@ photos → observation → interpretation → visual direction → sequence → 
 
 ## Before / After
 
-All source photographs below were generated specifically for this repository. The Before board shows the untouched inputs; each After board uses the same Scene Cards with a different recording mechanism.
+All source photographs below were generated specifically for this repository. Every comparison keeps the untouched input visible. Unless a Narrative System explicitly depends on spatial montage, one source photograph produces one standalone After image.
 
 | Before: original travel photographs | After: AI-composited Memory Atlas |
 | --- | --- |
@@ -30,7 +30,31 @@ This second case reads repeated gestures—laundry, cooking, sorting photographs
 
 [Inspect the Family Archive Scene Cards](examples/cases/family-archive/story.json)
 
-The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and can produce either a deterministic workprint or a genuinely transformed mixed-media presentation image. In the After examples above, the real photographic buildings and fictional people remain recognizable while illustration, cartography, paper, and archival marks carry the narrative.
+### Case 3 · Cinematic Storyboard
+
+Three unremarkable phone snapshots become three independent film frames. They are connected by a light arc—waiting, pause, departure—not by placing them inside one collage.
+
+| Before: awkward phone snapshot | After: standalone directed frame |
+| --- | --- |
+| ![Ordinary phone snapshot of a bus stop](examples/cases/cinematic-storyboard/photos/raw-bus-stop.png) | ![Directed rainy-night bus stop frame](examples/cases/cinematic-storyboard/outputs/after-bus-stop.png) |
+| ![Ordinary phone snapshot of a diner](examples/cases/cinematic-storyboard/photos/raw-diner.png) | ![Directed diner seen through rain](examples/cases/cinematic-storyboard/outputs/after-diner.png) |
+| ![Ordinary phone snapshot of a taxi](examples/cases/cinematic-storyboard/photos/raw-taxi.png) | ![Directed taxi departure frame](examples/cases/cinematic-storyboard/outputs/after-taxi.png) |
+
+[Inspect the three-layer Scene Cards](examples/cases/cinematic-storyboard/story.json) · [View the untouched source contact sheet](examples/cases/cinematic-storyboard/outputs/before.png)
+
+### Case 4 · Minimal Editorial
+
+This system does not paste three objects onto a designed page. It gives each ordinary object its own photographic stage and lets material, shadow, and negative space do the narrative work.
+
+| Before: cluttered household snapshot | After: standalone art-book photograph |
+| --- | --- |
+| ![Ordinary phone snapshot of a mug](examples/cases/minimal-editorial/photos/raw-mug.png) | ![Quiet editorial photograph of the same mug](examples/cases/minimal-editorial/outputs/after-mug.png) |
+| ![Ordinary phone snapshot of a worn chair](examples/cases/minimal-editorial/photos/raw-chair.png) | ![Sculptural editorial photograph of the same chair](examples/cases/minimal-editorial/outputs/after-chair.png) |
+| ![Ordinary phone snapshot of linen](examples/cases/minimal-editorial/photos/raw-linen.png) | ![Material-focused editorial photograph of the same linen](examples/cases/minimal-editorial/outputs/after-linen.png) |
+
+[Inspect the three-layer Scene Cards](examples/cases/minimal-editorial/story.json) · [View the untouched source contact sheet](examples/cases/minimal-editorial/outputs/before.png)
+
+The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and can produce either a deterministic workprint or a genuinely transformed presentation image. Spatial and archival systems may use mixed media; cinematic and minimal systems default to one source → one frame.
 
 ### Editorial Sequence
 
@@ -85,7 +109,7 @@ The distinction prevents inferred meaning from being presented as photographic f
 
 ## Narrative Systems, not style filters
 
-The project expands through recording and reading mechanisms such as `family-archive`, `contact-sheet`, `journey-sequence`, `memory-atlas`, `field-log`, and `exhibition-label`. A system must explain what narrative work it performs; a list of aesthetic keywords is not enough.
+The project expands through recording and reading mechanisms such as `family-archive`, `cinematic-storyboard`, `minimal-editorial`, `contact-sheet`, `journey-sequence`, `memory-atlas`, `field-log`, and `exhibition-label`. A system must explain what narrative work it performs; a list of aesthetic keywords is not enough.
 
 ## Quick start
 

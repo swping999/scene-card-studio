@@ -12,7 +12,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 
 ## Before / After 首页案例
 
-以下原始照片均为本项目专门生成的原创示例。Before 展示未经叙事处理的输入照片组；After 使用同一组 Scene Cards，通过不同记录机制输出。
+以下原始照片均为本项目专门生成的原创示例。每组对照都保留未经处理的输入。除非某个 Narrative System 明确依赖空间蒙太奇，否则默认一张原片只生成一张独立 After。
 
 | Before：原始旅行照片 | After：AI 复合 Memory Atlas |
 | --- | --- |
@@ -30,7 +30,31 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑的叙事决�
 
 [查看 Family Archive Scene Cards](examples/cases/family-archive/story.json)
 
-这里发生的不是简单滤镜或重新排版。系统先区分观察事实与解释，再分配故事角色、生成导演备注、推荐 Narrative System，最终既可以输出确定性 Workprint，也可以生成真正发生视觉二次创作的混合媒介成品。上面的 After 保留了可识别的真实建筑摄影和虚构人物，同时让地图、素描、纸张与档案痕迹承担叙事。
+### 案例 3 · Cinematic Storyboard｜电影分镜
+
+三张平淡的手机随手拍，分别变成三个独立电影镜头。它们通过“等待—停顿—离开”的光线与情绪弧线相连，而不是被拼进同一张版式。
+
+| Before：构图失败的手机随手拍 | After：独立导演镜头 |
+| --- | --- |
+| ![普通公交站手机随手拍](examples/cases/cinematic-storyboard/photos/raw-bus-stop.png) | ![经过导演的雨夜公交站镜头](examples/cases/cinematic-storyboard/outputs/after-bus-stop.png) |
+| ![普通小餐馆手机随手拍](examples/cases/cinematic-storyboard/photos/raw-diner.png) | ![隔着雨水观看餐馆的电影镜头](examples/cases/cinematic-storyboard/outputs/after-diner.png) |
+| ![普通出租车手机随手拍](examples/cases/cinematic-storyboard/photos/raw-taxi.png) | ![出租车离开的电影镜头](examples/cases/cinematic-storyboard/outputs/after-taxi.png) |
+
+[查看三层 Scene Cards](examples/cases/cinematic-storyboard/story.json) · [查看未经处理的原片接触表](examples/cases/cinematic-storyboard/outputs/before.png)
+
+### 案例 4 · Minimal Editorial｜极简编辑
+
+这个系统不会把三个物件贴到一张“设计稿”上，而是给每个普通物件一个独立摄影舞台，让材质、影子和留白承担叙事。
+
+| Before：杂乱的家庭随手拍 | After：独立艺术书摄影 |
+| --- | --- |
+| ![普通杯子手机随手拍](examples/cases/minimal-editorial/photos/raw-mug.png) | ![同一杯子的安静编辑摄影](examples/cases/minimal-editorial/outputs/after-mug.png) |
+| ![普通旧椅子手机随手拍](examples/cases/minimal-editorial/photos/raw-chair.png) | ![同一椅子的雕塑感编辑摄影](examples/cases/minimal-editorial/outputs/after-chair.png) |
+| ![普通亚麻布手机随手拍](examples/cases/minimal-editorial/photos/raw-linen.png) | ![同一亚麻布的材质编辑摄影](examples/cases/minimal-editorial/outputs/after-linen.png) |
+
+[查看三层 Scene Cards](examples/cases/minimal-editorial/story.json) · [查看未经处理的原片接触表](examples/cases/minimal-editorial/outputs/before.png)
+
+这里发生的不是简单滤镜或重新排版。系统先区分观察事实与解释，再分配故事角色、生成导演备注、推荐 Narrative System，最终既可以输出确定性 Workprint，也可以生成真正发生视觉二次创作的成品。空间与档案系统可以使用混合媒介；电影与极简系统默认“一张原片 → 一个独立镜头”。
 
 ### Editorial Sequence｜编辑序列
 

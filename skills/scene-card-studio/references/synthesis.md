@@ -2,6 +2,13 @@
 
 An After image must change the visual narrative, not merely place the same photos in a new grid.
 
+## Default output contract
+
+- One source photograph produces one standalone After image.
+- Do not combine unrelated sources into collages, multi-panel boards, split screens, or designed pages merely to show several examples at once.
+- Multiple photographs may share a sequence and visual direction while remaining separate outputs.
+- Combine sources only when the user explicitly asks for a montage or the selected Narrative System depends on spatial synthesis, such as a Memory Atlas.
+
 ## Required sequence
 
 1. Build Scene Cards and identify evidence that must remain faithful.
@@ -23,6 +30,20 @@ An After image must change the visual narrative, not merely place the same photo
 - Use object studies, tracing paper, contact-print edges, fabric, domestic tools, photo corners, and restrained handwritten marks as the archive layer.
 - Do not invent names, dates, or family relationships not supplied by the user.
 
+## Cinematic Storyboard
+
+- Keep people, locations, vehicles, and actions photographic.
+- Render each source as a separate continuous photographic scene.
+- Use cropping, shot scale, light continuity, weather, grain, and reflection to create temporal progression across outputs.
+- Avoid fake titles, credits, dialogue, named-director imitation, equal-frame grids, and multi-shot composites.
+
+## Minimal Editorial
+
+- Keep object surfaces, wear, and material texture photographic.
+- Give each source object its own continuous photographic scene.
+- Remove accidental clutter and build hierarchy through scale, negative space, light, shadow, and material rhythm.
+- Avoid decorative prop styling, abstract overlays, fake magazine mastheads, generic luxury branding, and multi-object collages.
+
 ## Delivery
 
-Return a Before contact sheet, the synthesized After image, and the Scene Card JSON. Label deterministic layouts as `workprint`; reserve `After` for the transformed presentation artifact.
+Return paired Before and After images, an optional Before contact sheet for overview, and the Scene Card JSON. Label deterministic layouts as `workprint`; reserve `After` for transformed presentation artifacts.
