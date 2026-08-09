@@ -1,0 +1,62 @@
+[
+  {
+    "source": "examples/photos/rain-greenhouse.png",
+    "width": 1536,
+    "height": 1024,
+    "palette": [
+      "#111817",
+      "#4F6FA4",
+      "#6A8CCA",
+      "#22344F",
+      "#344962"
+    ],
+    "brightness": 0.39,
+    "saturation": 0.498,
+    "orientation": "landscape",
+    "story_role": "opening",
+    "caption": "ONE LIGHT KEPT GROWING",
+    "subjects": [],
+    "dominant_gesture": "still",
+    "quiet_regions": []
+  },
+  {
+    "source": "examples/photos/valley-fruit-stand.png",
+    "width": 1536,
+    "height": 1024,
+    "palette": [
+      "#262113",
+      "#675D54",
+      "#E3E4E9",
+      "#604D2B",
+      "#4D361E"
+    ],
+    "brightness": 0.488,
+    "saturation": 0.366,
+    "orientation": "landscape",
+    "story_role": "development",
+    "caption": "FRUIT BY THE MOUNTAIN ROAD",
+    "subjects": [],
+    "dominant_gesture": "still",
+    "quiet_regions": []
+  },
+  {
+    "source": "examples/photos/coastal-platform.png",
+    "width": 1536,
+    "height": 1024,
+    "palette": [
+      "#DBDFE3",
+      "#2C2E2E",
+      "#A4B2C9",
+      "#57595A",
+      "#8F9AAA"
+    ],
+    "brightness": 0.614,
+    "saturation": 0.136,
+    "orientation": "landscape",
+    "story_role": "pause",
+    "caption": "AFTER THE LAST RAIN",
+    "subjects": [],
+    "dominant_gesture": "still",
+    "quiet_regions": []
+  }
+]

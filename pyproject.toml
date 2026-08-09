@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "moments-to-pages"
+version = "0.1.0"
+description = "Turn personal photos into structured, editable visual narratives."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "swping999" }]
+dependencies = []
+
+[project.optional-dependencies]
+images = ["Pillow>=10"]
+dev = ["pytest>=8", "Pillow>=10"]
+
+[project.scripts]
+moments-to-pages = "moments_to_pages.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/moments_to_pages"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
