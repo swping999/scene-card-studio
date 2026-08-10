@@ -23,8 +23,10 @@ An After image must change the visual narrative, not merely place the same photo
 
 ## Memory Atlas
 
-- Keep actual buildings and places as photographic fragments.
-- Draw the remembered geography between them using watercolor terrain, contour marks, coastline, tickets, or paper seams.
+- With `source-led` or `watercolor-contour`, keep actual people, buildings, and places as photographic fragments and draw the remembered geography between them.
+- With `full-watercolor-memory`, repaint faces, skin, hair, clothing, buildings, landscape, and geography in one continuous watercolor medium. Preserve identity, pose, anatomy, architecture, horizon, light direction, and source order.
+- For full watercolor, reject any result that retains photographic pixels, pasted cutout edges, synthetic skin, or a photo-plus-watercolor-border appearance.
+- Use transparent washes, paper tooth, restrained wet-on-wet diffusion, and selective dry-brush detail as general medium properties; do not imitate a named artist.
 - Avoid arrows, digital route lines, flowcharts, and generic map pins.
 
 ## Family Archive

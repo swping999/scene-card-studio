@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 
-EXPRESSION_PROFILES: dict[str, dict[str, dict[str, list[str]]]] = {
+EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     "cinematic-storyboard": {
         "source-led": {
             "composition": ["Respect the source camera position and derive shot scale from the visible scene rather than forcing a lens signature."],
@@ -38,6 +38,32 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, list[str]]]] = {
             "composition": ["Embed real photographic places into one hand-drawn geography with varied scale and selective edge overlap."],
             "lighting": ["Preserve photographic light while unifying the field with restrained paper warmth."],
             "material": ["Use watercolor terrain, pencil contours, torn archival paper, faint coastline texture, and subtle travel ephemera."],
+        },
+        "full-watercolor-memory": {
+            "render_mode": "full-redraw",
+            "subject_fidelity": [
+                "Preserve face geometry, expression, pose, body proportions, clothing silhouette, architecture, horizon, and identity-bearing details while changing only their visible medium.",
+            ],
+            "transformation_policy": [
+                "The selected profile authorizes a medium-only transformation of the entire visible image into watercolor; it does not authorize changes to identity, anatomy, objects, location, action, or spatial evidence.",
+            ],
+            "composition": [
+                "Recompose the supplied people and places as one continuous spatial-memory painting, with transitions carried by washes, reserved paper, and overlapping remembered geography rather than pasted photographs.",
+            ],
+            "lighting": [
+                "Translate source light into transparent value washes, preserving the original light direction, facial modeling, depth, and source-derived palette.",
+            ],
+            "material": [
+                "Render faces, skin, hair, clothing, architecture, sea, sky, and terrain in one coherent watercolor medium using transparent washes, wet-on-wet diffusion, restrained dry-brush accents, pigment blooms, and visible paper tooth.",
+                "Use the sharpest brush information only around identity-bearing facial features, hands, and structural landmarks; let secondary edges dissolve naturally into the paper field.",
+            ],
+            "exclusions": [
+                "Leave no photographic pixels, pasted portrait cutouts, hard extraction halos, synthetic skin, or photo-plus-watercolor-border effect.",
+                "Do not imitate a named artist or use an unlicensed artwork as a style reference.",
+            ],
+            "output": [
+                "The finished artifact must read as one continuous hand-painted watercolor work, including every visible person, not as a decorated photograph.",
+            ],
         },
     },
     "family-archive": {

@@ -107,9 +107,11 @@ Scene Cards explicitly separate visible evidence from interpretation:
 
 The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
 
-## v0.3.2 · Auditable generation contracts
+## v0.3.3 · Auditable generation contracts
 
 The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Four core systems are supported: `cinematic-storyboard`, `minimal-editorial`, `memory-atlas`, and `family-archive`. The system defines how the story is read; the profile defines how that mechanism is visually expressed. `source-led` is the default.
+
+`memory-atlas` now includes the original `full-watercolor-memory` profile. Unlike `watercolor-contour`, which preserves photographic anchors inside a drawn geography, it repaints people, clothing, architecture, landscape, and transitions in one continuous watercolor medium while preserving identity, pose, spatial evidence, and the source palette. Its contract explicitly rejects photographic pixels, pasted cutout edges, named-artist imitation, and unlicensed style references.
 
 Every compiled prompt contains the same ten modules:
 
@@ -141,6 +143,7 @@ python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
+scene-card-studio compile story.json --system memory-atlas --expression-profile full-watercolor-memory --output watercolor-memory-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style memory-atlas --format svg --output story.svg
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png

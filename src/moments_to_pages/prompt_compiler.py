@@ -10,7 +10,7 @@ from .expression_profiles import expression_profile_names, resolve_expression_pr
 from .model import SceneCard
 
 
-COMPILER_VERSION = "0.3.2"
+COMPILER_VERSION = "0.3.3"
 SUPPORTED_SYSTEMS = (
     "cinematic-storyboard",
     "minimal-editorial",
@@ -243,13 +243,18 @@ def _minimal_blocks(card: SceneCard, aspect_ratio: str, profile: dict[str, Any])
 def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dict[str, Any]) -> PromptBlocks:
     subjects = [_joined(_policy_values(card)[0], Path(card.source).stem) for card in cards]
     palette = _joined([color for card in cards for color in card.palette[:2]], "source-derived colors")
+    full_redraw = profile.get("render_mode") == "full-redraw"
     return PromptBlocks(
         subject_fidelity=[
-            f"Preserve each supplied place or subject as a recognizable photographic anchor: {'; '.join(subjects)}.",
+            f"Preserve each supplied place or subject as a recognizable {'painted' if full_redraw else 'photographic'} anchor: {'; '.join(subjects)}.",
             "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to each source.",
             "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
+            *profile.get("subject_fidelity", []),
         ],
-        transformation_policy=[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+        transformation_policy=[
+            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+            *profile.get("transformation_policy", []),
+        ],
         narrative_intent=[
             "Connect the supplied places as remembered spatial experience rather than literal navigation.",
             *_multi_card_context(cards),
@@ -259,8 +264,16 @@ def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dic
             "Avoid a row of equal photo cards; use spatial hierarchy to express the relationships stated in the Scene Cards.",
             *profile["composition"],
         ],
-        lighting=[f"Use the combined source palette ({palette}) without recoloring every photograph identically.", *profile["lighting"]],
-        material=[*profile["material"], "Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration."],
+        lighting=[
+            f"Use the combined source palette ({palette}) without flattening every {'painted passage' if full_redraw else 'photograph'} into one identical color treatment.",
+            *profile["lighting"],
+        ],
+        material=[
+            *profile["material"],
+            "Every added mark must perform a Scene Card-supported spatial function rather than decoration."
+            if full_redraw
+            else "Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration.",
+        ],
         spatial_relationships=[
             "Connect frames through their stated gestures, roles, quiet regions, and layout emphasis.",
             "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.",
@@ -269,8 +282,13 @@ def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dic
         exclusions=[
             "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
             "No fantasy architecture, generic tourism poster, or named-artist imitation.",
+            *profile.get("exclusions", []),
         ],
-        output=[f"Return one integrated PNG spatial-memory artifact at exactly {aspect_ratio}.", "Every supplied place or subject must remain recognizable."],
+        output=[
+            f"Return one integrated PNG spatial-memory artifact at exactly {aspect_ratio}.",
+            "Every supplied place or subject must remain recognizable.",
+            *profile.get("output", []),
+        ],
     )
 
 

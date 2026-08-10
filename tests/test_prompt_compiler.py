@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 from datetime import datetime, timezone
 from hashlib import sha256
@@ -80,7 +82,7 @@ def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Pat
     for system in SUPPORTED_SYSTEMS:
         manifest = compile_manifest(cards, system, source_root=tmp_path)
         manifests[system] = manifest
-        assert manifest["compiler_version"] == "0.3.2"
+        assert manifest["compiler_version"] == "0.3.3"
         assert manifest["schema_version"] == "1.2"
         assert manifest["expression_profile"] == "source-led"
         assert set(manifest["prompts"][0]["blocks"]) == expected
@@ -93,6 +95,22 @@ def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Pat
     watercolor = compile_manifest(cards, "memory-atlas", source_root=tmp_path, expression_profile="watercolor-contour")
     assert "watercolor terrain" in watercolor["prompts"][0]["compiled_prompt"]
     assert "watercolor terrain" not in manifests["memory-atlas"]["prompts"][0]["compiled_prompt"]
+    full_watercolor = compile_manifest(
+        cards,
+        "memory-atlas",
+        source_root=tmp_path,
+        expression_profile="full-watercolor-memory",
+    )
+    full_prompt = full_watercolor["prompts"][0]["compiled_prompt"]
+    assert "full-watercolor-memory" in full_watercolor["available_expression_profiles"]
+    assert "faces, skin, hair, clothing, architecture, sea, sky, and terrain" in full_prompt
+    assert "medium-only transformation of the entire visible image" in full_prompt
+    assert "Leave no photographic pixels" in full_prompt
+    assert "one continuous hand-painted watercolor work" in full_prompt
+    assert "recognizable painted anchor" in full_prompt
+    assert "recognizable photographic anchor" not in full_prompt
+    assert "MUST PRESERVE — person, rainy street" in full_prompt
+    assert "MUST REMOVE — plastic sign" in full_prompt
     widescreen = compile_manifest(cards[:1], "cinematic-storyboard", source_root=tmp_path, aspect_ratio="16:9")
     contract = widescreen["prompts"][0]["output_contract"]
     assert contract["width"] * 9 == contract["height"] * 16

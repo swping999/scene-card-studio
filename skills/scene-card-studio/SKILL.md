@@ -1,6 +1,6 @@
 ---
 name: scene-card-studio
-description: Turn user-supplied photos into a coherent visual narrative, versioned image-generation prompts, art-directed Before/After images, and editable story layouts. Use when the user wants a photo essay, cinematic photo treatment, minimal editorial still life, family archive, travel memory map, visual journal, contact sheet, social carousel, micro-zine plan, or a sequenced photographic story.
+description: Turn user-supplied photos into a coherent visual narrative, versioned image-generation prompts, art-directed Before/After images, and editable story layouts. Use when the user wants a photo essay, cinematic photo treatment, minimal editorial still life, family archive, travel memory map, fully watercolorized portrait memory, visual journal, contact sheet, social carousel, micro-zine plan, or a sequenced photographic story.
 ---
 
 # Scene Card Studio
@@ -18,7 +18,7 @@ Build a visual story from the user's photographs without imitating a named artis
    - `family-archive` for repeated people, objects, or domestic gestures; use family relationships or inheritance only when the user supplies them;
    - `cinematic-storyboard` for temporal continuity, light progression, and shot relationships;
    - `minimal-editorial` for object hierarchy, negative space, geometry, and material rhythm;
-   - `memory-atlas` when movement, route, distance, place, or spatial memory matters; do not assume a return;
+   - `memory-atlas` when movement, route, distance, place, or spatial memory matters; do not assume a return. Use `watercolor-contour` to retain photographic anchors or `full-watercolor-memory` to repaint people and places together as one watercolor medium;
    - `field-log` when observation and documentary detail matter.
 6. Decide the output tier:
    - **Workprint**: use the deterministic renderer for analysis, sequencing, iteration, and editable layout.

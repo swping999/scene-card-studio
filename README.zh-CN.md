@@ -86,9 +86,11 @@ Scene Card 将信息明确分成三层：
 
 这种拆分避免把 AI 的推测伪装成照片事实，也允许用户在编译 Prompt 前修改任何导演判断。自动分析保持克制，所有 Scene Card 决策都可以编辑。
 
-## v0.3.2 · 可复核的生成合同
+## v0.3.3 · 可复核的生成合同
 
 Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持四个核心系统：`cinematic-storyboard`、`minimal-editorial`、`memory-atlas` 和 `family-archive`。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认使用 `source-led`。
+
+`memory-atlas` 现已加入原创的 `full-watercolor-memory` Profile。它不同于在手绘地理中保留摄影锚点的 `watercolor-contour`：人物、服装、建筑、风景和空间过渡都会在同一种连续水彩媒介中重新绘制，同时保留身份、姿势、空间证据和源照片色彩。生成合同明确禁止残留摄影像素、抠图边缘、模仿具名艺术家或使用未经授权的风格参考图。
 
 每条编译提示词都固定包含十个模块：
 
@@ -129,6 +131,7 @@ python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
+scene-card-studio compile story.json --system memory-atlas --expression-profile full-watercolor-memory --output watercolor-memory-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
 scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json

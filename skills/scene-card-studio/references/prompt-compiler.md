@@ -13,6 +13,14 @@ scene-card-studio compile story.json \
 
 The Narrative System defines how the story is read. The replaceable Expression Profile defines the visual language. Do not treat profiles as additional Narrative Systems.
 
+For `memory-atlas`, choose deliberately:
+
+- `source-led` derives the visual language only from supplied evidence;
+- `watercolor-contour` keeps people and places photographic while drawing the remembered geography around them;
+- `full-watercolor-memory` repaints people, clothing, architecture, landscape, and spatial transitions in one continuous watercolor medium while preserving identity and source geometry.
+
+Do not provide a named artist or unlicensed artwork as a style reference for `full-watercolor-memory`.
+
 Each prompt contains:
 
 1. subject fidelity;
