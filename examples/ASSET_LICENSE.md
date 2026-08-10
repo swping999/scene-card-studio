@@ -22,3 +22,13 @@ The bundled memory-map illustration under
 `src/moments_to_pages/assets/maps/` was generated specifically for this
 repository on 2026-08-09 and is distributed under the repository's Apache
 License 2.0.
+
+The 26 JPEG files under `examples/cases/v0.4-gallery/before/` and
+`examples/cases/v0.4-gallery/after/`, together with the opening media under
+`docs/media/`, were added on 2026-08-10. The Before/After images were generated
+specifically for this repository with OpenAI's built-in image generation tool;
+they depict fictional people, places, and objects and were not derived from
+user photographs or third-party visual assets. The opening MP4 was supplied by
+the project author, and the GIF and poster are local derivatives of that MP4.
+These assets are available under the same repository-specific Apache-2.0 grant
+described above, to the extent the project author holds rights in them.

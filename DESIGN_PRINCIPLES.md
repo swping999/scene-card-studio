@@ -26,9 +26,9 @@ Scene Card Studio 采用独立实现的 Scene Card、视觉导演、推荐与确
 
 ## Example assets
 
-The photographs in `examples/photos`, `examples/cases/family-archive/photos`, `examples/cases/cinematic-storyboard/photos`, and `examples/cases/minimal-editorial/photos` were generated specifically for this repository with OpenAI's built-in image generation tool on 2026-08-09. They do not depict real people and were not derived from user photographs. Their role is to test and demonstrate this repository.
+The photographs in `examples/photos`, `examples/cases/family-archive/photos`, `examples/cases/cinematic-storyboard/photos`, and `examples/cases/minimal-editorial/photos` were generated specifically for this repository with OpenAI's built-in image generation tool on 2026-08-09. The 13 Before/After pairs in `examples/cases/v0.4-gallery` were generated the same way on 2026-08-10. They do not depict real people and were not derived from user photographs or third-party style assets. Their role is to test and demonstrate this repository.
 
-`examples/photos`、`examples/cases/family-archive/photos`、`examples/cases/cinematic-storyboard/photos` 与 `examples/cases/minimal-editorial/photos` 中的照片，均于 2026-08-09 使用 OpenAI 内置图像生成工具专门为本仓库生成，不涉及真实人物，也不来源于用户照片，仅用于测试和展示本项目。
+`examples/photos`、`examples/cases/family-archive/photos`、`examples/cases/cinematic-storyboard/photos` 与 `examples/cases/minimal-editorial/photos` 中的照片，均于 2026-08-09 使用 OpenAI 内置图像生成工具专门为本仓库生成；`examples/cases/v0.4-gallery` 中的 13 组 Before/After 于 2026-08-10 以相同方式生成。它们不涉及真实人物，不来源于用户照片或第三方风格资产，仅用于测试和展示本项目。
 
 The coastal memory-map illustration in `src/moments_to_pages/assets/maps` was generated for this repository with the same built-in image generation tool on 2026-08-09. It is retained as an optional project asset, not used as the universal deterministic Memory Atlas background. The bundled Noto Sans CJK SC font is distributed under the SIL Open Font License 1.1; its notice is stored beside the font.
 

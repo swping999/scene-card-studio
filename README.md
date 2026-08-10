@@ -2,6 +2,10 @@
 
 [中文](README.zh-CN.md) · English
 
+[![Scene Card Studio opening film](docs/media/scene-card-studio-opening.gif)](docs/media/scene-card-studio-opening.mp4)
+
+▶ [Play the 3-second opening film](docs/media/scene-card-studio-opening.mp4)
+
 > **This is not a style-transfer repository. It is a Scene Card–based visual narrative engine for personal photography.**
 
 Scene Card Studio turns observable photo evidence into editable narrative decisions, versioned generation prompts, directed images, and deterministic layouts. Instead of asking only *what should these photos look like?*, it asks *how should this story be read?*
@@ -12,27 +16,111 @@ photos → Scene Cards → Narrative System → Prompt Compiler → image genera
 
 ## Before / After
 
-All source photographs below were generated specifically for this repository. Their content is unedited; Before contact sheets use center-cropping only for display. Unless a Narrative System explicitly depends on spatial montage, one source photograph produces one standalone After image.
+Every Before below is a newly generated, deliberately unpolished phone-style source made for this repository. Every After is a materially redirected image of that source—not the same image inside a border, contact sheet, or decorative collage. The people are fictional AI-generated subjects.
+
+### 1 · Cinematic Sequence
+
+| Before · flat metro snapshot | After · motivated rain, light, and frame geometry |
+| --- | --- |
+| ![Unpolished metro snapshot](examples/cases/v0.4-gallery/before/cinematic-sequence.jpg) | ![Directed cinematic night frame](examples/cases/v0.4-gallery/after/cinematic-sequence.jpg) |
+
+### 2 · Memory Atlas
+
+| Before · roadside building | After · real architecture fused with drawn geography |
+| --- | --- |
+| ![Ordinary roadside building](examples/cases/v0.4-gallery/before/memory-atlas.jpg) | ![Photographic building integrated with watercolor terrain](examples/cases/v0.4-gallery/after/memory-atlas.jpg) |
+
+### 3 · Family Chronicle
+
+| Before · cluttered domestic snapshot | After · one intimate photographic-drawing record |
+| --- | --- |
+| ![Ordinary laundry-folding snapshot](examples/cases/v0.4-gallery/before/family-chronicle.jpg) | ![Directed family chronicle](examples/cases/v0.4-gallery/after/family-chronicle.jpg) |
+
+### 4 · Quiet Editorial
+
+| Before · cluttered kettle photo | After · quiet material study |
+| --- | --- |
+| ![Ordinary kettle snapshot](examples/cases/v0.4-gallery/before/quiet-editorial.jpg) | ![Quiet editorial kettle photograph](examples/cases/v0.4-gallery/after/quiet-editorial.jpg) |
+
+### 5 · Editorial Rhythm
+
+| Before · accidental chair arrangement | After · color, spacing, crop, and shadow as rhythm |
+| --- | --- |
+| ![Ordinary plastic chairs](examples/cases/v0.4-gallery/before/editorial-rhythm.jpg) | ![Directed chair rhythm](examples/cases/v0.4-gallery/after/editorial-rhythm.jpg) |
+
+### 6 · Field Log
+
+| Before · casual repair snapshot | After · factual observational record |
+| --- | --- |
+| ![Ordinary bicycle repair snapshot](examples/cases/v0.4-gallery/before/field-log.jpg) | ![Directed field-log photograph](examples/cases/v0.4-gallery/after/field-log.jpg) |
+
+### 7 · Watercolor Chronicle
+
+| Before · ordinary seaside portrait | After · person, clothing, objects, and place repainted together |
+| --- | --- |
+| ![Ordinary seaside portrait](examples/cases/v0.4-gallery/before/watercolor-chronicle.jpg) | ![Fully repainted watercolor chronicle](examples/cases/v0.4-gallery/after/watercolor-chronicle.jpg) |
+
+### 8 · Heritage Portrait
+
+| Before · flash-lit living room | After · restrained silver-gelatin and hand-colored portrait |
+| --- | --- |
+| ![Ordinary portrait snapshot](examples/cases/v0.4-gallery/before/heritage-portrait.jpg) | ![Directed heritage portrait](examples/cases/v0.4-gallery/after/heritage-portrait.jpg) |
+
+### 9 · Museum Catalogue
+
+| Before · object in storage clutter | After · inspectable conservation plate |
+| --- | --- |
+| ![Radio in a cluttered storage space](examples/cases/v0.4-gallery/before/museum-catalogue.jpg) | ![Museum catalogue radio plate](examples/cases/v0.4-gallery/after/museum-catalogue.jpg) |
+
+### 10 · Travel Journal
+
+| Before · waiting-platform snapshot | After · railway space becomes a tactile route field |
+| --- | --- |
+| ![Ordinary suitcase at a station](examples/cases/v0.4-gallery/before/travel-journal.jpg) | ![Seamless travel journal image](examples/cases/v0.4-gallery/after/travel-journal.jpg) |
+
+### 11 · Street Reportage
+
+| Before · loose rainy crosswalk frame | After · decisive monochrome public-life frame |
+| --- | --- |
+| ![Ordinary rainy crosswalk snapshot](examples/cases/v0.4-gallery/before/street-reportage.jpg) | ![Directed black-and-white street reportage](examples/cases/v0.4-gallery/after/street-reportage.jpg) |
+
+### 12 · Fashion Editorial
+
+| Before · bland mall portrait | After · garment-led architectural frame |
+| --- | --- |
+| ![Ordinary mall portrait](examples/cases/v0.4-gallery/before/fashion-editorial.jpg) | ![Directed fashion editorial](examples/cases/v0.4-gallery/after/fashion-editorial.jpg) |
+
+### 13 · Dream Logic
+
+| Before · child with one kite | After · one coherent impossible rule, identity locked |
+| --- | --- |
+| ![Ordinary salt-flat kite snapshot](examples/cases/v0.4-gallery/before/dream-logic.jpg) | ![Single-kite dream-logic transformation](examples/cases/v0.4-gallery/after/dream-logic.jpg) |
+
+The first ten entries are Narrative Systems. Watercolor Chronicle, Heritage Portrait, and Dream Logic are replaceable Expression Profiles applied through compatible systems. This keeps story structure separate from surface language.
+
+[Inspect all 13 Scene Cards and direction records](examples/cases/v0.4-gallery/case-records.json) · [Read the case notes](examples/cases/v0.4-gallery/README.md) · [Read the design principles](DESIGN_PRINCIPLES.md)
+
+## Earlier benchmark cases
+
+The original benchmark cases remain part of the repository and retain their manifests, bound outputs, reviews, and retry records.
+
+### Original Memory Atlas benchmark
 
 | Before: original travel photographs | After: AI-composited Memory Atlas |
 | --- | --- |
 | ![Original photo contact sheet](examples/outputs/before-source-photos.png) | ![Photographic architecture fused with a hand-drawn memory map](examples/outputs/memory-atlas-ai-composite.png) |
 
-[Inspect the three-layer Scene Cards](examples/generated-story.json) · [Prompt Manifest](examples/prompt-manifest.json) · [Render Manifest](examples/render-manifest.json) · [Accepted Review](examples/accepted-review.json)
+[Scene Cards](examples/generated-story.json) · [Prompt Manifest](examples/prompt-manifest.json) · [Render Manifest](examples/render-manifest.json) · [Accepted Review](examples/accepted-review.json)
 
-### Case 2 · Family Archive
+### Original Family Archive benchmark
 
 | Before: fictional documentary inputs | After: AI-composited family record |
 | --- | --- |
 | ![Family archive source contact sheet](examples/cases/family-archive/outputs/before.png) | ![Documentary photographs fused with drawings and archive materials](examples/cases/family-archive/outputs/family-archive-ai-composite.png) |
 
-This second case reads repeated gestures—laundry, cooking, sorting photographs—as a record of care passed through generations.
+[Scene Cards](examples/cases/family-archive/story.json) · [Prompt Manifest](examples/cases/family-archive/prompt-manifest.json) · [Render Manifest](examples/cases/family-archive/render-manifest.json) · [Accepted Review](examples/cases/family-archive/accepted-review.json)
 
-[Inspect the Scene Cards](examples/cases/family-archive/story.json) · [Prompt Manifest](examples/cases/family-archive/prompt-manifest.json) · [Render Manifest](examples/cases/family-archive/render-manifest.json) · [Accepted Review](examples/cases/family-archive/accepted-review.json)
-
-### Case 3 · Cinematic Storyboard
-
-Three unremarkable phone snapshots become three independent film frames. They are connected by a light arc—waiting, pause, departure—not by placing them inside one collage.
+### Original Cinematic Storyboard benchmark
 
 | Before: awkward phone snapshot | After: standalone directed frame |
 | --- | --- |
@@ -40,11 +128,9 @@ Three unremarkable phone snapshots become three independent film frames. They ar
 | ![Ordinary phone snapshot of a diner](examples/cases/cinematic-storyboard/photos/raw-diner.png) | ![Directed diner seen through rain](examples/cases/cinematic-storyboard/outputs/after-diner.png) |
 | ![Ordinary phone snapshot of a taxi](examples/cases/cinematic-storyboard/photos/raw-taxi.png) | ![Directed taxi departure frame](examples/cases/cinematic-storyboard/outputs/after-taxi.png) |
 
-[Inspect the Scene Cards](examples/cases/cinematic-storyboard/story.json) · [Open the three compiled prompts](examples/cases/cinematic-storyboard/prompt-manifest.json) · [Inspect a real failed → targeted retry → accepted record](examples/cases/cinematic-storyboard/retry-example/README.md) · [View the source contact sheet](examples/cases/cinematic-storyboard/outputs/before.png)
+[Scene Cards](examples/cases/cinematic-storyboard/story.json) · [Compiled prompts](examples/cases/cinematic-storyboard/prompt-manifest.json) · [Failed → targeted retry → accepted record](examples/cases/cinematic-storyboard/retry-example/README.md) · [Source contact sheet](examples/cases/cinematic-storyboard/outputs/before.png)
 
-### Case 4 · Minimal Editorial
-
-This system does not paste three objects onto a designed page. It gives each ordinary object its own photographic stage and lets material, shadow, and negative space do the narrative work.
+### Original Minimal Editorial benchmark
 
 | Before: cluttered household snapshot | After: standalone art-book photograph |
 | --- | --- |
@@ -52,29 +138,7 @@ This system does not paste three objects onto a designed page. It gives each ord
 | ![Ordinary phone snapshot of a worn chair](examples/cases/minimal-editorial/photos/raw-chair.png) | ![Sculptural editorial photograph of the same chair](examples/cases/minimal-editorial/outputs/after-chair.png) |
 | ![Ordinary phone snapshot of linen](examples/cases/minimal-editorial/photos/raw-linen.png) | ![Material-focused editorial photograph of the same linen](examples/cases/minimal-editorial/outputs/after-linen.png) |
 
-[Inspect the Scene Cards](examples/cases/minimal-editorial/story.json) · [Compiled Prompts](examples/cases/minimal-editorial/prompt-manifest.json) · [Render Manifest](examples/cases/minimal-editorial/render-manifest.json) · [Accepted Review](examples/cases/minimal-editorial/accepted-review.json) · [View the source contact sheet](examples/cases/minimal-editorial/outputs/before.png)
-
-The transformation is not a visual filter. The system separates observation from interpretation, assigns story roles, writes editable director notes, recommends a Narrative System, and can produce either a deterministic workprint or a genuinely transformed presentation image. Spatial and archival systems may use mixed media; cinematic and minimal systems default to one source → one frame.
-
-### Editorial Sequence
-
-![Editorial Sequence example](examples/outputs/editorial-sequence.png)
-
-A spacious photo essay that keeps the photographs primary and makes each frame's story role legible.
-
-### Memory Atlas
-
-![Memory Atlas mixed-media example](examples/outputs/memory-atlas-ai-composite.png)
-
-A spatial system for journeys, distance, place, and memory. Its default and `watercolor-contour` Profiles keep actual architecture photographic; `watercolor-chronicle` can repaint people and places together. It never assumes that every journey ends in a return.
-
-### Field Log
-
-![Field Log example](examples/outputs/field-log.png)
-
-An observational record for documentary detail, notes, and restrained evidence.
-
-[View source photos](examples/photos) · [View generated Scene Cards](examples/generated-story.json) · [Read the design principles](DESIGN_PRINCIPLES.md)
+[Scene Cards](examples/cases/minimal-editorial/story.json) · [Compiled prompts](examples/cases/minimal-editorial/prompt-manifest.json) · [Render Manifest](examples/cases/minimal-editorial/render-manifest.json) · [Accepted Review](examples/cases/minimal-editorial/accepted-review.json) · [Source contact sheet](examples/cases/minimal-editorial/outputs/before.png)
 
 ## The Visual Director layer
 

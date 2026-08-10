@@ -44,3 +44,17 @@ Generated on 2026-08-09 with OpenAI's built-in image generation tool. All source
 - Direction: give each deliberately cluttered household snapshot its own quiet photographic stage. Preserve the recognizable object and material wear; remove accidental clutter and direct attention through natural light, shadow, negative space, and tactile texture. No collage, panels, typography, or abstract overlays.
 
 The four Prompt Manifests record compiler version `0.3.2`, source hashes, complete modular prompts, expression profiles, benchmark references, and structured output contracts. Formal reviews target Render Manifests containing decoded and validated `candidate_output` metadata; benchmark `reference_output` records cannot satisfy review. Cinematic Storyboard includes the complete Prompt → failed render → failed review → retry → post-retry render → accepted review hash chain and sequence-level scores. PNG renderer outputs in adjacent folders are deterministic workprints. Files named `*-ai-composite.png` and the six `after-*.png` files above are presentation synthesis outputs. Asset provenance and usage terms are recorded in [`ASSET_LICENSE.md`](ASSET_LICENSE.md).
+
+## v0.4 gallery · 13 fresh comparisons
+
+Generated on 2026-08-10 with OpenAI's built-in image generation tool. This new gallery supplements rather than replaces the four benchmark cases above.
+
+- Sources: `cases/v0.4-gallery/before/`
+- Directed outputs: `cases/v0.4-gallery/after/`
+- Scene Cards and transformation policies: `cases/v0.4-gallery/case-records.json`
+- Case map and method note: `cases/v0.4-gallery/README.md`
+- Coverage: Cinematic Sequence, Memory Atlas, Family Chronicle, Quiet Editorial, Editorial Rhythm, Field Log, Watercolor Chronicle, Heritage Portrait, Museum Catalogue, Travel Journal, Street Reportage, Fashion Editorial, and Dream Logic.
+- Direction rule: every Before is a newly generated unpolished source; every After materially redirects the matching source while preserving the specified identity, object, gesture, clothing, or spatial evidence. Borders, grids, contact sheets, and decorative collages cannot count as the transformation.
+- Originality rule: no third-party photograph, artwork, prompt, visual asset, living artist name, director name, photographer name, or publication name was used as a style reference.
+
+The gallery records are compact example-level provenance and direction records. The original four benchmark cases remain the repository's complete hash-bound compile, bind, review, and retry demonstrations.
