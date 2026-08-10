@@ -7,12 +7,16 @@
 3. **Human authority.** Input order is preserved by default; automatic reordering requires an explicit `--reorder` choice.
 4. **Honest automation.** Heuristic analysis is labeled with its method and confidence. Curated examples identify manual direction.
 5. **Local-first privacy.** Source photographs remain local unless the user explicitly approves a named provider, purpose, and exact upload list.
+6. **Systems and expression remain separate.** A Narrative System defines the reading mechanism; a replaceable Expression Profile defines medium and surface treatment.
+7. **Typography is deterministic.** Image generation contains no visible text. Only metadata supplied in Scene Cards may be added later by the presentation renderer.
 
 1. **先证据，后意义。** 观察、理解与导演决策相互分离，并且都可编辑。
 2. **叙事系统，而非风格预设。** 每个系统都必须改变故事的阅读方式，而不只是调色。
 3. **人的决定优先。** 默认保留输入顺序；只有明确传入 `--reorder` 才允许自动重排。
 4. **诚实描述自动化。** 启发式分析必须标注方法与置信度；策划案例必须标明人工导演。
 5. **隐私本地优先。** 只有用户明确批准具体 provider、用途与精确上传列表后，源照片才可离开本地。
+6. **叙事机制与视觉表达分离。** Narrative System 定义阅读方式；可替换的 Expression Profile 定义媒介与表面语言。
+7. **文字确定性输出。** 图像生成阶段不生成可见文字；Presentation Renderer 只能在之后加入 Scene Card 中由用户提供的元数据。
 
 ## Method
 

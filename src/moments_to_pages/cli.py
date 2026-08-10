@@ -8,7 +8,9 @@ from pathlib import Path
 from .analyze import analyze_image, assign_story_roles
 from .model import load_cards, save_cards
 from .director import recommend_systems
-from .prompt_compiler import SUPPORTED_SYSTEMS, compile_manifest
+from .narrative_systems import SUPPORTED_SYSTEMS
+from .prompt_compiler import compile_manifest
+from .presentation import render_presentation_svg
 from .privacy import build_upload_consent
 from .render import render_png, render_svg
 from .review import bind_outputs, build_retry_manifest, file_sha256
@@ -52,6 +54,9 @@ def parser() -> argparse.ArgumentParser:
     consent.add_argument("--purpose", required=True)
     consent.add_argument("--confirm", action="store_true", help="Confirm that the user explicitly approved this provider, purpose, and file list")
     consent.add_argument("-o", "--output", default="upload-consent.json")
+    present = commands.add_parser("present", help="Apply deterministic typography and supplied metadata to a Render Manifest")
+    present.add_argument("manifest")
+    present.add_argument("-o", "--output", default="presentation.svg")
     return root
 
 
@@ -115,6 +120,12 @@ def main(argv: list[str] | None = None) -> int:
             user_confirmed=args.confirm,
         )
         Path(args.output).write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n")
+    elif args.command == "present":
+        manifest_path = Path(args.manifest)
+        output = Path(args.output)
+        if output.suffix.lower() != ".svg":
+            raise SystemExit("Presentation output extension must be .svg")
+        render_presentation_svg(json.loads(manifest_path.read_text()), output, base=manifest_path.resolve().parent)
     elif args.command == "render":
         story_path = Path(args.story)
         output = Path(args.output) if args.output else Path(f"story.{args.format}")

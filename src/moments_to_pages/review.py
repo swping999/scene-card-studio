@@ -188,7 +188,7 @@ def build_retry_manifest(
         raise ValueError(f"Assessment contains unknown prompt ids: {unknown}")
 
     sequence_failed: list[str] = []
-    if manifest.get("system") == "cinematic-storyboard" and len(original) > 1:
+    if manifest.get("sequence_review_required") and len(original) > 1:
         _, sequence_failed = sequence_review_decision(assessment.get("sequence_scores", {}))
 
     output = deepcopy(manifest)

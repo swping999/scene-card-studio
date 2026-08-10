@@ -51,6 +51,32 @@ def test_analyze_paths_are_relative_to_nested_story(tmp_path: Path, monkeypatch)
     assert json.loads(manifest.read_text())["prompts"][0]["sources"][0]["sha256"]
 
 
+def test_deterministic_presentation_uses_only_bound_metadata(tmp_path: Path, monkeypatch):
+    story = _story(tmp_path, 1)
+    data = json.loads(story.read_text())
+    data[0]["metadata"] = {"location": "Harbor Road", "date": "2026-08-10", "catalogue_id": "SCS-001"}
+    story.write_text(json.dumps(data))
+    manifest = tmp_path / "prompt-manifest.json"
+    assert main(["compile", str(story), "--system", "museum-catalogue", "-o", str(manifest)]) == 0
+    prompt = json.loads(manifest.read_text())["prompts"][0]
+    candidate = tmp_path / "candidate.png"
+    contract = prompt["output_contract"]
+    Image.new("RGB", (contract["width"], contract["height"]), "navy").save(candidate)
+    monkeypatch.chdir(tmp_path)
+    render_manifest = tmp_path / "render-manifest.json"
+    assert main([
+        "bind-outputs", str(manifest), "--result", f"{prompt['id']}={candidate.name}", "-o", str(render_manifest)
+    ]) == 0
+    presentation = tmp_path / "presentation.svg"
+    assert main(["present", str(render_manifest), "-o", str(presentation)]) == 0
+    svg = presentation.read_text()
+    assert "MUSEUM CATALOGUE" in svg.upper()
+    assert "Harbor Road" in svg
+    assert "2026-08-10" in svg
+    assert "SCS-001" in svg
+    assert "invented place" not in svg
+
+
 def test_svg_systems_are_distinct_and_paths_are_output_relative(tmp_path: Path):
     story = _story(tmp_path)
     hashes = set()

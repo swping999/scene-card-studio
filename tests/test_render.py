@@ -3,7 +3,8 @@ from pathlib import Path
 import pytest
 
 from moments_to_pages.director import recommend_systems
-from moments_to_pages.model import Direction, SceneCard, load_cards, save_cards
+from moments_to_pages.model import Direction, SceneCard, SourceMetadata, load_cards, save_cards
+from moments_to_pages.narrative_systems import SUPPORTED_SYSTEMS
 from moments_to_pages.render import render_png, render_svg
 
 
@@ -19,10 +20,7 @@ def test_roundtrip_and_render(tmp_path: Path):
     assert "SEA WIND" in result
     assert "SCENE CARD STUDIO" in result
     assert result.endswith("</svg>\n")
-    assert recommend_systems(cards)[0].system in {
-        "editorial-sequence", "memory-atlas", "field-log", "family-archive",
-        "cinematic-storyboard", "minimal-editorial",
-    }
+    assert recommend_systems(cards)[0].system in SUPPORTED_SYSTEMS
 
 
 def test_scene_card_rejects_illegal_svg_controls(tmp_path: Path):
@@ -42,3 +40,16 @@ def test_mixed_legacy_and_current_schema_migrates_without_direction_crash():
     card = SceneCard.from_dict(value)
     assert card.interpretation.narrative_intent == "current reading"
     assert card.interpretation.emotional_tone == value["interpretation"]["emotional_tone"]
+
+
+def test_supplied_metadata_roundtrips_without_inference(tmp_path: Path):
+    card = SceneCard(
+        "photo.jpg", 10, 10, ["#112233"], .5, .5, "landscape", "MOMENT",
+        metadata=SourceMetadata(date="2026-08-10", location="Harbor Road", catalogue_id="SCS-001"),
+    )
+    story = tmp_path / "story.json"
+    save_cards([card], story)
+    loaded = load_cards(story, resolve_sources=False)[0]
+    assert loaded.metadata.date == "2026-08-10"
+    assert loaded.metadata.location == "Harbor Road"
+    assert loaded.metadata.collection == ""

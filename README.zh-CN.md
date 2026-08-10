@@ -66,7 +66,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 
 ![摄影与手绘融合的记忆地图案例](examples/outputs/memory-atlas-ai-composite.png)
 
-适合旅程、距离、地点与空间记忆。真实建筑保持摄影质感，地点之间的地理空间则转化为手绘记忆；系统不会假设每段旅程都包含“归来”。
+适合旅程、距离、地点与空间记忆。默认 Profile 与 `watercolor-contour` 保留真实建筑的摄影质感，`watercolor-chronicle` 则可以把人物和地点一起重绘；系统不会假设每段旅程都包含“归来”。
 
 ### Field Log｜现场日志
 
@@ -86,11 +86,26 @@ Scene Card 将信息明确分成三层：
 
 这种拆分避免把 AI 的推测伪装成照片事实，也允许用户在编译 Prompt 前修改任何导演判断。自动分析保持克制，所有 Scene Card 决策都可以编辑。
 
-## v0.3.3 · 可复核的生成合同
+## v0.4.0 · 叙事系统、表达 Profile 与确定性文字
 
-Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持四个核心系统：`cinematic-storyboard`、`minimal-editorial`、`memory-atlas` 和 `family-archive`。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认使用 `source-led`。
+Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持十个 Narrative System。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认仍为 `source-led`。
 
-`memory-atlas` 现已加入原创的 `full-watercolor-memory` Profile。它不同于在手绘地理中保留摄影锚点的 `watercolor-contour`：人物、服装、建筑、风景和空间过渡都会在同一种连续水彩媒介中重新绘制，同时保留身份、姿势、空间证据和源照片色彩。生成合同明确禁止残留摄影像素、抠图边缘、模仿具名艺术家或使用未经授权的风格参考图。
+| Narrative System | 展示名称 | 阅读机制 |
+| --- | --- | --- |
+| `cinematic-storyboard` | Cinematic Sequence | 时间连续、动机光线与镜头关系 |
+| `memory-atlas` | Memory Atlas | 地点、距离、方向与空间记忆 |
+| `family-archive` | Family Chronicle | 用户提供的人物、物件、动作与时间关系 |
+| `minimal-editorial` | Quiet Editorial | 层级、留白、光线与材质节奏 |
+| `editorial-sequence` | Editorial Rhythm | 顺序、尺度、对比、密度与停顿 |
+| `field-log` | Field Log | 可观察证据与纪实语境 |
+| `museum-catalogue` | Museum Catalogue | 可检查的图录画面与用户提供的藏品信息 |
+| `travel-journal` | Travel Journal | 移动、停顿、门槛与用户提供的旅行证据 |
+| `street-reportage` | Street Reportage | 公共空间中的真实动作与事实序列 |
+| `fashion-editorial` | Fashion Editorial | 姿势、服装结构、裁切与镜头尺度节奏 |
+
+可复用 Profile 包括 `watercolor-chronicle`、`heritage-portrait` 和约束更严格、锁定人物身份的 `dream-logic`。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名。
+
+所有可见文字现已移出图片生成阶段。Manifest 会提供 `presentation_contract`，`scene-card-studio present` 只把用户提供的标题、日期、地点、收藏名称和藏品编号确定性地排进 SVG；缺失信息直接省略，不进行猜测。
 
 每条编译提示词都固定包含十个模块：
 
@@ -111,16 +126,7 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 
 ## 不是风格菜单
 
-项目通过“记录方式 / 表达机制”扩展，而不是堆叠复古、电影感、水彩等效果。适合扩展的方向包括：
-
-- `family-archive`：家庭时间档案；
-- `contact-sheet`：摄影选片与淘汰逻辑；
-- `journey-sequence`：旅程与空间推进；
-- `memory-atlas`：地点、物件和记忆连接；
-- `field-log`：现场观察记录；
-- `exhibition-label`：策展顺序和作品说明。
-
-每个 Narrative System 都必须说明它承担了什么叙事工作，只有视觉关键词不算一个系统。
+项目通过“记录方式 / 表达机制”扩展，而不是堆叠复古、电影感、水彩等效果。水彩、传统影像工艺、黑白处理和 Dream Logic 都属于可替换 Profile。每个 Narrative System 都必须说明它承担了什么叙事工作，只有视觉关键词不算一个系统。
 
 ## 快速开始
 
@@ -131,16 +137,18 @@ python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
-scene-card-studio compile story.json --system memory-atlas --expression-profile full-watercolor-memory --output watercolor-memory-manifest.json
+scene-card-studio compile story.json --system memory-atlas --expression-profile watercolor-chronicle --output watercolor-memory-manifest.json
+scene-card-studio compile story.json --system museum-catalogue --expression-profile heritage-portrait --output catalogue-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
 scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
+scene-card-studio present render-manifest.json --output presentation.svg
 scene-card-studio retry render-manifest.json assessment.json --output retry-manifest.json
 scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-电影与极简系统会为每张源图编译一条独立 Prompt；空间与档案系统会编译一条多源合成 Prompt。云端合成前必须记录 provider、用途和精确上传列表，并由用户明确确认；未同意时 Skill 只生成本地 Workprint 与 Prompt Manifest。正式审核拒绝未经绑定的 Prompt Manifest。SVG 安全嵌入会完整解码并重新编码图片、清除尾随数据与元数据，并限制源文件字节数和像素数。版面默认使用 `presentation`；需要查看观察、理解、角色和导演备注时使用 `--mode workprint`。
+电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 系统会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 使用多源合成。云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认。正式审核拒绝未经绑定的 Prompt Manifest。`present` 会核验候选图片哈希，并让生成图像与确定性文字保持独立来源层。SVG 安全嵌入仍会完整解码和重编码源图、清除尾随数据与元数据，并限制字节数和像素数。
 
 ## Codex Skill
 

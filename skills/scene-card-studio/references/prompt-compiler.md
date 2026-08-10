@@ -1,6 +1,6 @@
 # Prompt Compiler and aesthetic review
 
-Use the compiler for presentation-quality generation with `cinematic-storyboard`, `minimal-editorial`, `memory-atlas`, or `family-archive`.
+Use the compiler for presentation-quality generation with any Narrative System listed in `systems-and-profiles.md`.
 
 ## Compile
 
@@ -17,9 +17,11 @@ For `memory-atlas`, choose deliberately:
 
 - `source-led` derives the visual language only from supplied evidence;
 - `watercolor-contour` keeps people and places photographic while drawing the remembered geography around them;
-- `full-watercolor-memory` repaints people, clothing, architecture, landscape, and spatial transitions in one continuous watercolor medium while preserving identity and source geometry.
+- `watercolor-chronicle` repaints people, clothing, architecture, landscape, and spatial transitions in one continuous watercolor medium while preserving identity and source geometry.
 
-Do not provide a named artist or unlicensed artwork as a style reference for `full-watercolor-memory`.
+`full-watercolor-memory` remains a compatibility alias. Prefer the canonical `watercolor-chronicle` name in new Manifests.
+
+Do not provide a named artist or unlicensed artwork as a style reference for `watercolor-chronicle` or its compatibility alias.
 
 Each prompt contains:
 
@@ -34,7 +36,13 @@ Each prompt contains:
 9. exclusions;
 10. output contract and format.
 
-For cinematic and minimal systems, the compiler emits one prompt per source. For memory and archive systems, it emits one multi-source synthesis prompt. A cinematic manifest also includes one shared sequence contract.
+The compiler emits one prompt per source for Cinematic Sequence, Quiet Editorial, Editorial Rhythm, Field Log, Museum Catalogue, Street Reportage, and Fashion Editorial. It emits one multi-source synthesis prompt for Memory Atlas, Family Chronicle, and Travel Journal. Sequence systems include a shared continuity contract.
+
+Every Manifest also includes a `presentation_contract`. Generated images must contain no visible typography. After binding candidate outputs, apply only supplied Scene Card metadata with:
+
+```bash
+scene-card-studio present render-manifest.json --output presentation.svg
+```
 
 Do not upload yet. Read `privacy.md`, show the exact provider, purpose, and `privacy.files`, obtain explicit consent, and record it. Then pass only approved source files and use every compiled module.
 
@@ -62,7 +70,7 @@ Score every frame from 1 to 5 for:
 - `system_distinctiveness`;
 - `artifact_control`.
 
-For cinematic sequences, also score:
+When `sequence_review_required` is true, also score:
 
 - `subject_continuity`;
 - `light_color_continuity`;

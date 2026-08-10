@@ -20,11 +20,12 @@ An After image must change the visual narrative, not merely place the same photo
 7. Inspect each frame with the five-dimension rubric in `prompt-compiler.md`; for sequence systems, also inspect subject continuity, light/color continuity, rhythm, and narrative arc.
 8. Review only bound `candidate_output` records; never treat benchmark `reference_output` as a reviewed candidate.
 9. Accept every prompt that passes. For failures, create a hash-bound assessment, run `scene-card-studio retry`, regenerate only `retry_prompt_ids`, bind the post-retry candidates to the Retry Manifest, and review that new Render Manifest.
+10. Keep generated pixels free of visible text. After review, use `scene-card-studio present` to apply only supplied metadata through the deterministic overlay renderer.
 
 ## Memory Atlas
 
 - With `source-led` or `watercolor-contour`, keep actual people, buildings, and places as photographic fragments and draw the remembered geography between them.
-- With `full-watercolor-memory`, repaint faces, skin, hair, clothing, buildings, landscape, and geography in one continuous watercolor medium. Preserve identity, pose, anatomy, architecture, horizon, light direction, and source order.
+- With `watercolor-chronicle`, repaint faces, skin, hair, clothing, buildings, landscape, and geography in one continuous watercolor medium. Preserve identity, pose, anatomy, architecture, horizon, light direction, and source order. `full-watercolor-memory` is only a compatibility alias for older Memory Atlas Manifests.
 - For full watercolor, reject any result that retains photographic pixels, pasted cutout edges, synthetic skin, or a photo-plus-watercolor-border appearance.
 - Use transparent washes, paper tooth, restrained wet-on-wet diffusion, and selective dry-brush detail as general medium properties; do not imitate a named artist.
 - Avoid arrows, digital route lines, flowcharts, and generic map pins.
@@ -48,6 +49,14 @@ An After image must change the visual narrative, not merely place the same photo
 - Give each source object its own continuous photographic scene.
 - Remove accidental clutter and build hierarchy through scale, negative space, light, shadow, and material rhythm.
 - Avoid decorative prop styling, abstract overlays, fake magazine mastheads, generic luxury branding, and multi-object collages.
+
+## Museum, Travel, Street, and Fashion
+
+- Museum Catalogue: create inspectable one-source plates; never invent provenance, period, maker, value, collection, or accession data.
+- Travel Journal: synthesize only supplied movement, thresholds, tickets, places, and pauses; never invent dates, routes, or destinations.
+- Street Reportage: preserve observed public gestures, body count, and event context; never stage urgency or sensationalize subjects.
+- Fashion Editorial: preserve identity, anatomy, garment construction, accessories, and fabric behavior while using shot scale and crop rhythm.
+- For all four, generate no visible captions, dates, places, catalogue numbers, mastheads, or brands. Add supplied metadata later with the deterministic renderer.
 
 ## Delivery
 

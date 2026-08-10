@@ -72,7 +72,7 @@ def _assessment(manifest: dict, manifest_hash: str, scores: dict | None = None) 
     }
 
 
-def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Path):
+def test_all_systems_compile_with_policy_profiles_and_presentation_contract(tmp_path: Path):
     cards = _cards(tmp_path)
     expected = {
         "subject_fidelity", "transformation_policy", "narrative_intent", "composition", "lighting", "material",
@@ -82,16 +82,20 @@ def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Pat
     for system in SUPPORTED_SYSTEMS:
         manifest = compile_manifest(cards, system, source_root=tmp_path)
         manifests[system] = manifest
-        assert manifest["compiler_version"] == "0.3.3"
-        assert manifest["schema_version"] == "1.2"
+        assert manifest["compiler_version"] == "0.4.0"
+        assert manifest["schema_version"] == "1.3"
         assert manifest["expression_profile"] == "source-led"
         assert set(manifest["prompts"][0]["blocks"]) == expected
         assert manifest["prompts"][0]["sources"][0]["sha256"]
         assert set(manifest["prompts"][0]["output_contract"]) == {"mime_type", "width", "height", "aspect_ratio"}
         assert "MUST REMOVE — plastic sign" in manifest["prompts"][0]["compiled_prompt"]
         assert manifest["privacy"]["upload_requires_explicit_consent"] is True
-    assert len(manifests["cinematic-storyboard"]["prompts"]) == 2
-    assert len(manifests["minimal-editorial"]["prompts"]) == 2
+        assert manifest["presentation_contract"]["image_generation_text_policy"] == "no-visible-text"
+        assert manifest["system_display_name"]
+    for system in ("cinematic-storyboard", "minimal-editorial", "editorial-sequence", "field-log", "museum-catalogue", "street-reportage", "fashion-editorial"):
+        assert len(manifests[system]["prompts"]) == 2
+    for system in ("memory-atlas", "family-archive", "travel-journal"):
+        assert len(manifests[system]["prompts"]) == 1
     watercolor = compile_manifest(cards, "memory-atlas", source_root=tmp_path, expression_profile="watercolor-contour")
     assert "watercolor terrain" in watercolor["prompts"][0]["compiled_prompt"]
     assert "watercolor terrain" not in manifests["memory-atlas"]["prompts"][0]["compiled_prompt"]
@@ -103,7 +107,7 @@ def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Pat
     )
     full_prompt = full_watercolor["prompts"][0]["compiled_prompt"]
     assert "full-watercolor-memory" in full_watercolor["available_expression_profiles"]
-    assert "faces, skin, hair, clothing, architecture, sea, sky, and terrain" in full_prompt
+    assert "faces, skin, hair, clothing, objects, architecture, sky, water, and terrain" in full_prompt
     assert "medium-only transformation of the entire visible image" in full_prompt
     assert "Leave no photographic pixels" in full_prompt
     assert "one continuous hand-painted watercolor work" in full_prompt
@@ -111,9 +115,40 @@ def test_four_systems_compile_with_policy_and_replaceable_profiles(tmp_path: Pat
     assert "recognizable photographic anchor" not in full_prompt
     assert "MUST PRESERVE — person, rainy street" in full_prompt
     assert "MUST REMOVE — plastic sign" in full_prompt
+    canonical = compile_manifest(cards, "memory-atlas", source_root=tmp_path, expression_profile="watercolor-chronicle")
+    assert canonical["expression_profile"] == "watercolor-chronicle"
+    assert full_watercolor["expression_profile_alias_for"] == "watercolor-chronicle"
     widescreen = compile_manifest(cards[:1], "cinematic-storyboard", source_root=tmp_path, aspect_ratio="16:9")
     contract = widescreen["prompts"][0]["output_contract"]
     assert contract["width"] * 9 == contract["height"] * 16
+
+
+def test_new_systems_and_profiles_have_distinct_director_rules(tmp_path: Path):
+    cards = _cards(tmp_path)
+    expected_phrases = {
+        "museum-catalogue": "inspectable catalogue plate",
+        "travel-journal": "movement, pauses, thresholds",
+        "street-reportage": "one reportage beat",
+        "fashion-editorial": "editorial beat without inventing a brand campaign",
+        "editorial-sequence": "sequencing, scale, pause, and contrast",
+        "field-log": "field evidence",
+    }
+    compiled = {}
+    for system, phrase in expected_phrases.items():
+        manifest = compile_manifest(cards, system, source_root=tmp_path)
+        prompt = manifest["prompts"][0]["compiled_prompt"]
+        compiled[system] = prompt
+        assert phrase in prompt
+        assert "deterministic presentation layer" in prompt or system in {"travel-journal"}
+    assert len({sha256(value.encode()).hexdigest() for value in compiled.values()}) == len(compiled)
+
+    heritage = compile_manifest(cards, "family-archive", source_root=tmp_path, expression_profile="heritage-portrait")
+    assert "silver-gelatin" in heritage["prompts"][0]["compiled_prompt"]
+    assert "do not fabricate ancestry" in heritage["prompts"][0]["compiled_prompt"]
+    dream = compile_manifest(cards, "fashion-editorial", source_root=tmp_path, expression_profile="dream-logic")
+    dream_prompt = dream["prompts"][0]["compiled_prompt"]
+    assert "one coherent impossible spatial rule" in dream_prompt
+    assert "No random floating-object collage" in dream_prompt
 
 
 def test_compiler_fails_closed_for_missing_source(tmp_path: Path):

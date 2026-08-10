@@ -8,15 +8,11 @@ from typing import Any
 
 from .expression_profiles import expression_profile_names, resolve_expression_profile
 from .model import SceneCard
+from .narrative_systems import SUPPORTED_SYSTEMS, resolve_narrative_system
+from .presentation import build_presentation_contract
 
 
-COMPILER_VERSION = "0.3.3"
-SUPPORTED_SYSTEMS = (
-    "cinematic-storyboard",
-    "minimal-editorial",
-    "memory-atlas",
-    "family-archive",
-)
+COMPILER_VERSION = "0.4.0"
 
 
 @dataclass(frozen=True)
@@ -158,6 +154,33 @@ def _base_narrative(card: SceneCard) -> list[str]:
     ]
 
 
+def _profile_subject_lines(profile: dict[str, Any]) -> list[str]:
+    return list(profile.get("subject_fidelity", []))
+
+
+def _profile_policy_lines(profile: dict[str, Any]) -> list[str]:
+    return list(profile.get("transformation_policy", []))
+
+
+def _profile_exclusions(profile: dict[str, Any]) -> list[str]:
+    return list(profile.get("exclusions", []))
+
+
+def _profile_output(profile: dict[str, Any]) -> list[str]:
+    return list(profile.get("output", []))
+
+
+def _render_medium(profile: dict[str, Any]) -> str:
+    mode = profile.get("render_mode")
+    if mode == "full-redraw":
+        return "fully painted"
+    if mode == "identity-locked-surrealism":
+        return "materially coherent surreal"
+    if mode == "heritage-photograph":
+        return "heritage photographic"
+    return "photographic"
+
+
 def _sequence_context(cards: list[SceneCard]) -> str:
     beats = [
         f"{index + 1:02d} {card.story_role}: {card.interpretation.narrative_intent}; tone {_joined(card.interpretation.emotional_tone, 'quiet')}"
@@ -296,13 +319,18 @@ def _family_archive_blocks(cards: list[SceneCard], aspect_ratio: str, profile: d
     subjects = [_joined(_policy_values(card)[0], Path(card.source).stem) for card in cards]
     gestures = [_joined([card.observation.dominant_gesture], "a visible gesture") for card in cards]
     palette = _joined([color for card in cards for color in card.palette[:2]], "source-derived colors")
+    full_redraw = profile.get("render_mode") == "full-redraw"
     return PromptBlocks(
         subject_fidelity=[
             f"Preserve the supplied documentary subjects and visible actions: {'; '.join(subjects)}.",
             f"Keep faces, hands, clothing, body proportions, object handling, and gestures faithful: {'; '.join(gestures)}.",
             "Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact.",
+            *_profile_subject_lines(profile),
         ],
-        transformation_policy=[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+        transformation_policy=[
+            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+            *_profile_policy_lines(profile),
+        ],
         narrative_intent=[
             "Build archival meaning only from the supplied Scene Card interpretations; do not assume care, inheritance, continuity, or family relationships.",
             *_multi_card_context(cards),
@@ -321,8 +349,133 @@ def _family_archive_blocks(cards: list[SceneCard], aspect_ratio: str, profile: d
         exclusions=[
             "No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.",
             "No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.",
+            *_profile_exclusions(profile),
         ],
-        output=[f"Return one integrated PNG documentary archive artifact at exactly {aspect_ratio}.", "Subjects and gestures must remain photographic, natural, and immediately recognizable."],
+        output=[
+            f"Return one integrated PNG documentary archive artifact at exactly {aspect_ratio}.",
+            "Subjects and gestures must remain natural and immediately recognizable; render them as painted rather than photographic only when the selected profile explicitly requires full redraw."
+            if full_redraw
+            else "Subjects and gestures must remain photographic, natural, and immediately recognizable.",
+            *_profile_output(profile),
+        ],
+    )
+
+
+def _single_extended_blocks(
+    card: SceneCard,
+    aspect_ratio: str,
+    profile: dict[str, Any],
+    sequence_context: str,
+    system: str,
+) -> PromptBlocks:
+    palette = _joined(card.palette[:4], "source-derived colors")
+    quiet = _joined(card.observation.quiet_regions, "the least distracting source region")
+    templates: dict[str, dict[str, list[str]]] = {
+        "editorial-sequence": {
+            "narrative": ["Let sequencing, scale, pause, and contrast carry the reading; do not invent an event between frames."],
+            "composition": ["Create one standalone continuous image for this beat, not a designed page, border, or multi-photo collage."],
+            "spatial": ["Use the Scene Card role and layout emphasis to make this frame distinct while preserving continuity with adjacent beats."],
+            "exclusions": ["No equal-grid montage, fake magazine page, generic moodboard, ornamental typography, or unrelated props."],
+        },
+        "field-log": {
+            "narrative": ["Treat observed subjects, gesture, material condition, and environment as field evidence; interpretation must remain visibly secondary."],
+            "composition": ["Keep context around the subject and make the observed gesture legible without staging or cinematic exaggeration."],
+            "spatial": ["Retain source scale cues, physical support, and environmental relationships so the record remains inspectable."],
+            "exclusions": ["No dramatized reenactment, hero lighting, false scientific labels, specimen fiction, or beautification."],
+        },
+        "museum-catalogue": {
+            "narrative": ["Present the supplied subject as an inspectable catalogue plate; do not claim provenance, period, maker, value, or collection history absent from metadata."],
+            "composition": ["Create one clean continuous plate with controlled margins inside the image and a complete, uncropped view of identity-bearing details."],
+            "spatial": ["Preserve scale cues, support, joins, repairs, wear, and material relief; use a neutral ground only when it does not alter evidence."],
+            "exclusions": ["No fake museum room, pedestal spectacle, auction luxury styling, invented accession label, certificate, frame, or wall text."],
+        },
+        "street-reportage": {
+            "narrative": ["Make the supplied observed event and its context readable as one reportage beat; do not fabricate urgency, conflict, or chronology."],
+            "composition": ["Prioritize the decisive visible gesture while retaining enough street context to understand where bodies and objects stand."],
+            "spatial": ["Preserve crowd count, body position, gaze, signage geometry, vehicle placement, and the source event's directional movement."],
+            "exclusions": ["No staged crisis, poverty aesthetic, voyeuristic crop, crushed faces, fake press caption, or sensational news treatment."],
+        },
+        "fashion-editorial": {
+            "narrative": ["Use pose, garment construction, movement, and shot-scale contrast to create an editorial beat without inventing a brand campaign."],
+            "composition": ["Use assertive full-bleed framing and intentional crop tension while keeping face, hands, joints, and garment construction anatomically credible."],
+            "spatial": ["Preserve the relationship between body, clothing, accessories, floor, furniture, and location; vary shot scale across the sequence."],
+            "exclusions": ["No fake brand, logo, masthead, product claim, impossible garment seams, beauty-filter skin, extra fingers, or celebrity imitation."],
+        },
+    }
+    template = templates[system]
+    sequence_line = (
+        [f"Sequence contract shared with the other frames: {sequence_context}."]
+        if system in {"editorial-sequence", "street-reportage", "fashion-editorial"}
+        else []
+    )
+    return PromptBlocks(
+        subject_fidelity=[*_base_fidelity(card), *_profile_subject_lines(profile)],
+        transformation_policy=[*_transformation_lines(card), *_profile_policy_lines(profile)],
+        narrative_intent=[*_base_narrative(card), *template["narrative"]],
+        composition=[
+            *template["composition"],
+            f"Use {quiet} as controlled breathing room where compatible with the observed scene.",
+            *profile["composition"],
+        ],
+        lighting=[f"Build from the source palette ({palette}) and preserve truthful skin, object, and environment relationships.", *profile["lighting"]],
+        material=[*profile["material"], "Keep identity-bearing surface evidence specific; avoid a generic preset finish."],
+        spatial_relationships=[*template["spatial"], *sequence_line],
+        text_strategy=[
+            "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
+            "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.",
+        ],
+        exclusions=[*template["exclusions"], "Do not imitate a named artist, photographer, publication, brand, or campaign.", *_profile_exclusions(profile)],
+        output=[
+            f"Return one standalone {_render_medium(profile)} PNG frame at exactly {aspect_ratio}.",
+            "Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.",
+            *_profile_output(profile),
+        ],
+    )
+
+
+def _travel_journal_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dict[str, Any]) -> PromptBlocks:
+    subjects = [_joined(_policy_values(card)[0], Path(card.source).stem) for card in cards]
+    palette = _joined([color for card in cards for color in card.palette[:2]], "source-derived colors")
+    full_redraw = profile.get("render_mode") == "full-redraw"
+    return PromptBlocks(
+        subject_fidelity=[
+            f"Preserve every supplied person, place, object, and threshold as a recognizable {'painted' if full_redraw else 'photographic'} journey anchor: {'; '.join(subjects)}.",
+            "Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to their sources.",
+            *_profile_subject_lines(profile),
+        ],
+        transformation_policy=[
+            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+            *_profile_policy_lines(profile),
+        ],
+        narrative_intent=[
+            "Build a journey from supplied movement, pauses, thresholds, and Scene Card roles; do not invent a destination, return, date, or route.",
+            *_multi_card_context(cards),
+        ],
+        composition=[
+            "Use varied scale and spatial adjacency to connect the journey; avoid an equal postcard grid or literal app map.",
+            "Treat tickets, maps, receipts, and handwriting as usable evidence only when they were supplied or explicitly authorized.",
+            *profile["composition"],
+        ],
+        lighting=[f"Use the combined source palette ({palette}) while retaining distinct weather and time-of-day evidence.", *profile["lighting"]],
+        material=[*profile["material"], "Every paper, route, or travel mark must correspond to supplied evidence rather than decorative tourism motifs."],
+        spatial_relationships=[
+            "Follow source order and story roles unless the user explicitly approves reordering.",
+            "Connect places through visible direction, repeated objects, thresholds, and supplied metadata rather than invented geography.",
+        ],
+        text_strategy=[
+            "Generate no dates, place names, coordinates, tickets, stamps, handwriting, captions, or route labels inside the image.",
+            "Place only user-supplied metadata later through the deterministic presentation_contract.",
+        ],
+        exclusions=[
+            "No generic scrapbook kit, tourism poster, passport-stamp collage, airline branding, app map, pins, arrows, or fabricated ephemera.",
+            "No named-artist or named-travel-publication imitation.",
+            *_profile_exclusions(profile),
+        ],
+        output=[
+            f"Return one integrated {_render_medium(profile)} PNG journey artifact at exactly {aspect_ratio}.",
+            "Every supplied source must contribute a recognizable narrative anchor.",
+            *_profile_output(profile),
+        ],
     )
 
 
@@ -336,32 +489,32 @@ def compile_manifest(
     story_path: str | None = None,
     reference_outputs: list[str] | None = None,
 ) -> dict[str, Any]:
-    if system not in SUPPORTED_SYSTEMS:
-        raise ValueError(f"Unsupported prompt system: {system}")
+    spec = resolve_narrative_system(system)
     if not cards:
         raise ValueError("At least one Scene Card is required")
     for card in cards:
         card.validate()
     profile = resolve_expression_profile(system, expression_profile)
     references = reference_outputs or []
-    if system in {"cinematic-storyboard", "minimal-editorial"} and len(references) not in {0, len(cards)}:
+    if spec["prompt_mode"] == "per-source" and len(references) not in {0, len(cards)}:
         raise ValueError(f"{system} requires either zero reference outputs or one per Scene Card")
-    if system in {"memory-atlas", "family-archive"} and len(references) > 1:
+    if spec["prompt_mode"] == "synthesis" and len(references) > 1:
         raise ValueError(f"{system} accepts at most one reference output")
     prompts: list[dict[str, Any]] = []
     sequence_context = _sequence_context(cards)
 
-    if system in {"cinematic-storyboard", "minimal-editorial"}:
+    if spec["prompt_mode"] == "per-source":
         for index, card in enumerate(cards):
             ratio = _aspect_ratio(card, aspect_ratio)
-            blocks = (
-                _cinematic_blocks(card, ratio, profile, sequence_context)
-                if system == "cinematic-storyboard"
-                else _minimal_blocks(card, ratio, profile)
-            )
+            if system == "cinematic-storyboard":
+                blocks = _cinematic_blocks(card, ratio, profile, sequence_context)
+            elif system == "minimal-editorial":
+                blocks = _minimal_blocks(card, ratio, profile)
+            else:
+                blocks = _single_extended_blocks(card, ratio, profile, sequence_context, system)
             item: dict[str, Any] = {
                 "id": f"{system}-{index + 1:02d}",
-                "mode": "single-frame",
+                "mode": spec["artifact_mode"],
                 "source_indexes": [index],
                 "sources": [_source_record(card.source, source_root)],
                 "output_contract": _output_contract(ratio),
@@ -373,14 +526,15 @@ def compile_manifest(
             prompts.append(item)
     else:
         ratio = aspect_ratio if aspect_ratio != "source" else "4:5"
-        blocks = (
-            _memory_atlas_blocks(cards, ratio, profile)
-            if system == "memory-atlas"
-            else _family_archive_blocks(cards, ratio, profile)
-        )
+        if system == "memory-atlas":
+            blocks = _memory_atlas_blocks(cards, ratio, profile)
+        elif system == "family-archive":
+            blocks = _family_archive_blocks(cards, ratio, profile)
+        else:
+            blocks = _travel_journal_blocks(cards, ratio, profile)
         item = {
             "id": f"{system}-01",
-            "mode": "spatial-synthesis" if system == "memory-atlas" else "archival-synthesis",
+            "mode": spec["artifact_mode"],
             "source_indexes": list(range(len(cards))),
             "sources": [_source_record(card.source, source_root) for card in cards],
             "output_contract": _output_contract(ratio),
@@ -392,16 +546,22 @@ def compile_manifest(
         prompts.append(item)
 
     upload_files = [record for prompt in prompts for record in prompt["sources"]]
+    sequence_review_required = system in {
+        "cinematic-storyboard", "editorial-sequence", "street-reportage", "fashion-editorial"
+    } and len(cards) > 1
     manifest: dict[str, Any] = {
-        "schema_version": "1.2",
+        "schema_version": "1.3",
         "compiler_version": COMPILER_VERSION,
         "system": system,
+        "system_display_name": spec["display_name"],
         "expression_profile": profile["name"],
         "available_expression_profiles": list(expression_profile_names(system)),
         "story": story_path,
         "source_base": "story-directory",
         "prompts": prompts,
+        "presentation_contract": build_presentation_contract(cards, system, [prompt["id"] for prompt in prompts]),
         "review_policy": REVIEW_POLICY,
+        "sequence_review_required": sequence_review_required,
         "privacy": {
             "upload_requires_explicit_consent": True,
             "consent_status": "not-recorded",
@@ -410,6 +570,8 @@ def compile_manifest(
             "files": upload_files,
         },
     }
-    if system == "cinematic-storyboard" and len(cards) > 1:
+    if profile.get("alias_for"):
+        manifest["expression_profile_alias_for"] = profile["alias_for"]
+    if sequence_review_required:
         manifest["sequence_context"] = sequence_context
     return manifest

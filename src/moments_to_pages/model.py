@@ -56,6 +56,15 @@ class TransformationPolicy:
 
 
 @dataclass
+class SourceMetadata:
+    date: str = ""
+    location: str = ""
+    collection: str = ""
+    catalogue_id: str = ""
+    source_note: str = ""
+
+
+@dataclass
 class SceneCard:
     source: str
     width: int
@@ -69,6 +78,7 @@ class SceneCard:
     interpretation: Interpretation = field(default_factory=Interpretation)
     direction: Direction = field(default_factory=Direction)
     transformation: TransformationPolicy = field(default_factory=TransformationPolicy)
+    metadata: SourceMetadata = field(default_factory=SourceMetadata)
 
     @property
     def story_role(self) -> str:
@@ -111,6 +121,8 @@ class SceneCard:
         _validate_string_list(self.transformation.must_preserve, "transformation.must_preserve")
         _validate_string_list(self.transformation.may_transform, "transformation.may_transform")
         _validate_string_list(self.transformation.must_remove, "transformation.must_remove")
+        for field_name in ("date", "location", "collection", "catalogue_id", "source_note"):
+            _validate_text(getattr(self.metadata, field_name), f"metadata.{field_name}")
         groups = {
             "must_preserve": {value.casefold() for value in self.transformation.must_preserve},
             "may_transform": {value.casefold() for value in self.transformation.may_transform},
@@ -134,6 +146,7 @@ class SceneCard:
         direction = value.get("direction", legacy_direction)
         interpretation = value.get("interpretation", {})
         transformation = value.get("transformation", {})
+        metadata = value.get("metadata", {})
         if isinstance(direction, dict):
             direction = dict(direction)
             for key in ("narrative_intent", "emotional_tone", "confidence"):
@@ -145,6 +158,7 @@ class SceneCard:
         value["interpretation"] = interpretation if isinstance(interpretation, Interpretation) else Interpretation(**interpretation)
         value["direction"] = direction if isinstance(direction, Direction) else Direction(**direction)
         value["transformation"] = transformation if isinstance(transformation, TransformationPolicy) else TransformationPolicy(**transformation)
+        value["metadata"] = metadata if isinstance(metadata, SourceMetadata) else SourceMetadata(**metadata)
         card = cls(**value)
         card.validate()
         return card

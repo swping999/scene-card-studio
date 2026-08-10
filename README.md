@@ -66,7 +66,7 @@ A spacious photo essay that keeps the photographs primary and makes each frame's
 
 ![Memory Atlas mixed-media example](examples/outputs/memory-atlas-ai-composite.png)
 
-A mixed-media system for journeys, distance, place, and spatial memory. It keeps actual architecture photographic while allowing the geography between places to become drawn memory; it does not assume that every journey ends in a return.
+A spatial system for journeys, distance, place, and memory. Its default and `watercolor-contour` Profiles keep actual architecture photographic; `watercolor-chronicle` can repaint people and places together. It never assumes that every journey ends in a return.
 
 ### Field Log
 
@@ -107,11 +107,26 @@ Scene Cards explicitly separate visible evidence from interpretation:
 
 The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
 
-## v0.3.3 · Auditable generation contracts
+## v0.4.0 · Systems, Profiles, and deterministic typography
 
-The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Four core systems are supported: `cinematic-storyboard`, `minimal-editorial`, `memory-atlas`, and `family-archive`. The system defines how the story is read; the profile defines how that mechanism is visually expressed. `source-led` is the default.
+The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Ten Narrative Systems are supported. The system defines how the story is read; the Profile defines how that mechanism is visually expressed. `source-led` remains the default.
 
-`memory-atlas` now includes the original `full-watercolor-memory` profile. Unlike `watercolor-contour`, which preserves photographic anchors inside a drawn geography, it repaints people, clothing, architecture, landscape, and transitions in one continuous watercolor medium while preserving identity, pose, spatial evidence, and the source palette. Its contract explicitly rejects photographic pixels, pasted cutout edges, named-artist imitation, and unlicensed style references.
+| Narrative System | Display name | Reading mechanism |
+| --- | --- | --- |
+| `cinematic-storyboard` | Cinematic Sequence | temporal continuity, motivated light, shot relationships |
+| `memory-atlas` | Memory Atlas | place, distance, direction, spatial memory |
+| `family-archive` | Family Chronicle | repeated supplied people, objects, gestures, and time |
+| `minimal-editorial` | Quiet Editorial | hierarchy, negative space, light, material rhythm |
+| `editorial-sequence` | Editorial Rhythm | sequence, scale, contrast, density, pause |
+| `field-log` | Field Log | observed evidence and documentary context |
+| `museum-catalogue` | Museum Catalogue | inspectable plates and supplied collection metadata |
+| `travel-journal` | Travel Journal | movement, pauses, thresholds, supplied journey evidence |
+| `street-reportage` | Street Reportage | observed public gestures and factual sequence |
+| `fashion-editorial` | Fashion Editorial | pose, garment construction, crop, shot-scale rhythm |
+
+Reusable Profiles include `watercolor-chronicle`, `heritage-portrait`, and the stricter identity-locked `dream-logic`. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas.
+
+Visible text is no longer delegated to the image model. Every Manifest includes a `presentation_contract`; `scene-card-studio present` applies only supplied captions, dates, locations, collection names, and catalogue identifiers as a deterministic SVG overlay. Missing metadata is omitted rather than inferred.
 
 Every compiled prompt contains the same ten modules:
 
@@ -132,7 +147,7 @@ Sequence systems additionally review subject continuity, light/color continuity,
 
 ## Narrative Systems, not style filters
 
-The project expands through recording and reading mechanisms such as `family-archive`, `cinematic-storyboard`, `minimal-editorial`, `contact-sheet`, `journey-sequence`, `memory-atlas`, `field-log`, and `exhibition-label`. A system must explain what narrative work it performs; a list of aesthetic keywords is not enough.
+The project expands through recording and reading mechanisms, not a flat menu of visual effects. Watercolor, heritage photographic process, monochrome treatment, and dream logic remain replaceable Profiles. A system must explain what narrative work it performs; a list of aesthetic keywords is not enough.
 
 ## Quick start
 
@@ -143,17 +158,19 @@ python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
-scene-card-studio compile story.json --system memory-atlas --expression-profile full-watercolor-memory --output watercolor-memory-manifest.json
+scene-card-studio compile story.json --system memory-atlas --expression-profile watercolor-chronicle --output watercolor-memory-manifest.json
+scene-card-studio compile story.json --system museum-catalogue --expression-profile heritage-portrait --output catalogue-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style memory-atlas --format svg --output story.svg
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
 scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
+scene-card-studio present render-manifest.json --output presentation.svg
 scene-card-studio retry render-manifest.json assessment.json --output retry-manifest.json
 scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-`compile` emits one prompt per source for cinematic and minimal systems, and one multi-source prompt for spatial and archival systems. Cloud synthesis requires an explicit consent record containing the provider, purpose, and exact upload list; without it, the Skill stops at local Workprint and Prompt Manifest. Formal review refuses an unbound Prompt Manifest. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits. `presentation` is the default layout mode; use `--mode workprint` when you want observations, interpretations, roles, and direction notes visible.
+`compile` emits one prompt per source for Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion systems; Memory Atlas, Family Chronicle, and Travel Journal use multi-source synthesis. Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Formal review refuses an unbound Prompt Manifest. `present` verifies bound output hashes and keeps generated pixels separate from deterministic text. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits.
 
 ## Codex Skill
 
