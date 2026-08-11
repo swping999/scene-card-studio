@@ -4,7 +4,7 @@
 
 [![Scene Card Studio opening film](docs/media/scene-card-studio-opening.gif)](docs/media/scene-card-studio-opening.mp4)
 
-▶ [Play the 3-second opening film](docs/media/scene-card-studio-opening.mp4)
+▶ [Play the 6-second opening film](docs/media/scene-card-studio-opening.mp4)
 
 > **This is not a style-transfer repository. It is a Scene Card–based visual narrative engine for personal photography.**
 

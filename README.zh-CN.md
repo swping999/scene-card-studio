@@ -4,7 +4,7 @@
 
 [![Scene Card Studio 开场视频](docs/media/scene-card-studio-opening.gif)](docs/media/scene-card-studio-opening.mp4)
 
-▶ [播放 3 秒开场视频](docs/media/scene-card-studio-opening.mp4)
+▶ [播放 6 秒开场视频](docs/media/scene-card-studio-opening.mp4)
 
 > **这不是一个照片风格转换工具，而是一套基于 Scene Card 的个人照片视觉叙事引擎。**
 
