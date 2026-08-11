@@ -118,10 +118,10 @@
       "before": "before/heritage-portrait.jpg",
       "after": "after/heritage-portrait.jpg",
       "scene_card": {
-        "observation": {"subjects": ["elderly woman", "teal cardigan", "cream blouse", "wooden chair"], "dominant_gesture": "seated frontal portrait with hands at rest", "quiet_regions": ["curtain behind the sitter"]},
-        "interpretation": {"narrative_intent": "age and presence recorded without spectacle", "emotional_tone": ["dignified", "restrained"], "confidence": 0.9, "method": "manually-directed example"},
-        "direction": {"story_role": "portrait anchor", "director_note": "Preserve age and identity; use historical material language without inventing ancestry or status.", "layout_emphasis": "face, hands, cardigan tone"},
-        "transformation": {"must_preserve": ["identity", "age", "wrinkles", "hands", "cardigan", "blouse", "seated pose"], "may_transform": ["backdrop", "light", "silver-gelatin tonality", "restrained hand color"], "must_remove": ["television", "remotes", "tissue box", "flash glare", "fake damage"]}
+        "observation": {"subjects": ["young adult woman", "short black bob", "rust-red blouse", "charcoal trousers", "rattan chair"], "dominant_gesture": "seated portrait with crossed ankles and hands at rest", "quiet_regions": ["plain wall above the sitter"]},
+        "interpretation": {"narrative_intent": "presence recorded through color and material restraint", "emotional_tone": ["calm", "gentle"], "confidence": 0.9, "method": "manually-directed example"},
+        "direction": {"story_role": "portrait anchor", "director_note": "Preserve identity and honest age; use archival material language without inventing ancestry or status.", "layout_emphasis": "face, hands, and rust-red blouse"},
+        "transformation": {"must_preserve": ["identity", "age", "short bob", "hands", "rust-red blouse", "charcoal trousers", "seated pose"], "may_transform": ["backdrop", "light", "silver-gelatin tonality", "restrained hand color", "surface softness"], "must_remove": ["bookshelf edge", "tote bag", "charging cable", "outlet", "device", "hyperreal skin detail", "fake damage"]}
       }
     },
     {

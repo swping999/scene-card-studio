@@ -62,7 +62,7 @@ Every Before below is a newly generated, deliberately unpolished phone-style sou
 
 ### 8 · Heritage Portrait
 
-| Before · flash-lit living room | After · restrained silver-gelatin and hand-colored portrait |
+| Before · ordinary reading-corner snapshot | After · gentle silver-gelatin and hand-colored portrait |
 | --- | --- |
 | ![Ordinary portrait snapshot](examples/cases/v0.4-gallery/before/heritage-portrait.jpg) | ![Directed heritage portrait](examples/cases/v0.4-gallery/after/heritage-portrait.jpg) |
 

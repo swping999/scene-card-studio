@@ -62,9 +62,9 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 
 ### 8 · Heritage Portrait｜传统影像肖像
 
-| Before · 客厅闪光灯照片 | After · 克制银盐质感与手工着色肖像 |
+| Before · 普通阅读角随手拍 | After · 柔和银盐质感与手工着色肖像 |
 | --- | --- |
-| ![普通老人肖像](examples/cases/v0.4-gallery/before/heritage-portrait.jpg) | ![传统影像肖像](examples/cases/v0.4-gallery/after/heritage-portrait.jpg) |
+| ![普通年轻女性肖像](examples/cases/v0.4-gallery/before/heritage-portrait.jpg) | ![传统影像肖像](examples/cases/v0.4-gallery/after/heritage-portrait.jpg) |
 
 ### 9 · Museum Catalogue｜博物馆图录
 
