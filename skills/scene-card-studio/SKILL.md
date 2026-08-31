@@ -1,6 +1,6 @@
 ---
 name: scene-card-studio
-description: Turn user-supplied photos into a coherent visual narrative, versioned image-generation prompts, art-directed Before/After images, and editable story layouts. Use when the user wants a photo essay, cinematic sequence, memory atlas, family chronicle, quiet editorial, field log, watercolor chronicle, heritage portrait, museum catalogue, travel journal, street reportage, fashion editorial, dream-logic treatment, contact sheet, social carousel, or sequenced photographic story.
+description: Turn one user-supplied photo or a related photo set into standalone art-directed Before/After images, a coherent visual narrative, versioned image-generation prompts, and editable story layouts. Use when the user wants a single-photo visual treatment, photo essay, cinematic sequence, memory atlas, family chronicle, quiet editorial, field log, watercolor chronicle, heritage portrait, museum catalogue, travel journal, street reportage, fashion editorial, dream-logic treatment, contact sheet, social carousel, or sequenced photographic story.
 ---
 
 # Scene Card Studio
@@ -25,10 +25,14 @@ Build a visual story from the user's photographs without imitating a named artis
    - `street-reportage` for observed public gestures and environmental context;
    - `fashion-editorial` for pose, garment construction, movement, and shot-scale rhythm.
    Use `watercolor-chronicle`, `heritage-portrait`, or `dream-logic` only where the selected system lists them as available Profiles.
-6. Decide the output tier:
+6. Choose the source mode before choosing the output tier:
+   - **Single-photo mode**: select one compatible Narrative System and Expression Profile, then produce exactly one standalone After for the supplied Before. Do not require a sequence and do not substitute a border, contact sheet, page mockup, or decorative collage for transformation.
+   - **Multi-photo per-source mode**: direct every source as its own standalone After while preserving identity and sequence continuity where relevant.
+   - **Multi-photo synthesis mode**: combine sources only when the user requests it or when the selected spatial, archival, or journey mechanism genuinely requires shared composition.
+7. Decide the output tier:
    - **Workprint**: use the deterministic renderer for analysis, sequencing, iteration, and editable layout.
    - **Presentation synthesis**: compile versioned prompts and use image generation to create a genuinely transformed artifact. Read `references/synthesis.md`, `references/prompt-compiler.md`, and `references/privacy.md`. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
-7. Write the cards to `story.json`. When the package is installed, run:
+8. Write the cards to `story.json`. When the package is installed, run:
 
 ```bash
 scene-card-studio recommend story.json
@@ -36,13 +40,13 @@ scene-card-studio render story.json --style editorial-sequence --format png --ou
 scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 ```
 
-8. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. Without consent, stop at local Workprint and Prompt Manifest output. Never treat photo analysis or prompt compilation as upload permission.
-9. After consent, use every module in each compiled prompt and pass only the approved source photographs as image references. Default to **one source photograph → one standalone After image**. Combine sources only when explicitly requested or when spatial or archival synthesis requires it.
-10. Bind generated files with `scene-card-studio bind-outputs`. Require the decoded MIME, width, height, and aspect ratio to match each `output_contract`; do not review mismatched files.
-11. Keep visible text out of image synthesis. Put only user-supplied `metadata` values into the Manifest's `presentation_contract`, then run `scene-card-studio present render-manifest.json -o presentation.svg` to apply deterministic captions, dates, places, collection names, and catalogue identifiers. Omit missing fields instead of inventing them.
-12. Review only `candidate_output` records in the Render Manifest. A `reference_output` is benchmark evidence and never satisfies formal review. For sequence systems, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
-13. If a dimension fails, write the hash-bound assessment JSON, run `scene-card-studio retry`, regenerate only `retry_prompt_ids`, and bind all resulting candidates to the Retry Manifest. Accept only a review bound to this post-retry Render Manifest. Do not reuse the pre-retry review or candidates.
-14. Return paired Before and After artifacts, Scene Cards, accepted Render Manifest, review record, deterministic presentation when used, and a short explanation. When several one-to-one transformations exist, show every pair separately.
+9. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. Without consent, stop at local Workprint and Prompt Manifest output. Never treat photo analysis or prompt compilation as upload permission.
+10. After consent, use every module in each compiled prompt and pass only the approved source photographs as image references. Default to **one source photograph → one standalone After image**. Combine sources only when explicitly requested or when spatial or archival synthesis requires it.
+11. Bind generated files with `scene-card-studio bind-outputs`. Require the decoded MIME, width, height, and aspect ratio to match each `output_contract`; do not review mismatched files.
+12. Keep visible text out of image synthesis. Put only user-supplied `metadata` values into the Manifest's `presentation_contract`, then run `scene-card-studio present render-manifest.json -o presentation.svg` to apply deterministic captions, dates, places, collection names, and catalogue identifiers. Omit missing fields instead of inventing them.
+13. Review only `candidate_output` records in the Render Manifest. A `reference_output` is benchmark evidence and never satisfies formal review. For sequence systems, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
+14. If a dimension fails, write the hash-bound assessment JSON, run `scene-card-studio retry`, regenerate only `retry_prompt_ids`, and bind all resulting candidates to the Retry Manifest. Accept only a review bound to this post-retry Render Manifest. Do not reuse the pre-retry review or candidates.
+15. Return paired Before and After artifacts, Scene Cards, accepted Render Manifest, review record, deterministic presentation when used, and a short explanation. When several one-to-one transformations exist, show every pair separately.
 
 ## Guardrails
 

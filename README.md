@@ -34,6 +34,12 @@ photos → Scene Cards → Narrative System → Prompt Compiler → image genera
 
 **Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#v040--systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
+### One photo or many
+
+- **One photo → one directed image.** Choose a compatible Narrative System and Expression Profile, then produce one standalone Before/After pair. A single photo is never forced into a contact sheet, sequence, or decorative collage.
+- **Many photos → one coherent story.** Use per-photo direction when every source needs its own After, or choose a synthesis system when place, journey, or repeated relationships need to share one artifact.
+- **Style remains editable.** The Narrative System controls how the image or story is read; the Expression Profile controls how it is visually expressed. A single photo can therefore use `source-led`, `watercolor-chronicle`, `heritage-portrait`, `dream-logic`, or another profile supported by the selected system.
+
 ## Before / After
 
 Every Before below is a newly generated, deliberately unpolished phone-style source made for this repository. Every After is a materially redirected image of that source—not the same image inside a border, contact sheet, or decorative collage. The people are fictional AI-generated subjects.
@@ -241,6 +247,12 @@ Requires Python 3.10+. Automatic analysis and PNG rendering use Pillow.
 git clone https://github.com/swping999/scene-card-studio.git
 cd scene-card-studio
 python -m pip install -e '.[images]'
+
+# One photo → one standalone directed After
+scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
+scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
+
+# Many photos → per-photo direction or multi-source synthesis
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json

@@ -34,6 +34,12 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 
 **快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#v040--叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
 
+### 单张或多张都可以
+
+- **一张照片 → 一张经过导演的独立成片。** 为它选择兼容的 Narrative System 和 Expression Profile，输出一组独立 Before/After；不会强迫单张照片变成接触表、序列或装饰拼贴。
+- **多张照片 → 一个连贯故事。** 每张都需要独立 After 时使用逐张导演；地点、旅程或重复关系需要进入同一画面时，选择多源合成系统。
+- **表达风格可以编辑。** Narrative System 决定照片或故事如何被阅读，Expression Profile 决定画面如何表达。因此单张照片也能使用 `source-led`、`watercolor-chronicle`、`heritage-portrait`、`dream-logic`，或所选系统支持的其他 Profile。
+
 ## Before / After 首页案例
 
 下面每一张 Before 都是为本项目重新生成的、刻意保留普通手机随手拍问题的原创输入；每一张 After 都对同一主体进行了实质视觉导演，不是给原图加边框、接触表或装饰拼贴。案例人物均为 AI 生成的虚构人物。
@@ -220,6 +226,12 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 git clone https://github.com/swping999/scene-card-studio.git
 cd scene-card-studio
 python -m pip install -e '.[images]'
+
+# 单张照片 → 一张独立导演成片
+scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
+scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
+
+# 多张照片 → 逐张导演或多源叙事合成
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
