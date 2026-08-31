@@ -16,6 +16,7 @@ class Recommendation:
 def recommend_systems(cards: list[SceneCard]) -> list[Recommendation]:
     if not cards:
         return []
+    single = len(cards) == 1
     gestures = " ".join(card.observation.dominant_gesture for card in cards).lower()
     intents = " ".join(card.interpretation.narrative_intent for card in cards).lower()
     subjects = " ".join(" ".join(card.observation.subjects) for card in cards).lower()
@@ -48,24 +49,24 @@ def recommend_systems(cards: list[SceneCard]) -> list[Recommendation]:
     minimal_score = .86 if average_saturation < .45 and minimal_matches >= 2 else .82 if average_saturation < .45 and minimal_matches == 1 else .54
     results = [
         Recommendation("memory-atlas", .90 if memory_matches >= 2 else .84 if memory_matches else .58,
-                       "Spatial movement and transitions can become a visible route through the sequence."),
+                       "The source's spatial cues can become one self-contained memory field." if single else "Spatial movement and transitions can become a visible route through the sequence."),
         Recommendation("field-log", .78 if average_saturation < .35 else .62,
                        "Restrained color and observational detail suit a documentary record."),
         Recommendation("family-archive", .90 if family_matches >= 2 else .86 if family_matches else .52,
-                       "Repeated domestic gestures and relationships can be read as a family record."),
+                       "The visible domestic gesture can become one restrained archival record." if single else "Repeated domestic gestures and relationships can be read as a family record."),
         Recommendation("cinematic-storyboard", cinematic_score,
-                       "Temporal continuity, motivated light, weather, and shot relationships can carry the sequence."),
+                       "Motivated light, weather, and framing can make this one directed cinematic image." if single else "Temporal continuity, motivated light, weather, and shot relationships can carry the sequence."),
         Recommendation("minimal-editorial", minimal_score,
                        "Object hierarchy, negative space, light, and material evidence can direct each frame."),
         Recommendation("editorial-sequence", .74,
-                       "Scale, pause, contrast, and source order can create an editorial rhythm across separate frames."),
+                       "Scale, pause, contrast, and negative space can direct one editorial image." if single else "Scale, pause, contrast, and source order can create an editorial rhythm across separate frames."),
         Recommendation("museum-catalogue", .88 if museum_matches >= 2 else .78 if museum_matches else .48,
-                       "Inspectable object evidence and supplied metadata can form a deterministic catalogue sequence."),
+                       "Inspectable object evidence can form one deterministic catalogue plate." if single else "Inspectable object evidence and supplied metadata can form a deterministic catalogue sequence."),
         Recommendation("travel-journal", .90 if travel_matches >= 2 else .80 if travel_matches else .50,
-                       "Supplied movement, thresholds, tickets, places, and pauses can form a journey record without invented geography."),
+                       "The visible place, threshold, or travel evidence can become one journey moment without invented geography." if single else "Supplied movement, thresholds, tickets, places, and pauses can form a journey record without invented geography."),
         Recommendation("street-reportage", .88 if street_matches >= 2 else .78 if street_matches else .46,
-                       "Observed public gestures and environmental context can become a factual reportage sequence."),
+                       "The observed public gesture and context can become one factual reportage image." if single else "Observed public gestures and environmental context can become a factual reportage sequence."),
         Recommendation("fashion-editorial", .88 if fashion_matches >= 2 else .78 if fashion_matches else .44,
-                       "Pose, garment construction, fabric behavior, and shot-scale contrast can carry an editorial sequence."),
+                       "Pose, garment construction, fabric behavior, and crop tension can carry one editorial image." if single else "Pose, garment construction, fabric behavior, and shot-scale contrast can carry an editorial sequence."),
     ]
     return sorted(results, key=lambda item: item.score, reverse=True)

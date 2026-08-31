@@ -10,8 +10,9 @@ from PIL import Image
 
 from moments_to_pages.cli import main
 from moments_to_pages.director import recommend_systems
+from moments_to_pages.expression_profiles import expression_profile_names
 from moments_to_pages.model import Direction, Interpretation, Observation, SceneCard, TransformationPolicy
-from moments_to_pages.privacy import build_upload_consent, validate_upload_consent
+from moments_to_pages.privacy import validate_upload_consent
 from moments_to_pages.prompt_compiler import SUPPORTED_SYSTEMS, compile_manifest
 from moments_to_pages.review import bind_outputs, build_retry_manifest, review_decision
 
@@ -82,8 +83,14 @@ def test_all_systems_compile_with_policy_profiles_and_presentation_contract(tmp_
     for system in SUPPORTED_SYSTEMS:
         manifest = compile_manifest(cards, system, source_root=tmp_path)
         manifests[system] = manifest
-        assert manifest["compiler_version"] == "0.4.0"
-        assert manifest["schema_version"] == "1.3"
+        assert manifest["compiler_version"] == "0.4.1"
+        assert manifest["schema_version"] == "1.4"
+        assert manifest["source_mode"] == (
+            "multi-photo-per-source"
+            if system in {"cinematic-storyboard", "minimal-editorial", "editorial-sequence", "field-log", "museum-catalogue", "street-reportage", "fashion-editorial"}
+            else "multi-photo-synthesis"
+        )
+        assert manifest["presentation_contract"]["source_mode"] == manifest["source_mode"]
         assert manifest["expression_profile"] == "source-led"
         assert set(manifest["prompts"][0]["blocks"]) == expected
         assert manifest["prompts"][0]["sources"][0]["sha256"]
@@ -121,6 +128,47 @@ def test_all_systems_compile_with_policy_profiles_and_presentation_contract(tmp_
     widescreen = compile_manifest(cards[:1], "cinematic-storyboard", source_root=tmp_path, aspect_ratio="16:9")
     contract = widescreen["prompts"][0]["output_contract"]
     assert contract["width"] * 9 == contract["height"] * 16
+
+
+def test_single_photo_contract_stays_standalone_for_every_system_and_profile(tmp_path: Path):
+    card = _cards(tmp_path)[0]
+    card.direction.story_role = "moment"
+    forbidden = (
+        "sequence contract shared",
+        "across the sequence",
+        "across separate frames",
+        "between frames",
+        "continuity with adjacent beats",
+        "follow source order",
+        "connect places through",
+        "every supplied source",
+        "frame 01 /",
+        "frame 01:",
+    )
+    for system in SUPPORTED_SYSTEMS:
+        for profile in expression_profile_names(system):
+            manifest = compile_manifest(
+                [card],
+                system,
+                source_root=tmp_path,
+                expression_profile=profile,
+            )
+            assert manifest["source_mode"] == "single-photo"
+            assert manifest["presentation_contract"]["source_mode"] == "single-photo"
+            assert manifest["sequence_review_required"] is False
+            assert len(manifest["prompts"]) == 1
+            assert manifest["prompts"][0]["output_contract"]["aspect_ratio"] == "3:2"
+            prompt = manifest["prompts"][0]["compiled_prompt"].lower()
+            assert not any(phrase in prompt for phrase in forbidden), (system, profile, prompt)
+            assert "source / moment" in prompt or system in {
+                "cinematic-storyboard",
+                "minimal-editorial",
+                "editorial-sequence",
+                "field-log",
+                "museum-catalogue",
+                "street-reportage",
+                "fashion-editorial",
+            }
 
 
 def test_new_systems_and_profiles_have_distinct_director_rules(tmp_path: Path):
@@ -337,7 +385,8 @@ def test_published_retry_example_is_a_complete_hash_chain():
     retry_path = root / "retry-example/retry-manifest.json"
     post_render_path = root / "retry-example/post-retry-render-manifest.json"
     accepted_path = root / "accepted-review.json"
-    digest = lambda path: sha256(path.read_bytes()).hexdigest()
+    def digest(path: Path) -> str:
+        return sha256(path.read_bytes()).hexdigest()
     failed_render = json.loads(failed_render_path.read_text())
     failed_review = json.loads(failed_review_path.read_text())
     retry = json.loads(retry_path.read_text())

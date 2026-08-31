@@ -36,7 +36,7 @@ Each prompt contains:
 9. exclusions;
 10. output contract and format.
 
-The compiler emits one prompt per source for Cinematic Sequence, Quiet Editorial, Editorial Rhythm, Field Log, Museum Catalogue, Street Reportage, and Fashion Editorial. It emits one multi-source synthesis prompt for Memory Atlas, Family Chronicle, and Travel Journal. Sequence systems include a shared continuity contract.
+With one Scene Card, every system emits exactly one standalone prompt, assigns `source_mode: single-photo`, and omits sequence continuity or invented adjacent scenes. With multiple Scene Cards, Cinematic Sequence, Quiet Editorial, Editorial Rhythm, Field Log, Museum Catalogue, Street Reportage, and Fashion Editorial emit one prompt per source and assign `multi-photo-per-source`; Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt and assign `multi-photo-synthesis`. Sequence systems include a shared continuity contract only when more than one source is present.
 
 Every Manifest also includes a `presentation_contract`. Generated images must contain no visible typography. After binding candidate outputs, apply only supplied Scene Card metadata with:
 

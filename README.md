@@ -3,7 +3,7 @@
 <p align="center"><strong>AI visual director for turning personal photos into structured, editable visual narratives.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.2"><img alt="Version 0.4.2" src="https://img.shields.io/badge/version-0.4.2-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.3"><img alt="Version 0.4.3" src="https://img.shields.io/badge/version-0.4.3-315c8c?style=flat-square"></a>
   <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
@@ -28,17 +28,19 @@ photos → Scene Cards → Narrative System → Prompt Compiler → image genera
 | --- | --- |
 | Input | One photograph or a related photo sequence |
 | Direction | Observable evidence → editable interpretation → explicit art direction |
-| Visual vocabulary | 10 Narrative Systems + 3 replaceable Expression Profiles |
+| Visual vocabulary | 10 Narrative Systems + 8 replaceable Expression Profiles |
 | Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
 | Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
 
-**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#v040--systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
+**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#v043--systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
 ### One photo or many
 
 - **One photo → one directed image.** Choose a compatible Narrative System and Expression Profile, then produce one standalone Before/After pair. A single photo is never forced into a contact sheet, sequence, or decorative collage.
 - **Many photos → one coherent story.** Use per-photo direction when every source needs its own After, or choose a synthesis system when place, journey, or repeated relationships need to share one artifact.
 - **Style remains editable.** The Narrative System controls how the image or story is read; the Expression Profile controls how it is visually expressed. A single photo can therefore use `source-led`, `watercolor-chronicle`, `heritage-portrait`, `dream-logic`, or another profile supported by the selected system.
+
+Check compatible combinations with `scene-card-studio profiles`. The compiler records `single-photo`, `multi-photo-per-source`, or `multi-photo-synthesis` in every Manifest so downstream tools cannot silently change the requested source mode.
 
 ## Before / After
 
@@ -184,7 +186,7 @@ Scene Cards explicitly separate visible evidence from interpretation:
     "method": "manually-directed example"
   },
   "direction": {
-    "story_role": "opening",
+    "story_role": "moment",
     "director_note": "Treat the lamp as a sign of care, not dramatic spectacle."
   }
 }
@@ -192,12 +194,12 @@ Scene Cards explicitly separate visible evidence from interpretation:
 
 - **Observation** records what is visibly present.
 - **Interpretation** records a tentative theme and emotional reading.
-- **Direction** records editable sequencing and layout decisions.
-- **Narrative Systems** decide how the sequence can be read.
+- **Direction** records editable role and layout decisions.
+- **Narrative Systems** decide how one image or a sequence can be read.
 
 The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
 
-## v0.4.0 · Systems, Profiles, and deterministic typography
+## v0.4.3 · Systems, Profiles, and deterministic typography
 
 The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Ten Narrative Systems are supported. The system defines how the story is read; the Profile defines how that mechanism is visually expressed. `source-led` remains the default.
 
@@ -214,7 +216,19 @@ The compiler turns Scene Card evidence, one Narrative System, and one replaceabl
 | `street-reportage` | Street Reportage | observed public gestures and factual sequence |
 | `fashion-editorial` | Fashion Editorial | pose, garment construction, crop, shot-scale rhythm |
 
-Reusable Profiles include `watercolor-chronicle`, `heritage-portrait`, and the stricter identity-locked `dream-logic`. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas.
+Eight replaceable Profiles are available beyond the default `source-led`: `rain-nocturne`, `quiet-window-light`, `watercolor-contour`, `watercolor-chronicle`, `graphite-paper`, `heritage-portrait`, `monochrome-reportage`, and the stricter identity-locked `dream-logic`. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas.
+
+| Expression Profile | Compatible Narrative Systems |
+| --- | --- |
+| `source-led` | all systems |
+| `rain-nocturne` | Cinematic Sequence |
+| `quiet-window-light` | Quiet Editorial |
+| `watercolor-contour` | Memory Atlas |
+| `watercolor-chronicle` | Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal |
+| `graphite-paper` | Family Chronicle |
+| `heritage-portrait` | Family Chronicle, Museum Catalogue |
+| `monochrome-reportage` | Street Reportage |
+| `dream-logic` | Memory Atlas, Fashion Editorial |
 
 Visible text is no longer delegated to the image model. Every Manifest includes a `presentation_contract`; `scene-card-studio present` applies only supplied captions, dates, locations, collection names, and catalogue identifiers as a deterministic SVG overlay. Missing metadata is omitted rather than inferred.
 
@@ -250,6 +264,7 @@ python -m pip install -e '.[images]'
 
 # One photo → one standalone directed After
 scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
+scene-card-studio profiles --system family-archive
 scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
 
 # Many photos → per-photo direction or multi-source synthesis
@@ -268,7 +283,7 @@ scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-`compile` emits one prompt per source for Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion systems; Memory Atlas, Family Chronicle, and Travel Journal use multi-source synthesis. Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Formal review refuses an unbound Prompt Manifest. `present` verifies bound output hashes and keeps generated pixels separate from deterministic text. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits.
+For one photo, every system emits exactly one standalone prompt and labels the Manifest `single-photo`; no sequence continuity or invented adjacent scene is requested. For multiple photos, Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion emit one prompt per source, while Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt. Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Formal review refuses an unbound Prompt Manifest. `present` verifies bound output hashes and keeps generated pixels separate from deterministic text. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits.
 
 ## Codex Skill
 
@@ -297,7 +312,7 @@ See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the versioned provenance re
 
 ## Contributing and security
 
-New Narrative Systems must introduce a distinct way of reading a photo sequence; new Expression Profiles must remain replaceable and may not imitate a named creator or reuse third-party visual assets. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing either one.
+New Narrative Systems must introduce a distinct way of reading one photo or a photo sequence; new Expression Profiles must remain replaceable and may not imitate a named creator or reuse third-party visual assets. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing either one.
 
 Please report suspected path traversal, unintended photo disclosure, manifest spoofing, unsafe image handling, prompt injection, or credential exposure through the repository's private security-reporting channel. See [SECURITY.md](SECURITY.md).
 

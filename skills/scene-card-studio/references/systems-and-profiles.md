@@ -19,11 +19,22 @@ Choose a Narrative System for how the photographs are read. Choose an Expression
 
 ## Expression Profiles
 
-- `watercolor-chronicle`: repaint every visible person, object, and place in one watercolor medium while preserving identity and geometry. Available for Memory Atlas, Family Chronicle, Museum Catalogue, and Travel Journal. Keep `full-watercolor-memory` as a Memory Atlas compatibility alias.
-- `heritage-portrait`: use restrained silver-gelatin tonality and hand coloring without inventing period costume, ancestry, status, or age. Available for Family Chronicle and Museum Catalogue.
-- `dream-logic`: apply one identity-locked impossible spatial rule without random collage. Available for Memory Atlas and Fashion Editorial.
+| Profile | Compatible systems | Expression rule |
+| --- | --- | --- |
+| `source-led` | all systems | derive composition, light, material, and color from the source |
+| `rain-nocturne` | Cinematic Sequence | motivated rain-night light without neon excess |
+| `quiet-window-light` | Quiet Editorial | plausible window light and tactile negative space |
+| `watercolor-contour` | Memory Atlas | photographic anchors integrated with watercolor terrain and pencil contours |
+| `watercolor-chronicle` | Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal | repaint every visible person, object, and place in one watercolor medium while preserving identity and geometry |
+| `graphite-paper` | Family Chronicle | documentary photographs, graphite studies, paper, and supplied material evidence |
+| `heritage-portrait` | Family Chronicle, Museum Catalogue | restrained silver-gelatin tonality and hand coloring without invented period identity |
+| `monochrome-reportage` | Street Reportage | detailed black-and-white evidence with restrained silver-rich grain |
+| `dream-logic` | Memory Atlas, Fashion Editorial | one identity-locked impossible spatial rule without random collage |
+
+`full-watercolor-memory` remains a Memory Atlas compatibility alias for `watercolor-chronicle`.
 
 Use only the Profiles listed in the compiled Manifest's `available_expression_profiles`.
+Run `scene-card-studio profiles` or `scene-card-studio profiles --system family-archive` to inspect compatible combinations before compiling.
 
 ## Deterministic text
 

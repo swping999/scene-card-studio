@@ -40,6 +40,7 @@ def build_presentation_contract(cards: list[SceneCard], system: str, prompt_ids:
         "schema_version": "1.0",
         "renderer": "deterministic-overlay",
         "display_name": spec["display_name"],
+        "source_mode": "single-photo" if len(cards) == 1 else ("multi-photo-per-source" if spec["prompt_mode"] == "per-source" else "multi-photo-synthesis"),
         "image_generation_text_policy": "no-visible-text",
         "allowed_metadata_fields": list(required),
         "entries": entries,

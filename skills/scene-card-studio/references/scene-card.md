@@ -34,7 +34,7 @@ Record tentative, editable meaning separately from visible evidence:
 
 Record editable presentation decisions:
 
-- `story_role`: `opening`, `development`, `pause`, or `closing`;
+- `story_role`: `moment` for a standalone photo; `opening`, `development`, `pause`, or `closing` for a sequence;
 - `director_note`: state how to treat the frame and what cliché to avoid;
 - `layout_emphasis`: the subject, gesture, relationship, or quiet region the layout should prioritize.
 

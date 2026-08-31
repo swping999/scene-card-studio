@@ -5,7 +5,7 @@ import pytest
 from moments_to_pages.director import recommend_systems
 from moments_to_pages.model import Direction, SceneCard, SourceMetadata, load_cards, save_cards
 from moments_to_pages.narrative_systems import SUPPORTED_SYSTEMS
-from moments_to_pages.render import render_png, render_svg
+from moments_to_pages.render import render_svg
 
 
 def test_roundtrip_and_render(tmp_path: Path):

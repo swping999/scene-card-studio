@@ -103,8 +103,8 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     },
     "editorial-sequence": {
         "source-led": {
-            "composition": ["Use source-supported scale changes and negative space to create rhythm across separate frames."],
-            "lighting": ["Preserve each frame's source light while keeping the sequence tonally coherent."],
+            "composition": ["Use source-supported scale and negative space to create a clear editorial rhythm."],
+            "lighting": ["Preserve source light while keeping the directed image tonally coherent."],
             "material": ["Keep photographic surfaces specific and avoid a uniform preset across unrelated materials."],
         },
     },
@@ -118,7 +118,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     "memory-atlas": {
         "source-led": {
             "composition": ["Build a spatial memory field from actual directional and geographic evidence."],
-            "lighting": ["Preserve each photographic fragment's light and unify transitions using source-derived tone."],
+            "lighting": ["Preserve the photographic source light and unify transitions using source-derived tone."],
             "material": ["Use only user-supplied or Scene Card-supported map, paper, terrain, drawing, or environmental materials."],
         },
         "watercolor-contour": {
@@ -132,8 +132,8 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     },
     "family-archive": {
         "source-led": {
-            "composition": ["Build an archival relationship from repeated supplied gestures and objects, varying scale by story role."],
-            "lighting": ["Preserve natural documentary light and modest tonal differences between sources."],
+            "composition": ["Build an archival relationship from supplied gestures and objects, varying scale by Scene Card emphasis."],
+            "lighting": ["Preserve natural documentary light and source-supported tonal differences."],
             "material": ["Use only archival materials supported by supplied objects, surfaces, and repeated gestures."],
         },
         "graphite-paper": {
@@ -156,7 +156,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     "travel-journal": {
         "source-led": {
             "composition": ["Build a journey field from supplied routes, thresholds, objects, and pauses without forcing a literal map."],
-            "lighting": ["Preserve distinct source times and weather while using palette relationships to connect the journey."],
+            "lighting": ["Preserve source time and weather evidence while using palette relationships to shape the journey."],
             "material": ["Use only supplied or explicitly authorized tickets, maps, handwriting, paper, fabric, and environmental traces."],
         },
         "watercolor-chronicle": WATERCOLOR_CHRONICLE,
@@ -175,7 +175,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     },
     "fashion-editorial": {
         "source-led": {
-            "composition": ["Use full-bleed presence, assertive but anatomy-safe cropping, and varied shot scale across separate frames."],
+            "composition": ["Use full-bleed presence, assertive but anatomy-safe cropping, and source-supported shot scale."],
             "lighting": ["Build from the source light and wardrobe palette; keep skin tone and fabric color truthful."],
             "material": ["Preserve garment construction, fabric behavior, styling details, skin texture, and location surfaces."],
         },

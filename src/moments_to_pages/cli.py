@@ -8,12 +8,18 @@ from pathlib import Path
 from .analyze import analyze_image, assign_story_roles
 from .model import load_cards, save_cards
 from .director import recommend_systems
+from .expression_profiles import expression_profile_names
 from .narrative_systems import SUPPORTED_SYSTEMS
 from .prompt_compiler import compile_manifest
 from .presentation import render_presentation_svg
 from .privacy import build_upload_consent
 from .render import render_png, render_svg
 from .review import bind_outputs, build_retry_manifest, file_sha256
+
+
+def _write_json(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 
 
 def parser() -> argparse.ArgumentParser:
@@ -33,6 +39,8 @@ def parser() -> argparse.ArgumentParser:
     render.add_argument("--mode", choices=["presentation", "workprint"], default="presentation")
     recommend = commands.add_parser("recommend", help="Recommend Narrative Systems with reasons")
     recommend.add_argument("story")
+    profiles = commands.add_parser("profiles", help="List compatible expression profiles")
+    profiles.add_argument("--system", choices=SUPPORTED_SYSTEMS, help="Limit output to one Narrative System")
     compile_cmd = commands.add_parser("compile", help="Compile Scene Cards into versioned image-generation prompts")
     compile_cmd.add_argument("story")
     compile_cmd.add_argument("--system", choices=SUPPORTED_SYSTEMS, required=True)
@@ -72,6 +80,10 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "recommend":
         for item in recommend_systems(load_cards(Path(args.story))):
             print(f"{item.system}\t{item.score:.2f}\t{item.reason}")
+    elif args.command == "profiles":
+        systems = [args.system] if args.system else list(SUPPORTED_SYSTEMS)
+        for system in systems:
+            print(f"{system}\t{','.join(expression_profile_names(system))}")
     elif args.command == "compile":
         story_path = Path(args.story)
         manifest = compile_manifest(
@@ -83,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
             story_path=str(story_path),
             reference_outputs=args.reference_output,
         )
-        Path(args.output).write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+        _write_json(Path(args.output), manifest)
     elif args.command == "retry":
         manifest_path = Path(args.manifest)
         assessment_path = Path(args.assessment)
@@ -95,7 +107,7 @@ def main(argv: list[str] | None = None) -> int:
             manifest_sha256=file_sha256(manifest_path),
             assessment_sha256=file_sha256(assessment_path),
         )
-        Path(args.output).write_text(json.dumps(retry_manifest, ensure_ascii=False, indent=2) + "\n")
+        _write_json(Path(args.output), retry_manifest)
     elif args.command == "bind-outputs":
         bindings = {}
         for value in args.result:
@@ -108,7 +120,7 @@ def main(argv: list[str] | None = None) -> int:
         manifest_path = Path(args.manifest)
         manifest = json.loads(manifest_path.read_text())
         bound = bind_outputs(manifest, bindings, manifest_sha256=file_sha256(manifest_path), base=Path.cwd())
-        Path(args.output).write_text(json.dumps(bound, ensure_ascii=False, indent=2) + "\n")
+        _write_json(Path(args.output), bound)
     elif args.command == "consent":
         manifest_path = Path(args.manifest)
         manifest = json.loads(manifest_path.read_text())
@@ -119,7 +131,7 @@ def main(argv: list[str] | None = None) -> int:
             purpose=args.purpose,
             user_confirmed=args.confirm,
         )
-        Path(args.output).write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n")
+        _write_json(Path(args.output), record)
     elif args.command == "present":
         manifest_path = Path(args.manifest)
         output = Path(args.output)
@@ -132,6 +144,7 @@ def main(argv: list[str] | None = None) -> int:
         if output.suffix.lower() != f".{args.format}":
             raise SystemExit(f"Output extension must be .{args.format} for --format {args.format}")
         cards = load_cards(story_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
         if args.format == "png":
             render_png(cards, output, args.style, args.mode)
         else:

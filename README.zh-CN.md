@@ -3,7 +3,7 @@
 <p align="center"><strong>把个人照片转化为结构化、可编辑视觉叙事的 AI 视觉导演。</strong></p>
 
 <p align="center">
-  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.2"><img alt="版本 0.4.2" src="https://img.shields.io/badge/version-0.4.2-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.3"><img alt="版本 0.4.3" src="https://img.shields.io/badge/version-0.4.3-315c8c?style=flat-square"></a>
   <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="持续集成" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
@@ -28,17 +28,19 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 | --- | --- |
 | 输入 | 单张照片或一组有关联的照片序列 |
 | 导演方式 | 可观察事实 → 可编辑解释 → 明确视觉导演决策 |
-| 视觉词汇 | 10 个 Narrative Systems + 3 个可替换 Expression Profiles |
+| 视觉词汇 | 10 个 Narrative Systems + 8 个可替换 Expression Profiles |
 | 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
 | 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
 
-**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#v040--叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
+**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#v043--叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
 
 ### 单张或多张都可以
 
 - **一张照片 → 一张经过导演的独立成片。** 为它选择兼容的 Narrative System 和 Expression Profile，输出一组独立 Before/After；不会强迫单张照片变成接触表、序列或装饰拼贴。
 - **多张照片 → 一个连贯故事。** 每张都需要独立 After 时使用逐张导演；地点、旅程或重复关系需要进入同一画面时，选择多源合成系统。
 - **表达风格可以编辑。** Narrative System 决定照片或故事如何被阅读，Expression Profile 决定画面如何表达。因此单张照片也能使用 `source-led`、`watercolor-chronicle`、`heritage-portrait`、`dream-logic`，或所选系统支持的其他 Profile。
+
+运行 `scene-card-studio profiles` 可以查看兼容组合。每份 Manifest 都会明确记录 `single-photo`、`multi-photo-per-source` 或 `multi-photo-synthesis`，防止后续工具悄悄改变用户选择的源图模式。
 
 ## Before / After 首页案例
 
@@ -176,7 +178,7 @@ Scene Card 将信息明确分成三层：
 
 这种拆分避免把 AI 的推测伪装成照片事实，也允许用户在编译 Prompt 前修改任何导演判断。自动分析保持克制，所有 Scene Card 决策都可以编辑。
 
-## v0.4.0 · 叙事系统、表达 Profile 与确定性文字
+## v0.4.3 · 叙事系统、表达 Profile 与确定性文字
 
 Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持十个 Narrative System。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认仍为 `source-led`。
 
@@ -193,7 +195,19 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `street-reportage` | Street Reportage | 公共空间中的真实动作与事实序列 |
 | `fashion-editorial` | Fashion Editorial | 姿势、服装结构、裁切与镜头尺度节奏 |
 
-可复用 Profile 包括 `watercolor-chronicle`、`heritage-portrait` 和约束更严格、锁定人物身份的 `dream-logic`。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名。
+除默认 `source-led` 外，现在有 8 个可替换 Profile：`rain-nocturne`、`quiet-window-light`、`watercolor-contour`、`watercolor-chronicle`、`graphite-paper`、`heritage-portrait`、`monochrome-reportage`，以及约束更严格、锁定人物身份的 `dream-logic`。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名。
+
+| Expression Profile | 兼容的 Narrative Systems |
+| --- | --- |
+| `source-led` | 全部系统 |
+| `rain-nocturne` | Cinematic Sequence |
+| `quiet-window-light` | Quiet Editorial |
+| `watercolor-contour` | Memory Atlas |
+| `watercolor-chronicle` | Memory Atlas、Family Chronicle、Museum Catalogue、Travel Journal |
+| `graphite-paper` | Family Chronicle |
+| `heritage-portrait` | Family Chronicle、Museum Catalogue |
+| `monochrome-reportage` | Street Reportage |
+| `dream-logic` | Memory Atlas、Fashion Editorial |
 
 所有可见文字现已移出图片生成阶段。Manifest 会提供 `presentation_contract`，`scene-card-studio present` 只把用户提供的标题、日期、地点、收藏名称和藏品编号确定性地排进 SVG；缺失信息直接省略，不进行猜测。
 
@@ -229,6 +243,7 @@ python -m pip install -e '.[images]'
 
 # 单张照片 → 一张独立导演成片
 scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
+scene-card-studio profiles --system family-archive
 scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
 
 # 多张照片 → 逐张导演或多源叙事合成
@@ -246,7 +261,7 @@ scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 系统会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 使用多源合成。云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认。正式审核拒绝未经绑定的 Prompt Manifest。`present` 会核验候选图片哈希，并让生成图像与确定性文字保持独立来源层。SVG 安全嵌入仍会完整解码和重编码源图、清除尾随数据与元数据，并限制字节数和像素数。
+输入单张照片时，所有系统都只编译一条独立 Prompt，并把 Manifest 标记为 `single-photo`；不会要求序列连续，也不会虚构相邻场景。输入多张照片时，电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 则编译一条多源合成 Prompt。云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认。正式审核拒绝未经绑定的 Prompt Manifest。`present` 会核验候选图片哈希，并让生成图像与确定性文字保持独立来源层。SVG 安全嵌入仍会完整解码和重编码源图、清除尾随数据与元数据，并限制字节数和像素数。
 
 ## Codex Skill
 
@@ -275,7 +290,7 @@ cp -R skills/scene-card-studio ~/.codex/skills/
 
 ## 参与贡献与安全报告
 
-新的 Narrative System 必须提出一种不同的照片序列阅读机制；新的 Expression Profile 必须可以替换，不得模仿具名创作者，也不得复用第三方视觉资产。提交前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+新的 Narrative System 必须提出一种不同的单图或照片序列阅读机制；新的 Expression Profile 必须可以替换，不得模仿具名创作者，也不得复用第三方视觉资产。提交前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 如果发现路径穿越、照片意外泄露、Manifest 伪造、不安全图像处理、Prompt Injection 或凭证暴露，请通过仓库的私密安全报告渠道提交，详见 [SECURITY.md](SECURITY.md)。
 

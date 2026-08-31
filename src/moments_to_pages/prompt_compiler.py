@@ -12,7 +12,8 @@ from .narrative_systems import SUPPORTED_SYSTEMS, resolve_narrative_system
 from .presentation import build_presentation_contract
 
 
-COMPILER_VERSION = "0.4.0"
+COMPILER_VERSION = "0.4.1"
+__all__ = ["SUPPORTED_SYSTEMS", "compile_manifest"]
 
 
 @dataclass(frozen=True)
@@ -189,11 +190,18 @@ def _sequence_context(cards: list[SceneCard]) -> str:
     return " | ".join(beats)
 
 
+def _source_mode(cards: list[SceneCard], prompt_mode: str) -> str:
+    if len(cards) == 1:
+        return "single-photo"
+    return "multi-photo-per-source" if prompt_mode == "per-source" else "multi-photo-synthesis"
+
+
 def _multi_card_context(cards: list[SceneCard]) -> list[str]:
     lines = []
     for index, card in enumerate(cards):
+        label = "Source" if len(cards) == 1 else f"Frame {index + 1:02d}"
         lines.append(
-            f"Frame {index + 1:02d} / {card.story_role}: intent {card.interpretation.narrative_intent}; "
+            f"{label} / {card.story_role}: intent {card.interpretation.narrative_intent}; "
             f"tone {_joined(card.interpretation.emotional_tone, 'quiet')}; emphasis {card.direction.layout_emphasis}; "
             f"director note {card.direction.director_note}"
         )
@@ -207,6 +215,12 @@ def _cinematic_blocks(
     sequence_context: str,
 ) -> PromptBlocks:
     palette = _joined(card.palette[:4], "source-derived colors")
+    sequence_lines = ([
+        f"Sequence contract shared with the other frames: {sequence_context}.",
+        "Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.",
+    ] if sequence_context else [
+        "Single-photo contract: treat this source as one complete directed frame; do not imply adjacent shots or invented events.",
+    ])
     return PromptBlocks(
         subject_fidelity=_base_fidelity(card),
         transformation_policy=_transformation_lines(card),
@@ -223,8 +237,7 @@ def _cinematic_blocks(
         material=[*profile["material"], "Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish."],
         spatial_relationships=[
             "Keep subject scale plausible and preserve the source scene's directional movement.",
-            f"Sequence contract shared with the other frames: {sequence_context}.",
-            "Maintain recurring identity, light direction, color progression, and shot rhythm across the sequence.",
+            *sequence_lines,
         ],
         text_strategy=["Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography."],
         exclusions=[
@@ -264,27 +277,28 @@ def _minimal_blocks(card: SceneCard, aspect_ratio: str, profile: dict[str, Any])
 
 
 def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dict[str, Any]) -> PromptBlocks:
+    single = len(cards) == 1
     subjects = [_joined(_policy_values(card)[0], Path(card.source).stem) for card in cards]
     palette = _joined([color for card in cards for color in card.palette[:2]], "source-derived colors")
     full_redraw = profile.get("render_mode") == "full-redraw"
     return PromptBlocks(
         subject_fidelity=[
-            f"Preserve each supplied place or subject as a recognizable {'painted' if full_redraw else 'photographic'} anchor: {'; '.join(subjects)}.",
-            "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to each source.",
+            f"Preserve the supplied place or subject as one recognizable {'painted' if full_redraw else 'photographic'} anchor: {subjects[0]}." if single else f"Preserve each supplied place or subject as a recognizable {'painted' if full_redraw else 'photographic'} anchor: {'; '.join(subjects)}.",
+            "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source." if single else "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to each source.",
             "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
             *profile.get("subject_fidelity", []),
         ],
         transformation_policy=[
-            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, None if single else f"Frame {index + 1:02d}")],
             *profile.get("transformation_policy", []),
         ],
         narrative_intent=[
-            "Connect the supplied places as remembered spatial experience rather than literal navigation.",
+            "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey." if single else "Connect the supplied places as remembered spatial experience rather than literal navigation.",
             *_multi_card_context(cards),
         ],
         composition=[
-            "Follow the supplied source order and story roles; do not force a departure–return arc.",
-            "Avoid a row of equal photo cards; use spatial hierarchy to express the relationships stated in the Scene Cards.",
+            "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc." if single else "Follow the supplied source order and story roles; do not force a departure–return arc.",
+            "Use spatial hierarchy inside the single scene without inventing off-frame geography." if single else "Avoid a row of equal photo cards; use spatial hierarchy to express the relationships stated in the Scene Cards.",
             *profile["composition"],
         ],
         lighting=[
@@ -298,7 +312,7 @@ def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dic
             else "Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration.",
         ],
         spatial_relationships=[
-            "Connect frames through their stated gestures, roles, quiet regions, and layout emphasis.",
+            "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship." if single else "Connect frames through their stated gestures, roles, quiet regions, and layout emphasis.",
             "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.",
         ],
         text_strategy=["Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."],
@@ -309,40 +323,41 @@ def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dic
         ],
         output=[
             f"Return one integrated PNG spatial-memory artifact at exactly {aspect_ratio}.",
-            "Every supplied place or subject must remain recognizable.",
+            "The supplied place or subject must remain recognizable." if single else "Every supplied place or subject must remain recognizable.",
             *profile.get("output", []),
         ],
     )
 
 
 def _family_archive_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dict[str, Any]) -> PromptBlocks:
+    single = len(cards) == 1
     subjects = [_joined(_policy_values(card)[0], Path(card.source).stem) for card in cards]
     gestures = [_joined([card.observation.dominant_gesture], "a visible gesture") for card in cards]
     palette = _joined([color for card in cards for color in card.palette[:2]], "source-derived colors")
     full_redraw = profile.get("render_mode") == "full-redraw"
     return PromptBlocks(
         subject_fidelity=[
-            f"Preserve the supplied documentary subjects and visible actions: {'; '.join(subjects)}.",
-            f"Keep faces, hands, clothing, body proportions, object handling, and gestures faithful: {'; '.join(gestures)}.",
+            f"Preserve the supplied documentary subject and visible action: {subjects[0]}." if single else f"Preserve the supplied documentary subjects and visible actions: {'; '.join(subjects)}.",
+            f"Keep face, hands, clothing, body proportions, object handling, and gesture faithful: {gestures[0]}." if single else f"Keep faces, hands, clothing, body proportions, object handling, and gestures faithful: {'; '.join(gestures)}.",
             "Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact.",
             *_profile_subject_lines(profile),
         ],
         transformation_policy=[
-            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, None if single else f"Frame {index + 1:02d}")],
             *_profile_policy_lines(profile),
         ],
         narrative_intent=[
-            "Build archival meaning only from the supplied Scene Card interpretations; do not assume care, inheritance, continuity, or family relationships.",
+            "Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships." if single else "Build archival meaning only from the supplied Scene Card interpretations; do not assume care, inheritance, continuity, or family relationships.",
             *_multi_card_context(cards),
         ],
         composition=[
-            "Use story roles and layout emphasis to vary scale; keep important faces, hands, and actions uncropped.",
+            "Use this Scene Card's layout emphasis to direct one complete image; keep important face, hands, and action uncropped." if single else "Use story roles and layout emphasis to vary scale; keep important faces, hands, and actions uncropped.",
             *profile["composition"],
         ],
         lighting=[f"Use the combined source palette ({palette}) without applying a generic nostalgic filter.", *profile["lighting"]],
         material=[*profile["material"], "Every added archive material must refer to a supplied object, surface, or repeated gesture."],
         spatial_relationships=[
-            "Bridge only relationships stated in the Scene Cards; use partial overlaps and breathing room instead of stacked decoration.",
+            "Use only relationships visible or stated within this Scene Card; do not invent relatives, companion images, or archival layers." if single else "Bridge only relationships stated in the Scene Cards; use partial overlaps and breathing room instead of stacked decoration.",
             "Keep documentary subjects visually primary and expression-profile materials secondary.",
         ],
         text_strategy=["Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks."],
@@ -403,15 +418,31 @@ def _single_extended_blocks(
         },
     }
     template = templates[system]
-    sequence_line = (
-        [f"Sequence contract shared with the other frames: {sequence_context}."]
-        if system in {"editorial-sequence", "street-reportage", "fashion-editorial"}
-        else []
-    )
+    sequence_systems = {"editorial-sequence", "street-reportage", "fashion-editorial"}
+    if sequence_context and system in sequence_systems:
+        sequence_line = [f"Sequence contract shared with the other frames: {sequence_context}."]
+    elif system in sequence_systems:
+        sequence_line = [
+            "Single-photo contract: make this source a complete standalone image and do not imply adjacent frames."
+        ]
+    else:
+        sequence_line = []
+    narrative = list(template["narrative"])
+    spatial = list(template["spatial"])
+    if not sequence_context and system == "editorial-sequence":
+        narrative = ["Let scale, pause, and contrast carry this standalone image; do not imply events outside it."]
+        spatial = ["Use the Scene Card role and layout emphasis to complete this frame without implying adjacent beats."]
+    elif not sequence_context and system == "fashion-editorial":
+        narrative = [
+            "Use pose, garment construction, movement, and crop tension to create one editorial image without inventing a brand campaign."
+        ]
+        spatial = [
+            "Preserve the relationship between body, clothing, accessories, floor, furniture, and location inside this one frame."
+        ]
     return PromptBlocks(
         subject_fidelity=[*_base_fidelity(card), *_profile_subject_lines(profile)],
         transformation_policy=[*_transformation_lines(card), *_profile_policy_lines(profile)],
-        narrative_intent=[*_base_narrative(card), *template["narrative"]],
+        narrative_intent=[*_base_narrative(card), *narrative],
         composition=[
             *template["composition"],
             f"Use {quiet} as controlled breathing room where compatible with the observed scene.",
@@ -419,7 +450,7 @@ def _single_extended_blocks(
         ],
         lighting=[f"Build from the source palette ({palette}) and preserve truthful skin, object, and environment relationships.", *profile["lighting"]],
         material=[*profile["material"], "Keep identity-bearing surface evidence specific; avoid a generic preset finish."],
-        spatial_relationships=[*template["spatial"], *sequence_line],
+        spatial_relationships=[*spatial, *sequence_line],
         text_strategy=[
             "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
             "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.",
@@ -434,33 +465,50 @@ def _single_extended_blocks(
 
 
 def _travel_journal_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dict[str, Any]) -> PromptBlocks:
+    single = len(cards) == 1
     subjects = [_joined(_policy_values(card)[0], Path(card.source).stem) for card in cards]
     palette = _joined([color for card in cards for color in card.palette[:2]], "source-derived colors")
     full_redraw = profile.get("render_mode") == "full-redraw"
     return PromptBlocks(
         subject_fidelity=[
-            f"Preserve every supplied person, place, object, and threshold as a recognizable {'painted' if full_redraw else 'photographic'} journey anchor: {'; '.join(subjects)}.",
-            "Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to their sources.",
+            f"Preserve the supplied person, place, object, or threshold as one recognizable {'painted' if full_redraw else 'photographic'} journey anchor: {subjects[0]}."
+            if single
+            else f"Preserve every supplied person, place, object, and threshold as a recognizable {'painted' if full_redraw else 'photographic'} journey anchor: {'; '.join(subjects)}.",
+            "Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to the source."
+            if single
+            else "Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to their sources.",
             *_profile_subject_lines(profile),
         ],
         transformation_policy=[
-            *[line for index, card in enumerate(cards) for line in _transformation_lines(card, f"Frame {index + 1:02d}")],
+            *[
+                line
+                for index, card in enumerate(cards)
+                for line in _transformation_lines(card, None if single else f"Frame {index + 1:02d}")
+            ],
             *_profile_policy_lines(profile),
         ],
         narrative_intent=[
-            "Build a journey from supplied movement, pauses, thresholds, and Scene Card roles; do not invent a destination, return, date, or route.",
+            "Treat this source as one self-contained journey moment; do not invent movement, a second stop, destination, return, date, or route."
+            if single
+            else "Build a journey from supplied movement, pauses, thresholds, and Scene Card roles; do not invent a destination, return, date, or route.",
             *_multi_card_context(cards),
         ],
         composition=[
-            "Use varied scale and spatial adjacency to connect the journey; avoid an equal postcard grid or literal app map.",
+            "Build one complete image from the source and Scene Card; do not add a postcard grid, itinerary, route, or app map."
+            if single
+            else "Use varied scale and spatial adjacency to connect the journey; avoid an equal postcard grid or literal app map.",
             "Treat tickets, maps, receipts, and handwriting as usable evidence only when they were supplied or explicitly authorized.",
             *profile["composition"],
         ],
         lighting=[f"Use the combined source palette ({palette}) while retaining distinct weather and time-of-day evidence.", *profile["lighting"]],
         material=[*profile["material"], "Every paper, route, or travel mark must correspond to supplied evidence rather than decorative tourism motifs."],
         spatial_relationships=[
-            "Follow source order and story roles unless the user explicitly approves reordering.",
-            "Connect places through visible direction, repeated objects, thresholds, and supplied metadata rather than invented geography.",
+            "Use the source's visible direction, threshold, quiet regions, and layout emphasis without implying an unseen route."
+            if single
+            else "Follow source order and story roles unless the user explicitly approves reordering.",
+            "Keep all spatial claims inside this source; do not invent geography beyond the frame."
+            if single
+            else "Connect places through visible direction, repeated objects, thresholds, and supplied metadata rather than invented geography.",
         ],
         text_strategy=[
             "Generate no dates, place names, coordinates, tickets, stamps, handwriting, captions, or route labels inside the image.",
@@ -473,7 +521,9 @@ def _travel_journal_blocks(cards: list[SceneCard], aspect_ratio: str, profile: d
         ],
         output=[
             f"Return one integrated {_render_medium(profile)} PNG journey artifact at exactly {aspect_ratio}.",
-            "Every supplied source must contribute a recognizable narrative anchor.",
+            "The supplied source must remain a recognizable narrative anchor."
+            if single
+            else "Every supplied source must contribute a recognizable narrative anchor.",
             *_profile_output(profile),
         ],
     )
@@ -501,7 +551,8 @@ def compile_manifest(
     if spec["prompt_mode"] == "synthesis" and len(references) > 1:
         raise ValueError(f"{system} accepts at most one reference output")
     prompts: list[dict[str, Any]] = []
-    sequence_context = _sequence_context(cards)
+    sequence_context = _sequence_context(cards) if len(cards) > 1 else ""
+    source_mode = _source_mode(cards, spec["prompt_mode"])
 
     if spec["prompt_mode"] == "per-source":
         for index, card in enumerate(cards):
@@ -525,7 +576,11 @@ def compile_manifest(
                 item["reference_output"] = _source_record(references[index], source_root)
             prompts.append(item)
     else:
-        ratio = aspect_ratio if aspect_ratio != "source" else "4:5"
+        ratio = (
+            _aspect_ratio(cards[0], aspect_ratio)
+            if len(cards) == 1
+            else (aspect_ratio if aspect_ratio != "source" else "4:5")
+        )
         if system == "memory-atlas":
             blocks = _memory_atlas_blocks(cards, ratio, profile)
         elif system == "family-archive":
@@ -550,8 +605,9 @@ def compile_manifest(
         "cinematic-storyboard", "editorial-sequence", "street-reportage", "fashion-editorial"
     } and len(cards) > 1
     manifest: dict[str, Any] = {
-        "schema_version": "1.3",
+        "schema_version": "1.4",
         "compiler_version": COMPILER_VERSION,
+        "source_mode": source_mode,
         "system": system,
         "system_display_name": spec["display_name"],
         "expression_profile": profile["name"],

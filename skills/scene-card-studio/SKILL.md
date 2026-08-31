@@ -24,7 +24,7 @@ Build a visual story from the user's photographs without imitating a named artis
    - `travel-journal` for movement, pauses, thresholds, and user-supplied journey evidence;
    - `street-reportage` for observed public gestures and environmental context;
    - `fashion-editorial` for pose, garment construction, movement, and shot-scale rhythm.
-   Use `watercolor-chronicle`, `heritage-portrait`, or `dream-logic` only where the selected system lists them as available Profiles.
+   Run `scene-card-studio profiles --system SYSTEM_ID` when available, and use only a Profile listed for the selected system.
 6. Choose the source mode before choosing the output tier:
    - **Single-photo mode**: select one compatible Narrative System and Expression Profile, then produce exactly one standalone After for the supplied Before. Do not require a sequence and do not substitute a border, contact sheet, page mockup, or decorative collage for transformation.
    - **Multi-photo per-source mode**: direct every source as its own standalone After while preserving identity and sequence continuity where relevant.
@@ -36,6 +36,7 @@ Build a visual story from the user's photographs without imitating a named artis
 
 ```bash
 scene-card-studio recommend story.json
+scene-card-studio profiles --system cinematic-storyboard
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 ```

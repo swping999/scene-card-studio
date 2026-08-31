@@ -58,7 +58,7 @@ def assign_story_roles(cards: list[SceneCard], reorder: bool = False) -> list[Sc
         return cards
     ordered = sorted(cards, key=lambda card: (card.brightness, card.saturation)) if reorder else list(cards)
     role_sets = {
-        1: ["opening"],
+        1: ["moment"],
         2: ["opening", "closing"],
         3: ["opening", "development", "closing"],
     }

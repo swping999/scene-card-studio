@@ -44,11 +44,40 @@ def test_analyze_paths_are_relative_to_nested_story(tmp_path: Path, monkeypatch)
     monkeypatch.chdir(tmp_path)
     story = tmp_path / "out" / "story.json"
     assert main(["analyze", "photos/a.png", "-o", str(story)]) == 0
-    assert json.loads(story.read_text())[0]["source"] == "../photos/a.png"
+    analyzed = json.loads(story.read_text())[0]
+    assert analyzed["source"] == "../photos/a.png"
+    assert analyzed["direction"]["story_role"] == "moment"
     assert Path(load_cards(story)[0].source) == photo
     manifest = tmp_path / "out" / "manifest.json"
     assert main(["compile", str(story), "--system", "minimal-editorial", "-o", str(manifest)]) == 0
     assert json.loads(manifest.read_text())["prompts"][0]["sources"][0]["sha256"]
+
+
+def test_profiles_command_and_nested_output_directories(tmp_path: Path, capsys):
+    story = _story(tmp_path, 1)
+    assert main(["profiles", "--system", "family-archive"]) == 0
+    output = capsys.readouterr().out
+    assert "family-archive" in output
+    assert "source-led" in output
+    assert "watercolor-chronicle" in output
+    assert "heritage-portrait" in output
+
+    nested = tmp_path / "new" / "deep" / "prompt-manifest.json"
+    assert main([
+        "compile",
+        str(story),
+        "--system",
+        "family-archive",
+        "--expression-profile",
+        "heritage-portrait",
+        "-o",
+        str(nested),
+    ]) == 0
+    assert nested.exists()
+    assert json.loads(nested.read_text())["source_mode"] == "single-photo"
+    rendered = tmp_path / "another" / "deep" / "workprint.png"
+    assert main(["render", str(story), "--format", "png", "-o", str(rendered)]) == 0
+    assert rendered.exists()
 
 
 def test_deterministic_presentation_uses_only_bound_metadata(tmp_path: Path, monkeypatch):
@@ -163,3 +192,17 @@ def test_renderer_has_no_case_copy_and_layout_emphasis_changes_layout(tmp_path: 
     renderer_source = (Path(__file__).resolve().parents[1] / "src/moments_to_pages/render.py").read_text()
     for leaked in ("CARE → PAUSE → DEPARTURE", "Laundry / shared work", "coastal-memory-atlas.png"):
         assert leaked not in renderer_source
+
+
+def test_published_single_photo_gallery_has_valid_roles_and_distinct_pairs():
+    root = Path(__file__).resolve().parents[1]
+    gallery = root / "examples/cases/v0.4-gallery"
+    records = json.loads((gallery / "case-records.json").read_text())
+    assert len(records["cases"]) == 13
+    for case in records["cases"]:
+        assert case["scene_card"]["direction"]["story_role"] == "moment"
+        before = gallery / case["before"]
+        after = gallery / case["after"]
+        assert before.is_file()
+        assert after.is_file()
+        assert hashlib.sha256(before.read_bytes()).digest() != hashlib.sha256(after.read_bytes()).digest()

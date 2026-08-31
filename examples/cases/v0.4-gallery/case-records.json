@@ -15,7 +15,7 @@
       "scene_card": {
         "observation": {"subjects": ["young woman", "folded umbrella", "elevated metro"], "dominant_gesture": "waiting beneath repeating concrete spans", "quiet_regions": ["wet foreground pavement"]},
         "interpretation": {"narrative_intent": "a suspended urban wait", "emotional_tone": ["watchful", "contained"], "confidence": 0.78, "method": "manually-directed example"},
-        "direction": {"story_role": "opening", "director_note": "Let motivated rain light organize the wait without turning it into a poster.", "layout_emphasis": "figure against receding metro geometry"},
+        "direction": {"story_role": "moment", "director_note": "Let motivated rain light organize the wait without turning it into a poster.", "layout_emphasis": "figure against receding metro geometry"},
         "transformation": {"must_preserve": ["identity", "beige jacket", "dark trousers", "folded umbrella", "metro structure"], "may_transform": ["weather", "light", "camera distance", "background density"], "must_remove": ["scooter clutter", "vending glare", "dead foreground"]}
       }
     },
@@ -30,7 +30,7 @@
       "scene_card": {
         "observation": {"subjects": ["concrete roadside house", "red gate", "blue barrel", "utility pole", "curved road"], "dominant_gesture": "road bends past the building toward the ridge", "quiet_regions": ["upper sky"]},
         "interpretation": {"narrative_intent": "place held through route and terrain", "emotional_tone": ["remote", "material"], "confidence": 0.84, "method": "manually-directed example"},
-        "direction": {"story_role": "orientation", "director_note": "Keep the architecture photographic while geography enters the same material world.", "layout_emphasis": "road-to-ridge spatial continuity"},
+        "direction": {"story_role": "moment", "director_note": "Keep the architecture photographic while geography enters the same material world.", "layout_emphasis": "road-to-ridge spatial continuity"},
         "transformation": {"must_preserve": ["building geometry", "red gate", "blue barrel", "pole and wires", "road", "ridge"], "may_transform": ["sky", "terrain surface", "road texture"], "must_remove": ["map pins", "connector lines", "thumbnail collage", "labels"]}
       }
     },
@@ -45,7 +45,7 @@
       "scene_card": {
         "observation": {"subjects": ["older man", "young girl", "laundry", "table"], "dominant_gesture": "two people folding cloth at the same table", "quiet_regions": ["doorway beyond the figures"]},
         "interpretation": {"narrative_intent": "shared work observed across age", "emotional_tone": ["intimate", "patient"], "confidence": 0.74, "method": "manually-directed example"},
-        "direction": {"story_role": "development", "director_note": "Build meaning from the supplied folding gesture; do not invent a family history.", "layout_emphasis": "hands, cloth, and the space between figures"},
+        "direction": {"story_role": "moment", "director_note": "Build meaning from the supplied folding gesture; do not invent a family history.", "layout_emphasis": "hands, cloth, and the space between figures"},
         "transformation": {"must_preserve": ["both identities", "ages", "clothing", "hands", "folding action"], "may_transform": ["light", "crop", "subtle graphite studies", "tracing-paper marks"], "must_remove": ["rice cooker", "medicine clutter", "harsh bulb"]}
       }
     },
@@ -60,7 +60,7 @@
       "scene_card": {
         "observation": {"subjects": ["scratched aluminum kettle"], "dominant_gesture": "arched handle over a worn cylindrical body", "quiet_regions": ["wall behind the counter"]},
         "interpretation": {"narrative_intent": "wear made legible through quiet attention", "emotional_tone": ["still", "tactile"], "confidence": 0.91, "method": "manually-directed example"},
-        "direction": {"story_role": "pause", "director_note": "Let material, shadow, and negative space carry the image.", "layout_emphasis": "scratched metal against pale mineral surfaces"},
+        "direction": {"story_role": "moment", "director_note": "Let material, shadow, and negative space carry the image.", "layout_emphasis": "scratched metal against pale mineral surfaces"},
         "transformation": {"must_preserve": ["kettle shape", "handle", "spout", "lid", "scratches and dents"], "may_transform": ["setting", "light direction", "crop"], "must_remove": ["soap bottle", "cable", "plastic containers", "rag clutter"]}
       }
     },
@@ -75,7 +75,7 @@
       "scene_card": {
         "observation": {"subjects": ["red chair", "blue chair", "beige chair"], "dominant_gesture": "three repeated molded forms", "quiet_regions": ["closed shutter"]},
         "interpretation": {"narrative_intent": "repetition becomes a visual beat", "emotional_tone": ["graphic", "playful"], "confidence": 0.92, "method": "manually-directed example"},
-        "direction": {"story_role": "rhythmic sequence", "director_note": "Use physical spacing, crop, color, and shadow—not a grid—to make rhythm.", "layout_emphasis": "staggered chair silhouettes"},
+        "direction": {"story_role": "moment", "director_note": "Use physical spacing, crop, color, and shadow—not a grid—to make rhythm.", "layout_emphasis": "staggered chair silhouettes"},
         "transformation": {"must_preserve": ["three chairs", "red-blue-beige colors", "chair shapes"], "may_transform": ["spacing", "background wall", "sun angle", "camera position"], "must_remove": ["crates", "mop bucket", "cleaning clutter"]}
       }
     },
@@ -90,7 +90,7 @@
       "scene_card": {
         "observation": {"subjects": ["bicycle mechanic", "wheel", "hand tools", "roadside stool"], "dominant_gesture": "hands checking a bicycle tire", "quiet_regions": ["road surface beyond the worker"]},
         "interpretation": {"narrative_intent": "skill observed through tools and gesture", "emotional_tone": ["factual", "concentrated"], "confidence": 0.88, "method": "manually-directed example"},
-        "direction": {"story_role": "evidence", "director_note": "Stay observational; do not glamorize labor or manufacture drama.", "layout_emphasis": "hands, tire edge, and working tools"},
+        "direction": {"story_role": "moment", "director_note": "Stay observational; do not glamorize labor or manufacture drama.", "layout_emphasis": "hands, tire edge, and working tools"},
         "transformation": {"must_preserve": ["identity", "work clothes", "wheel", "repair gesture", "tools", "roadside context"], "may_transform": ["crop", "tool organization", "light balance"], "must_remove": ["passing scooter blur", "irrelevant background clutter"]}
       }
     },
@@ -105,7 +105,7 @@
       "scene_card": {
         "observation": {"subjects": ["young woman", "mustard umbrella", "bicycle", "blue seawall", "sea"], "dominant_gesture": "upright figure sheltering beside a coastal wall", "quiet_regions": ["cloudy sky"]},
         "interpretation": {"narrative_intent": "a coastal moment unified by one painted medium", "emotional_tone": ["soft", "weathered"], "confidence": 0.86, "method": "manually-directed example"},
-        "direction": {"story_role": "lyrical pause", "director_note": "Repaint every visible element together; never leave the person as a photographic cutout.", "layout_emphasis": "yellow umbrella against blue-grey sea"},
+        "direction": {"story_role": "moment", "director_note": "Repaint every visible element together; never leave the person as a photographic cutout.", "layout_emphasis": "yellow umbrella against blue-grey sea"},
         "transformation": {"must_preserve": ["identity", "pose", "anatomy", "umbrella", "clothing silhouette", "bicycle geometry", "spatial relationships"], "may_transform": ["all photographic surfaces into watercolor and graphite"], "must_remove": ["photographic pixels", "cutout edges", "scrapbook decoration"]}
       }
     },
@@ -120,7 +120,7 @@
       "scene_card": {
         "observation": {"subjects": ["young adult woman", "short black bob", "rust-red blouse", "charcoal trousers", "rattan chair"], "dominant_gesture": "seated portrait with crossed ankles and hands at rest", "quiet_regions": ["plain wall above the sitter"]},
         "interpretation": {"narrative_intent": "presence recorded through color and material restraint", "emotional_tone": ["calm", "gentle"], "confidence": 0.9, "method": "manually-directed example"},
-        "direction": {"story_role": "portrait anchor", "director_note": "Preserve identity and honest age; use archival material language without inventing ancestry or status.", "layout_emphasis": "face, hands, and rust-red blouse"},
+        "direction": {"story_role": "moment", "director_note": "Preserve identity and honest age; use archival material language without inventing ancestry or status.", "layout_emphasis": "face, hands, and rust-red blouse"},
         "transformation": {"must_preserve": ["identity", "age", "short bob", "hands", "rust-red blouse", "charcoal trousers", "seated pose"], "may_transform": ["backdrop", "light", "silver-gelatin tonality", "restrained hand color", "surface softness"], "must_remove": ["bookshelf edge", "tote bag", "charging cable", "outlet", "device", "hyperreal skin detail", "fake damage"]}
       }
     },
@@ -135,7 +135,7 @@
       "scene_card": {
         "observation": {"subjects": ["worn transistor radio", "strap", "tuning window", "two knobs"], "dominant_gesture": "rectangular object resting on a plastic stool", "quiet_regions": ["small wall area behind storage clutter"]},
         "interpretation": {"narrative_intent": "make condition and construction inspectable", "emotional_tone": ["neutral", "precise"], "confidence": 0.94, "method": "manually-directed example"},
-        "direction": {"story_role": "catalogue plate", "director_note": "Record wear faithfully; do not restore the object or sell it as luxury.", "layout_emphasis": "front grille, controls, strap, and surface wear"},
+        "direction": {"story_role": "moment", "director_note": "Record wear faithfully; do not restore the object or sell it as luxury.", "layout_emphasis": "front grille, controls, strap, and surface wear"},
         "transformation": {"must_preserve": ["casing", "grille", "knobs", "tuning window", "strap", "scratches", "discoloration"], "may_transform": ["support surface", "background", "conservation light", "camera alignment"], "must_remove": ["plastic stool", "storage clutter", "invented labels"]}
       }
     },
@@ -150,7 +150,7 @@
       "scene_card": {
         "observation": {"subjects": ["scuffed olive suitcase", "railway platform", "bench", "yellow safety line", "ticket", "water bottle"], "dominant_gesture": "luggage waiting beside the track direction", "quiet_regions": ["empty platform distance"]},
         "interpretation": {"narrative_intent": "waiting described through route evidence", "emotional_tone": ["anticipatory", "tactile"], "confidence": 0.87, "method": "manually-directed example"},
-        "direction": {"story_role": "threshold", "director_note": "Let existing platform and rail geometry become the journey notation.", "layout_emphasis": "suitcase against receding yellow line and rails"},
+        "direction": {"story_role": "moment", "director_note": "Let existing platform and rail geometry become the journey notation.", "layout_emphasis": "suitcase against receding yellow line and rails"},
         "transformation": {"must_preserve": ["suitcase", "bench", "yellow line", "ticket", "bottle", "rail direction"], "may_transform": ["platform into folded route paper", "rails into graphite rhythm"], "must_remove": ["photo frames", "stamps", "pins", "fake place names", "scrapbook collage"]}
       }
     },
@@ -165,7 +165,7 @@
       "scene_card": {
         "observation": {"subjects": ["elderly pedestrian", "grocery bag", "cyclist", "waiting crowd", "rainy crosswalk"], "dominant_gesture": "pedestrians and bicycle cross in opposing directions", "quiet_regions": ["wet road reflections"]},
         "interpretation": {"narrative_intent": "public movement held in one factual instant", "emotional_tone": ["urgent", "observational"], "confidence": 0.83, "method": "manually-directed example"},
-        "direction": {"story_role": "decisive frame", "director_note": "Tighten the public-life rhythm without manufacturing crisis or poverty.", "layout_emphasis": "elderly pedestrian against cyclist and crowd flow"},
+        "direction": {"story_role": "moment", "director_note": "Tighten the public-life rhythm without manufacturing crisis or poverty.", "layout_emphasis": "elderly pedestrian against cyclist and crowd flow"},
         "transformation": {"must_preserve": ["identities", "grocery bag", "cyclist", "crowd", "crosswalk", "rain"], "may_transform": ["crop", "monochrome tonality", "grain", "local contrast"], "must_remove": ["accidental edge clutter", "sensational additions", "captions"]}
       }
     },
@@ -180,7 +180,7 @@
       "scene_card": {
         "observation": {"subjects": ["young woman", "moss-green coat", "black boots", "cream shoulder bag"], "dominant_gesture": "standing figure in a mall corridor", "quiet_regions": ["plain upper wall"]},
         "interpretation": {"narrative_intent": "garment construction read against architecture", "emotional_tone": ["controlled", "assertive"], "confidence": 0.89, "method": "manually-directed example"},
-        "direction": {"story_role": "full-look frame", "director_note": "Direct the existing outfit through crop, movement, light, and architecture; invent no fashion items.", "layout_emphasis": "coat silhouette and vertical corridor light"},
+        "direction": {"story_role": "moment", "director_note": "Direct the existing outfit through crop, movement, light, and architecture; invent no fashion items.", "layout_emphasis": "coat silhouette and vertical corridor light"},
         "transformation": {"must_preserve": ["identity", "body proportions", "coat construction", "boots", "bag", "trousers"], "may_transform": ["architecture", "camera height", "light", "controlled coat movement"], "must_remove": ["mall clutter", "branding", "beauty retouching", "cover text"]}
       }
     },
@@ -195,7 +195,7 @@
       "scene_card": {
         "observation": {"subjects": ["school-age boy", "yellow raincoat", "one red kite", "salt flat", "white van", "cooler"], "dominant_gesture": "boy holds one kite string on open salt", "quiet_regions": ["large sky"]},
         "interpretation": {"narrative_intent": "one impossible cause changes the scale of shelter", "emotional_tone": ["wonder", "clarity"], "confidence": 0.8, "method": "manually-directed example"},
-        "direction": {"story_role": "surreal resolution", "director_note": "Apply exactly one impossible rule and keep all other spatial logic believable.", "layout_emphasis": "single string connecting boy to immense red canopy"},
+        "direction": {"story_role": "moment", "director_note": "Apply exactly one impossible rule and keep all other spatial logic believable.", "layout_emphasis": "single string connecting boy to immense red canopy"},
         "transformation": {"must_preserve": ["identity", "anatomy", "yellow coat", "boots", "one kite", "one string", "salt flat", "hills", "van", "cooler"], "may_transform": ["same kite into immense translucent canopy", "coherent red shadow", "one salt-surface wave"], "must_remove": ["duplicate child", "duplicate kite", "extra limbs", "portals", "random floating objects", "collage seams"]}
       }
     }
