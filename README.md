@@ -1,6 +1,16 @@
-# Scene Card Studio
+<h1 align="center">Scene Card Studio</h1>
 
-[中文](README.zh-CN.md) · English
+<p align="center"><strong>AI visual director for turning personal photos into structured, editable visual narratives.</strong></p>
+
+<p align="center">
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.2"><img alt="Version 0.4.2" src="https://img.shields.io/badge/version-0.4.2-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
+  <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
+  <a href="LICENSE"><img alt="Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-315c8c?style=flat-square"></a>
+</p>
+
+<p align="center"><a href="README.zh-CN.md">中文</a> · English</p>
 
 [![Scene Card Studio opening film](docs/media/scene-card-studio-opening.gif)](docs/media/scene-card-studio-opening.mp4)
 
@@ -13,6 +23,16 @@ Scene Card Studio turns observable photo evidence into editable narrative decisi
 ```text
 photos → Scene Cards → Narrative System → Prompt Compiler → image generation → aesthetic review → retry / accept
 ```
+
+| At a glance | Project contract |
+| --- | --- |
+| Input | One photograph or a related photo sequence |
+| Direction | Observable evidence → editable interpretation → explicit art direction |
+| Visual vocabulary | 10 Narrative Systems + 3 replaceable Expression Profiles |
+| Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
+| Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
+
+**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#v040--systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
 ## Before / After
 
@@ -218,6 +238,8 @@ The project expands through recording and reading mechanisms, not a flat menu of
 Requires Python 3.10+. Automatic analysis and PNG rendering use Pillow.
 
 ```bash
+git clone https://github.com/swping999/scene-card-studio.git
+cd scene-card-studio
 python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
@@ -238,7 +260,14 @@ scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "pr
 
 ## Codex Skill
 
-Copy `skills/scene-card-studio` into your Codex skills directory, restart Codex, then ask:
+After cloning the repository, copy the bundled skill into your Codex skills directory and restart Codex:
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R skills/scene-card-studio ~/.codex/skills/
+```
+
+Then ask:
 
 ```text
 Use $scene-card-studio to direct these photos as a quiet family archive.
@@ -254,6 +283,12 @@ Use $scene-card-studio to direct these photos as a quiet family archive.
 
 See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the versioned provenance record and [example asset terms](examples/ASSET_LICENSE.md) for per-asset licensing.
 
+## Contributing and security
+
+New Narrative Systems must introduce a distinct way of reading a photo sequence; new Expression Profiles must remain replaceable and may not imitate a named creator or reuse third-party visual assets. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing either one.
+
+Please report suspected path traversal, unintended photo disclosure, manifest spoofing, unsafe image handling, prompt injection, or credential exposure through the repository's private security-reporting channel. See [SECURITY.md](SECURITY.md).
+
 ## Roadmap
 
 - user-editable Visual Director decisions;
@@ -267,3 +302,5 @@ See [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) for the versioned provenance re
 ## License
 
 Code and repository-specific demo assets are Apache-2.0; the bundled font remains under SIL OFL 1.1. See [example asset terms](examples/ASSET_LICENSE.md).
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.

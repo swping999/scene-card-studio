@@ -1,6 +1,16 @@
-# Scene Card Studio｜场景卡片工作室
+<h1 align="center">Scene Card Studio｜场景卡片工作室</h1>
 
-中文 · [English](README.md)
+<p align="center"><strong>把个人照片转化为结构化、可编辑视觉叙事的 AI 视觉导演。</strong></p>
+
+<p align="center">
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.2"><img alt="版本 0.4.2" src="https://img.shields.io/badge/version-0.4.2-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="持续集成" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
+  <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
+  <a href="LICENSE"><img alt="Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-315c8c?style=flat-square"></a>
+</p>
+
+<p align="center">中文 · <a href="README.md">English</a></p>
 
 [![Scene Card Studio 开场视频](docs/media/scene-card-studio-opening.gif)](docs/media/scene-card-studio-opening.mp4)
 
@@ -13,6 +23,16 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 ```text
 照片 → Scene Cards → Narrative System → Prompt Compiler → 图像生成 → 审美检查 → 重试 / 接受
 ```
+
+| 项目速览 | 明确约定 |
+| --- | --- |
+| 输入 | 单张照片或一组有关联的照片序列 |
+| 导演方式 | 可观察事实 → 可编辑解释 → 明确视觉导演决策 |
+| 视觉词汇 | 10 个 Narrative Systems + 3 个可替换 Expression Profiles |
+| 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
+| 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
+
+**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#v040--叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
 
 ## Before / After 首页案例
 
@@ -197,6 +217,8 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 需要 Python 3.10 及以上。自动分析和 PNG 输出需要 Pillow。
 
 ```bash
+git clone https://github.com/swping999/scene-card-studio.git
+cd scene-card-studio
 python -m pip install -e '.[images]'
 scene-card-studio analyze photos/*.jpg --output story.json
 scene-card-studio recommend story.json
@@ -216,7 +238,14 @@ scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "pr
 
 ## Codex Skill
 
-将 `skills/scene-card-studio` 复制到 Codex Skills 目录并重启，然后输入：
+克隆仓库后，将内置 Skill 复制到 Codex Skills 目录并重启 Codex：
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R skills/scene-card-studio ~/.codex/skills/
+```
+
+然后输入：
 
 ```text
 使用 $scene-card-studio 把这些照片编排成一组安静的家庭视觉档案。
@@ -232,6 +261,12 @@ scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "pr
 
 版本化来源记录见 [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md)，逐资产使用条款见 [examples/ASSET_LICENSE.md](examples/ASSET_LICENSE.md)。
 
+## 参与贡献与安全报告
+
+新的 Narrative System 必须提出一种不同的照片序列阅读机制；新的 Expression Profile 必须可以替换，不得模仿具名创作者，也不得复用第三方视觉资产。提交前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+如果发现路径穿越、照片意外泄露、Manifest 伪造、不安全图像处理、Prompt Injection 或凭证暴露，请通过仓库的私密安全报告渠道提交，详见 [SECURITY.md](SECURITY.md)。
+
 ## 路线图
 
 - 可由用户修改的视觉导演判断；
@@ -245,3 +280,5 @@ scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "pr
 ## 许可证
 
 代码与本仓库专用演示素材采用 Apache-2.0；随包字体仍采用 SIL OFL 1.1。详见 [示例资产条款](examples/ASSET_LICENSE.md)。
+
+版本记录见 [CHANGELOG.md](CHANGELOG.md)。

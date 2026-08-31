@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a reproducible problem in the CLI, renderer, compiler, manifests, or bundled Skill.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Please use fictional or self-owned sample images and remove private paths, metadata, and credentials.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.4.2 or a commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or workflow
+      description: Include the smallest command or sequence that reproduces the problem.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: macOS 15, Python 3.12, Pillow 11
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed private photographs, credentials, tokens, and personal local paths.
+          required: true
+        - label: This is not a security vulnerability requiring private disclosure.
+          required: true

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security report
+    url: https://github.com/swping999/scene-card-studio/security/advisories/new
+    about: Report photo disclosure, unsafe path handling, manifest bypass, credential exposure, or another vulnerability privately.

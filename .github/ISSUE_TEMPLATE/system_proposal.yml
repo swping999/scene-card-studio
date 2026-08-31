@@ -1,0 +1,52 @@
+name: Narrative System or Profile proposal
+description: Propose an independently designed reading mechanism or replaceable expression profile.
+title: "[Proposal]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Proposal type
+      options:
+        - Narrative System
+        - Expression Profile
+        - Renderer or presentation output
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Narrative or expressive problem
+      description: Explain the photo-story problem this solves, not only the desired visual mood.
+    validations:
+      required: true
+  - type: textarea
+    id: fields
+    attributes:
+      label: Scene Card inputs and decisions
+      description: Which observation, interpretation, direction, or metadata fields drive it?
+    validations:
+      required: true
+  - type: textarea
+    id: distinction
+    attributes:
+      label: Structural difference
+      description: How is it meaningfully different from an existing system or profile?
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Originality and asset provenance
+      description: List all proposed assets and their ownership or license. Do not attach third-party inspiration boards.
+    validations:
+      required: true
+  - type: checkboxes
+    id: originality
+    attributes:
+      label: Originality confirmation
+      options:
+        - label: This proposal does not copy another repository's prompts, prose, schema, palette, or example composition.
+          required: true
+        - label: This proposal does not imitate a named living creator or publication.
+          required: true
