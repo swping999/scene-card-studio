@@ -1,6 +1,6 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.0",
+  "compiler_version": "0.6.1",
   "source_mode": "single-photo",
   "system": "travel-journal",
   "system_display_name": "Travel Journal",
@@ -15,6 +15,7 @@
     "gouache-place-study",
     "paper-relief-landscape",
     "sculpted-place-diorama",
+    "threaded-landscape",
     "autochrome-memory"
   ],
   "story": "story.json",

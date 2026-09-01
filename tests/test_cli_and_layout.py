@@ -342,7 +342,7 @@ def test_bilingual_direct_brief_eval_matrix_routes_every_system_and_profile():
         "monochrome-reportage", "dream-logic", "mineral-ink-memory",
         "impasto-light-study", "pixel-diary", "risograph-route",
         "gouache-place-study", "cyanotype-archive", "paper-relief-landscape",
-        "sculpted-place-diorama", "autochrome-memory", "pixel-ink-memory",
+        "sculpted-place-diorama", "threaded-landscape", "autochrome-memory", "pixel-ink-memory",
     }
     for case in matrix["adversarial_cases"]:
         route = select_direct_route([card], brief=case["brief"])
@@ -413,6 +413,39 @@ def test_deterministic_presentation_uses_only_bound_metadata(tmp_path: Path, mon
     assert "2026-08-10" in svg
     assert "SCS-001" in svg
     assert "invented place" not in svg
+
+
+def test_journey_keepsake_is_asymmetric_and_uses_only_supplied_metadata(tmp_path: Path, monkeypatch):
+    story = _story(tmp_path, 1)
+    data = json.loads(story.read_text())
+    data[0]["caption"] = "TIDAL PATH"
+    data[0]["metadata"] = {
+        "location": "North Marsh",
+        "date": "2026-08-10",
+        "source_note": "Boardwalk after rain",
+    }
+    story.write_text(json.dumps(data))
+    manifest = tmp_path / "prompt-manifest.json"
+    assert main(["compile", str(story), "--system", "travel-journal", "-o", str(manifest)]) == 0
+    prompt = json.loads(manifest.read_text())["prompts"][0]
+    candidate = tmp_path / "candidate.png"
+    contract = prompt["output_contract"]
+    Image.new("RGB", (contract["width"], contract["height"]), "navy").save(candidate)
+    monkeypatch.chdir(tmp_path)
+    render_manifest = tmp_path / "render-manifest.json"
+    assert main([
+        "bind-outputs", str(manifest), "--result", f"{prompt['id']}={candidate.name}", "-o", str(render_manifest)
+    ]) == 0
+    presentation = tmp_path / "journey-keepsake.svg"
+    assert main([
+        "present", str(render_manifest), "--style", "journey-keepsake", "-o", str(presentation)
+    ]) == 0
+    svg = presentation.read_text()
+    assert 'data-presentation-style="journey-keepsake"' in svg
+    assert "TIDAL PATH" in svg
+    assert "North Marsh" in svg and "2026-08-10" in svg and "Boardwalk after rain" in svg
+    assert "WANDERLUST" not in svg and "Evening Wind" not in svg
+    assert 'x1="302"' in svg
 
 
 def test_svg_systems_are_distinct_and_paths_are_output_relative(tmp_path: Path):
@@ -505,7 +538,7 @@ def test_renderer_has_no_case_copy_and_layout_emphasis_changes_layout(tmp_path: 
 
 def test_published_single_photo_galleries_have_valid_roles_and_distinct_pairs():
     root = Path(__file__).resolve().parents[1]
-    for gallery_name, expected_count in (("v0.4-gallery", 13), ("v0.6-gallery", 11)):
+    for gallery_name, expected_count in (("v0.4-gallery", 13), ("v0.6-gallery", 12)):
         gallery = root / "examples/cases" / gallery_name
         records = json.loads((gallery / "case-records.json").read_text())
         assert len(records["cases"]) == expected_count

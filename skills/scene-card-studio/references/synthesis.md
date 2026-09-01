@@ -20,7 +20,7 @@ An After image must change the visual narrative, not merely place the same photo
 7. Inspect each frame with the five-dimension rubric in `prompt-compiler.md`; for sequence systems, also inspect subject continuity, light/color continuity, rhythm, and narrative arc.
 8. Review only bound `candidate_output` records; never treat benchmark `reference_output` as a reviewed candidate.
 9. Accept every prompt that passes. For failures, create a bound form with `scene-card-studio review-template`, fill the scores after inspecting the current files, and finalize it with `scene-card-studio review`. Only a finalized review whose decision is `retry` may enter `scene-card-studio retry`; regenerate only `retry_prompt_ids`, bind the post-retry candidates to the Retry Manifest, and review that new Render Manifest.
-10. Keep generated pixels free of visible text. After review, use `scene-card-studio present` to apply only supplied metadata through the deterministic overlay renderer.
+10. Keep generated pixels free of visible text. After review, use `scene-card-studio present` to apply only supplied metadata through the deterministic overlay renderer. `--style journey-keepsake` may package the accepted After as an original asymmetric collector sheet; it never changes or replaces the generated image.
 
 ## Memory Atlas
 
@@ -56,6 +56,12 @@ An After image must change the visual narrative, not merely place the same photo
 - Keep one dominant place image. Differentiate only visible semantic roles inside the original perspective—for example movement through directional print rhythm, water through a translucent tonal field, vegetation through a tactile painted mass, and weather through an atmospheric wash. Make the media interlock at real scene boundaries rather than becoming detached studies.
 - Do not duplicate the source as a second overview, draw connector lines, place map pins, arrange white-outlined stickers, or copy a reference's background, column, caption, or top/bottom structure.
 - The result must be beautiful as one directed image before its classification mechanism is noticed.
+
+## Threaded Landscape
+
+- Translate the whole visible scene into one continuous fiber field. Preserve faces, clothing silhouettes, landmarks, terrain, object count, light direction, and depth order.
+- Use flatter weave in distance, directional embroidery for structure and movement, needle-felted transitions for atmosphere, and raised thread only where real focal depth requires it.
+- Reject photographic islands, split layouts, fringe borders, yarn-ball props, handwritten slogans, doll-like people, patchwork panels, and imitation of a named maker.
 
 ## Museum, Travel, Street, and Fashion
 

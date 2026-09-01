@@ -39,7 +39,7 @@ scene-card-studio direct photos/portrait.jpg \
 | --- | --- |
 | 输入 | 单张照片或一组有关联的照片序列 |
 | 导演方式 | 可观察事实 → 可编辑解释 → 明确视觉导演决策 |
-| 视觉词汇 | 11 个 Narrative Systems + 18 个可替换 Expression Profiles |
+| 视觉词汇 | 11 个 Narrative Systems + 19 个可替换 Expression Profiles |
 | 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
 | 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
 
@@ -125,7 +125,13 @@ scene-card-studio direct photos/portrait.jpg \
 | --- | --- |
 | ![普通盐沼木栈道](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![立体盐沼微缩地景](examples/cases/v0.6-gallery/after/sculpted-place-diorama.png) |
 
-[查看 11 份 Scene Card](examples/cases/v0.6-gallery/case-records.json) · [打开可复编译证据索引](examples/cases/v0.6-gallery/evidence/index.json) · [阅读原创性与案例说明](examples/cases/v0.6-gallery/README.md)
+#### Threaded Landscape｜纤维地景浮雕
+
+| Before · 扁平湖边随手拍 | After · 连续编织与刺绣浅浮雕 |
+| --- | --- |
+| ![普通山湖与小船](examples/cases/v0.6-gallery/before/mountain-lake.png) | ![山湖与小船纤维浮雕](examples/cases/v0.6-gallery/after/threaded-landscape.png) |
+
+[查看 12 份 Scene Card](examples/cases/v0.6-gallery/case-records.json) · [打开可复编译证据索引](examples/cases/v0.6-gallery/evidence/index.json) · [阅读原创性与案例说明](examples/cases/v0.6-gallery/README.md)
 
 ## 之前的 v0.4 Before / After
 
@@ -281,7 +287,7 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `street-reportage` | Street Reportage | 公共空间中的真实动作与事实序列 |
 | `fashion-editorial` | Fashion Editorial | 姿势、服装结构、裁切与镜头尺度节奏 |
 
-除默认 `source-led` 外，现在有 18 个可替换 Profile。新增的十种材质语言包括矿物色水墨、厚涂、手工像素、孔版印刷、水粉、蓝晒、纸艺浮雕、早期彩色摄影、像素水墨融合，以及具有真实体积的 3D 微缩地景。`pixel-ink-memory` 明确标为实验功能。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名，不重复计数。
+除默认 `source-led` 外，现在有 19 个可替换 Profile。新增的十一种材质语言包括矿物色水墨、厚涂、手工像素、孔版印刷、水粉、蓝晒、纸艺浮雕、早期彩色摄影、像素水墨融合、具有真实体积的 3D 微缩地景，以及连续的纤维地景浮雕。`pixel-ink-memory` 明确标为实验功能。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名，不重复计数。
 
 | Expression Profile | 兼容的 Narrative Systems |
 | --- | --- |
@@ -304,6 +310,19 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `autochrome-memory` | Memory Atlas、Family Chronicle、Travel Journal、Journey Taxonomy |
 | `pixel-ink-memory` · 实验 | Memory Atlas、Journey Taxonomy |
 | `sculpted-place-diorama` · 3D | Memory Atlas、Travel Journal、Journey Taxonomy |
+| `threaded-landscape` | Family Chronicle、Memory Atlas、Travel Journal、Journey Taxonomy |
+
+### Journey Keepsake｜旅行收藏凭证
+
+`Journey Keepsake` 是确定性 Presentation Mode，不是另一种图片风格。它把一张已经通过审核的 After 放入原创的不对称收藏凭证中，使用侧边来源存根，并且只显示用户提供的标题、地点、日期、收藏信息与备注：
+
+```bash
+scene-card-studio present render-manifest.json \
+  --style journey-keepsake \
+  --output journey-keepsake.svg
+```
+
+它不会生成第二张图片、不会修改候选图像素、不会复刻上下对照，也不会使用参考 Prompt 中的示例文案和版面比例。
 
 所有可见文字现已移出图片生成阶段。Manifest 会提供 `presentation_contract`，`scene-card-studio present` 只把用户提供的标题、日期、地点、收藏名称和藏品编号确定性地排进 SVG；缺失信息直接省略，不进行猜测。
 

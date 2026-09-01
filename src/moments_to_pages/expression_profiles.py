@@ -266,6 +266,32 @@ SCULPTED_PLACE_DIORAMA: dict[str, Any] = {
     "output": ["The result must read as one refined physical place model photographed in a real studio, not a generic 3D filter."],
 }
 
+THREADED_LANDSCAPE: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "threaded textile relief",
+    "subject_fidelity": [
+        "Preserve recognizable faces when present, body proportions, clothing silhouette, landmark geometry, terrain topology, horizon, object count, movement direction, and source depth order.",
+    ],
+    "transformation_policy": [
+        "Rebuild the complete visible scene as one continuous fiber artwork; simplify surface detail by thread scale without changing identity, pose, geography, weather evidence, chronology, or relationships.",
+    ],
+    "composition": [
+        "Use one uninterrupted textile field whose stitch direction follows perspective and form: flatter weave for distance, denser embroidery for focal structure, and restrained raised fiber only where real depth or emphasis requires it.",
+    ],
+    "lighting": [
+        "Translate source light through thread color, fiber sheen, stitch density, and shallow cast shadow while preserving the original light direction and atmosphere.",
+    ],
+    "material": [
+        "Use coherent woven ground, embroidery thread, wool roving, needle-felted transitions, looped highlights, and selective tufted relief at one believable physical scale.",
+    ],
+    "exclusions": [
+        "No photographic pixels, split Before/After layout, framed wall mockup, fringe border, loose yarn props, handwritten slogan, doll-like character redesign, chunky craft-kit look, random patchwork, branded pattern, or named-maker imitation.",
+    ],
+    "output": [
+        "The result must read as one refined contemporary textile relief whose depth and stitch language explain the supplied place or memory, not as a decorated photograph.",
+    ],
+}
+
 AUTOCHROME_MEMORY: dict[str, Any] = {
     "render_mode": "heritage-photograph",
     "output_medium": "autochrome-inspired memory photograph",
@@ -378,6 +404,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "gouache-place-study": GOUACHE_PLACE_STUDY,
         "paper-relief-landscape": PAPER_RELIEF_LANDSCAPE,
         "sculpted-place-diorama": SCULPTED_PLACE_DIORAMA,
+        "threaded-landscape": THREADED_LANDSCAPE,
         "autochrome-memory": AUTOCHROME_MEMORY,
         "pixel-ink-memory": PIXEL_INK_MEMORY,
     },
@@ -396,6 +423,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "heritage-portrait": HERITAGE_PORTRAIT,
         "cyanotype-archive": CYANOTYPE_ARCHIVE,
         "autochrome-memory": AUTOCHROME_MEMORY,
+        "threaded-landscape": THREADED_LANDSCAPE,
     },
     "museum-catalogue": {
         "source-led": {
@@ -421,6 +449,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "gouache-place-study": GOUACHE_PLACE_STUDY,
         "paper-relief-landscape": PAPER_RELIEF_LANDSCAPE,
         "sculpted-place-diorama": SCULPTED_PLACE_DIORAMA,
+        "threaded-landscape": THREADED_LANDSCAPE,
         "autochrome-memory": AUTOCHROME_MEMORY,
     },
     "journey-taxonomy": {
@@ -437,6 +466,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "gouache-place-study": GOUACHE_PLACE_STUDY,
         "paper-relief-landscape": PAPER_RELIEF_LANDSCAPE,
         "sculpted-place-diorama": SCULPTED_PLACE_DIORAMA,
+        "threaded-landscape": THREADED_LANDSCAPE,
         "autochrome-memory": AUTOCHROME_MEMORY,
         "pixel-ink-memory": PIXEL_INK_MEMORY,
     },

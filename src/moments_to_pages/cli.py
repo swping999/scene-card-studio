@@ -98,6 +98,7 @@ def parser() -> argparse.ArgumentParser:
     present = commands.add_parser("present", help="Apply deterministic typography and supplied metadata to a Render Manifest")
     present.add_argument("manifest")
     present.add_argument("-o", "--output", default="presentation.svg")
+    present.add_argument("--style", choices=("standard", "journey-keepsake"), default="standard")
     commands.add_parser("skill-path", help="Print the bundled Codex Skill directory")
     install_skill = commands.add_parser("install-skill", help="Copy the bundled Codex Skill to a new directory")
     install_skill.add_argument("--target", required=True, help="Destination Skill directory, for example ~/.codex/skills/scene-card-studio")
@@ -241,7 +242,12 @@ def main(argv: list[str] | None = None) -> int:
         output = Path(args.output)
         if output.suffix.lower() != ".svg":
             raise SystemExit("Presentation output extension must be .svg")
-        render_presentation_svg(json.loads(manifest_path.read_text()), output, base=manifest_path.resolve().parent)
+        render_presentation_svg(
+            json.loads(manifest_path.read_text()),
+            output,
+            base=manifest_path.resolve().parent,
+            style=args.style,
+        )
     elif args.command == "skill-path":
         print(bundled_skill_path())
     elif args.command == "install-skill":

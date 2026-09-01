@@ -39,6 +39,7 @@ Choose a Narrative System for how the photographs are read. Choose an Expression
 | `cyanotype-archive` | Family Chronicle, Museum Catalogue, Field Log, Street Reportage | evidence-bound Prussian-blue contact-print language without invented labels |
 | `paper-relief-landscape` | Memory Atlas, Travel Journal, Journey Taxonomy | one physically coherent layered-paper landscape, not a sticker board |
 | `sculpted-place-diorama` | Memory Atlas, Travel Journal, Journey Taxonomy | rebuild source geography as one physical miniature terrain model with real volume and light |
+| `threaded-landscape` | Family Chronicle, Memory Atlas, Travel Journal, Journey Taxonomy | repaint the complete scene as one continuous woven, embroidered, felted, and selectively tufted textile relief |
 | `autochrome-memory` | Family Chronicle, Memory Atlas, Travel Journal, Journey Taxonomy | restrained early-color photographic material without period fiction |
 | `pixel-ink-memory` | Memory Atlas, Journey Taxonomy | experimental two-medium fusion: crisp near evidence, ink-wash distance |
 
@@ -53,6 +54,8 @@ Run `scene-card-studio profiles` or `scene-card-studio profiles --system family-
 
 Journey Taxonomy may use the general idea of classifying visible travel evidence, but its composition must be generated from the Scene Card. Keep one dominant place view and integrate only source-backed terrain, weather, living subjects, objects, materials, or movement cues. Do not copy a reference image's background color, duplicated overview, sticker outlines, vertical arrangement, caption position, or decorative icon set.
 
-## Deterministic text
+## Deterministic presentation
 
 Keep captions, dates, locations, collection names, catalogue identifiers, and source notes outside generated pixels. Add known values to each Scene Card's `metadata` object. Compile them into `presentation_contract`, bind generated images, then run `scene-card-studio present`. Omit absent metadata; never infer it.
+
+`scene-card-studio present --style journey-keepsake` is an original asymmetric collector-sheet mode. It uses one dominant generated After, a side provenance stub, and only supplied metadata. It must not reproduce a reference prompt's top/bottom comparison, 50/50 split, prescribed ticket width, sample English slogans, fringe, or decoration.

@@ -1,0 +1,79 @@
+[
+  {
+    "source": "../../before/mountain-lake.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#CFDCE5",
+      "#585F5E",
+      "#232620",
+      "#92A0A8",
+      "#B6C9D6"
+    ],
+    "brightness": 0.567,
+    "saturation": 0.185,
+    "orientation": "portrait",
+    "caption": "THREADED LANDSCAPE",
+    "observation": {
+      "subjects": [
+        "faded blue boat",
+        "reeds",
+        "mountain lake",
+        "ridge",
+        "concrete landing",
+        "cloud cover"
+      ],
+      "dominant_gesture": "boat rests where reeds open onto the lake and ridge",
+      "quiet_regions": [
+        "open lake",
+        "cloud field"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "hold one quiet lake stop through fiber direction, relief, and changing stitch density",
+      "emotional_tone": [
+        "tactile",
+        "restful"
+      ],
+      "confidence": 0.95,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Let stitch direction explain water, reeds, boat wear, ridge, and weather inside one continuous textile field.",
+      "layout_emphasis": "blue boat in raised thread against flatter woven water and distant ridge"
+    },
+    "transformation": {
+      "must_preserve": [
+        "boat shape and wear",
+        "reeds",
+        "lake width",
+        "ridge silhouette",
+        "landing",
+        "overcast weather"
+      ],
+      "may_transform": [
+        "all surfaces into woven thread, embroidery, needle felt, and restrained tufting",
+        "crop",
+        "stitch density",
+        "shallow relief"
+      ],
+      "must_remove": [
+        "life rings",
+        "clipped railing",
+        "photographic pixels",
+        "fringe border",
+        "loose yarn props",
+        "handwritten slogan",
+        "split layout"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

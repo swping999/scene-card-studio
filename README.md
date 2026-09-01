@@ -39,7 +39,7 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 | --- | --- |
 | Input | One photograph or a related photo sequence |
 | Direction | Observable evidence → editable interpretation → explicit art direction |
-| Visual vocabulary | 11 Narrative Systems + 18 replaceable Expression Profiles |
+| Visual vocabulary | 11 Narrative Systems + 19 replaceable Expression Profiles |
 | Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
 | Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
 
@@ -125,7 +125,13 @@ These new cases deliberately favor places and objects over portraits. Each Befor
 | --- | --- |
 | ![Ordinary salt-marsh boardwalk](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![Sculpted three-dimensional salt-marsh diorama](examples/cases/v0.6-gallery/after/sculpted-place-diorama.png) |
 
-[Inspect the 11 Scene Cards](examples/cases/v0.6-gallery/case-records.json) · [Open the recompilable evidence index](examples/cases/v0.6-gallery/evidence/index.json) · [Read the originality and case notes](examples/cases/v0.6-gallery/README.md)
+#### Threaded Landscape · textile relief
+
+| Before · flat lake snapshot | After · one continuous woven and embroidered relief |
+| --- | --- |
+| ![Ordinary mountain lake and boat](examples/cases/v0.6-gallery/before/mountain-lake.png) | ![Threaded textile relief of the lake and boat](examples/cases/v0.6-gallery/after/threaded-landscape.png) |
+
+[Inspect the 12 Scene Cards](examples/cases/v0.6-gallery/case-records.json) · [Open the recompilable evidence index](examples/cases/v0.6-gallery/evidence/index.json) · [Read the originality and case notes](examples/cases/v0.6-gallery/README.md)
 
 ## Previous v0.4 Before / After
 
@@ -302,7 +308,7 @@ The compiler turns Scene Card evidence, one Narrative System, and one replaceabl
 | `street-reportage` | Street Reportage | observed public gestures and factual sequence |
 | `fashion-editorial` | Fashion Editorial | pose, garment construction, crop, shot-scale rhythm |
 
-Eighteen replaceable Profiles are available beyond the default `source-led`. Ten materially distinct additions expand the system beyond photography: mineral ink, impasto, authored pixel art, risograph, gouache, cyanotype, paper relief, early-color photography, pixel-and-ink fusion, and a physically sculpted 3D diorama. `pixel-ink-memory` is explicitly experimental. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas and is not counted separately.
+Nineteen replaceable Profiles are available beyond the default `source-led`. Eleven materially distinct additions expand the system beyond photography: mineral ink, impasto, authored pixel art, risograph, gouache, cyanotype, paper relief, early-color photography, pixel-and-ink fusion, a physically sculpted 3D diorama, and continuous threaded textile relief. `pixel-ink-memory` is explicitly experimental. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas and is not counted separately.
 
 | Expression Profile | Compatible Narrative Systems |
 | --- | --- |
@@ -325,6 +331,19 @@ Eighteen replaceable Profiles are available beyond the default `source-led`. Ten
 | `autochrome-memory` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy |
 | `pixel-ink-memory` · experimental | Memory Atlas, Journey Taxonomy |
 | `sculpted-place-diorama` · 3D | Memory Atlas, Travel Journal, Journey Taxonomy |
+| `threaded-landscape` | Family Chronicle, Memory Atlas, Travel Journal, Journey Taxonomy |
+
+### Journey Keepsake presentation
+
+`Journey Keepsake` is a deterministic presentation mode, not another image style. It places one accepted After inside an original asymmetric collector sheet with a side provenance stub and only user-supplied captions, locations, dates, collection data, and notes:
+
+```bash
+scene-card-studio present render-manifest.json \
+  --style journey-keepsake \
+  --output journey-keepsake.svg
+```
+
+It does not generate a second image, change candidate pixels, reproduce an upper/lower comparison, or borrow sample slogans and layout proportions from a reference prompt.
 
 Visible text is no longer delegated to the image model. Every Manifest includes a `presentation_contract`; `scene-card-studio present` applies only supplied captions, dates, locations, collection names, and catalogue identifiers as a deterministic SVG overlay. Missing metadata is omitted rather than inferred.
 

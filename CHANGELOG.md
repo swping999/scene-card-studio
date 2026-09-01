@@ -13,8 +13,9 @@ All notable changes to Scene Card Studio are documented here. Versions follow se
 - Negation-aware routing and explicit confirmation when automatically recommended Systems tie or remain below the confidence threshold.
 - Portable Render Manifest candidate paths plus `skill-path` and `install-skill` commands for the wheel-bundled Codex Skill.
 - `Journey Taxonomy`, an original landscape-led Narrative System that organizes supplied place evidence by semantic role without copying a reference layout.
-- Ten material Expression Profiles: mineral ink, impasto, pixel diary, risograph, gouache, cyanotype, paper relief, autochrome, experimental pixel-and-ink, and a physically sculpted 3D place diorama.
-- An 11-case, landscape-first Before/After gallery with Scene Cards and recompilable Prompt Manifest evidence.
+- Eleven material Expression Profiles: mineral ink, impasto, pixel diary, risograph, gouache, cyanotype, paper relief, autochrome, experimental pixel-and-ink, a physically sculpted 3D place diorama, and continuous threaded textile relief.
+- A 12-case, landscape-first Before/After gallery with Scene Cards and recompilable Prompt Manifest evidence.
+- `journey-keepsake`, an original asymmetric deterministic presentation style that uses one accepted After and supplied metadata without copying a reference prompt's split layout or slogans.
 
 ### Changed
 

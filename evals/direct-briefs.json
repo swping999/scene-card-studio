@@ -145,6 +145,12 @@
       "brief": "把车站、行李和旅途门槛重建成一个有真实体积和实体光影的立体微缩地景。",
       "system": "travel-journal",
       "expression_profile": "sculpted-place-diorama"
+    },
+    {
+      "id": "threaded-landscape",
+      "brief": "把湖面、山脉和旅行记忆完整重做成一幅连续的纤维浮雕地景，不要照片拼贴。",
+      "system": "memory-atlas",
+      "expression_profile": "threaded-landscape"
     }
   ],
   "adversarial_cases": [

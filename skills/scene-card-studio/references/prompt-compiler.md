@@ -40,13 +40,15 @@ With one Scene Card, every system emits exactly one standalone prompt, assigns `
 
 For Journey Taxonomy, classification is a narrative mechanism, not a scrapbook layout. Every visible category must be supported by the Scene Cards. The compiled exclusions reject duplicated overview photos, blue sticker boards, white cutout outlines, connector lines, equal cards, copied caption placement, and fabricated travel objects.
 
-For full-redraw Profiles, review material coherence as part of `system_distinctiveness` and `artifact_control`: watercolor cannot retain photographic skin; pixel work must use one pixel scale; risograph must use a limited overprint logic; paper relief needs one physical light model; mixed pixel-and-ink work must share palette and depth.
+For full-redraw Profiles, review material coherence as part of `system_distinctiveness` and `artifact_control`: watercolor cannot retain photographic skin; pixel work must use one pixel scale; risograph must use a limited overprint logic; paper relief needs one physical light model; threaded landscapes need one believable fiber scale and continuous textile ground; mixed pixel-and-ink work must share palette and depth.
 
 Every Manifest also includes a `presentation_contract`. Generated images must contain no visible typography. After binding candidate outputs, apply only supplied Scene Card metadata with:
 
 ```bash
 scene-card-studio present render-manifest.json --output presentation.svg
 ```
+
+Use `--style journey-keepsake` only as a deterministic presentation choice after a real After has been generated and bound. It is not an image-generation Profile and must not change candidate pixels or invent ticket copy.
 
 Do not upload yet. Read `privacy.md`, show the exact provider, purpose, and `privacy.files`, obtain explicit consent, and record it. Then pass only approved source files and use every compiled module.
 

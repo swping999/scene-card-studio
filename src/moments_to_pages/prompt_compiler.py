@@ -12,7 +12,7 @@ from .narrative_systems import SUPPORTED_SYSTEMS, resolve_narrative_system
 from .presentation import build_presentation_contract
 from .readiness import assess_direction_readiness
 
-COMPILER_VERSION = "0.6.0"
+COMPILER_VERSION = "0.6.1"
 __all__ = ["SUPPORTED_SYSTEMS", "compile_manifest"]
 
 

@@ -170,6 +170,8 @@ def recommend_expression_profile(system: str, cards: list[SceneCard], brief: str
         return ProfileRecommendation("paper-relief-landscape", "The brief explicitly requests one physically coherent paper-relief landscape.")
     if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("3d diorama", "3d miniature", "miniature diorama", "sculpted diorama", "terrain model", "立体微缩", "微缩地景", "微缩模型", "立体地景", "实体模型", "3d 立体"):
         return ProfileRecommendation("sculpted-place-diorama", "The brief explicitly requests a physically coherent sculpted place diorama.")
+    if system in {"family-archive", "memory-atlas", "travel-journal", "journey-taxonomy"} and contains("threaded landscape", "textile relief", "fiber art", "fibre art", "embroidery", "embroidered", "woven", "weaving", "needle felt", "tufted", "yarn art", "纤维地景", "纤维浮雕", "纤维艺术", "刺绣", "编织", "针织", "针毡", "毛线", "簇绒"):
+        return ProfileRecommendation("threaded-landscape", "The brief explicitly requests a continuous threaded textile relief.")
     if system in {"family-archive", "memory-atlas", "travel-journal", "journey-taxonomy"} and contains("autochrome", "early color plate", "early color photograph", "奥托克罗姆", "早期彩色照片", "早期彩色印相"):
         return ProfileRecommendation("autochrome-memory", "The brief explicitly requests a restrained early-color photographic memory treatment.")
     if system in {"memory-atlas", "journey-taxonomy"} and contains("pixel ink", "pixel-and-ink", "pixel and ink", "ink pixel", "像素水墨", "像素与水墨", "像素岩彩"):

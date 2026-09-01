@@ -72,7 +72,7 @@ def test_public_text_has_no_local_user_paths_or_high_confidence_credentials():
 
 
 def test_gallery_scene_cards_and_manifests_are_reproducible():
-    for gallery_name, expected_count in (("v0.4-gallery", 13), ("v0.6-gallery", 11)):
+    for gallery_name, expected_count in (("v0.4-gallery", 13), ("v0.6-gallery", 12)):
         gallery = ROOT / "examples/cases" / gallery_name
         subprocess.run(
             [sys.executable, str(gallery / "build_evidence.py"), "--check"],

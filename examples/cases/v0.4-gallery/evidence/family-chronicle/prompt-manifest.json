@@ -1,6 +1,6 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.0",
+  "compiler_version": "0.6.1",
   "source_mode": "single-photo",
   "system": "family-archive",
   "system_display_name": "Family Chronicle",
@@ -11,7 +11,8 @@
     "watercolor-chronicle",
     "heritage-portrait",
     "cyanotype-archive",
-    "autochrome-memory"
+    "autochrome-memory",
+    "threaded-landscape"
   ],
   "story": "story.json",
   "source_base": "story-directory",

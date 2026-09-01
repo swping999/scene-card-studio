@@ -113,6 +113,16 @@
         "direction": {"story_role": "moment", "director_note": "Use consistent miniature scale, real volume, contact shadows, and source topology—not toy styling.", "layout_emphasis": "raised boardwalk above sculpted channels and reed islands"},
         "transformation": {"must_preserve": ["hut", "boardwalk", "posts", "channels", "reeds", "sea horizon", "blue post"], "may_transform": ["all surfaces into plaster, resin, fibers, and miniature timber", "camera angle", "studio light"], "must_remove": ["toy-box border", "isometric tile", "cute redesign", "labels", "UI", "glossy CGI"]}
       }
+    },
+    {
+      "case_id": "threaded-landscape", "display_name": "Threaded Landscape", "kind": "expression_profile", "system": "memory-atlas", "expression_profile": "threaded-landscape",
+      "before": "before/mountain-lake.png", "after": "after/threaded-landscape.png",
+      "scene_card": {
+        "observation": {"subjects": ["faded blue boat", "reeds", "mountain lake", "ridge", "concrete landing", "cloud cover"], "dominant_gesture": "boat rests where reeds open onto the lake and ridge", "quiet_regions": ["open lake", "cloud field"]},
+        "interpretation": {"narrative_intent": "hold one quiet lake stop through fiber direction, relief, and changing stitch density", "emotional_tone": ["tactile", "restful"], "confidence": 0.95, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Let stitch direction explain water, reeds, boat wear, ridge, and weather inside one continuous textile field.", "layout_emphasis": "blue boat in raised thread against flatter woven water and distant ridge"},
+        "transformation": {"must_preserve": ["boat shape and wear", "reeds", "lake width", "ridge silhouette", "landing", "overcast weather"], "may_transform": ["all surfaces into woven thread, embroidery, needle felt, and restrained tufting", "crop", "stitch density", "shallow relief"], "must_remove": ["life rings", "clipped railing", "photographic pixels", "fringe border", "loose yarn props", "handwritten slogan", "split layout"]}
+      }
     }
   ]
 }

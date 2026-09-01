@@ -4,7 +4,7 @@
   "source_mode": "single-photo",
   "system": "memory-atlas",
   "system_display_name": "Memory Atlas",
-  "expression_profile": "impasto-light-study",
+  "expression_profile": "threaded-landscape",
   "available_expression_profiles": [
     "source-led",
     "watercolor-contour",
@@ -48,29 +48,29 @@
           "Preserve the supplied place or subject as one recognizable painted anchor: boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.",
           "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
           "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
-          "Preserve the recognizable subject silhouette, face geometry when present, architecture, object relationships, horizon, and camera position."
+          "Preserve recognizable faces when present, body proportions, clothing silhouette, landmark geometry, terrain topology, horizon, object count, movement direction, and source depth order."
         ],
         "transformation_policy": [
           "MUST PRESERVE — boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.",
-          "MAY TRANSFORM — all surfaces into oil paint, crop, light emphasis, brush hierarchy.",
-          "MUST REMOVE — life rings, clipped railing, photographic pixels, canvas mockup.",
-          "Translate the complete scene into a materially painted light study; allow brush simplification but do not invent props, costume, weather, or location."
+          "MAY TRANSFORM — all surfaces into woven thread, embroidery, needle felt, and restrained tufting, crop, stitch density, shallow relief.",
+          "MUST REMOVE — life rings, clipped railing, photographic pixels, fringe border, loose yarn props, handwritten slogan, split layout.",
+          "Rebuild the complete visible scene as one continuous fiber artwork; simplify surface detail by thread scale without changing identity, pose, geography, weather evidence, chronology, or relationships."
         ],
         "narrative_intent": [
           "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
-          "Source / moment: intent direct attention through one overcast path of light; tone luminous, still; emphasis blue boat beneath a silver break in the clouds; director note Vary paint thickness and let light, not generic texture, organize the place."
+          "Source / moment: intent hold one quiet lake stop through fiber direction, relief, and changing stitch density; tone tactile, restful; emphasis blue boat in raised thread against flatter woven water and distant ridge; director note Let stitch direction explain water, reeds, boat wear, ridge, and weather inside one continuous textile field."
         ],
         "composition": [
           "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
           "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
-          "Let one source-supported light path control the focal hierarchy; concentrate thick paint around illuminated structure and reduce secondary areas into quieter planes."
+          "Use one uninterrupted textile field whose stitch direction follows perspective and form: flatter weave for distance, denser embroidery for focal structure, and restrained raised fiber only where real depth or emphasis requires it."
         ],
         "lighting": [
           "Use the combined source palette (#CFDCE5, #585F5E) without flattening every painted passage into one identical color treatment.",
-          "Keep the source light direction and temperature relationships; build luminous color through adjacent strokes rather than digital glow or bloom."
+          "Translate source light through thread color, fiber sheen, stitch density, and shallow cast shadow while preserving the original light direction and atmosphere."
         ],
         "material": [
-          "Use visible loaded-brush ridges, palette-knife interruptions, broken color, matte ground, and selective thick highlights with believable paint depth.",
+          "Use coherent woven ground, embroidery thread, wool roving, needle-felted transitions, looped highlights, and selective tufted relief at one believable physical scale.",
           "Every added mark must perform a Scene Card-supported spatial function rather than decoration."
         ],
         "spatial_relationships": [
@@ -83,18 +83,18 @@
         "exclusions": [
           "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
           "No fantasy architecture, generic tourism poster, or named-artist imitation.",
-          "No named-painter imitation, generic starry swirls, uniformly thick texture, plastic 3D paint, photographic islands, frame, canvas mockup, or gallery wall."
+          "No photographic pixels, split Before/After layout, framed wall mockup, fringe border, loose yarn props, handwritten slogan, doll-like character redesign, chunky craft-kit look, random patchwork, branded pattern, or named-maker imitation."
         ],
         "output": [
           "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
           "The supplied place or subject must remain recognizable.",
-          "The result must read as one resolved contemporary painting in which light—not a filter—directs attention."
+          "The result must read as one refined contemporary textile relief whose depth and stitch language explain the supplied place or memory, not as a decorated photograph."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve the recognizable subject silhouette, face geometry when present, architecture, object relationships, horizon, and camera position.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- MAY TRANSFORM — all surfaces into oil paint, crop, light emphasis, brush hierarchy.\n- MUST REMOVE — life rings, clipped railing, photographic pixels, canvas mockup.\n- Translate the complete scene into a materially painted light study; allow brush simplification but do not invent props, costume, weather, or location.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent direct attention through one overcast path of light; tone luminous, still; emphasis blue boat beneath a silver break in the clouds; director note Vary paint thickness and let light, not generic texture, organize the place.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Let one source-supported light path control the focal hierarchy; concentrate thick paint around illuminated structure and reduce secondary areas into quieter planes.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#CFDCE5, #585F5E) without flattening every painted passage into one identical color treatment.\n- Keep the source light direction and temperature relationships; build luminous color through adjacent strokes rather than digital glow or bloom.\n\nMATERIAL AND SURFACE\n- Use visible loaded-brush ridges, palette-knife interruptions, broken color, matte ground, and selective thick highlights with believable paint depth.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No named-painter imitation, generic starry swirls, uniformly thick texture, plastic 3D paint, photographic islands, frame, canvas mockup, or gallery wall.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one resolved contemporary painting in which light—not a filter—directs attention.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve recognizable faces when present, body proportions, clothing silhouette, landmark geometry, terrain topology, horizon, object count, movement direction, and source depth order.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- MAY TRANSFORM — all surfaces into woven thread, embroidery, needle felt, and restrained tufting, crop, stitch density, shallow relief.\n- MUST REMOVE — life rings, clipped railing, photographic pixels, fringe border, loose yarn props, handwritten slogan, split layout.\n- Rebuild the complete visible scene as one continuous fiber artwork; simplify surface detail by thread scale without changing identity, pose, geography, weather evidence, chronology, or relationships.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent hold one quiet lake stop through fiber direction, relief, and changing stitch density; tone tactile, restful; emphasis blue boat in raised thread against flatter woven water and distant ridge; director note Let stitch direction explain water, reeds, boat wear, ridge, and weather inside one continuous textile field.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Use one uninterrupted textile field whose stitch direction follows perspective and form: flatter weave for distance, denser embroidery for focal structure, and restrained raised fiber only where real depth or emphasis requires it.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#CFDCE5, #585F5E) without flattening every painted passage into one identical color treatment.\n- Translate source light through thread color, fiber sheen, stitch density, and shallow cast shadow while preserving the original light direction and atmosphere.\n\nMATERIAL AND SURFACE\n- Use coherent woven ground, embroidery thread, wool roving, needle-felted transitions, looped highlights, and selective tufted relief at one believable physical scale.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No photographic pixels, split Before/After layout, framed wall mockup, fringe border, loose yarn props, handwritten slogan, doll-like character redesign, chunky craft-kit look, random patchwork, branded pattern, or named-maker imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one refined contemporary textile relief whose depth and stitch language explain the supplied place or memory, not as a decorated photograph.",
       "reference_output": {
-        "path": "../../after/impasto-light-study.png",
-        "sha256": "da1ffe2731e30995aa86fc3bd238c225b177e64c9209183bdd4a8628bb9a881b"
+        "path": "../../after/threaded-landscape.png",
+        "sha256": "04b9aecf586c7c2d58f9efadaf9367f8d672d547896737d975caf49f36b7a12b"
       }
     }
   ],
@@ -138,7 +138,7 @@
       {
         "source_index": 0,
         "prompt_id": "memory-atlas-01",
-        "caption": "IMPASTO LIGHT STUDY",
+        "caption": "THREADED LANDSCAPE",
         "story_role": "moment"
       }
     ],

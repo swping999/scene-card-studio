@@ -99,7 +99,7 @@ def test_all_systems_compile_with_policy_profiles_and_presentation_contract(tmp_
     for system in SUPPORTED_SYSTEMS:
         manifest = compile_manifest(cards, system, source_root=tmp_path)
         manifests[system] = manifest
-        assert manifest["compiler_version"] == "0.6.0"
+        assert manifest["compiler_version"] == "0.6.1"
         assert manifest["schema_version"] == "1.5"
         assert manifest["source_mode"] == (
             "multi-photo-per-source"
@@ -230,6 +230,7 @@ def test_new_systems_and_profiles_have_distinct_director_rules(tmp_path: Path):
         "gouache-place-study": "matte gouache coverage",
         "paper-relief-landscape": "deckled cotton paper",
         "sculpted-place-diorama": "hand-sculpted plaster",
+        "threaded-landscape": "woven ground",
         "autochrome-memory": "stochastic color grain",
         "pixel-ink-memory": "Experimental profile",
     }
