@@ -59,6 +59,16 @@ scene-card-studio direct photos/portrait.jpg \
 
 这批案例刻意以风景和物件为主，不再依赖普通人物照。每张 Before 都是新生成的日常输入，每张 After 都通过一种独立的叙事或材质系统，实质重建同一份可见证据。首个 Journey Taxonomy 案例把地点按移动、地标、水体、植物、天气和材质组织在同一空间中；它明确不复制参考图的配色、上下重复照片、贴纸竖排、白色描边、连接线与标题位置。
 
+#### Material Narratives｜材质叙事精选
+
+这四组风景案例构成一套更集中的材质叙事：不透明水粉、真实立体微缩、连续纤维浮雕与分层纸艺浮雕。点击图片可跳到下方完整 Before/After。
+
+| Gouache Place Study｜水粉地点研究 | Sculpted Place Diorama｜立体地点微缩模型 · 3D |
+| --- | --- |
+| [![水粉天文台地点研究](examples/cases/v0.6-gallery/after/gouache-place-study.png)](#gouache-place-study水粉地点研究) | [![立体盐沼微缩地景](examples/cases/v0.6-gallery/after/sculpted-place-diorama.png)](#sculpted-place-diorama立体地点微缩模型--3d) |
+| **Threaded Landscape｜纤维地景浮雕** | **Paper Relief Landscape｜纸艺浮雕景观** |
+| [![山湖与小船纤维浮雕](examples/cases/v0.6-gallery/after/threaded-landscape.png)](#threaded-landscape纤维地景浮雕) | [![剪纸浮雕景观](examples/cases/v0.6-gallery/after/paper-relief-landscape.png)](#paper-relief-landscape纸艺浮雕景观) |
+
 #### Journey Taxonomy｜旅行地点分类
 
 | Before · 普通盐沼风景 | After · 一个语义地点场，不是贴纸板 |

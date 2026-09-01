@@ -59,6 +59,16 @@ Check compatible combinations with `scene-card-studio profiles`. The compiler re
 
 These new cases deliberately favor places and objects over portraits. Each Before is a newly generated, ordinary source image; each After materially rebuilds the same evidence through a distinct narrative or material system. The opening Journey Taxonomy case classifies a place by movement, landmark, water, vegetation, weather, and material—without copying the supplied social reference's palette, repeated photograph, sticker column, connector lines, or caption layout.
 
+#### Featured Material Narratives
+
+Four of the strongest landscape cases form a focused material family: opaque gouache, a physically sculpted miniature, continuous textile relief, and layered paper relief. Select an image to open its full Before/After case below.
+
+| Gouache Place Study | Sculpted Place Diorama · 3D |
+| --- | --- |
+| [![Gouache observatory place study](examples/cases/v0.6-gallery/after/gouache-place-study.png)](#gouache-place-study) | [![Sculpted three-dimensional salt-marsh diorama](examples/cases/v0.6-gallery/after/sculpted-place-diorama.png)](#sculpted-place-diorama--3d) |
+| **Threaded Landscape · textile relief** | **Paper Relief Landscape** |
+| [![Threaded textile relief of the lake and boat](examples/cases/v0.6-gallery/after/threaded-landscape.png)](#threaded-landscape--textile-relief) | [![Cut-paper relief landscape](examples/cases/v0.6-gallery/after/paper-relief-landscape.png)](#paper-relief-landscape) |
+
 #### Journey Taxonomy
 
 | Before · ordinary salt-marsh view | After · one semantic place field, not a sticker board |
