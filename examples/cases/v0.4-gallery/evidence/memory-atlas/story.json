@@ -1,0 +1,73 @@
+[
+  {
+    "source": "../../before/memory-atlas.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#8BB3ED",
+      "#A9CBF4",
+      "#779EE2",
+      "#9C9992",
+      "#625D4F"
+    ],
+    "brightness": 0.734,
+    "saturation": 0.32,
+    "orientation": "portrait",
+    "caption": "MEMORY ATLAS",
+    "observation": {
+      "subjects": [
+        "concrete roadside house",
+        "red gate",
+        "blue barrel",
+        "utility pole",
+        "curved road"
+      ],
+      "dominant_gesture": "road bends past the building toward the ridge",
+      "quiet_regions": [
+        "upper sky"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "place held through route and terrain",
+      "emotional_tone": [
+        "remote",
+        "material"
+      ],
+      "confidence": 0.84,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Keep the architecture photographic while geography enters the same material world.",
+      "layout_emphasis": "road-to-ridge spatial continuity"
+    },
+    "transformation": {
+      "must_preserve": [
+        "building geometry",
+        "red gate",
+        "blue barrel",
+        "pole and wires",
+        "road",
+        "ridge"
+      ],
+      "may_transform": [
+        "sky",
+        "terrain surface",
+        "road texture"
+      ],
+      "must_remove": [
+        "map pins",
+        "connector lines",
+        "thumbnail collage",
+        "labels"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

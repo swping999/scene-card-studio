@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "cinematic-storyboard",
+  "system_display_name": "Cinematic Sequence",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led",
+    "rain-nocturne"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "cinematic-storyboard-01",
+      "mode": "cinematic-sequence",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/cinematic-sequence.jpg",
+          "sha256": "9cac27fdce2bbb50faa007a2e2521f044940484817e39479a0f8b4b7994fd16a"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: identity, beige jacket, dark trousers, folded umbrella, metro structure.",
+          "Preserve the observed action or structural gesture: waiting beneath repeating concrete spans.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — identity, beige jacket, dark trousers, folded umbrella, metro structure.",
+          "MAY TRANSFORM — weather, light, camera distance, background density.",
+          "MUST REMOVE — scooter clutter, vending glare, dead foreground."
+        ],
+        "narrative_intent": [
+          "Narrative intent: a suspended urban wait.",
+          "Emotional tone: watchful, contained. Story role: moment.",
+          "Director note: Let motivated rain light organize the wait without turning it into a poster.",
+          "Visual emphasis: figure against receding metro geometry."
+        ],
+        "composition": [
+          "Create one continuous cinematic photograph with figure against receding metro geometry as the visual anchor; no panels or montage.",
+          "Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.",
+          "Respect the source camera position and derive shot scale from the visible scene rather than forcing a lens signature."
+        ],
+        "lighting": [
+          "Build from the source palette (#6E675A, #2D251F, #958872, #857966) and keep exposure physically plausible.",
+          "Develop only light sources already visible or physically plausible in the source."
+        ],
+        "material": [
+          "Keep photographic surfaces natural and use only restrained source-compatible grain or atmosphere.",
+          "Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish."
+        ],
+        "spatial_relationships": [
+          "Keep subject scale plausible and preserve the source scene's directional movement.",
+          "Single-photo contract: treat this source as one complete directed frame; do not imply adjacent shots or invented events."
+        ],
+        "text_strategy": [
+          "Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography."
+        ],
+        "exclusions": [
+          "No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.",
+          "No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.",
+          "Do not imitate a named director, cinematographer, photographer, film, or franchise."
+        ],
+        "output": [
+          "Return one standalone photorealistic PNG frame at exactly 2:3.",
+          "Keep the source subject immediately recognizable at first glance."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: identity, beige jacket, dark trousers, folded umbrella, metro structure.\n- Preserve the observed action or structural gesture: waiting beneath repeating concrete spans.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — identity, beige jacket, dark trousers, folded umbrella, metro structure.\n- MAY TRANSFORM — weather, light, camera distance, background density.\n- MUST REMOVE — scooter clutter, vending glare, dead foreground.\n\nNARRATIVE INTENT\n- Narrative intent: a suspended urban wait.\n- Emotional tone: watchful, contained. Story role: moment.\n- Director note: Let motivated rain light organize the wait without turning it into a poster.\n- Visual emphasis: figure against receding metro geometry.\n\nCOMPOSITION\n- Create one continuous cinematic photograph with figure against receding metro geometry as the visual anchor; no panels or montage.\n- Suppress only elements listed under MUST REMOVE; keep the place believable and lived-in.\n- Respect the source camera position and derive shot scale from the visible scene rather than forcing a lens signature.\n\nLIGHTING AND COLOR\n- Build from the source palette (#6E675A, #2D251F, #958872, #857966) and keep exposure physically plausible.\n- Develop only light sources already visible or physically plausible in the source.\n\nMATERIAL AND SURFACE\n- Keep photographic surfaces natural and use only restrained source-compatible grain or atmosphere.\n- Prefer believable atmospheric depth and tactile surfaces over glossy advertising polish.\n\nSPATIAL RELATIONSHIPS\n- Keep subject scale plausible and preserve the source scene's directional movement.\n- Single-photo contract: treat this source as one complete directed frame; do not imply adjacent shots or invented events.\n\nTEXT AND LABELS\n- Generate no titles, subtitles, credits, dialogue, logos, watermarks, or visible typography.\n\nEXCLUSIONS\n- No commercial movie poster, trailer key art, split screen, contact sheet, or multi-shot composite.\n- No cyberpunk neon, bloom overload, plastic skin, beauty retouching, or fake anamorphic flares unless explicitly authorized.\n- Do not imitate a named director, cinematographer, photographer, film, or franchise.\n\nOUTPUT\n- Return one standalone photorealistic PNG frame at exactly 2:3.\n- Keep the source subject immediately recognizable at first glance.",
+      "reference_output": {
+        "path": "../../after/cinematic-sequence.jpg",
+        "sha256": "6f5624db77720b47bc1290dec90291bba8edcadb7651143b59606c2d029f5c6b"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/cinematic-sequence.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Cinematic Sequence",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "story_role"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "cinematic-storyboard-01",
+        "caption": "CINEMATIC SEQUENCE",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/cinematic-sequence.jpg",
+        "sha256": "9cac27fdce2bbb50faa007a2e2521f044940484817e39479a0f8b4b7994fd16a"
+      }
+    ]
+  }
+}

@@ -26,14 +26,14 @@ photos → Scene Cards → Narrative System → Prompt Compiler → image genera
 
 ### One command to start
 
-After installation, one local command turns one photo or a related set into Scene Cards, an automatically routed Prompt Manifest, a clearly labelled analysis Workprint, and a run summary:
+After installation, one local command turns one photo or a related set into draft Scene Cards, an automatically routed Prompt Manifest, a clearly labelled analysis Workprint, and a run summary:
 
 ```bash
 scene-card-studio direct photos/portrait.jpg \
   --brief "a restrained hand-colored heritage portrait"
 ```
 
-Use multiple paths or a glob for a sequence. `direct` selects a Narrative System from the bilingual brief and selects a non-default Expression Profile only when the brief explicitly asks for it. This preparation step never uploads a source photo and never presents its Workprint as a generated After.
+Use multiple paths or a glob for a sequence. `direct` selects a Narrative System from the bilingual brief and selects a non-default Expression Profile only when the brief explicitly asks for it. Its local analyzer measures dimensions, orientation, palette, brightness, and saturation; it does **not** pretend that those statistics identify people, objects, gestures, or spatial meaning. Until those semantic fields and transformation rules are completed, the bundle is labelled `needs-semantic-direction` and upload consent is refused. This preparation step never uploads a source photo and never presents its Workprint as a generated After.
 
 | At a glance | Project contract |
 | --- | --- |
@@ -137,7 +137,7 @@ Every Before below is a newly generated, deliberately unpolished phone-style sou
 
 The first ten entries are Narrative Systems. Watercolor Chronicle, Heritage Portrait, and Dream Logic are replaceable Expression Profiles applied through compatible systems. This keeps story structure separate from surface language.
 
-[Inspect all 13 Scene Cards and direction records](examples/cases/v0.4-gallery/case-records.json) · [Read the case notes](examples/cases/v0.4-gallery/README.md) · [Read the design principles](DESIGN_PRINCIPLES.md)
+[Inspect all 13 Scene Cards and direction records](examples/cases/v0.4-gallery/case-records.json) · [Open the recompilable evidence index](examples/cases/v0.4-gallery/evidence/index.json) · [Read the case notes](examples/cases/v0.4-gallery/README.md) · [Read the design principles](DESIGN_PRINCIPLES.md)
 
 ## Earlier benchmark cases
 
@@ -271,21 +271,32 @@ Requires Python 3.10+. Automatic analysis and PNG rendering use Pillow.
 ```bash
 git clone https://github.com/swping999/scene-card-studio.git
 cd scene-card-studio
-python -m pip install -e '.[images]'
+python -m pip install -e .
 
 # Fast path: one photo → one prompt-ready local direction bundle
 scene-card-studio direct photos/portrait.jpg --brief "quiet family portrait with restrained silver-gelatin depth"
+
+# The local analyzer deliberately stops before inventing semantic evidence.
+scene-card-studio check scene-card-output/story.json --json
+
+# After a human or vision-capable Skill completes and verifies the Scene Cards:
+scene-card-studio direct photos/portrait.jpg \
+  --brief "quiet family portrait with restrained silver-gelatin depth" \
+  --scene-cards scene-card-output/story.json --force
 
 # Fast path: many photos → one automatically routed narrative bundle
 scene-card-studio direct photos/*.jpg --brief "a travel journal built from stations, tickets, and thresholds" --output-dir travel-run
 
 # Advanced staged workflow
 scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
+# Complete the reported semantic fields from visual evidence before compiling for generation.
+scene-card-studio check portrait-story.json --json
 scene-card-studio profiles --system family-archive
 scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
 
 # Many photos → per-photo direction or multi-source synthesis
 scene-card-studio analyze photos/*.jpg --output story.json
+scene-card-studio check story.json --json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
 scene-card-studio compile story.json --system memory-atlas --expression-profile watercolor-chronicle --output watercolor-memory-manifest.json
@@ -293,18 +304,21 @@ scene-card-studio compile story.json --system museum-catalogue --expression-prof
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style memory-atlas --format svg --output story.svg
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
-scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
-scene-card-studio present render-manifest.json --output presentation.svg
-scene-card-studio retry render-manifest.json assessment.json --output retry-manifest.json
-scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
+scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
+scene-card-studio review-template render-manifest.json --reviewer-type human --reviewer-name "YOUR NAME" --reviewer-model "visual inspection" --method "full-resolution comparison" --output assessment.json
+# Fill every 1–5 score after inspecting the bound image, then finalize the record:
+scene-card-studio review render-manifest.json assessment.json --output review.json
+scene-card-studio present render-manifest.json --output presentation.svg
+scene-card-studio retry render-manifest.json review.json --output retry-manifest.json
+scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 ```
 
-`direct` writes `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` into a dedicated output directory. It refuses accidental overwrites unless `--force` is explicit. For one photo, every system emits exactly one standalone prompt and labels the Manifest `single-photo`; no sequence continuity or invented adjacent scene is requested. For multiple photos, Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion emit one prompt per source, while Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt.
+`direct` writes `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` into a dedicated output directory. It refuses accidental overwrites unless `--force` is explicit. `check` reports the exact semantic fields that remain incomplete. A prepared story may re-enter the same flow through `--scene-cards`; its source list must match the supplied photos exactly, and low-level image measurements are refreshed from the files. For one photo, every system emits exactly one standalone prompt and labels the Manifest `single-photo`; no sequence continuity or invented adjacent scene is requested. For multiple photos, Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion emit one prompt per source, while Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt.
 
 Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Formal review refuses an unbound Prompt Manifest. `present` verifies bound output hashes and keeps generated pixels separate from deterministic text. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits.
 
-The repository also includes a [13-case bilingual short-brief routing matrix](evals/direct-briefs.json). CI checks all ten Narrative Systems, all non-default Profiles, single-photo contracts, multi-photo modes, output binding, retry provenance, safe image embedding, and pixel-level visual difference across every published Before/After pair.
+The repository also includes a [bilingual routing matrix](evals/direct-briefs.json) with positive, negated, and ambiguous briefs. CI checks all ten Narrative Systems, all non-default Profiles, single-photo contracts, multi-photo modes, semantic readiness, formal review, retry provenance, safe image embedding, recompilable gallery evidence, and pixel-level visual difference across every published Before/After pair.
 
 ## Codex Skill
 
@@ -321,7 +335,7 @@ Then ask:
 Use $scene-card-studio to direct this photo as a quiet hand-colored heritage portrait.
 ```
 
-The Skill uses the same local `direct` bundle first, lets you inspect the route, then asks for provider-, purpose-, and file-specific consent before any remote image generation.
+The Skill uses the same local `direct` bundle first, completes semantic Scene Card evidence through visual inspection, verifies it with `check`, then asks for provider-, purpose-, and file-specific consent before any remote image generation.
 
 ## Originality and privacy
 
@@ -341,7 +355,7 @@ Please report suspected path traversal, unintended photo disclosure, manifest sp
 
 ## Roadmap
 
-- user-editable Visual Director decisions;
+- richer semantic-image adapters beyond the bundled Skill workflow;
 - `contact-sheet` and `journey-sequence` systems;
 - crop-aware subject placement;
 - image-model adapters and queued generation;

@@ -18,9 +18,15 @@ from moments_to_pages.model import (
     SceneCard,
     TransformationPolicy,
 )
-from moments_to_pages.privacy import validate_upload_consent
+from moments_to_pages.privacy import build_upload_consent, validate_upload_consent
 from moments_to_pages.prompt_compiler import SUPPORTED_SYSTEMS, compile_manifest
-from moments_to_pages.review import bind_outputs, build_retry_manifest, review_decision
+from moments_to_pages.review import (
+    bind_outputs,
+    build_retry_manifest,
+    build_review_record,
+    build_review_template,
+    review_decision,
+)
 
 
 def _cards(tmp_path: Path) -> list[SceneCard]:
@@ -89,8 +95,8 @@ def test_all_systems_compile_with_policy_profiles_and_presentation_contract(tmp_
     for system in SUPPORTED_SYSTEMS:
         manifest = compile_manifest(cards, system, source_root=tmp_path)
         manifests[system] = manifest
-        assert manifest["compiler_version"] == "0.4.1"
-        assert manifest["schema_version"] == "1.4"
+        assert manifest["compiler_version"] == "0.5.0"
+        assert manifest["schema_version"] == "1.5"
         assert manifest["source_mode"] == (
             "multi-photo-per-source"
             if system in {"cinematic-storyboard", "minimal-editorial", "editorial-sequence", "field-log", "museum-catalogue", "street-reportage", "fashion-editorial"}
@@ -103,6 +109,7 @@ def test_all_systems_compile_with_policy_profiles_and_presentation_contract(tmp_
         assert set(manifest["prompts"][0]["output_contract"]) == {"mime_type", "width", "height", "aspect_ratio"}
         assert "MUST REMOVE — plastic sign" in manifest["prompts"][0]["compiled_prompt"]
         assert manifest["privacy"]["upload_requires_explicit_consent"] is True
+        assert manifest["generation_ready"] is True
         assert manifest["presentation_contract"]["image_generation_text_policy"] == "no-visible-text"
         assert manifest["system_display_name"]
     for system in ("cinematic-storyboard", "minimal-editorial", "editorial-sequence", "field-log", "museum-catalogue", "street-reportage", "fashion-editorial"):
@@ -212,6 +219,40 @@ def test_compiler_fails_closed_for_missing_source(tmp_path: Path):
         compile_manifest(cards, "minimal-editorial", source_root=tmp_path)
 
 
+def test_upload_consent_waits_for_semantic_direction(tmp_path: Path):
+    source = tmp_path / "generic.jpg"
+    source.write_bytes(b"generic-source")
+    card = SceneCard(
+        source=source.name,
+        width=1200,
+        height=800,
+        palette=["#888888"],
+        brightness=.5,
+        saturation=.1,
+        orientation="landscape",
+    )
+    manifest = compile_manifest([card], "minimal-editorial", source_root=tmp_path)
+    assert manifest["generation_ready"] is False
+    with pytest.raises(ValueError, match="Semantic Scene Card direction is incomplete"):
+        build_upload_consent(
+            manifest,
+            manifest_sha256="a" * 64,
+            provider="example-provider",
+            purpose="presentation synthesis",
+            user_confirmed=True,
+        )
+    ready_manifest = compile_manifest(_cards(tmp_path)[:1], "minimal-editorial", source_root=tmp_path)
+    ready_manifest["generation_ready"] = False
+    with pytest.raises(ValueError, match="automatic route is unresolved"):
+        build_upload_consent(
+            ready_manifest,
+            manifest_sha256="b" * 64,
+            provider="example-provider",
+            purpose="presentation synthesis",
+            user_confirmed=True,
+        )
+
+
 def test_review_is_bound_to_manifest_and_output_hashes(tmp_path: Path):
     output = tmp_path / "accepted.png"
     Image.new("RGB", (1536, 1024), "navy").save(output)
@@ -238,6 +279,35 @@ def test_review_is_bound_to_manifest_and_output_hashes(tmp_path: Path):
     with pytest.raises(ValueError, match="manifest_sha256"):
         build_retry_manifest(manifest, assessment, manifest_sha256="f" * 64, assessment_sha256="b" * 64)
     assert review_decision({name: 4 for name in manifest["review_policy"]["dimensions"]}) == ("accept", [])
+
+
+def test_review_template_and_final_record_close_the_accept_path(tmp_path: Path):
+    candidate = tmp_path / "candidate.png"
+    Image.new("RGB", (1536, 1024), "navy").save(candidate)
+    prompt_manifest = compile_manifest(_cards(tmp_path)[:1], "minimal-editorial", source_root=tmp_path)
+    render_manifest = bind_outputs(
+        prompt_manifest,
+        {"minimal-editorial-01": str(candidate)},
+        manifest_sha256="a" * 64,
+    )
+    manifest_hash = sha256(json.dumps(render_manifest, sort_keys=True).encode()).hexdigest()
+    template = build_review_template(
+        render_manifest,
+        manifest_sha256=manifest_hash,
+        reviewer_type="human",
+        reviewer_name="test reviewer",
+        reviewer_model="visual inspection",
+        review_method="full-resolution comparison",
+    )
+    assert template["results"][0]["output_sha256"] == render_manifest["prompts"][0]["candidate_output"]["sha256"]
+    template["results"][0]["scores"] = {
+        name: 4 for name in render_manifest["review_policy"]["dimensions"]
+    }
+    record = build_review_record(render_manifest, template, manifest_sha256=manifest_hash)
+    assert record["artifact_type"] == "aesthetic-review"
+    assert record["decision"] == "accept"
+    assert record["results"][0]["decision"] == "accept"
+    assert record["failed_prompt_ids"] == []
 
 
 def test_reference_output_cannot_substitute_for_candidate_output(tmp_path: Path):
@@ -316,12 +386,25 @@ def test_cli_bind_outputs_retry_and_consent(tmp_path: Path):
     bound_path = tmp_path / "render-manifest.json"
     assert main(["bind-outputs", str(manifest_path), "--result", f"cinematic-storyboard-01={output}", "-o", str(bound_path)]) == 0
     bound = json.loads(bound_path.read_text())
-    manifest_hash = sha256(bound_path.read_bytes()).hexdigest()
-    assessment = _assessment(bound, manifest_hash)
     assessment_path = tmp_path / "assessment.json"
+    assert main([
+        "review-template", str(bound_path),
+        "--reviewer-type", "human",
+        "--reviewer-name", "test reviewer",
+        "--reviewer-model", "visual inspection",
+        "--method", "full-resolution comparison",
+        "-o", str(assessment_path),
+    ]) == 0
+    assessment = json.loads(assessment_path.read_text())
+    assessment["results"][0]["scores"] = {
+        name: 5 for name in bound["review_policy"]["dimensions"]
+    }
     assessment_path.write_text(json.dumps(assessment))
+    review_path = tmp_path / "review.json"
+    assert main(["review", str(bound_path), str(assessment_path), "-o", str(review_path)]) == 0
+    assert json.loads(review_path.read_text())["decision"] == "accept"
     retry_path = tmp_path / "retry.json"
-    assert main(["retry", str(bound_path), str(assessment_path), "-o", str(retry_path)]) == 0
+    assert main(["retry", str(bound_path), str(review_path), "-o", str(retry_path)]) == 0
     assert json.loads(retry_path.read_text())["retry_prompt_ids"] == []
     consent_path = tmp_path / "consent.json"
     assert main(["consent", str(manifest_path), "--provider", "example-provider", "--purpose", "art direction", "--confirm", "-o", str(consent_path)]) == 0

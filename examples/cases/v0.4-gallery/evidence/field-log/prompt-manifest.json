@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "field-log",
+  "system_display_name": "Field Log",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "field-log-01",
+      "mode": "field-observation",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/field-log.jpg",
+          "sha256": "433709f1c0337058101ee6cad2c9393a70d689e102d5e9ec97deacffd5e8bb6b"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: identity, work clothes, wheel, repair gesture, tools, roadside context.",
+          "Preserve the observed action or structural gesture: hands checking a bicycle tire.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — identity, work clothes, wheel, repair gesture, tools, roadside context.",
+          "MAY TRANSFORM — crop, tool organization, light balance.",
+          "MUST REMOVE — passing scooter blur, irrelevant background clutter."
+        ],
+        "narrative_intent": [
+          "Narrative intent: skill observed through tools and gesture.",
+          "Emotional tone: factual, concentrated. Story role: moment.",
+          "Director note: Stay observational; do not glamorize labor or manufacture drama.",
+          "Visual emphasis: hands, tire edge, and working tools.",
+          "Treat observed subjects, gesture, material condition, and environment as field evidence; interpretation must remain visibly secondary."
+        ],
+        "composition": [
+          "Keep context around the subject and make the observed gesture legible without staging or cinematic exaggeration.",
+          "Use road surface beyond the worker as controlled breathing room where compatible with the observed scene.",
+          "Prioritize legible evidence, observed gesture, and environmental context over dramatic cropping."
+        ],
+        "lighting": [
+          "Build from the source palette (#655E5B, #232125, #9F9891, #9F8C77) and preserve truthful skin, object, and environment relationships.",
+          "Retain available light and believable exposure, including imperfect documentary conditions."
+        ],
+        "material": [
+          "Preserve weather, wear, dust, skin, fabric, tools, and surfaces as observed.",
+          "Keep identity-bearing surface evidence specific; avoid a generic preset finish."
+        ],
+        "spatial_relationships": [
+          "Retain source scale cues, physical support, and environmental relationships so the record remains inspectable."
+        ],
+        "text_strategy": [
+          "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
+          "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract."
+        ],
+        "exclusions": [
+          "No dramatized reenactment, hero lighting, false scientific labels, specimen fiction, or beautification.",
+          "Do not imitate a named artist, photographer, publication, brand, or campaign."
+        ],
+        "output": [
+          "Return one standalone photographic PNG frame at exactly 2:3.",
+          "Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: identity, work clothes, wheel, repair gesture, tools, roadside context.\n- Preserve the observed action or structural gesture: hands checking a bicycle tire.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — identity, work clothes, wheel, repair gesture, tools, roadside context.\n- MAY TRANSFORM — crop, tool organization, light balance.\n- MUST REMOVE — passing scooter blur, irrelevant background clutter.\n\nNARRATIVE INTENT\n- Narrative intent: skill observed through tools and gesture.\n- Emotional tone: factual, concentrated. Story role: moment.\n- Director note: Stay observational; do not glamorize labor or manufacture drama.\n- Visual emphasis: hands, tire edge, and working tools.\n- Treat observed subjects, gesture, material condition, and environment as field evidence; interpretation must remain visibly secondary.\n\nCOMPOSITION\n- Keep context around the subject and make the observed gesture legible without staging or cinematic exaggeration.\n- Use road surface beyond the worker as controlled breathing room where compatible with the observed scene.\n- Prioritize legible evidence, observed gesture, and environmental context over dramatic cropping.\n\nLIGHTING AND COLOR\n- Build from the source palette (#655E5B, #232125, #9F9891, #9F8C77) and preserve truthful skin, object, and environment relationships.\n- Retain available light and believable exposure, including imperfect documentary conditions.\n\nMATERIAL AND SURFACE\n- Preserve weather, wear, dust, skin, fabric, tools, and surfaces as observed.\n- Keep identity-bearing surface evidence specific; avoid a generic preset finish.\n\nSPATIAL RELATIONSHIPS\n- Retain source scale cues, physical support, and environmental relationships so the record remains inspectable.\n\nTEXT AND LABELS\n- Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.\n- Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.\n\nEXCLUSIONS\n- No dramatized reenactment, hero lighting, false scientific labels, specimen fiction, or beautification.\n- Do not imitate a named artist, photographer, publication, brand, or campaign.\n\nOUTPUT\n- Return one standalone photographic PNG frame at exactly 2:3.\n- Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.",
+      "reference_output": {
+        "path": "../../after/field-log.jpg",
+        "sha256": "357e91b507390c52b3a9fbe04354ee635768bd9c66693a70291d6f9343148bfc"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/field-log.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Field Log",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "date",
+      "location",
+      "source_note"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "field-log-01",
+        "caption": "FIELD LOG",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location",
+      "source_note"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/field-log.jpg",
+        "sha256": "433709f1c0337058101ee6cad2c9393a70d689e102d5e9ec97deacffd5e8bb6b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "source": "../../before/family-chronicle.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#D8D5D0",
+      "#A6A29E",
+      "#66605C",
+      "#201D1C",
+      "#D5A4A3"
+    ],
+    "brightness": 0.638,
+    "saturation": 0.136,
+    "orientation": "portrait",
+    "caption": "FAMILY CHRONICLE",
+    "observation": {
+      "subjects": [
+        "older man",
+        "young girl",
+        "laundry",
+        "table"
+      ],
+      "dominant_gesture": "two people folding cloth at the same table",
+      "quiet_regions": [
+        "doorway beyond the figures"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "shared work observed across age",
+      "emotional_tone": [
+        "intimate",
+        "patient"
+      ],
+      "confidence": 0.74,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Build meaning from the supplied folding gesture; do not invent a family history.",
+      "layout_emphasis": "hands, cloth, and the space between figures"
+    },
+    "transformation": {
+      "must_preserve": [
+        "both identities",
+        "ages",
+        "clothing",
+        "hands",
+        "folding action"
+      ],
+      "may_transform": [
+        "light",
+        "crop",
+        "subtle graphite studies",
+        "tracing-paper marks"
+      ],
+      "must_remove": [
+        "rice cooker",
+        "medicine clutter",
+        "harsh bulb"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

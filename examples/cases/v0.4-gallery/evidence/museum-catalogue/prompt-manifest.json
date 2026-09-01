@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "museum-catalogue",
+  "system_display_name": "Museum Catalogue",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-chronicle",
+    "heritage-portrait"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "museum-catalogue-01",
+      "mode": "catalogue-plate",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/museum-catalogue.jpg",
+          "sha256": "d43fe21a28d180d29123697eca64926745180c271587eb11d0f35104a402dc12"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: casing, grille, knobs, tuning window, strap, scratches, discoloration.",
+          "Preserve the observed action or structural gesture: rectangular object resting on a plastic stool.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — casing, grille, knobs, tuning window, strap, scratches, discoloration.",
+          "MAY TRANSFORM — support surface, background, conservation light, camera alignment.",
+          "MUST REMOVE — plastic stool, storage clutter, invented labels."
+        ],
+        "narrative_intent": [
+          "Narrative intent: make condition and construction inspectable.",
+          "Emotional tone: neutral, precise. Story role: moment.",
+          "Director note: Record wear faithfully; do not restore the object or sell it as luxury.",
+          "Visual emphasis: front grille, controls, strap, and surface wear.",
+          "Present the supplied subject as an inspectable catalogue plate; do not claim provenance, period, maker, value, or collection history absent from metadata."
+        ],
+        "composition": [
+          "Create one clean continuous plate with controlled margins inside the image and a complete, uncropped view of identity-bearing details.",
+          "Use small wall area behind storage clutter as controlled breathing room where compatible with the observed scene.",
+          "Isolate the supplied subject as a catalogue plate using its true scale cues and material evidence."
+        ],
+        "lighting": [
+          "Build from the source palette (#675E55, #2D2624, #49382B, #9F958A) and preserve truthful skin, object, and environment relationships.",
+          "Use neutral, source-compatible conservation light with controlled highlights and readable surface relief."
+        ],
+        "material": [
+          "Preserve the object's real patina, fibers, glaze, wear, joins, and repairs without simulated luxury polish.",
+          "Keep identity-bearing surface evidence specific; avoid a generic preset finish."
+        ],
+        "spatial_relationships": [
+          "Preserve scale cues, support, joins, repairs, wear, and material relief; use a neutral ground only when it does not alter evidence."
+        ],
+        "text_strategy": [
+          "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
+          "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract."
+        ],
+        "exclusions": [
+          "No fake museum room, pedestal spectacle, auction luxury styling, invented accession label, certificate, frame, or wall text.",
+          "Do not imitate a named artist, photographer, publication, brand, or campaign."
+        ],
+        "output": [
+          "Return one standalone photographic PNG frame at exactly 2:3.",
+          "Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: casing, grille, knobs, tuning window, strap, scratches, discoloration.\n- Preserve the observed action or structural gesture: rectangular object resting on a plastic stool.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — casing, grille, knobs, tuning window, strap, scratches, discoloration.\n- MAY TRANSFORM — support surface, background, conservation light, camera alignment.\n- MUST REMOVE — plastic stool, storage clutter, invented labels.\n\nNARRATIVE INTENT\n- Narrative intent: make condition and construction inspectable.\n- Emotional tone: neutral, precise. Story role: moment.\n- Director note: Record wear faithfully; do not restore the object or sell it as luxury.\n- Visual emphasis: front grille, controls, strap, and surface wear.\n- Present the supplied subject as an inspectable catalogue plate; do not claim provenance, period, maker, value, or collection history absent from metadata.\n\nCOMPOSITION\n- Create one clean continuous plate with controlled margins inside the image and a complete, uncropped view of identity-bearing details.\n- Use small wall area behind storage clutter as controlled breathing room where compatible with the observed scene.\n- Isolate the supplied subject as a catalogue plate using its true scale cues and material evidence.\n\nLIGHTING AND COLOR\n- Build from the source palette (#675E55, #2D2624, #49382B, #9F958A) and preserve truthful skin, object, and environment relationships.\n- Use neutral, source-compatible conservation light with controlled highlights and readable surface relief.\n\nMATERIAL AND SURFACE\n- Preserve the object's real patina, fibers, glaze, wear, joins, and repairs without simulated luxury polish.\n- Keep identity-bearing surface evidence specific; avoid a generic preset finish.\n\nSPATIAL RELATIONSHIPS\n- Preserve scale cues, support, joins, repairs, wear, and material relief; use a neutral ground only when it does not alter evidence.\n\nTEXT AND LABELS\n- Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.\n- Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.\n\nEXCLUSIONS\n- No fake museum room, pedestal spectacle, auction luxury styling, invented accession label, certificate, frame, or wall text.\n- Do not imitate a named artist, photographer, publication, brand, or campaign.\n\nOUTPUT\n- Return one standalone photographic PNG frame at exactly 2:3.\n- Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.",
+      "reference_output": {
+        "path": "../../after/museum-catalogue.jpg",
+        "sha256": "77e2696e10c4553ea464f6fbffa9d89d4db50501a4a8dba260da4130b41b0e11"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/museum-catalogue.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Museum Catalogue",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "collection",
+      "catalogue_id",
+      "date",
+      "source_note"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "museum-catalogue-01",
+        "caption": "MUSEUM CATALOGUE",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "catalogue_id",
+      "collection",
+      "date",
+      "source_note"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/museum-catalogue.jpg",
+        "sha256": "d43fe21a28d180d29123697eca64926745180c271587eb11d0f35104a402dc12"
+      }
+    ]
+  }
+}

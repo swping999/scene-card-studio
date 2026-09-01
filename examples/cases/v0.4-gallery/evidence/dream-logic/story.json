@@ -1,0 +1,80 @@
+[
+  {
+    "source": "../../before/dream-logic.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#CCCBCD",
+      "#569CD6",
+      "#B2AFB0",
+      "#3371B6",
+      "#3A7DC1"
+    ],
+    "brightness": 0.736,
+    "saturation": 0.322,
+    "orientation": "portrait",
+    "caption": "DREAM LOGIC",
+    "observation": {
+      "subjects": [
+        "school-age boy",
+        "yellow raincoat",
+        "one red kite",
+        "salt flat",
+        "white van",
+        "cooler"
+      ],
+      "dominant_gesture": "boy holds one kite string on open salt",
+      "quiet_regions": [
+        "large sky"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "one impossible cause changes the scale of shelter",
+      "emotional_tone": [
+        "wonder",
+        "clarity"
+      ],
+      "confidence": 0.8,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Apply exactly one impossible rule and keep all other spatial logic believable.",
+      "layout_emphasis": "single string connecting boy to immense red canopy"
+    },
+    "transformation": {
+      "must_preserve": [
+        "identity",
+        "anatomy",
+        "yellow coat",
+        "boots",
+        "one kite",
+        "one string",
+        "salt flat",
+        "hills",
+        "van",
+        "cooler"
+      ],
+      "may_transform": [
+        "same kite into immense translucent canopy",
+        "coherent red shadow",
+        "one salt-surface wave"
+      ],
+      "must_remove": [
+        "duplicate child",
+        "duplicate kite",
+        "extra limbs",
+        "portals",
+        "random floating objects",
+        "collage seams"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

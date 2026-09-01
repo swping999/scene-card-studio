@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "editorial-sequence",
+  "system_display_name": "Editorial Rhythm",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "editorial-sequence-01",
+      "mode": "editorial-sequence",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/editorial-rhythm.jpg",
+          "sha256": "6a9dc487a42448c7faf02b599ee914feb5709744dd1362a2850c8fa52ec3ab3d"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: three chairs, red-blue-beige colors, chair shapes.",
+          "Preserve the observed action or structural gesture: three repeated molded forms.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — three chairs, red-blue-beige colors, chair shapes.",
+          "MAY TRANSFORM — spacing, background wall, sun angle, camera position.",
+          "MUST REMOVE — crates, mop bucket, cleaning clutter."
+        ],
+        "narrative_intent": [
+          "Narrative intent: repetition becomes a visual beat.",
+          "Emotional tone: graphic, playful. Story role: moment.",
+          "Director note: Use physical spacing, crop, color, and shadow—not a grid—to make rhythm.",
+          "Visual emphasis: staggered chair silhouettes.",
+          "Let scale, pause, and contrast carry this standalone image; do not imply events outside it."
+        ],
+        "composition": [
+          "Create one standalone continuous image for this beat, not a designed page, border, or multi-photo collage.",
+          "Use closed shutter as controlled breathing room where compatible with the observed scene.",
+          "Use source-supported scale and negative space to create a clear editorial rhythm."
+        ],
+        "lighting": [
+          "Build from the source palette (#68635C, #989795, #2C282A, #51493A) and preserve truthful skin, object, and environment relationships.",
+          "Preserve source light while keeping the directed image tonally coherent."
+        ],
+        "material": [
+          "Keep photographic surfaces specific and avoid a uniform preset across unrelated materials.",
+          "Keep identity-bearing surface evidence specific; avoid a generic preset finish."
+        ],
+        "spatial_relationships": [
+          "Use the Scene Card role and layout emphasis to complete this frame without implying adjacent beats.",
+          "Single-photo contract: make this source a complete standalone image and do not imply adjacent frames."
+        ],
+        "text_strategy": [
+          "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
+          "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract."
+        ],
+        "exclusions": [
+          "No equal-grid montage, fake magazine page, generic moodboard, ornamental typography, or unrelated props.",
+          "Do not imitate a named artist, photographer, publication, brand, or campaign."
+        ],
+        "output": [
+          "Return one standalone photographic PNG frame at exactly 2:3.",
+          "Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: three chairs, red-blue-beige colors, chair shapes.\n- Preserve the observed action or structural gesture: three repeated molded forms.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — three chairs, red-blue-beige colors, chair shapes.\n- MAY TRANSFORM — spacing, background wall, sun angle, camera position.\n- MUST REMOVE — crates, mop bucket, cleaning clutter.\n\nNARRATIVE INTENT\n- Narrative intent: repetition becomes a visual beat.\n- Emotional tone: graphic, playful. Story role: moment.\n- Director note: Use physical spacing, crop, color, and shadow—not a grid—to make rhythm.\n- Visual emphasis: staggered chair silhouettes.\n- Let scale, pause, and contrast carry this standalone image; do not imply events outside it.\n\nCOMPOSITION\n- Create one standalone continuous image for this beat, not a designed page, border, or multi-photo collage.\n- Use closed shutter as controlled breathing room where compatible with the observed scene.\n- Use source-supported scale and negative space to create a clear editorial rhythm.\n\nLIGHTING AND COLOR\n- Build from the source palette (#68635C, #989795, #2C282A, #51493A) and preserve truthful skin, object, and environment relationships.\n- Preserve source light while keeping the directed image tonally coherent.\n\nMATERIAL AND SURFACE\n- Keep photographic surfaces specific and avoid a uniform preset across unrelated materials.\n- Keep identity-bearing surface evidence specific; avoid a generic preset finish.\n\nSPATIAL RELATIONSHIPS\n- Use the Scene Card role and layout emphasis to complete this frame without implying adjacent beats.\n- Single-photo contract: make this source a complete standalone image and do not imply adjacent frames.\n\nTEXT AND LABELS\n- Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.\n- Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.\n\nEXCLUSIONS\n- No equal-grid montage, fake magazine page, generic moodboard, ornamental typography, or unrelated props.\n- Do not imitate a named artist, photographer, publication, brand, or campaign.\n\nOUTPUT\n- Return one standalone photographic PNG frame at exactly 2:3.\n- Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.",
+      "reference_output": {
+        "path": "../../after/editorial-rhythm.jpg",
+        "sha256": "e2e96800af644b8c7de36ec1328d79005d137d2ad72e19ee12228b3c571be501"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/editorial-rhythm.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Editorial Rhythm",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "story_role"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "editorial-sequence-01",
+        "caption": "EDITORIAL RHYTHM",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/editorial-rhythm.jpg",
+        "sha256": "6a9dc487a42448c7faf02b599ee914feb5709744dd1362a2850c8fa52ec3ab3d"
+      }
+    ]
+  }
+}

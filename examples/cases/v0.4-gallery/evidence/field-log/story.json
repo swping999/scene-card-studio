@@ -1,0 +1,70 @@
+[
+  {
+    "source": "../../before/field-log.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#655E5B",
+      "#232125",
+      "#9F9891",
+      "#9F8C77",
+      "#CEAD92"
+    ],
+    "brightness": 0.467,
+    "saturation": 0.179,
+    "orientation": "portrait",
+    "caption": "FIELD LOG",
+    "observation": {
+      "subjects": [
+        "bicycle mechanic",
+        "wheel",
+        "hand tools",
+        "roadside stool"
+      ],
+      "dominant_gesture": "hands checking a bicycle tire",
+      "quiet_regions": [
+        "road surface beyond the worker"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "skill observed through tools and gesture",
+      "emotional_tone": [
+        "factual",
+        "concentrated"
+      ],
+      "confidence": 0.88,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Stay observational; do not glamorize labor or manufacture drama.",
+      "layout_emphasis": "hands, tire edge, and working tools"
+    },
+    "transformation": {
+      "must_preserve": [
+        "identity",
+        "work clothes",
+        "wheel",
+        "repair gesture",
+        "tools",
+        "roadside context"
+      ],
+      "may_transform": [
+        "crop",
+        "tool organization",
+        "light balance"
+      ],
+      "must_remove": [
+        "passing scooter blur",
+        "irrelevant background clutter"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

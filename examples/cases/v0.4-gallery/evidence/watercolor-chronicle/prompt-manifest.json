@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "memory-atlas",
+  "system_display_name": "Memory Atlas",
+  "expression_profile": "watercolor-chronicle",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour",
+    "watercolor-chronicle",
+    "full-watercolor-memory",
+    "dream-logic"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/watercolor-chronicle.jpg",
+          "sha256": "ba5cda120a8727c638ed4f20b3373dedcce36cb79e37c9e1382b3605b3613d27"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place or subject as one recognizable painted anchor: identity, pose, anatomy, umbrella, clothing silhouette, bicycle geometry, spatial relationships.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
+          "Preserve face geometry, expression, pose, body proportions, clothing silhouette, architecture, horizon, and identity-bearing details while changing only their visible medium."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — identity, pose, anatomy, umbrella, clothing silhouette, bicycle geometry, spatial relationships.",
+          "MAY TRANSFORM — all photographic surfaces into watercolor and graphite.",
+          "MUST REMOVE — photographic pixels, cutout edges, scrapbook decoration.",
+          "Authorize a medium-only transformation of the entire visible image into watercolor; do not change identity, anatomy, object count, location, action, chronology, or spatial evidence."
+        ],
+        "narrative_intent": [
+          "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
+          "Source / moment: intent a coastal moment unified by one painted medium; tone soft, weathered; emphasis yellow umbrella against blue-grey sea; director note Repaint every visible element together; never leave the person as a photographic cutout."
+        ],
+        "composition": [
+          "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
+          "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
+          "Recompose supplied people, objects, and places as one continuous painting whose transitions are carried by washes, reserved paper, and spatial evidence rather than pasted photographs."
+        ],
+        "lighting": [
+          "Use the combined source palette (#DBDDE5, #9FA6AE) without flattening every painted passage into one identical color treatment.",
+          "Translate source light into transparent value washes while preserving light direction, facial modeling, depth, and source-derived color relationships."
+        ],
+        "material": [
+          "Render faces, skin, hair, clothing, objects, architecture, sky, water, and terrain in one coherent watercolor medium using transparent washes, wet-on-wet diffusion, restrained dry-brush accents, pigment blooms, and visible paper tooth.",
+          "Keep the sharpest brush information around identity-bearing facial features, hands, and structural landmarks; let secondary edges dissolve naturally.",
+          "Every added mark must perform a Scene Card-supported spatial function rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation.",
+          "Leave no photographic pixels, pasted portrait cutouts, hard extraction halos, synthetic skin, or photo-plus-watercolor-border effect.",
+          "Do not imitate a named artist or use an unlicensed artwork as a style reference."
+        ],
+        "output": [
+          "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
+          "The supplied place or subject must remain recognizable.",
+          "The finished artifact must read as one continuous hand-painted watercolor work, including every visible person, not as a decorated photograph."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: identity, pose, anatomy, umbrella, clothing silhouette, bicycle geometry, spatial relationships.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve face geometry, expression, pose, body proportions, clothing silhouette, architecture, horizon, and identity-bearing details while changing only their visible medium.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — identity, pose, anatomy, umbrella, clothing silhouette, bicycle geometry, spatial relationships.\n- MAY TRANSFORM — all photographic surfaces into watercolor and graphite.\n- MUST REMOVE — photographic pixels, cutout edges, scrapbook decoration.\n- Authorize a medium-only transformation of the entire visible image into watercolor; do not change identity, anatomy, object count, location, action, chronology, or spatial evidence.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent a coastal moment unified by one painted medium; tone soft, weathered; emphasis yellow umbrella against blue-grey sea; director note Repaint every visible element together; never leave the person as a photographic cutout.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Recompose supplied people, objects, and places as one continuous painting whose transitions are carried by washes, reserved paper, and spatial evidence rather than pasted photographs.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#DBDDE5, #9FA6AE) without flattening every painted passage into one identical color treatment.\n- Translate source light into transparent value washes while preserving light direction, facial modeling, depth, and source-derived color relationships.\n\nMATERIAL AND SURFACE\n- Render faces, skin, hair, clothing, objects, architecture, sky, water, and terrain in one coherent watercolor medium using transparent washes, wet-on-wet diffusion, restrained dry-brush accents, pigment blooms, and visible paper tooth.\n- Keep the sharpest brush information around identity-bearing facial features, hands, and structural landmarks; let secondary edges dissolve naturally.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- Leave no photographic pixels, pasted portrait cutouts, hard extraction halos, synthetic skin, or photo-plus-watercolor-border effect.\n- Do not imitate a named artist or use an unlicensed artwork as a style reference.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The finished artifact must read as one continuous hand-painted watercolor work, including every visible person, not as a decorated photograph.",
+      "reference_output": {
+        "path": "../../after/watercolor-chronicle.jpg",
+        "sha256": "dec6e0d37d28779c9f63ca560e95ee6b91ab9892f8e09c6cb80d7eaafa3472a3"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/watercolor-chronicle.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Memory Atlas",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "memory-atlas-01",
+        "caption": "WATERCOLOR CHRONICLE",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/watercolor-chronicle.jpg",
+        "sha256": "ba5cda120a8727c638ed4f20b3373dedcce36cb79e37c9e1382b3605b3613d27"
+      }
+    ]
+  }
+}

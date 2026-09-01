@@ -1,0 +1,68 @@
+[
+  {
+    "source": "../../before/editorial-rhythm.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#68635C",
+      "#989795",
+      "#2C282A",
+      "#51493A",
+      "#978B62"
+    ],
+    "brightness": 0.439,
+    "saturation": 0.143,
+    "orientation": "portrait",
+    "caption": "EDITORIAL RHYTHM",
+    "observation": {
+      "subjects": [
+        "red chair",
+        "blue chair",
+        "beige chair"
+      ],
+      "dominant_gesture": "three repeated molded forms",
+      "quiet_regions": [
+        "closed shutter"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "repetition becomes a visual beat",
+      "emotional_tone": [
+        "graphic",
+        "playful"
+      ],
+      "confidence": 0.92,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Use physical spacing, crop, color, and shadow—not a grid—to make rhythm.",
+      "layout_emphasis": "staggered chair silhouettes"
+    },
+    "transformation": {
+      "must_preserve": [
+        "three chairs",
+        "red-blue-beige colors",
+        "chair shapes"
+      ],
+      "may_transform": [
+        "spacing",
+        "background wall",
+        "sun angle",
+        "camera position"
+      ],
+      "must_remove": [
+        "crates",
+        "mop bucket",
+        "cleaning clutter"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

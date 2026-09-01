@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "travel-journal",
+  "system_display_name": "Travel Journal",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-chronicle"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "travel-journal-01",
+      "mode": "journey-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/travel-journal.jpg",
+          "sha256": "3807e0c59874678f009b11afbed58e63fa1a4f41441651c7c42d320469c59660"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied person, place, object, or threshold as one recognizable photographic journey anchor: suitcase, bench, yellow line, ticket, bottle, rail direction.",
+          "Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to the source."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — suitcase, bench, yellow line, ticket, bottle, rail direction.",
+          "MAY TRANSFORM — platform into folded route paper, rails into graphite rhythm.",
+          "MUST REMOVE — photo frames, stamps, pins, fake place names, scrapbook collage."
+        ],
+        "narrative_intent": [
+          "Treat this source as one self-contained journey moment; do not invent movement, a second stop, destination, return, date, or route.",
+          "Source / moment: intent waiting described through route evidence; tone anticipatory, tactile; emphasis suitcase against receding yellow line and rails; director note Let existing platform and rail geometry become the journey notation."
+        ],
+        "composition": [
+          "Build one complete image from the source and Scene Card; do not add a postcard grid, itinerary, route, or app map.",
+          "Treat tickets, maps, receipts, and handwriting as usable evidence only when they were supplied or explicitly authorized.",
+          "Build a journey field from supplied routes, thresholds, objects, and pauses without forcing a literal map."
+        ],
+        "lighting": [
+          "Use the combined source palette (#272826, #A3A3A0) while retaining distinct weather and time-of-day evidence.",
+          "Preserve source time and weather evidence while using palette relationships to shape the journey."
+        ],
+        "material": [
+          "Use only supplied or explicitly authorized tickets, maps, handwriting, paper, fabric, and environmental traces.",
+          "Every paper, route, or travel mark must correspond to supplied evidence rather than decorative tourism motifs."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, threshold, quiet regions, and layout emphasis without implying an unseen route.",
+          "Keep all spatial claims inside this source; do not invent geography beyond the frame."
+        ],
+        "text_strategy": [
+          "Generate no dates, place names, coordinates, tickets, stamps, handwriting, captions, or route labels inside the image.",
+          "Place only user-supplied metadata later through the deterministic presentation_contract."
+        ],
+        "exclusions": [
+          "No generic scrapbook kit, tourism poster, passport-stamp collage, airline branding, app map, pins, arrows, or fabricated ephemera.",
+          "No named-artist or named-travel-publication imitation."
+        ],
+        "output": [
+          "Return one integrated photographic PNG journey artifact at exactly 2:3.",
+          "The supplied source must remain a recognizable narrative anchor."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied person, place, object, or threshold as one recognizable photographic journey anchor: suitcase, bench, yellow line, ticket, bottle, rail direction.\n- Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to the source.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — suitcase, bench, yellow line, ticket, bottle, rail direction.\n- MAY TRANSFORM — platform into folded route paper, rails into graphite rhythm.\n- MUST REMOVE — photo frames, stamps, pins, fake place names, scrapbook collage.\n\nNARRATIVE INTENT\n- Treat this source as one self-contained journey moment; do not invent movement, a second stop, destination, return, date, or route.\n- Source / moment: intent waiting described through route evidence; tone anticipatory, tactile; emphasis suitcase against receding yellow line and rails; director note Let existing platform and rail geometry become the journey notation.\n\nCOMPOSITION\n- Build one complete image from the source and Scene Card; do not add a postcard grid, itinerary, route, or app map.\n- Treat tickets, maps, receipts, and handwriting as usable evidence only when they were supplied or explicitly authorized.\n- Build a journey field from supplied routes, thresholds, objects, and pauses without forcing a literal map.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#272826, #A3A3A0) while retaining distinct weather and time-of-day evidence.\n- Preserve source time and weather evidence while using palette relationships to shape the journey.\n\nMATERIAL AND SURFACE\n- Use only supplied or explicitly authorized tickets, maps, handwriting, paper, fabric, and environmental traces.\n- Every paper, route, or travel mark must correspond to supplied evidence rather than decorative tourism motifs.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, threshold, quiet regions, and layout emphasis without implying an unseen route.\n- Keep all spatial claims inside this source; do not invent geography beyond the frame.\n\nTEXT AND LABELS\n- Generate no dates, place names, coordinates, tickets, stamps, handwriting, captions, or route labels inside the image.\n- Place only user-supplied metadata later through the deterministic presentation_contract.\n\nEXCLUSIONS\n- No generic scrapbook kit, tourism poster, passport-stamp collage, airline branding, app map, pins, arrows, or fabricated ephemera.\n- No named-artist or named-travel-publication imitation.\n\nOUTPUT\n- Return one integrated photographic PNG journey artifact at exactly 2:3.\n- The supplied source must remain a recognizable narrative anchor.",
+      "reference_output": {
+        "path": "../../after/travel-journal.jpg",
+        "sha256": "d563ac47a481bef55f89daa5a84413bb73c673182dc9357ff4c1bd2a53376f40"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/travel-journal.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Travel Journal",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date",
+      "source_note"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "travel-journal-01",
+        "caption": "TRAVEL JOURNAL",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location",
+      "source_note"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/travel-journal.jpg",
+        "sha256": "3807e0c59874678f009b11afbed58e63fa1a4f41441651c7c42d320469c59660"
+      }
+    ]
+  }
+}

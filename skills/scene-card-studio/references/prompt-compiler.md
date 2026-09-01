@@ -113,12 +113,29 @@ Write a review bound to the exact Manifest and output hashes:
 }
 ```
 
-Every frame and sequence dimension must score at least 4. Mismatched Manifest or output hashes must fail review.
+Create the bound form rather than typing hashes by hand:
+
+```bash
+scene-card-studio review-template render-manifest.json \
+  --reviewer-type human \
+  --reviewer-name "REVIEWER" \
+  --reviewer-model "visual inspection" \
+  --method "full-resolution comparison" \
+  --output assessment.json
+```
+
+After inspecting the candidate and filling every score, finalize it:
+
+```bash
+scene-card-studio review render-manifest.json assessment.json --output review.json
+```
+
+Every frame and sequence dimension must score at least 4. Mismatched Manifest or output hashes must fail review. The formal record adds `decision`, failed dimensions, and per-prompt decisions.
 
 ## Retry
 
 ```bash
-scene-card-studio retry render-manifest.json assessment.json \
+scene-card-studio retry render-manifest.json review.json \
   --output retry-manifest.json
 ```
 

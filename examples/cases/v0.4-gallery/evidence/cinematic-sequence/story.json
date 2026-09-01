@@ -1,0 +1,70 @@
+[
+  {
+    "source": "../../before/cinematic-sequence.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#6E675A",
+      "#2D251F",
+      "#958872",
+      "#857966",
+      "#473829"
+    ],
+    "brightness": 0.46,
+    "saturation": 0.265,
+    "orientation": "portrait",
+    "caption": "CINEMATIC SEQUENCE",
+    "observation": {
+      "subjects": [
+        "young woman",
+        "folded umbrella",
+        "elevated metro"
+      ],
+      "dominant_gesture": "waiting beneath repeating concrete spans",
+      "quiet_regions": [
+        "wet foreground pavement"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "a suspended urban wait",
+      "emotional_tone": [
+        "watchful",
+        "contained"
+      ],
+      "confidence": 0.78,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Let motivated rain light organize the wait without turning it into a poster.",
+      "layout_emphasis": "figure against receding metro geometry"
+    },
+    "transformation": {
+      "must_preserve": [
+        "identity",
+        "beige jacket",
+        "dark trousers",
+        "folded umbrella",
+        "metro structure"
+      ],
+      "may_transform": [
+        "weather",
+        "light",
+        "camera distance",
+        "background density"
+      ],
+      "must_remove": [
+        "scooter clutter",
+        "vending glare",
+        "dead foreground"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

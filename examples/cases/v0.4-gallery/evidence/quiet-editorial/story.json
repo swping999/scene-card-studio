@@ -1,0 +1,68 @@
+[
+  {
+    "source": "../../before/quiet-editorial.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#645D59",
+      "#A39D9A",
+      "#E5E3E5",
+      "#21201F",
+      "#867974"
+    ],
+    "brightness": 0.525,
+    "saturation": 0.125,
+    "orientation": "portrait",
+    "caption": "QUIET EDITORIAL",
+    "observation": {
+      "subjects": [
+        "scratched aluminum kettle"
+      ],
+      "dominant_gesture": "arched handle over a worn cylindrical body",
+      "quiet_regions": [
+        "wall behind the counter"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "wear made legible through quiet attention",
+      "emotional_tone": [
+        "still",
+        "tactile"
+      ],
+      "confidence": 0.91,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Let material, shadow, and negative space carry the image.",
+      "layout_emphasis": "scratched metal against pale mineral surfaces"
+    },
+    "transformation": {
+      "must_preserve": [
+        "kettle shape",
+        "handle",
+        "spout",
+        "lid",
+        "scratches and dents"
+      ],
+      "may_transform": [
+        "setting",
+        "light direction",
+        "crop"
+      ],
+      "must_remove": [
+        "soap bottle",
+        "cable",
+        "plastic containers",
+        "rag clutter"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "source": "../../before/heritage-portrait.jpg",
+    "width": 720,
+    "height": 1200,
+    "palette": [
+      "#ACA7A3",
+      "#232123",
+      "#635C57",
+      "#C2B8B2",
+      "#897569"
+    ],
+    "brightness": 0.49,
+    "saturation": 0.157,
+    "orientation": "portrait",
+    "caption": "HERITAGE PORTRAIT",
+    "observation": {
+      "subjects": [
+        "young adult woman",
+        "short black bob",
+        "rust-red blouse",
+        "charcoal trousers",
+        "rattan chair"
+      ],
+      "dominant_gesture": "seated portrait with crossed ankles and hands at rest",
+      "quiet_regions": [
+        "plain wall above the sitter"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "presence recorded through color and material restraint",
+      "emotional_tone": [
+        "calm",
+        "gentle"
+      ],
+      "confidence": 0.9,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Preserve identity and honest age; use archival material language without inventing ancestry or status.",
+      "layout_emphasis": "face, hands, and rust-red blouse"
+    },
+    "transformation": {
+      "must_preserve": [
+        "identity",
+        "age",
+        "short bob",
+        "hands",
+        "rust-red blouse",
+        "charcoal trousers",
+        "seated pose"
+      ],
+      "may_transform": [
+        "backdrop",
+        "light",
+        "silver-gelatin tonality",
+        "restrained hand color",
+        "surface softness"
+      ],
+      "must_remove": [
+        "bookshelf edge",
+        "tote bag",
+        "charging cable",
+        "outlet",
+        "device",
+        "hyperreal skin detail",
+        "fake damage"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

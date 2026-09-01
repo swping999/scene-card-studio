@@ -13,8 +13,15 @@ from .narrative_systems import SUPPORTED_SYSTEMS
 from .presentation import render_presentation_svg
 from .privacy import build_upload_consent
 from .prompt_compiler import compile_manifest
+from .readiness import assess_direction_readiness
 from .render import render_png, render_svg
-from .review import bind_outputs, build_retry_manifest, file_sha256
+from .review import (
+    bind_outputs,
+    build_retry_manifest,
+    build_review_record,
+    build_review_template,
+    file_sha256,
+)
 from .workflow import run_direct
 
 
@@ -33,6 +40,7 @@ def parser() -> argparse.ArgumentParser:
     direct = commands.add_parser("direct", help="Analyze, recommend, compile, and create a local workprint in one command")
     direct.add_argument("photos", nargs="+")
     direct.add_argument("-o", "--output-dir", default="scene-card-output")
+    direct.add_argument("--scene-cards", help="Prepared semantic Scene Card JSON whose sources match the supplied photos")
     direct.add_argument("--brief", default="", help="User-supplied narrative or art-direction intent; improves automatic routing")
     direct.add_argument("--system", choices=("auto", *SUPPORTED_SYSTEMS), default="auto")
     direct.add_argument("--expression-profile", default="auto", help="Compatible Profile id, or auto; auto stays source-led unless the brief explicitly requests a treatment")
@@ -49,6 +57,9 @@ def parser() -> argparse.ArgumentParser:
     render.add_argument("--mode", choices=["presentation", "workprint"], default="presentation")
     recommend = commands.add_parser("recommend", help="Recommend Narrative Systems with reasons")
     recommend.add_argument("story")
+    check = commands.add_parser("check", help="Check whether Scene Cards contain presentation-ready semantic direction")
+    check.add_argument("story")
+    check.add_argument("--json", action="store_true", help="Print the complete machine-readable readiness report")
     profiles = commands.add_parser("profiles", help="List compatible expression profiles")
     profiles.add_argument("--system", choices=SUPPORTED_SYSTEMS, help="Limit output to one Narrative System")
     compile_cmd = commands.add_parser("compile", help="Compile Scene Cards into versioned image-generation prompts")
@@ -66,6 +77,17 @@ def parser() -> argparse.ArgumentParser:
     bind.add_argument("manifest")
     bind.add_argument("--result", action="append", required=True, help="PROMPT_ID=OUTPUT_PATH; repeat for every prompt")
     bind.add_argument("-o", "--output", default="render-manifest.json")
+    review_template = commands.add_parser("review-template", help="Create a hash-bound aesthetic review form for a Render Manifest")
+    review_template.add_argument("manifest")
+    review_template.add_argument("--reviewer-type", required=True)
+    review_template.add_argument("--reviewer-name", required=True)
+    review_template.add_argument("--reviewer-model", required=True)
+    review_template.add_argument("--method", required=True)
+    review_template.add_argument("-o", "--output", default="assessment.json")
+    review = commands.add_parser("review", help="Validate scores and finalize an accept-or-retry aesthetic review")
+    review.add_argument("manifest")
+    review.add_argument("assessment")
+    review.add_argument("-o", "--output", default="review.json")
     consent = commands.add_parser("consent", help="Record explicit consent for uploading the manifest's exact source files")
     consent.add_argument("manifest")
     consent.add_argument("--provider", required=True)
@@ -92,6 +114,7 @@ def main(argv: list[str] | None = None) -> int:
             summary = run_direct(
                 [Path(value) for value in args.photos],
                 output_dir=Path(args.output_dir),
+                prepared_story=Path(args.scene_cards) if args.scene_cards else None,
                 brief=args.brief,
                 system=args.system,
                 expression_profile=args.expression_profile,
@@ -105,12 +128,25 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Prepared {summary['source_count']} source photo(s) as {summary['source_mode']}.")
         print(f"Narrative System: {route['system']} ({route['system_selection']})")
         print(f"Expression Profile: {route['expression_profile']} ({route['profile_selection']})")
+        print(f"Direction readiness: {summary['direction_readiness']['status']}")
         print(f"Output directory: {Path(args.output_dir).expanduser().resolve()}")
         print("Created: story.json, prompt-manifest.json, workprint.svg, run-summary.json")
         print("No source photo was uploaded and no generated After was claimed by this local preparation step.")
+        if summary["generation"]["status"] != "prompt-ready":
+            print(summary["generation"]["next_step"])
     elif args.command == "recommend":
         for item in recommend_systems(load_cards(Path(args.story))):
             print(f"{item.system}\t{item.score:.2f}\t{item.reason}")
+    elif args.command == "check":
+        report = assess_direction_readiness(load_cards(Path(args.story), resolve_sources=False))
+        if args.json:
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+        else:
+            print(report["status"])
+            for card in report["cards"]:
+                if card["missing_fields"]:
+                    print(f"source[{card['source_index']}]: {', '.join(card['missing_fields'])}")
+        return 0 if report["generation_ready"] else 2
     elif args.command == "profiles":
         systems = [args.system] if args.system else list(SUPPORTED_SYSTEMS)
         for system in systems:
@@ -152,6 +188,27 @@ def main(argv: list[str] | None = None) -> int:
         manifest = json.loads(manifest_path.read_text())
         bound = bind_outputs(manifest, bindings, manifest_sha256=file_sha256(manifest_path), base=Path.cwd())
         _write_json(Path(args.output), bound)
+    elif args.command == "review-template":
+        manifest_path = Path(args.manifest)
+        template = build_review_template(
+            json.loads(manifest_path.read_text()),
+            manifest_sha256=file_sha256(manifest_path),
+            reviewer_type=args.reviewer_type,
+            reviewer_name=args.reviewer_name,
+            reviewer_model=args.reviewer_model,
+            review_method=args.method,
+        )
+        _write_json(Path(args.output), template)
+    elif args.command == "review":
+        manifest_path = Path(args.manifest)
+        assessment_path = Path(args.assessment)
+        record = build_review_record(
+            json.loads(manifest_path.read_text()),
+            json.loads(assessment_path.read_text()),
+            manifest_sha256=file_sha256(manifest_path),
+        )
+        _write_json(Path(args.output), record)
+        print(f"Review decision: {record['decision']}")
     elif args.command == "consent":
         manifest_path = Path(args.manifest)
         manifest = json.loads(manifest_path.read_text())

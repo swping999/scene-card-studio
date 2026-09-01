@@ -18,6 +18,13 @@ def build_upload_consent(
         raise ValueError("provider is required")
     if not purpose.strip():
         raise ValueError("purpose is required")
+    readiness = manifest.get("direction_readiness")
+    if isinstance(readiness, dict) and readiness.get("generation_ready") is not True:
+        raise ValueError(
+            "Semantic Scene Card direction is incomplete; finish the fields listed in direction_readiness before recording upload consent"
+        )
+    if isinstance(readiness, dict) and manifest.get("generation_ready") is not True:
+        raise ValueError("The automatic route is unresolved; select a Narrative System explicitly before recording upload consent")
     files = manifest.get("privacy", {}).get("files", [])
     if not files:
         raise ValueError("Manifest contains no upload file list")

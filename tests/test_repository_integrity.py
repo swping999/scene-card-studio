@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import json
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 from moments_to_pages import __version__
@@ -66,3 +69,25 @@ def test_public_text_has_no_local_user_paths_or_high_confidence_credentials():
         if credential_pattern.search(text) or local_path_pattern.search(text):
             findings.append(str(path.relative_to(ROOT)))
     assert not findings, f"Potential private path or credential in: {', '.join(findings)}"
+
+
+def test_gallery_scene_cards_and_manifests_are_reproducible():
+    gallery = ROOT / "examples/cases/v0.4-gallery"
+    subprocess.run(
+        [sys.executable, str(gallery / "build_evidence.py"), "--check"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    index = json.loads((gallery / "evidence/index.json").read_text())
+    assert len(index["cases"]) == 13
+    for case in index["cases"]:
+        story_path = gallery / "evidence" / case["story"]
+        manifest_path = gallery / "evidence" / case["prompt_manifest"]
+        story = json.loads(story_path.read_text())
+        manifest = json.loads(manifest_path.read_text())
+        assert len(story) == 1
+        assert manifest["generation_ready"] is True
+        assert manifest["source_mode"] == "single-photo"
+        assert manifest["prompts"][0]["reference_output"]["sha256"]

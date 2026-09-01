@@ -2,6 +2,28 @@
 
 All notable changes to Scene Card Studio are documented here. Versions follow semantic versioning where practical; Prompt Manifest and Scene Card schemas retain their own explicit version numbers.
 
+## [Unreleased]
+
+### Added
+
+- Semantic Scene Card readiness reports through `scene-card-studio check`.
+- `--scene-cards` support for rerunning `direct` with visually inspected, source-matched semantic direction.
+- Hash-bound `review-template` and `review` commands for a complete Accept/Retry path.
+- Recompilable `story.json` and Prompt Manifest evidence for all 13 landing-page cases.
+- Negation-aware routing and explicit confirmation when two automatically recommended Systems tie.
+
+### Changed
+
+- Prompt Manifest schema 1.5 records semantic readiness and route readiness separately.
+- Upload consent now refuses incomplete semantic direction or an unresolved automatic route.
+- Pillow is installed with the core package; package metadata and source-distribution boundaries are explicit.
+
+### Safety and reliability
+
+- Prepared Scene Cards must match the supplied source files in the same order; low-level measurements are refreshed from those files.
+- Reference After images remain benchmarks and cannot substitute for formally bound candidate outputs.
+- Routing evaluations now include negated and ambiguous bilingual briefs.
+
 ## [0.5.0] - 2026-09-01
 
 ### Added

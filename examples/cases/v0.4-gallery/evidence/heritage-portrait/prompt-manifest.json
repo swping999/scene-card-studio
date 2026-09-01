@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "family-archive",
+  "system_display_name": "Family Chronicle",
+  "expression_profile": "heritage-portrait",
+  "available_expression_profiles": [
+    "source-led",
+    "graphite-paper",
+    "watercolor-chronicle",
+    "heritage-portrait"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "family-archive-01",
+      "mode": "archival-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/heritage-portrait.jpg",
+          "sha256": "63be592923345d74f9254c4e79f20ce1b1bce071759e2f1a67e08cd15feff8a4"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied documentary subject and visible action: identity, age, short bob, hands, rust-red blouse, charcoal trousers, seated pose.",
+          "Keep face, hands, clothing, body proportions, object handling, and gesture faithful: seated portrait with crossed ankles and hands at rest.",
+          "Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact.",
+          "Keep the subject's present-day age, identity, facial structure, expression, body proportions, clothing construction, and pose; do not fabricate ancestry or historical identity."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — identity, age, short bob, hands, rust-red blouse, charcoal trousers, seated pose.",
+          "MAY TRANSFORM — backdrop, light, silver-gelatin tonality, restrained hand color, surface softness.",
+          "MUST REMOVE — bookshelf edge, tote bag, charging cable, outlet, device, hyperreal skin detail, fake damage.",
+          "Authorize photographic-process treatment and restrained hand coloring only; do not replace clothing, invent period costume, de-age, or change ethnicity, status, or family relationships."
+        ],
+        "narrative_intent": [
+          "Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships.",
+          "Source / moment: intent presence recorded through color and material restraint; tone calm, gentle; emphasis face, hands, and rust-red blouse; director note Preserve identity and honest age; use archival material language without inventing ancestry or status."
+        ],
+        "composition": [
+          "Use this Scene Card's layout emphasis to direct one complete image; keep important face, hands, and action uncropped.",
+          "Use a formal but human portrait hierarchy with stable posture, quiet background separation, and enough breathing room for an archival mount."
+        ],
+        "lighting": [
+          "Use the combined source palette (#ACA7A3, #232123) without applying a generic nostalgic filter.",
+          "Use broad studio-like modeling derived from the source direction, with controlled highlights and readable shadow detail rather than theatrical glamour light."
+        ],
+        "material": [
+          "Use restrained silver-gelatin tonal depth, fine paper grain, subtle optical softness, and sparse hand-applied color that follows real material boundaries.",
+          "Every added archive material must refer to a supplied object, surface, or repeated gesture."
+        ],
+        "spatial_relationships": [
+          "Use only relationships visible or stated within this Scene Card; do not invent relatives, companion images, or archival layers.",
+          "Keep documentary subjects visually primary and expression-profile materials secondary."
+        ],
+        "text_strategy": [
+          "Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks."
+        ],
+        "exclusions": [
+          "No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.",
+          "No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.",
+          "No fake damage, heavy sepia wash, costume invention, aristocratic props, beauty retouching, false historical documents, or named-photographer imitation."
+        ],
+        "output": [
+          "Return one integrated PNG documentary archive artifact at exactly 2:3.",
+          "Subjects and gestures must remain photographic, natural, and immediately recognizable.",
+          "The result must read as a carefully conserved portrait object, not a novelty vintage filter."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied documentary subject and visible action: identity, age, short bob, hands, rust-red blouse, charcoal trousers, seated pose.\n- Keep face, hands, clothing, body proportions, object handling, and gesture faithful: seated portrait with crossed ankles and hands at rest.\n- Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact.\n- Keep the subject's present-day age, identity, facial structure, expression, body proportions, clothing construction, and pose; do not fabricate ancestry or historical identity.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — identity, age, short bob, hands, rust-red blouse, charcoal trousers, seated pose.\n- MAY TRANSFORM — backdrop, light, silver-gelatin tonality, restrained hand color, surface softness.\n- MUST REMOVE — bookshelf edge, tote bag, charging cable, outlet, device, hyperreal skin detail, fake damage.\n- Authorize photographic-process treatment and restrained hand coloring only; do not replace clothing, invent period costume, de-age, or change ethnicity, status, or family relationships.\n\nNARRATIVE INTENT\n- Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships.\n- Source / moment: intent presence recorded through color and material restraint; tone calm, gentle; emphasis face, hands, and rust-red blouse; director note Preserve identity and honest age; use archival material language without inventing ancestry or status.\n\nCOMPOSITION\n- Use this Scene Card's layout emphasis to direct one complete image; keep important face, hands, and action uncropped.\n- Use a formal but human portrait hierarchy with stable posture, quiet background separation, and enough breathing room for an archival mount.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#ACA7A3, #232123) without applying a generic nostalgic filter.\n- Use broad studio-like modeling derived from the source direction, with controlled highlights and readable shadow detail rather than theatrical glamour light.\n\nMATERIAL AND SURFACE\n- Use restrained silver-gelatin tonal depth, fine paper grain, subtle optical softness, and sparse hand-applied color that follows real material boundaries.\n- Every added archive material must refer to a supplied object, surface, or repeated gesture.\n\nSPATIAL RELATIONSHIPS\n- Use only relationships visible or stated within this Scene Card; do not invent relatives, companion images, or archival layers.\n- Keep documentary subjects visually primary and expression-profile materials secondary.\n\nTEXT AND LABELS\n- Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks.\n\nEXCLUSIONS\n- No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.\n- No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.\n- No fake damage, heavy sepia wash, costume invention, aristocratic props, beauty retouching, false historical documents, or named-photographer imitation.\n\nOUTPUT\n- Return one integrated PNG documentary archive artifact at exactly 2:3.\n- Subjects and gestures must remain photographic, natural, and immediately recognizable.\n- The result must read as a carefully conserved portrait object, not a novelty vintage filter.",
+      "reference_output": {
+        "path": "../../after/heritage-portrait.jpg",
+        "sha256": "69781f5d8629dd6a9897dd1b80d638d0a36a788e90643d3bd2488e68c8c2d326"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/heritage-portrait.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Family Chronicle",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "date",
+      "collection"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "family-archive-01",
+        "caption": "HERITAGE PORTRAIT",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "collection",
+      "date"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/heritage-portrait.jpg",
+        "sha256": "63be592923345d74f9254c4e79f20ce1b1bce071759e2f1a67e08cd15feff8a4"
+      }
+    ]
+  }
+}

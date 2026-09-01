@@ -113,6 +113,8 @@ def render_svg(
     *,
     allowed_source_root: Path | None = None,
     allow_external_sources: bool = False,
+    display_name: str | None = None,
+    subtitle: str | None = None,
 ) -> None:
     if not cards:
         raise ValueError("At least one Scene Card is required")
@@ -129,10 +131,13 @@ def render_svg(
         height = max(1400, 520 + len(cards) * 260)
     margin = 72
     accent = _safe_color(cards[0].palette[0] if cards[0].palette else "#275D78")
+    title = display_name or style.replace("-", " ").upper()
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
              f'<rect width="100%" height="100%" fill="{PAPER}"/>',
              f'<text x="{margin}" y="80" font-family="ui-monospace,monospace" font-size="18" letter-spacing="4" fill="{accent}">SCENE CARD STUDIO</text>',
-             f'<text x="{margin}" y="145" font-family="system-ui,sans-serif" font-size="54" fill="{INK}">{escape(style.replace("-", " ").upper())}</text>']
+             f'<text x="{margin}" y="145" font-family="system-ui,sans-serif" font-size="54" fill="{INK}">{escape(title.upper())}</text>']
+    if subtitle:
+        parts.append(f'<text x="{margin}" y="188" font-family="ui-monospace,monospace" font-size="14" fill="#666762">{escape(subtitle[:120])}</text>')
 
     def image(card: SceneCard, x: int, y: int, w: int, h: int) -> None:
         href = _image_href(card, embed, output, allowed_source_root, allow_external_sources)

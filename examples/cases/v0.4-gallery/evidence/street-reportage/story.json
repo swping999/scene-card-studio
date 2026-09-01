@@ -1,0 +1,73 @@
+[
+  {
+    "source": "../../before/street-reportage.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#1B1A1B",
+      "#605C5C",
+      "#A39B96",
+      "#968775",
+      "#8A7563"
+    ],
+    "brightness": 0.306,
+    "saturation": 0.217,
+    "orientation": "portrait",
+    "caption": "STREET REPORTAGE",
+    "observation": {
+      "subjects": [
+        "elderly pedestrian",
+        "grocery bag",
+        "cyclist",
+        "waiting crowd",
+        "rainy crosswalk"
+      ],
+      "dominant_gesture": "pedestrians and bicycle cross in opposing directions",
+      "quiet_regions": [
+        "wet road reflections"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "public movement held in one factual instant",
+      "emotional_tone": [
+        "urgent",
+        "observational"
+      ],
+      "confidence": 0.83,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Tighten the public-life rhythm without manufacturing crisis or poverty.",
+      "layout_emphasis": "elderly pedestrian against cyclist and crowd flow"
+    },
+    "transformation": {
+      "must_preserve": [
+        "identities",
+        "grocery bag",
+        "cyclist",
+        "crowd",
+        "crosswalk",
+        "rain"
+      ],
+      "may_transform": [
+        "crop",
+        "monochrome tonality",
+        "grain",
+        "local contrast"
+      ],
+      "must_remove": [
+        "accidental edge clutter",
+        "sensational additions",
+        "captions"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

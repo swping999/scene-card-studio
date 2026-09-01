@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "memory-atlas",
+  "system_display_name": "Memory Atlas",
+  "expression_profile": "watercolor-contour",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour",
+    "watercolor-chronicle",
+    "full-watercolor-memory",
+    "dream-logic"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/memory-atlas.jpg",
+          "sha256": "f7733947bd12fc3cb5fd2cc4d77cbe0a1d5d8b0b55bcdadaf7d56b9bf3b44d4d"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place or subject as one recognizable photographic anchor: building geometry, red gate, blue barrel, pole and wires, road, ridge.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — building geometry, red gate, blue barrel, pole and wires, road, ridge.",
+          "MAY TRANSFORM — sky, terrain surface, road texture.",
+          "MUST REMOVE — map pins, connector lines, thumbnail collage, labels."
+        ],
+        "narrative_intent": [
+          "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
+          "Source / moment: intent place held through route and terrain; tone remote, material; emphasis road-to-ridge spatial continuity; director note Keep the architecture photographic while geography enters the same material world."
+        ],
+        "composition": [
+          "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
+          "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
+          "Embed real photographic places into one hand-drawn geography with varied scale and selective edge overlap."
+        ],
+        "lighting": [
+          "Use the combined source palette (#8BB3ED, #A9CBF4) without flattening every photograph into one identical color treatment.",
+          "Preserve photographic light while unifying the field with restrained paper warmth."
+        ],
+        "material": [
+          "Use watercolor terrain, pencil contours, torn archival paper, faint coastline texture, and subtle travel ephemera.",
+          "Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation."
+        ],
+        "output": [
+          "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
+          "The supplied place or subject must remain recognizable."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable photographic anchor: building geometry, red gate, blue barrel, pole and wires, road, ridge.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — building geometry, red gate, blue barrel, pole and wires, road, ridge.\n- MAY TRANSFORM — sky, terrain surface, road texture.\n- MUST REMOVE — map pins, connector lines, thumbnail collage, labels.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent place held through route and terrain; tone remote, material; emphasis road-to-ridge spatial continuity; director note Keep the architecture photographic while geography enters the same material world.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Embed real photographic places into one hand-drawn geography with varied scale and selective edge overlap.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#8BB3ED, #A9CBF4) without flattening every photograph into one identical color treatment.\n- Preserve photographic light while unifying the field with restrained paper warmth.\n\nMATERIAL AND SURFACE\n- Use watercolor terrain, pencil contours, torn archival paper, faint coastline texture, and subtle travel ephemera.\n- Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.",
+      "reference_output": {
+        "path": "../../after/memory-atlas.jpg",
+        "sha256": "11468459c9cbef1d37d4842d2d3215c6457c8b559a575fb3c5dac8708a9eaa4b"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/memory-atlas.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Memory Atlas",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "memory-atlas-01",
+        "caption": "MEMORY ATLAS",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/memory-atlas.jpg",
+        "sha256": "f7733947bd12fc3cb5fd2cc4d77cbe0a1d5d8b0b55bcdadaf7d56b9bf3b44d4d"
+      }
+    ]
+  }
+}

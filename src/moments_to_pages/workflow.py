@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import json
 import os
+import uuid
 from dataclasses import asdict
 from datetime import datetime, timezone
+from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +15,7 @@ from .expression_profiles import expression_profile_names
 from .model import SceneCard, load_cards, save_cards
 from .narrative_systems import resolve_narrative_system
 from .prompt_compiler import compile_manifest
+from .readiness import assess_direction_readiness
 from .render import render_svg
 
 DIRECT_RUN_SCHEMA_VERSION = "1.0"
@@ -93,12 +96,26 @@ def select_direct_route(
         raise ValueError(
             f"Expression profile {selected_profile!r} is not compatible with {selected_system}; choose: {choices}"
         )
+    selected_recommendation = next(item for item in recommendations if item.system == selected_system)
+    alternatives = [item for item in recommendations if item.system != selected_system]
+    nearest = alternatives[0] if alternatives else None
+    score_gap = selected_recommendation.score - nearest.score if nearest else 1.0
+    ambiguous = bool(
+        system == "auto"
+        and nearest
+        and selected_recommendation.score >= .8
+        and nearest.score >= .8
+        and abs(score_gap) < .06
+    )
     return {
         "system": selected_system,
         "system_selection": system_selection,
         "expression_profile": selected_profile,
         "profile_selection": "automatic-explicit-brief" if expression_profile == "auto" and selected_profile != "source-led" else "automatic-safe-default" if expression_profile == "auto" else "user-selected",
         "profile_reason": profile_recommendation.reason if expression_profile == "auto" else "The user selected this compatible Expression Profile.",
+        "system_score": selected_recommendation.score,
+        "score_gap_to_nearest": round(score_gap, 3),
+        "needs_route_confirmation": ambiguous,
         "recommendations": [asdict(item) for item in recommendations[:3]],
     }
 
@@ -107,6 +124,7 @@ def run_direct(
     photos: list[Path],
     *,
     output_dir: Path,
+    prepared_story: Path | None = None,
     brief: str = "",
     system: str = "auto",
     expression_profile: str = "auto",
@@ -132,8 +150,31 @@ def run_direct(
         names = ", ".join(path.name for path in unsafe_targets)
         raise PermissionError(f"Refusing to replace non-regular direct output target(s): {names}")
 
-    cards = assign_story_roles([analyze_image(path) for path in resolved_photos], reorder=reorder)
-    _apply_user_brief(cards, brief)
+    analyzed_cards = [analyze_image(path) for path in resolved_photos]
+    prepared_story_sha256: str | None = None
+    if prepared_story is not None:
+        prepared_story = prepared_story.expanduser().resolve()
+        prepared_story_sha256 = sha256(prepared_story.read_bytes()).hexdigest()
+        cards = load_cards(prepared_story)
+        if len(cards) != len(resolved_photos):
+            raise ValueError(
+                f"Prepared story contains {len(cards)} Scene Card(s), but {len(resolved_photos)} source photo(s) were supplied"
+            )
+        prepared_sources = [Path(card.source).expanduser().resolve() for card in cards]
+        if prepared_sources != resolved_photos:
+            raise ValueError("Prepared story sources must match the supplied photos in the same order")
+        for card, analyzed in zip(cards, analyzed_cards):
+            card.width = analyzed.width
+            card.height = analyzed.height
+            card.palette = analyzed.palette
+            card.brightness = analyzed.brightness
+            card.saturation = analyzed.saturation
+            card.orientation = analyzed.orientation
+        if reorder:
+            cards = assign_story_roles(cards, reorder=True)
+    else:
+        cards = assign_story_roles(analyzed_cards, reorder=reorder)
+        _apply_user_brief(cards, brief)
     route = select_direct_route(
         cards,
         brief=brief,
@@ -146,6 +187,7 @@ def run_direct(
     output_dir.mkdir(parents=True, exist_ok=True)
     for card in cards:
         card.source = Path(os.path.relpath(Path(card.source).resolve(), output_dir)).as_posix()
+    readiness = assess_direction_readiness(cards)
     manifest = compile_manifest(
         cards,
         route["system"],
@@ -154,18 +196,15 @@ def run_direct(
         source_root=output_dir,
         story_path="story.json",
     )
-
-    save_cards(cards, targets["story.json"])
-    _write_json(targets["prompt-manifest.json"], manifest)
-
-    render_svg(
-        load_cards(targets["story.json"]),
-        targets["workprint.svg"],
-        WORKPRINT_STYLES[route["system"]],
-        False,
-        "workprint",
-        allowed_source_root=output_dir,
-    )
+    generation_ready = readiness["generation_ready"] and not route["needs_route_confirmation"]
+    manifest["route_decision"] = {
+        "system": route["system"],
+        "expression_profile": route["expression_profile"],
+        "system_selection": route["system_selection"],
+        "profile_selection": route["profile_selection"],
+        "needs_route_confirmation": route["needs_route_confirmation"],
+    }
+    manifest["generation_ready"] = generation_ready
 
     summary = {
         "artifact_type": "direct-run-summary",
@@ -174,18 +213,60 @@ def run_direct(
         "source_count": len(cards),
         "source_mode": manifest["source_mode"],
         "brief": brief.strip(),
+        "prepared_story": {
+            "provided": prepared_story is not None,
+            "sha256": prepared_story_sha256,
+        },
         "route": route,
+        "direction_readiness": readiness,
         "outputs": {
             "scene_cards": "story.json",
             "prompt_manifest": "prompt-manifest.json",
             "analysis_workprint": "workprint.svg",
+            "workprint_layout_family": WORKPRINT_STYLES[route["system"]],
         },
         "generation": {
-            "status": "prompt-ready",
+            "status": (
+                "prompt-ready"
+                if generation_ready
+                else "needs-route-confirmation"
+                if route["needs_route_confirmation"] and readiness["generation_ready"]
+                else "needs-semantic-direction"
+            ),
             "remote_generation_performed": False,
             "workprint_is_directed_after": False,
-            "next_step": "Review the Scene Cards and Prompt Manifest. Before remote generation, record provider-, purpose-, and file-specific consent.",
+            "next_step": (
+                "Review the Scene Cards and Prompt Manifest. Before remote generation, record provider-, purpose-, and file-specific consent."
+                if generation_ready
+                else "Choose a Narrative System explicitly, then rerun direct before requesting upload consent."
+                if route["needs_route_confirmation"] and readiness["generation_ready"]
+                else "Complete the missing semantic Scene Card fields, then rerun direct with --scene-cards before requesting upload consent."
+            ),
         },
     }
-    _write_json(targets["run-summary.json"], summary)
+    token = uuid.uuid4().hex
+    temporary = {
+        name: output_dir / f".{name}.{token}.tmp"
+        for name in DIRECT_OUTPUT_NAMES
+    }
+    try:
+        save_cards(cards, temporary["story.json"])
+        _write_json(temporary["prompt-manifest.json"], manifest)
+        render_svg(
+            load_cards(temporary["story.json"]),
+            temporary["workprint.svg"],
+            WORKPRINT_STYLES[route["system"]],
+            False,
+            "workprint",
+            allowed_source_root=output_dir,
+            display_name=manifest["system_display_name"],
+            subtitle=f"SYSTEM {route['system']} · PROFILE {route['expression_profile']} · ANALYSIS WORKPRINT",
+        )
+        _write_json(temporary["run-summary.json"], summary)
+        for name in DIRECT_OUTPUT_NAMES:
+            os.replace(temporary[name], targets[name])
+    finally:
+        for path in temporary.values():
+            if path.exists() and path.is_file() and not path.is_symlink():
+                path.unlink()
     return summary

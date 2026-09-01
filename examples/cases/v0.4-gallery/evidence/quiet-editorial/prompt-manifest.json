@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "minimal-editorial",
+  "system_display_name": "Quiet Editorial",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led",
+    "quiet-window-light"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "minimal-editorial-01",
+      "mode": "quiet-editorial",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/quiet-editorial.jpg",
+          "sha256": "8439559db8efe7d767ea6b0731de9089d87aab3d1f12a9de10acd928d72c1845"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: kettle shape, handle, spout, lid, scratches and dents.",
+          "Preserve the observed action or structural gesture: arched handle over a worn cylindrical body.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — kettle shape, handle, spout, lid, scratches and dents.",
+          "MAY TRANSFORM — setting, light direction, crop.",
+          "MUST REMOVE — soap bottle, cable, plastic containers, rag clutter."
+        ],
+        "narrative_intent": [
+          "Narrative intent: wear made legible through quiet attention.",
+          "Emotional tone: still, tactile. Story role: moment.",
+          "Director note: Let material, shadow, and negative space carry the image.",
+          "Visual emphasis: scratched metal against pale mineral surfaces."
+        ],
+        "composition": [
+          "Create one continuous editorial art photograph devoted to the source subject; no designed page or collage.",
+          "Use wall behind the counter as breathing room and remove only elements listed under MUST REMOVE.",
+          "Derive dominant geometry and negative space from the source object and its existing surroundings."
+        ],
+        "lighting": [
+          "Keep color source-led (#645D59, #A39D9A, #E5E3E5, #21201F) and separate the subject through tonal structure rather than saturation effects.",
+          "Preserve the source light logic while simplifying competing highlights and shadows."
+        ],
+        "material": [
+          "Let actual wear, fibers, glaze, scratches, and dents determine the material language.",
+          "Avoid sterile CGI perfection and preserve identity-bearing imperfections."
+        ],
+        "spatial_relationships": [
+          "Give the object enough negative space to feel intentional while retaining believable physical support and gravity.",
+          "Use source-supported shadow, edge, fold, or repetition as geometry; do not paste abstract shapes over the photograph."
+        ],
+        "text_strategy": [
+          "Generate no masthead, caption, label, logo, watermark, border, or visible typography."
+        ],
+        "exclusions": [
+          "No magazine mockup, product advertisement, catalog cutout, multi-object collage, panel, or split screen.",
+          "No generic luxury styling, ornamental props, excessive smoothing, floating objects, or unauthorized abstract overlays."
+        ],
+        "output": [
+          "Return one standalone photorealistic PNG editorial still life at exactly 2:3.",
+          "Make the result specific to the supplied object and Scene Card."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: kettle shape, handle, spout, lid, scratches and dents.\n- Preserve the observed action or structural gesture: arched handle over a worn cylindrical body.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — kettle shape, handle, spout, lid, scratches and dents.\n- MAY TRANSFORM — setting, light direction, crop.\n- MUST REMOVE — soap bottle, cable, plastic containers, rag clutter.\n\nNARRATIVE INTENT\n- Narrative intent: wear made legible through quiet attention.\n- Emotional tone: still, tactile. Story role: moment.\n- Director note: Let material, shadow, and negative space carry the image.\n- Visual emphasis: scratched metal against pale mineral surfaces.\n\nCOMPOSITION\n- Create one continuous editorial art photograph devoted to the source subject; no designed page or collage.\n- Use wall behind the counter as breathing room and remove only elements listed under MUST REMOVE.\n- Derive dominant geometry and negative space from the source object and its existing surroundings.\n\nLIGHTING AND COLOR\n- Keep color source-led (#645D59, #A39D9A, #E5E3E5, #21201F) and separate the subject through tonal structure rather than saturation effects.\n- Preserve the source light logic while simplifying competing highlights and shadows.\n\nMATERIAL AND SURFACE\n- Let actual wear, fibers, glaze, scratches, and dents determine the material language.\n- Avoid sterile CGI perfection and preserve identity-bearing imperfections.\n\nSPATIAL RELATIONSHIPS\n- Give the object enough negative space to feel intentional while retaining believable physical support and gravity.\n- Use source-supported shadow, edge, fold, or repetition as geometry; do not paste abstract shapes over the photograph.\n\nTEXT AND LABELS\n- Generate no masthead, caption, label, logo, watermark, border, or visible typography.\n\nEXCLUSIONS\n- No magazine mockup, product advertisement, catalog cutout, multi-object collage, panel, or split screen.\n- No generic luxury styling, ornamental props, excessive smoothing, floating objects, or unauthorized abstract overlays.\n\nOUTPUT\n- Return one standalone photorealistic PNG editorial still life at exactly 2:3.\n- Make the result specific to the supplied object and Scene Card.",
+      "reference_output": {
+        "path": "../../after/quiet-editorial.jpg",
+        "sha256": "8c434fe72412717428229a304f79d997bc4736aacbd65f1988acccb39aab07dc"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/quiet-editorial.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Quiet Editorial",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "minimal-editorial-01",
+        "caption": "QUIET EDITORIAL",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/quiet-editorial.jpg",
+        "sha256": "8439559db8efe7d767ea6b0731de9089d87aab3d1f12a9de10acd928d72c1845"
+      }
+    ]
+  }
+}

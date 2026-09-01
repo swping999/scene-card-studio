@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "fashion-editorial",
+  "system_display_name": "Fashion Editorial",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led",
+    "dream-logic"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "fashion-editorial-01",
+      "mode": "fashion-sequence",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/fashion-editorial.jpg",
+          "sha256": "c960b63d79c0b6167604fb955f414eacfffa949a978f9f11b677b5cc8d81410d"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: identity, body proportions, coat construction, boots, bag, trousers.",
+          "Preserve the observed action or structural gesture: standing figure in a mall corridor.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — identity, body proportions, coat construction, boots, bag, trousers.",
+          "MAY TRANSFORM — architecture, camera height, light, controlled coat movement.",
+          "MUST REMOVE — mall clutter, branding, beauty retouching, cover text."
+        ],
+        "narrative_intent": [
+          "Narrative intent: garment construction read against architecture.",
+          "Emotional tone: controlled, assertive. Story role: moment.",
+          "Director note: Direct the existing outfit through crop, movement, light, and architecture; invent no fashion items.",
+          "Visual emphasis: coat silhouette and vertical corridor light.",
+          "Use pose, garment construction, movement, and crop tension to create one editorial image without inventing a brand campaign."
+        ],
+        "composition": [
+          "Use assertive full-bleed framing and intentional crop tension while keeping face, hands, joints, and garment construction anatomically credible.",
+          "Use plain upper wall as controlled breathing room where compatible with the observed scene.",
+          "Use full-bleed presence, assertive but anatomy-safe cropping, and source-supported shot scale."
+        ],
+        "lighting": [
+          "Build from the source palette (#C6B5A1, #B3A293, #211D19, #D4C5B4) and preserve truthful skin, object, and environment relationships.",
+          "Build from the source light and wardrobe palette; keep skin tone and fabric color truthful."
+        ],
+        "material": [
+          "Preserve garment construction, fabric behavior, styling details, skin texture, and location surfaces.",
+          "Keep identity-bearing surface evidence specific; avoid a generic preset finish."
+        ],
+        "spatial_relationships": [
+          "Preserve the relationship between body, clothing, accessories, floor, furniture, and location inside this one frame.",
+          "Single-photo contract: make this source a complete standalone image and do not imply adjacent frames."
+        ],
+        "text_strategy": [
+          "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
+          "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract."
+        ],
+        "exclusions": [
+          "No fake brand, logo, masthead, product claim, impossible garment seams, beauty-filter skin, extra fingers, or celebrity imitation.",
+          "Do not imitate a named artist, photographer, publication, brand, or campaign."
+        ],
+        "output": [
+          "Return one standalone photographic PNG frame at exactly 2:3.",
+          "Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: identity, body proportions, coat construction, boots, bag, trousers.\n- Preserve the observed action or structural gesture: standing figure in a mall corridor.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — identity, body proportions, coat construction, boots, bag, trousers.\n- MAY TRANSFORM — architecture, camera height, light, controlled coat movement.\n- MUST REMOVE — mall clutter, branding, beauty retouching, cover text.\n\nNARRATIVE INTENT\n- Narrative intent: garment construction read against architecture.\n- Emotional tone: controlled, assertive. Story role: moment.\n- Director note: Direct the existing outfit through crop, movement, light, and architecture; invent no fashion items.\n- Visual emphasis: coat silhouette and vertical corridor light.\n- Use pose, garment construction, movement, and crop tension to create one editorial image without inventing a brand campaign.\n\nCOMPOSITION\n- Use assertive full-bleed framing and intentional crop tension while keeping face, hands, joints, and garment construction anatomically credible.\n- Use plain upper wall as controlled breathing room where compatible with the observed scene.\n- Use full-bleed presence, assertive but anatomy-safe cropping, and source-supported shot scale.\n\nLIGHTING AND COLOR\n- Build from the source palette (#C6B5A1, #B3A293, #211D19, #D4C5B4) and preserve truthful skin, object, and environment relationships.\n- Build from the source light and wardrobe palette; keep skin tone and fabric color truthful.\n\nMATERIAL AND SURFACE\n- Preserve garment construction, fabric behavior, styling details, skin texture, and location surfaces.\n- Keep identity-bearing surface evidence specific; avoid a generic preset finish.\n\nSPATIAL RELATIONSHIPS\n- Preserve the relationship between body, clothing, accessories, floor, furniture, and location inside this one frame.\n- Single-photo contract: make this source a complete standalone image and do not imply adjacent frames.\n\nTEXT AND LABELS\n- Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.\n- Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.\n\nEXCLUSIONS\n- No fake brand, logo, masthead, product claim, impossible garment seams, beauty-filter skin, extra fingers, or celebrity imitation.\n- Do not imitate a named artist, photographer, publication, brand, or campaign.\n\nOUTPUT\n- Return one standalone photographic PNG frame at exactly 2:3.\n- Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.",
+      "reference_output": {
+        "path": "../../after/fashion-editorial.jpg",
+        "sha256": "f6a731dc9d36edda2775ed4bee7f36415277c3c95e589de298b50d555b764962"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/fashion-editorial.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Fashion Editorial",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "story_role"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "fashion-editorial-01",
+        "caption": "FASHION EDITORIAL",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/fashion-editorial.jpg",
+        "sha256": "c960b63d79c0b6167604fb955f414eacfffa949a978f9f11b677b5cc8d81410d"
+      }
+    ]
+  }
+}

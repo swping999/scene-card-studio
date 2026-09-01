@@ -1,4 +1,4 @@
 interface:
   display_name: "Scene Card Studio"
   short_description: "Direct one photo or a sequence into a reproducible visual narrative"
-  default_prompt: "Use $scene-card-studio to prepare a local one-command direction bundle for my photos, show me the selected System and Profile, then generate paired Before/After images only after upload consent and review the result."
+  default_prompt: "Use $scene-card-studio to prepare a local direction bundle, inspect and complete the semantic Scene Cards, verify the selected System and Profile, then generate paired Before/After images only after upload consent and finalize a hash-bound review."

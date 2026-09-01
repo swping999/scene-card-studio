@@ -1,0 +1,73 @@
+[
+  {
+    "source": "../../before/fashion-editorial.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#C6B5A1",
+      "#B3A293",
+      "#211D19",
+      "#D4C5B4",
+      "#9E8B74"
+    ],
+    "brightness": 0.627,
+    "saturation": 0.213,
+    "orientation": "portrait",
+    "caption": "FASHION EDITORIAL",
+    "observation": {
+      "subjects": [
+        "young woman",
+        "moss-green coat",
+        "black boots",
+        "cream shoulder bag"
+      ],
+      "dominant_gesture": "standing figure in a mall corridor",
+      "quiet_regions": [
+        "plain upper wall"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "garment construction read against architecture",
+      "emotional_tone": [
+        "controlled",
+        "assertive"
+      ],
+      "confidence": 0.89,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Direct the existing outfit through crop, movement, light, and architecture; invent no fashion items.",
+      "layout_emphasis": "coat silhouette and vertical corridor light"
+    },
+    "transformation": {
+      "must_preserve": [
+        "identity",
+        "body proportions",
+        "coat construction",
+        "boots",
+        "bag",
+        "trousers"
+      ],
+      "may_transform": [
+        "architecture",
+        "camera height",
+        "light",
+        "controlled coat movement"
+      ],
+      "must_remove": [
+        "mall clutter",
+        "branding",
+        "beauty retouching",
+        "cover text"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

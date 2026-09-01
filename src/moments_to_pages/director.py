@@ -19,6 +19,33 @@ class ProfileRecommendation:
     reason: str
 
 
+def _term_is_negated(evidence: str, start: int) -> bool:
+    prefix = evidence[max(0, start - 40):start]
+    english = re.search(
+        r"(?:\bno\b|\bnot\b|\bwithout\b|\bavoid(?:ing)?\b|\bdo not\b|\bdon't\b)[^.!?;,，。；！？\n]{0,28}$",
+        prefix,
+    )
+    chinese = re.search(r"(?:不要|别|避免|不想要|不需要|拒绝|去掉)[^，。；！？!?\n]{0,16}$", prefix)
+    return bool(english or chinese)
+
+
+def _term_counts(evidence: str, term: str) -> tuple[int, int]:
+    escaped = re.escape(term.casefold())
+    pattern = rf"(?<![a-z]){escaped}(?![a-z])" if term.isascii() else escaped
+    positive = 0
+    negated = 0
+    for match in re.finditer(pattern, evidence):
+        if _term_is_negated(evidence, match.start()):
+            negated += 1
+        else:
+            positive += 1
+    return positive, negated
+
+
+def _contains_unnegated(evidence: str, *terms: str) -> bool:
+    return any(_term_counts(evidence, term)[0] for term in terms)
+
+
 def recommend_systems(cards: list[SceneCard], brief: str = "") -> list[Recommendation]:
     if not cards:
         return []
@@ -33,7 +60,6 @@ def recommend_systems(cards: list[SceneCard], brief: str = "") -> list[Recommend
     tones = " ".join(" ".join(card.interpretation.emotional_tone) for card in directed_cards).lower()
     notes = " ".join(card.direction.director_note for card in cards).lower()
     evidence = " ".join((brief.lower(), gestures, intents, subjects, tones, notes))
-    tokens = set(re.findall(r"[a-z]+", evidence))
     average_saturation = sum(card.saturation for card in cards) / len(cards)
     cinematic_words = ("cinematic", "film", "movie", "storyboard", "shot", "waiting", "departure", "night", "rain", "reflection", "window", "vehicle", "movement", "pause", "电影", "分镜", "镜头", "等待", "离开", "出发", "夜", "雨", "倒影", "窗", "车辆", "移动", "停顿")
     minimal_words = ("minimal", "quiet", "still life", "negative space", "object", "material", "linen", "chair", "cup", "mug", "ceramic", "fabric", "surface", "fold", "极简", "安静", "物件", "材质", "亚麻", "椅子", "杯子", "陶瓷", "织物", "表面", "折叠", "留白", "静物")
@@ -46,10 +72,11 @@ def recommend_systems(cards: list[SceneCard], brief: str = "") -> list[Recommend
     street_words = ("street", "reportage", "crowd", "pedestrian", "market", "crossing", "traffic", "sidewalk", "街头", "纪实报道", "人群", "行人", "市场", "路口", "交通", "人行道")
     fashion_words = ("fashion", "editorial portrait", "garment", "outfit", "wardrobe", "pose", "fabric", "silhouette", "时尚", "服装", "时装", "穿搭", "造型", "姿势", "面料", "轮廓")
 
-    def count_terms(terms: tuple[str, ...]) -> int:
-        return sum(
-            (term in evidence if " " in term else term in tokens) if term.isascii() else (term in evidence)
-            for term in terms
+    def count_terms(terms: tuple[str, ...]) -> tuple[int, int]:
+        counts = [_term_counts(evidence, term) for term in terms]
+        return (
+            sum(1 for positive, _ in counts if positive),
+            sum(1 for positive, negated in counts if negated and not positive),
         )
 
     cinematic_matches = count_terms(cinematic_words)
@@ -62,31 +89,35 @@ def recommend_systems(cards: list[SceneCard], brief: str = "") -> list[Recommend
     travel_matches = count_terms(travel_words)
     street_matches = count_terms(street_words)
     fashion_matches = count_terms(fashion_words)
-    def semantic_score(matches: int, baseline: float) -> float:
-        return .92 if matches >= 2 else .82 if matches == 1 else baseline
+    def semantic_score(matches: int, negated: int, baseline: float) -> float:
+        if matches >= 2:
+            return .92
+        if matches == 1:
+            return .82
+        return min(baseline, .18) if negated else baseline
 
-    cinematic_score = semantic_score(cinematic_matches, .52)
-    minimal_score = semantic_score(minimal_matches, .58 if average_saturation < .45 else .50)
+    cinematic_score = semantic_score(*cinematic_matches, .52)
+    minimal_score = semantic_score(*minimal_matches, .58 if average_saturation < .45 else .50)
     results = [
-        Recommendation("memory-atlas", semantic_score(memory_matches, .48),
+        Recommendation("memory-atlas", semantic_score(*memory_matches, .48),
                        "The source's spatial cues can become one self-contained memory field." if single else "Spatial movement and transitions can become a visible route through the sequence."),
-        Recommendation("field-log", semantic_score(field_matches, .56 if average_saturation < .35 else .46),
+        Recommendation("field-log", semantic_score(*field_matches, .56 if average_saturation < .35 else .46),
                        "Restrained color and observational detail suit a documentary record."),
-        Recommendation("family-archive", semantic_score(family_matches, .46),
+        Recommendation("family-archive", semantic_score(*family_matches, .46),
                        "The visible domestic gesture can become one restrained archival record." if single else "Repeated domestic gestures and relationships can be read as a family record."),
         Recommendation("cinematic-storyboard", cinematic_score,
                        "Motivated light, weather, and framing can make this one directed cinematic image." if single else "Temporal continuity, motivated light, weather, and shot relationships can carry the sequence."),
         Recommendation("minimal-editorial", minimal_score,
                        "Object hierarchy, negative space, light, and material evidence can direct each frame."),
-        Recommendation("editorial-sequence", semantic_score(editorial_matches, .60),
+        Recommendation("editorial-sequence", semantic_score(*editorial_matches, .60),
                        "Scale, pause, contrast, and negative space can direct one editorial image." if single else "Scale, pause, contrast, and source order can create an editorial rhythm across separate frames."),
-        Recommendation("museum-catalogue", semantic_score(museum_matches, .44),
+        Recommendation("museum-catalogue", semantic_score(*museum_matches, .44),
                        "Inspectable object evidence can form one deterministic catalogue plate." if single else "Inspectable object evidence and supplied metadata can form a deterministic catalogue sequence."),
-        Recommendation("travel-journal", semantic_score(travel_matches, .44),
+        Recommendation("travel-journal", semantic_score(*travel_matches, .44),
                        "The visible place, threshold, or travel evidence can become one journey moment without invented geography." if single else "Supplied movement, thresholds, tickets, places, and pauses can form a journey record without invented geography."),
-        Recommendation("street-reportage", semantic_score(street_matches, .42),
+        Recommendation("street-reportage", semantic_score(*street_matches, .42),
                        "The observed public gesture and context can become one factual reportage image." if single else "Observed public gestures and environmental context can become a factual reportage sequence."),
-        Recommendation("fashion-editorial", semantic_score(fashion_matches, .40),
+        Recommendation("fashion-editorial", semantic_score(*fashion_matches, .40),
                        "Pose, garment construction, fabric behavior, and crop tension can carry one editorial image." if single else "Pose, garment construction, fabric behavior, and shot-scale contrast can carry an editorial sequence."),
     ]
     return sorted(results, key=lambda item: item.score, reverse=True)
@@ -101,7 +132,7 @@ def recommend_expression_profile(system: str, cards: list[SceneCard], brief: str
     ]).casefold()
 
     def contains(*terms: str) -> bool:
-        return any(term.casefold() in evidence for term in terms)
+        return _contains_unnegated(evidence, *terms)
 
     if system == "cinematic-storyboard" and contains("rain", "rainy", "nocturne", "wet night", "雨", "雨夜", "湿润夜景"):
         return ProfileRecommendation("rain-nocturne", "The brief explicitly requests rain or nocturnal atmosphere.")

@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "street-reportage",
+  "system_display_name": "Street Reportage",
+  "expression_profile": "monochrome-reportage",
+  "available_expression_profiles": [
+    "source-led",
+    "monochrome-reportage"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "street-reportage-01",
+      "mode": "reportage-sequence",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/street-reportage.jpg",
+          "sha256": "b19b28db75ba04f73c6b0182ab8493c406bbb29b990873349bbd33bd22d3b622"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: identities, grocery bag, cyclist, crowd, crosswalk, rain.",
+          "Preserve the observed action or structural gesture: pedestrians and bicycle cross in opposing directions.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — identities, grocery bag, cyclist, crowd, crosswalk, rain.",
+          "MAY TRANSFORM — crop, monochrome tonality, grain, local contrast.",
+          "MUST REMOVE — accidental edge clutter, sensational additions, captions."
+        ],
+        "narrative_intent": [
+          "Narrative intent: public movement held in one factual instant.",
+          "Emotional tone: urgent, observational. Story role: moment.",
+          "Director note: Tighten the public-life rhythm without manufacturing crisis or poverty.",
+          "Visual emphasis: elderly pedestrian against cyclist and crowd flow.",
+          "Make the supplied observed event and its context readable as one reportage beat; do not fabricate urgency, conflict, or chronology."
+        ],
+        "composition": [
+          "Prioritize the decisive visible gesture while retaining enough street context to understand where bodies and objects stand.",
+          "Use wet road reflections as controlled breathing room where compatible with the observed scene.",
+          "Use direct street framing, controlled high contrast, and enough context to understand the observed event."
+        ],
+        "lighting": [
+          "Build from the source palette (#1B1A1B, #605C5C, #A39B96, #968775) and preserve truthful skin, object, and environment relationships.",
+          "Convert source luminance into a detailed black-and-white scale with protected skin and shadow information."
+        ],
+        "material": [
+          "Use restrained silver-rich grain and crisp local contrast without crushed blacks or artificial damage.",
+          "Keep identity-bearing surface evidence specific; avoid a generic preset finish."
+        ],
+        "spatial_relationships": [
+          "Preserve crowd count, body position, gaze, signage geometry, vehicle placement, and the source event's directional movement.",
+          "Single-photo contract: make this source a complete standalone image and do not imply adjacent frames."
+        ],
+        "text_strategy": [
+          "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
+          "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract."
+        ],
+        "exclusions": [
+          "No staged crisis, poverty aesthetic, voyeuristic crop, crushed faces, fake press caption, or sensational news treatment.",
+          "Do not imitate a named artist, photographer, publication, brand, or campaign."
+        ],
+        "output": [
+          "Return one standalone photographic PNG frame at exactly 2:3.",
+          "Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: identities, grocery bag, cyclist, crowd, crosswalk, rain.\n- Preserve the observed action or structural gesture: pedestrians and bicycle cross in opposing directions.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — identities, grocery bag, cyclist, crowd, crosswalk, rain.\n- MAY TRANSFORM — crop, monochrome tonality, grain, local contrast.\n- MUST REMOVE — accidental edge clutter, sensational additions, captions.\n\nNARRATIVE INTENT\n- Narrative intent: public movement held in one factual instant.\n- Emotional tone: urgent, observational. Story role: moment.\n- Director note: Tighten the public-life rhythm without manufacturing crisis or poverty.\n- Visual emphasis: elderly pedestrian against cyclist and crowd flow.\n- Make the supplied observed event and its context readable as one reportage beat; do not fabricate urgency, conflict, or chronology.\n\nCOMPOSITION\n- Prioritize the decisive visible gesture while retaining enough street context to understand where bodies and objects stand.\n- Use wet road reflections as controlled breathing room where compatible with the observed scene.\n- Use direct street framing, controlled high contrast, and enough context to understand the observed event.\n\nLIGHTING AND COLOR\n- Build from the source palette (#1B1A1B, #605C5C, #A39B96, #968775) and preserve truthful skin, object, and environment relationships.\n- Convert source luminance into a detailed black-and-white scale with protected skin and shadow information.\n\nMATERIAL AND SURFACE\n- Use restrained silver-rich grain and crisp local contrast without crushed blacks or artificial damage.\n- Keep identity-bearing surface evidence specific; avoid a generic preset finish.\n\nSPATIAL RELATIONSHIPS\n- Preserve crowd count, body position, gaze, signage geometry, vehicle placement, and the source event's directional movement.\n- Single-photo contract: make this source a complete standalone image and do not imply adjacent frames.\n\nTEXT AND LABELS\n- Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.\n- Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.\n\nEXCLUSIONS\n- No staged crisis, poverty aesthetic, voyeuristic crop, crushed faces, fake press caption, or sensational news treatment.\n- Do not imitate a named artist, photographer, publication, brand, or campaign.\n\nOUTPUT\n- Return one standalone photographic PNG frame at exactly 2:3.\n- Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.",
+      "reference_output": {
+        "path": "../../after/street-reportage.jpg",
+        "sha256": "5d2a84b73db3aee2fdf03f9b52af93da0b57c755fc09a76ecc8b6822630e3bdc"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/street-reportage.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Street Reportage",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "street-reportage-01",
+        "caption": "STREET REPORTAGE",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/street-reportage.jpg",
+        "sha256": "b19b28db75ba04f73c6b0182ab8493c406bbb29b990873349bbd33bd22d3b622"
+      }
+    ]
+  }
+}

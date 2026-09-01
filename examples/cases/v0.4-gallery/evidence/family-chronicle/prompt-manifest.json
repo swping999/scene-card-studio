@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "family-archive",
+  "system_display_name": "Family Chronicle",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led",
+    "graphite-paper",
+    "watercolor-chronicle",
+    "heritage-portrait"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "family-archive-01",
+      "mode": "archival-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/family-chronicle.jpg",
+          "sha256": "58764ec011a4f0e83efc4badd9eebe4b598a8241aad312f765059696067fb36a"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied documentary subject and visible action: both identities, ages, clothing, hands, folding action.",
+          "Keep face, hands, clothing, body proportions, object handling, and gesture faithful: two people folding cloth at the same table.",
+          "Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — both identities, ages, clothing, hands, folding action.",
+          "MAY TRANSFORM — light, crop, subtle graphite studies, tracing-paper marks.",
+          "MUST REMOVE — rice cooker, medicine clutter, harsh bulb."
+        ],
+        "narrative_intent": [
+          "Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships.",
+          "Source / moment: intent shared work observed across age; tone intimate, patient; emphasis hands, cloth, and the space between figures; director note Build meaning from the supplied folding gesture; do not invent a family history."
+        ],
+        "composition": [
+          "Use this Scene Card's layout emphasis to direct one complete image; keep important face, hands, and action uncropped.",
+          "Build an archival relationship from supplied gestures and objects, varying scale by Scene Card emphasis."
+        ],
+        "lighting": [
+          "Use the combined source palette (#D8D5D0, #A6A29E) without applying a generic nostalgic filter.",
+          "Preserve natural documentary light and source-supported tonal differences."
+        ],
+        "material": [
+          "Use only archival materials supported by supplied objects, surfaces, and repeated gestures.",
+          "Every added archive material must refer to a supplied object, surface, or repeated gesture."
+        ],
+        "spatial_relationships": [
+          "Use only relationships visible or stated within this Scene Card; do not invent relatives, companion images, or archival layers.",
+          "Keep documentary subjects visually primary and expression-profile materials secondary."
+        ],
+        "text_strategy": [
+          "Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks."
+        ],
+        "exclusions": [
+          "No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.",
+          "No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation."
+        ],
+        "output": [
+          "Return one integrated PNG documentary archive artifact at exactly 2:3.",
+          "Subjects and gestures must remain photographic, natural, and immediately recognizable."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied documentary subject and visible action: both identities, ages, clothing, hands, folding action.\n- Keep face, hands, clothing, body proportions, object handling, and gesture faithful: two people folding cloth at the same table.\n- Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — both identities, ages, clothing, hands, folding action.\n- MAY TRANSFORM — light, crop, subtle graphite studies, tracing-paper marks.\n- MUST REMOVE — rice cooker, medicine clutter, harsh bulb.\n\nNARRATIVE INTENT\n- Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships.\n- Source / moment: intent shared work observed across age; tone intimate, patient; emphasis hands, cloth, and the space between figures; director note Build meaning from the supplied folding gesture; do not invent a family history.\n\nCOMPOSITION\n- Use this Scene Card's layout emphasis to direct one complete image; keep important face, hands, and action uncropped.\n- Build an archival relationship from supplied gestures and objects, varying scale by Scene Card emphasis.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#D8D5D0, #A6A29E) without applying a generic nostalgic filter.\n- Preserve natural documentary light and source-supported tonal differences.\n\nMATERIAL AND SURFACE\n- Use only archival materials supported by supplied objects, surfaces, and repeated gestures.\n- Every added archive material must refer to a supplied object, surface, or repeated gesture.\n\nSPATIAL RELATIONSHIPS\n- Use only relationships visible or stated within this Scene Card; do not invent relatives, companion images, or archival layers.\n- Keep documentary subjects visually primary and expression-profile materials secondary.\n\nTEXT AND LABELS\n- Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks.\n\nEXCLUSIONS\n- No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.\n- No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.\n\nOUTPUT\n- Return one integrated PNG documentary archive artifact at exactly 2:3.\n- Subjects and gestures must remain photographic, natural, and immediately recognizable.",
+      "reference_output": {
+        "path": "../../after/family-chronicle.jpg",
+        "sha256": "e2f6f5edf97237ec0dcf98e245c10b2026f7167f92f6ab0bad8b2f76a441eea0"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/family-chronicle.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Family Chronicle",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "date",
+      "collection"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "family-archive-01",
+        "caption": "FAMILY CHRONICLE",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "collection",
+      "date"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/family-chronicle.jpg",
+        "sha256": "58764ec011a4f0e83efc4badd9eebe4b598a8241aad312f765059696067fb36a"
+      }
+    ]
+  }
+}

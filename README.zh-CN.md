@@ -26,14 +26,14 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 
 ### 一条命令开始
 
-完成安装后，一条本地命令就能把单张照片或一组相关照片整理为 Scene Cards、自动路由后的 Prompt Manifest、明确标注为分析稿的 Workprint，以及运行摘要：
+完成安装后，一条本地命令就能把单张照片或一组相关照片整理为草稿 Scene Cards、自动路由后的 Prompt Manifest、明确标注为分析稿的 Workprint，以及运行摘要：
 
 ```bash
 scene-card-studio direct photos/portrait.jpg \
   --brief "克制银盐与手工着色的传统影像肖像"
 ```
 
-多张照片可以直接传入多个路径或使用通配符。`direct` 会根据中英文 Brief 推荐 Narrative System；只有 Brief 明确要求某种视觉表达时才会自动选择非默认 Expression Profile。这个准备步骤不会上传源照片，也不会把 Workprint 冒充生成完成的 After。
+多张照片可以直接传入多个路径或使用通配符。`direct` 会根据中英文 Brief 推荐 Narrative System；只有 Brief 明确要求某种视觉表达时才会自动选择非默认 Expression Profile。本地分析器只测量尺寸、方向、调色板、亮度和饱和度，**不会假装这些统计已经识别出人物、物件、动作或空间含义**。语义字段和变换规则补齐前，导演包会标记为 `needs-semantic-direction`，并拒绝创建上传同意记录。这个准备步骤不会上传源照片，也不会把 Workprint 冒充生成完成的 After。
 
 | 项目速览 | 明确约定 |
 | --- | --- |
@@ -137,7 +137,7 @@ scene-card-studio direct photos/portrait.jpg \
 
 前十项是 Narrative Systems；Watercolor Chronicle、Heritage Portrait 与 Dream Logic 是通过兼容系统使用的可替换 Expression Profiles。这样能把“故事如何被阅读”与“画面表面如何表达”分开。
 
-[查看 13 份 Scene Card 与导演记录](examples/cases/v0.4-gallery/case-records.json) · [阅读案例说明](examples/cases/v0.4-gallery/README.md) · [查看设计原则](DESIGN_PRINCIPLES.md)
+[查看 13 份 Scene Card 与导演记录](examples/cases/v0.4-gallery/case-records.json) · [打开可复编译证据索引](examples/cases/v0.4-gallery/evidence/index.json) · [阅读案例说明](examples/cases/v0.4-gallery/README.md) · [查看设计原则](DESIGN_PRINCIPLES.md)
 
 ## 之前的基准案例
 
@@ -250,39 +250,53 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 ```bash
 git clone https://github.com/swping999/scene-card-studio.git
 cd scene-card-studio
-python -m pip install -e '.[images]'
+python -m pip install -e .
 
 # 快速路径：单张照片 → 本地 Prompt-ready 导演包
 scene-card-studio direct photos/portrait.jpg --brief "安静家庭肖像，使用克制银盐层次"
+
+# 本地分析器会在虚构语义证据之前主动停止
+scene-card-studio check scene-card-output/story.json --json
+
+# 由人工或具备视觉能力的 Skill 补全并核验 Scene Cards 后：
+scene-card-studio direct photos/portrait.jpg \
+  --brief "安静家庭肖像，使用克制银盐层次" \
+  --scene-cards scene-card-output/story.json --force
 
 # 快速路径：多张照片 → 自动推荐的叙事导演包
 scene-card-studio direct photos/*.jpg --brief "由车站、票据和门槛构成的旅行日志" --output-dir travel-run
 
 # 需要逐步控制时使用以下高级流程
 scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
+# 必须依据可见证据补齐这里列出的语义字段，再编译生成 Prompt
+scene-card-studio check portrait-story.json --json
 scene-card-studio profiles --system family-archive
 scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
 
 # 多张照片 → 逐张导演或多源叙事合成
 scene-card-studio analyze photos/*.jpg --output story.json
+scene-card-studio check story.json --json
 scene-card-studio recommend story.json
 scene-card-studio compile story.json --system cinematic-storyboard --expression-profile source-led --output prompt-manifest.json
 scene-card-studio compile story.json --system memory-atlas --expression-profile watercolor-chronicle --output watercolor-memory-manifest.json
 scene-card-studio compile story.json --system museum-catalogue --expression-profile heritage-portrait --output catalogue-manifest.json
 scene-card-studio render story.json --style editorial-sequence --format png --output story.png
 scene-card-studio render story.json --style field-log --mode workprint --format png --output notes.png
-scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
-scene-card-studio present render-manifest.json --output presentation.svg
-scene-card-studio retry render-manifest.json assessment.json --output retry-manifest.json
-scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
+scene-card-studio bind-outputs prompt-manifest.json --result cinematic-storyboard-01=after-01.png --output render-manifest.json
+scene-card-studio review-template render-manifest.json --reviewer-type human --reviewer-name "你的名字" --reviewer-model "visual inspection" --method "full-resolution comparison" --output assessment.json
+# 检查已绑定图片并填写全部 1–5 分，再生成正式审核记录：
+scene-card-studio review render-manifest.json assessment.json --output review.json
+scene-card-studio present render-manifest.json --output presentation.svg
+scene-card-studio retry render-manifest.json review.json --output retry-manifest.json
+scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 ```
 
-`direct` 会在独立输出目录中写入 `story.json`、`prompt-manifest.json`、`workprint.svg` 和 `run-summary.json`；除非明确传入 `--force`，否则拒绝覆盖已有运行结果。输入单张照片时，所有系统都只编译一条独立 Prompt，并把 Manifest 标记为 `single-photo`；不会要求序列连续，也不会虚构相邻场景。输入多张照片时，电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 则编译一条多源合成 Prompt。
+`direct` 会在独立输出目录中写入 `story.json`、`prompt-manifest.json`、`workprint.svg` 和 `run-summary.json`；除非明确传入 `--force`，否则拒绝覆盖已有运行结果。`check` 会列出尚未补齐的语义字段。准备完成的 Story 可以通过 `--scene-cards` 重新进入同一流程；它的源图列表必须与命令中提供的照片完全一致，低级图像测量值也会根据真实文件重新计算。输入单张照片时，所有系统都只编译一条独立 Prompt，并把 Manifest 标记为 `single-photo`；不会要求序列连续，也不会虚构相邻场景。输入多张照片时，电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 则编译一条多源合成 Prompt。
 
 云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认。正式审核拒绝未经绑定的 Prompt Manifest。`present` 会核验候选图片哈希，并让生成图像与确定性文字保持独立来源层。SVG 安全嵌入仍会完整解码和重编码源图、清除尾随数据与元数据，并限制字节数和像素数。
 
-仓库同时提供 [13 组中英文短 Brief 路由矩阵](evals/direct-briefs.json)。CI 会检查全部十个 Narrative System、全部非默认 Profile、单图合同、多图模式、输出绑定、Retry 来源链、安全图片嵌入，以及每组已发布 Before/After 的像素级视觉差异。
+仓库同时提供包含正向、否定与歧义表达的[中英文路由矩阵](evals/direct-briefs.json)。CI 会检查全部十个 Narrative System、全部非默认 Profile、单图合同、多图模式、语义就绪状态、正式审核、Retry 来源链、安全图片嵌入、首页案例可复编译证据，以及每组已发布 Before/After 的像素级视觉差异。
 
 ## Codex Skill
 
@@ -299,7 +313,7 @@ cp -R skills/scene-card-studio ~/.codex/skills/
 使用 $scene-card-studio 把这张照片导演成克制手工着色的传统影像肖像。
 ```
 
-Skill 会先使用同一套本地 `direct` 流程生成可检查的导演包；只有在用户确认服务商、用途与具体文件后，才继续远程图像生成。
+Skill 会先使用同一套本地 `direct` 流程生成可检查的导演包，通过视觉检查补齐语义 Scene Card 并用 `check` 验证；只有在用户确认服务商、用途与具体文件后，才继续远程图像生成。
 
 ## 原创与隐私
 
@@ -319,7 +333,7 @@ Skill 会先使用同一套本地 `direct` 流程生成可检查的导演包；�
 
 ## 路线图
 
-- 可由用户修改的视觉导演判断；
+- 超越内置 Skill 流程的更多语义图像适配器；
 - `contact-sheet`、`journey-sequence`；
 - 主体感知裁切；
 - 图像模型适配器与生成队列；

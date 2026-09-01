@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.5.0",
+  "source_mode": "single-photo",
+  "system": "memory-atlas",
+  "system_display_name": "Memory Atlas",
+  "expression_profile": "dream-logic",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour",
+    "watercolor-chronicle",
+    "full-watercolor-memory",
+    "dream-logic"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/dream-logic.jpg",
+          "sha256": "3015b8bdc28d4710404f47dfd28bf6758f1807120e57ed9eb51638b8c516b4ea"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place or subject as one recognizable photographic anchor: identity, anatomy, yellow coat, boots, one kite, one string, salt flat, hills, van, cooler.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
+          "Lock the recognizable identity, face, anatomy, pose logic, subject count, clothing identity, and defining object geometry before changing scale or spatial relationships."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — identity, anatomy, yellow coat, boots, one kite, one string, salt flat, hills, van, cooler.",
+          "MAY TRANSFORM — same kite into immense translucent canopy, coherent red shadow, one salt-surface wave.",
+          "MUST REMOVE — duplicate child, duplicate kite, extra limbs, portals, random floating objects, collage seams.",
+          "Permit only the Scene Card-authorized subjects and places to change scale, adjacency, gravity, repetition, or enclosure; keep all unlisted evidence unchanged."
+        ],
+        "narrative_intent": [
+          "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
+          "Source / moment: intent one impossible cause changes the scale of shelter; tone wonder, clarity; emphasis single string connecting boy to immense red canopy; director note Apply exactly one impossible rule and keep all other spatial logic believable."
+        ],
+        "composition": [
+          "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
+          "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
+          "Build one coherent impossible spatial rule with a clear focal hierarchy; every displacement must support the narrative intent rather than accumulate dreamlike decoration."
+        ],
+        "lighting": [
+          "Use the combined source palette (#CCCBCD, #569CD6) without flattening every photograph into one identical color treatment.",
+          "Use one consistent light model across impossible spatial relationships so the scene remains materially convincing."
+        ],
+        "material": [
+          "Keep people, objects, and environments materially specific and edge-consistent even when their scale or adjacency becomes impossible.",
+          "Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation.",
+          "No random floating-object collage, duplicate faces, extra limbs, portal clichés, melting clocks, generic cosmic backgrounds, or named-surrealist imitation."
+        ],
+        "output": [
+          "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
+          "The supplied place or subject must remain recognizable.",
+          "The result must express one legible dream rule while remaining immediately traceable to the supplied subjects."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable photographic anchor: identity, anatomy, yellow coat, boots, one kite, one string, salt flat, hills, van, cooler.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Lock the recognizable identity, face, anatomy, pose logic, subject count, clothing identity, and defining object geometry before changing scale or spatial relationships.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — identity, anatomy, yellow coat, boots, one kite, one string, salt flat, hills, van, cooler.\n- MAY TRANSFORM — same kite into immense translucent canopy, coherent red shadow, one salt-surface wave.\n- MUST REMOVE — duplicate child, duplicate kite, extra limbs, portals, random floating objects, collage seams.\n- Permit only the Scene Card-authorized subjects and places to change scale, adjacency, gravity, repetition, or enclosure; keep all unlisted evidence unchanged.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent one impossible cause changes the scale of shelter; tone wonder, clarity; emphasis single string connecting boy to immense red canopy; director note Apply exactly one impossible rule and keep all other spatial logic believable.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Build one coherent impossible spatial rule with a clear focal hierarchy; every displacement must support the narrative intent rather than accumulate dreamlike decoration.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#CCCBCD, #569CD6) without flattening every photograph into one identical color treatment.\n- Use one consistent light model across impossible spatial relationships so the scene remains materially convincing.\n\nMATERIAL AND SURFACE\n- Keep people, objects, and environments materially specific and edge-consistent even when their scale or adjacency becomes impossible.\n- Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No random floating-object collage, duplicate faces, extra limbs, portal clichés, melting clocks, generic cosmic backgrounds, or named-surrealist imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must express one legible dream rule while remaining immediately traceable to the supplied subjects.",
+      "reference_output": {
+        "path": "../../after/dream-logic.jpg",
+        "sha256": "f1cc4f1801e14b7902b1f82c7bab2288edd767352c30acd760e64b7b210b5c63"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/dream-logic.jpg",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Memory Atlas",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "memory-atlas-01",
+        "caption": "DREAM LOGIC",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/dream-logic.jpg",
+        "sha256": "3015b8bdc28d4710404f47dfd28bf6758f1807120e57ed9eb51638b8c516b4ea"
+      }
+    ]
+  }
+}

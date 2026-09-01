@@ -103,6 +103,11 @@ def bind_outputs(
 
 
 def _score_decision(scores: dict[str, int], dimensions: dict[str, str]) -> tuple[str, list[str]]:
+    if not isinstance(scores, dict):
+        raise ValueError("Review scores must be an object")
+    unknown = sorted(set(scores) - set(dimensions))
+    if unknown:
+        raise ValueError(f"Unknown review scores: {', '.join(unknown)}")
     missing = [name for name in dimensions if name not in scores]
     if missing:
         raise ValueError(f"Missing review scores: {', '.join(missing)}")
@@ -120,6 +125,108 @@ def review_decision(scores: dict[str, int]) -> tuple[str, list[str]]:
 
 def sequence_review_decision(scores: dict[str, int]) -> tuple[str, list[str]]:
     return _score_decision(scores, REVIEW_POLICY["sequence_dimensions"])
+
+
+def build_review_template(
+    manifest: dict[str, Any],
+    *,
+    manifest_sha256: str,
+    reviewer_type: str,
+    reviewer_name: str,
+    reviewer_model: str,
+    review_method: str,
+) -> dict[str, Any]:
+    if manifest.get("artifact_type") != "render-manifest":
+        raise ValueError("Review template requires a Render Manifest produced by bind-outputs")
+    reviewer = {
+        "type": reviewer_type.strip(),
+        "name": reviewer_name.strip(),
+        "model": reviewer_model.strip(),
+    }
+    for field, value in reviewer.items():
+        if not value:
+            raise ValueError(f"reviewer.{field} is required")
+    if not review_method.strip():
+        raise ValueError("review_method is required")
+    results = []
+    for prompt in manifest.get("prompts", []):
+        results.append({
+            "prompt_id": prompt.get("id"),
+            "output_sha256": _expected_output_hash(prompt),
+            "scores": {name: None for name in REVIEW_POLICY["dimensions"]},
+            "notes": "",
+        })
+    if not results:
+        raise ValueError("Render Manifest contains no prompts")
+    template: dict[str, Any] = {
+        "artifact_type": "aesthetic-review-template",
+        "schema_version": "1.0",
+        "manifest_sha256": manifest_sha256,
+        "reviewer": reviewer,
+        "template_created_at": _now(),
+        "reviewed_at": None,
+        "review_method": review_method.strip(),
+        "results": results,
+    }
+    if manifest.get("sequence_review_required") and len(results) > 1:
+        template["sequence_scores"] = {name: None for name in REVIEW_POLICY["sequence_dimensions"]}
+    return template
+
+
+def build_review_record(
+    manifest: dict[str, Any],
+    assessment: dict[str, Any],
+    *,
+    manifest_sha256: str,
+) -> dict[str, Any]:
+    normalized = deepcopy(assessment)
+    if not isinstance(normalized.get("reviewed_at"), str) or not normalized["reviewed_at"].strip():
+        normalized["reviewed_at"] = _now()
+    _validate_assessment_metadata(normalized, manifest, manifest_sha256)
+    prompts = {item.get("id"): item for item in manifest.get("prompts", [])}
+    result_items = normalized.get("results")
+    if not isinstance(result_items, list):
+        raise ValueError("Assessment results must be a list")
+    result_ids = [item.get("prompt_id") for item in result_items if isinstance(item, dict)]
+    if len(result_ids) != len(result_items):
+        raise ValueError("Every assessment result must be an object with prompt_id")
+    if len(result_ids) != len(set(result_ids)):
+        raise ValueError("Assessment contains duplicate prompt ids")
+    unknown = sorted(set(result_ids) - set(prompts))
+    if unknown:
+        raise ValueError(f"Assessment contains unknown prompt ids: {', '.join(unknown)}")
+    missing = sorted(set(prompts) - set(result_ids))
+    if missing:
+        raise ValueError(f"Missing assessment for prompt ids: {', '.join(missing)}")
+
+    output_results = []
+    failed_prompt_ids: list[str] = []
+    for result in result_items:
+        prompt_id = result["prompt_id"]
+        if result.get("output_sha256") != _expected_output_hash(prompts[prompt_id]):
+            raise ValueError(f"Assessment output_sha256 does not match prompt {prompt_id}")
+        decision, failed = review_decision(result.get("scores", {}))
+        reviewed = deepcopy(result)
+        reviewed["decision"] = decision
+        reviewed["failed_dimensions"] = failed
+        output_results.append(reviewed)
+        if failed:
+            failed_prompt_ids.append(prompt_id)
+
+    sequence_failed: list[str] = []
+    if manifest.get("sequence_review_required") and len(prompts) > 1:
+        _, sequence_failed = sequence_review_decision(assessment.get("sequence_scores", {}))
+
+    record = normalized
+    record["artifact_type"] = "aesthetic-review"
+    record["review_version"] = "1.0"
+    record["results"] = output_results
+    record["decision"] = "retry" if failed_prompt_ids or sequence_failed else "accept"
+    record["failed_prompt_ids"] = failed_prompt_ids
+    record["sequence_decision"] = "retry" if sequence_failed else "accept"
+    record["sequence_failed_dimensions"] = sequence_failed
+    record["retry_prompt_ids"] = list(prompts) if sequence_failed else failed_prompt_ids
+    return record
 
 
 def _validate_assessment_metadata(assessment: dict[str, Any], manifest: dict[str, Any], expected_manifest_sha256: str) -> None:

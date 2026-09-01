@@ -1,0 +1,73 @@
+[
+  {
+    "source": "../../before/museum-catalogue.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#675E55",
+      "#2D2624",
+      "#49382B",
+      "#9F958A",
+      "#5E4936"
+    ],
+    "brightness": 0.428,
+    "saturation": 0.258,
+    "orientation": "portrait",
+    "caption": "MUSEUM CATALOGUE",
+    "observation": {
+      "subjects": [
+        "worn transistor radio",
+        "strap",
+        "tuning window",
+        "two knobs"
+      ],
+      "dominant_gesture": "rectangular object resting on a plastic stool",
+      "quiet_regions": [
+        "small wall area behind storage clutter"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "make condition and construction inspectable",
+      "emotional_tone": [
+        "neutral",
+        "precise"
+      ],
+      "confidence": 0.94,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Record wear faithfully; do not restore the object or sell it as luxury.",
+      "layout_emphasis": "front grille, controls, strap, and surface wear"
+    },
+    "transformation": {
+      "must_preserve": [
+        "casing",
+        "grille",
+        "knobs",
+        "tuning window",
+        "strap",
+        "scratches",
+        "discoloration"
+      ],
+      "may_transform": [
+        "support surface",
+        "background",
+        "conservation light",
+        "camera alignment"
+      ],
+      "must_remove": [
+        "plastic stool",
+        "storage clutter",
+        "invented labels"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

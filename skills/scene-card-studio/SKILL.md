@@ -38,7 +38,15 @@ Build a visual story from the user's photographs without imitating a named artis
 scene-card-studio direct PHOTO [PHOTO ...] --brief "USER-SUPPLIED DIRECTION" --output-dir scene-card-output
 ```
 
-   Inspect `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` before generation. `direct` may automatically select a non-default Profile only when the brief explicitly requests that expression; otherwise it must remain `source-led`. The Workprint is an analysis artifact, never the finished After. If staged control is required, run:
+   Inspect `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` before generation. The local analyzer provides only dimensions, orientation, palette, brightness, and saturation; never treat its empty or placeholder semantic fields as visual understanding. Inspect every supplied image, then complete `observation.subjects`, `observation.dominant_gesture`, `interpretation.narrative_intent`, `direction.director_note`, `direction.layout_emphasis`, `transformation.must_preserve`, and `transformation.may_transform` from visible evidence and the user's request. Run:
+
+```bash
+scene-card-studio check scene-card-output/story.json --json
+scene-card-studio direct PHOTO [PHOTO ...] --brief "USER-SUPPLIED DIRECTION" \
+  --scene-cards scene-card-output/story.json --output-dir scene-card-output --force
+```
+
+   Continue only when `check` reports `generation-ready` and the rerun reports `prompt-ready`. If two Narrative Systems tie, `direct` reports `needs-route-confirmation`; resolve the system with the user or an explicit `--system`. `direct` may automatically select a non-default Profile only when the brief explicitly requests that expression; otherwise it must remain `source-led`. The Workprint is an analysis artifact, never the finished After. If staged control is required, run:
 
 ```bash
 scene-card-studio recommend story.json
@@ -47,12 +55,12 @@ scene-card-studio render story.json --style editorial-sequence --format png --ou
 scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 ```
 
-9. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. Without consent, stop at the local Direct bundle or staged Workprint and Prompt Manifest output. Never treat photo analysis, automatic routing, or prompt compilation as upload permission.
+9. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. The command must refuse a Manifest whose semantic direction or route is not ready. Without consent, stop at the local Direct bundle or staged Workprint and Prompt Manifest output. Never treat photo analysis, automatic routing, or prompt compilation as upload permission.
 10. After consent, use every module in each compiled prompt and pass only the approved source photographs as image references. Default to **one source photograph → one standalone After image**. Combine sources only when explicitly requested or when spatial or archival synthesis requires it.
 11. Bind generated files with `scene-card-studio bind-outputs`. Require the decoded MIME, width, height, and aspect ratio to match each `output_contract`; do not review mismatched files.
 12. Keep visible text out of image synthesis. Put only user-supplied `metadata` values into the Manifest's `presentation_contract`, then run `scene-card-studio present render-manifest.json -o presentation.svg` to apply deterministic captions, dates, places, collection names, and catalogue identifiers. Omit missing fields instead of inventing them.
-13. Review only `candidate_output` records in the Render Manifest. A `reference_output` is benchmark evidence and never satisfies formal review. For sequence systems, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
-14. If a dimension fails, write the hash-bound assessment JSON, run `scene-card-studio retry`, regenerate only `retry_prompt_ids`, and bind all resulting candidates to the Retry Manifest. Accept only a review bound to this post-retry Render Manifest. Do not reuse the pre-retry review or candidates.
+13. Review only `candidate_output` records in the Render Manifest. A `reference_output` is benchmark evidence and never satisfies formal review. Create a bound form with `scene-card-studio review-template`, inspect the full-resolution output, fill every score, then run `scene-card-studio review` to produce the formal Accept/Retry record. For sequence systems, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
+14. If a dimension fails, pass the finalized hash-bound review to `scene-card-studio retry`, regenerate only `retry_prompt_ids`, and bind all resulting candidates to the Retry Manifest. Accept only a new `scene-card-studio review` record bound to this post-retry Render Manifest. Do not reuse the pre-retry review or candidates.
 15. Return paired Before and After artifacts, Scene Cards, accepted Render Manifest, review record, deterministic presentation when used, and a short explanation. When several one-to-one transformations exist, show every pair separately.
 
 ## Guardrails

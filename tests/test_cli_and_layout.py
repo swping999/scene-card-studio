@@ -8,6 +8,7 @@ import pytest
 from PIL import Image, ImageChops, ImageStat
 
 import moments_to_pages.render as renderer
+import moments_to_pages.workflow as workflow
 from moments_to_pages.cli import main
 from moments_to_pages.model import (
     Direction,
@@ -112,8 +113,69 @@ def test_direct_command_creates_portable_local_bundle_without_claiming_generatio
     assert manifest["expression_profile"] == "heritage-portrait"
     assert summary["generation"]["remote_generation_performed"] is False
     assert summary["generation"]["workprint_is_directed_after"] is False
+    assert summary["direction_readiness"]["generation_ready"] is False
+    assert summary["generation"]["status"] == "needs-semantic-direction"
+    assert main(["check", str(output / "story.json")]) == 2
     output_text = capsys.readouterr().out
     assert "No source photo was uploaded" in output_text
+
+
+def test_direct_accepts_matching_prepared_semantic_scene_cards(tmp_path: Path):
+    photo = tmp_path / "portrait.png"
+    Image.new("RGB", (360, 540), (120, 145, 170)).save(photo)
+    output = tmp_path / "direct-run"
+    assert main(["direct", str(photo), "--brief", "quiet portrait", "-o", str(output)]) == 0
+    story_path = output / "story.json"
+    story = json.loads(story_path.read_text())
+    story[0]["observation"] = {
+        "subjects": ["seated person", "woven chair"],
+        "dominant_gesture": "hands resting above crossed ankles",
+        "quiet_regions": ["plain wall above the sitter"],
+    }
+    story[0]["interpretation"] = {
+        "narrative_intent": "a restrained study of presence",
+        "emotional_tone": ["calm", "attentive"],
+        "confidence": 0.9,
+        "method": "model-assisted-and-user-reviewed",
+    }
+    story[0]["direction"] = {
+        "story_role": "moment",
+        "director_note": "Keep identity and pose exact; direct attention through material restraint.",
+        "layout_emphasis": "face, hands, and chair geometry",
+    }
+    story[0]["transformation"] = {
+        "must_preserve": ["identity", "pose", "hands", "woven chair"],
+        "may_transform": ["crop", "light", "background clutter"],
+        "must_remove": [],
+    }
+    story_path.write_text(json.dumps(story))
+    assert main([
+        "direct", str(photo), "--brief", "quiet portrait", "--scene-cards", str(story_path),
+        "-o", str(output), "--force",
+    ]) == 0
+    summary = json.loads((output / "run-summary.json").read_text())
+    manifest = json.loads((output / "prompt-manifest.json").read_text())
+    assert summary["direction_readiness"]["generation_ready"] is True
+    assert summary["generation"]["status"] == "prompt-ready"
+    assert summary["prepared_story"]["provided"] is True
+    assert len(summary["prepared_story"]["sha256"]) == 64
+    assert str(tmp_path) not in (output / "run-summary.json").read_text()
+    assert manifest["generation_ready"] is True
+    assert main(["check", str(output / "story.json")]) == 0
+
+
+def test_direct_rejects_prepared_story_for_different_sources(tmp_path: Path):
+    first = tmp_path / "first.png"
+    second = tmp_path / "second.png"
+    Image.new("RGB", (100, 100), "red").save(first)
+    Image.new("RGB", (100, 100), "blue").save(second)
+    prepared = tmp_path / "prepared"
+    assert main(["direct", str(first), "-o", str(prepared)]) == 0
+    with pytest.raises(SystemExit, match="sources must match"):
+        main([
+            "direct", str(second), "--scene-cards", str(prepared / "story.json"),
+            "-o", str(tmp_path / "mismatch"),
+        ])
 
 
 def test_direct_command_refuses_accidental_overwrite(tmp_path: Path):
@@ -165,6 +227,34 @@ def test_direct_invalid_contract_does_not_leave_a_partial_bundle(tmp_path: Path)
     assert not any(output.iterdir())
 
 
+def test_direct_force_preserves_previous_bundle_when_workprint_fails(tmp_path: Path, monkeypatch):
+    photo = tmp_path / "photo.png"
+    Image.new("RGB", (100, 100), "gray").save(photo)
+    output = tmp_path / "run"
+    assert main(["direct", str(photo), "-o", str(output)]) == 0
+    original = {path.name: path.read_bytes() for path in output.iterdir()}
+
+    def fail_render(*args, **kwargs):
+        raise RuntimeError("simulated workprint failure")
+
+    monkeypatch.setattr(workflow, "render_svg", fail_render)
+    with pytest.raises(RuntimeError, match="simulated workprint failure"):
+        main(["direct", str(photo), "-o", str(output), "--force"])
+    assert {path.name: path.read_bytes() for path in output.iterdir()} == original
+
+
+def test_direct_workprint_names_the_selected_system_not_only_its_layout_family(tmp_path: Path):
+    photo = tmp_path / "object.png"
+    Image.new("RGB", (180, 240), "gray").save(photo)
+    output = tmp_path / "museum"
+    assert main([
+        "direct", str(photo), "--system", "museum-catalogue", "-o", str(output)
+    ]) == 0
+    svg = (output / "workprint.svg").read_text()
+    assert "MUSEUM CATALOGUE" in svg
+    assert "SYSTEM museum-catalogue · PROFILE source-led · ANALYSIS WORKPRINT" in svg
+
+
 def test_bilingual_direct_brief_eval_matrix_routes_every_system_and_profile():
     root = Path(__file__).resolve().parents[1]
     matrix = json.loads((root / "evals/direct-briefs.json").read_text())
@@ -198,6 +288,44 @@ def test_bilingual_direct_brief_eval_matrix_routes_every_system_and_profile():
         "watercolor-chronicle", "graphite-paper", "heritage-portrait",
         "monochrome-reportage", "dream-logic",
     }
+    for case in matrix["adversarial_cases"]:
+        route = select_direct_route([card], brief=case["brief"])
+        assert route["system"] == case["system"], case["id"]
+        assert route["expression_profile"] == case["expression_profile"], case["id"]
+        assert route["needs_route_confirmation"] is case["needs_route_confirmation"], case["id"]
+    for case in matrix["ambiguous_cases"]:
+        route = select_direct_route([card], brief=case["brief"])
+        assert route["needs_route_confirmation"] is case["needs_route_confirmation"], case["id"]
+
+
+def test_direct_routing_respects_negation_and_flags_real_ties():
+    card = SceneCard(
+        source="fixture.png",
+        width=1200,
+        height=800,
+        palette=["#858B92"],
+        brightness=.55,
+        saturation=.18,
+        orientation="landscape",
+        observation=Observation(),
+        interpretation=Interpretation(),
+        direction=Direction(),
+    )
+    negative = select_direct_route(
+        [card],
+        brief="不要电影感，也不要水彩；做安静极简静物，强调材质与留白。",
+    )
+    assert negative["system"] == "minimal-editorial"
+    assert negative["expression_profile"] == "source-led"
+    assert negative["needs_route_confirmation"] is False
+
+    ambiguous = select_direct_route([card], brief="Make it cinematic and minimal.")
+    assert ambiguous["needs_route_confirmation"] is True
+    explicit = select_direct_route(
+        [card], brief="Make it cinematic and minimal.", system="minimal-editorial"
+    )
+    assert explicit["system"] == "minimal-editorial"
+    assert explicit["needs_route_confirmation"] is False
 
 
 def test_deterministic_presentation_uses_only_bound_metadata(tmp_path: Path, monkeypatch):

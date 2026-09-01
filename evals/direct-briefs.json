@@ -80,5 +80,28 @@
       "system": "fashion-editorial",
       "expression_profile": "dream-logic"
     }
+  ],
+  "adversarial_cases": [
+    {
+      "id": "negated-cinematic-watercolor",
+      "brief": "不要电影感，也不要水彩；做安静极简静物，强调材质与留白。",
+      "system": "minimal-editorial",
+      "expression_profile": "source-led",
+      "needs_route_confirmation": false
+    },
+    {
+      "id": "negated-monochrome-street",
+      "brief": "Keep this street crossing factual but do not make it black and white.",
+      "system": "street-reportage",
+      "expression_profile": "source-led",
+      "needs_route_confirmation": false
+    }
+  ],
+  "ambiguous_cases": [
+    {
+      "id": "cinematic-minimal-tie",
+      "brief": "Make it cinematic and minimal.",
+      "needs_route_confirmation": true
+    }
   ]
 }

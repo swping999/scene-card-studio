@@ -1,0 +1,71 @@
+[
+  {
+    "source": "../../before/watercolor-chronicle.jpg",
+    "width": 960,
+    "height": 1200,
+    "palette": [
+      "#DBDDE5",
+      "#9FA6AE",
+      "#5E5D5C",
+      "#272629",
+      "#798896"
+    ],
+    "brightness": 0.727,
+    "saturation": 0.087,
+    "orientation": "portrait",
+    "caption": "WATERCOLOR CHRONICLE",
+    "observation": {
+      "subjects": [
+        "young woman",
+        "mustard umbrella",
+        "bicycle",
+        "blue seawall",
+        "sea"
+      ],
+      "dominant_gesture": "upright figure sheltering beside a coastal wall",
+      "quiet_regions": [
+        "cloudy sky"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "a coastal moment unified by one painted medium",
+      "emotional_tone": [
+        "soft",
+        "weathered"
+      ],
+      "confidence": 0.86,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Repaint every visible element together; never leave the person as a photographic cutout.",
+      "layout_emphasis": "yellow umbrella against blue-grey sea"
+    },
+    "transformation": {
+      "must_preserve": [
+        "identity",
+        "pose",
+        "anatomy",
+        "umbrella",
+        "clothing silhouette",
+        "bicycle geometry",
+        "spatial relationships"
+      ],
+      "may_transform": [
+        "all photographic surfaces into watercolor and graphite"
+      ],
+      "must_remove": [
+        "photographic pixels",
+        "cutout edges",
+        "scrapbook decoration"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

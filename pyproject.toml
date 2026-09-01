@@ -5,15 +5,33 @@ build-backend = "hatchling.build"
 [project]
 name = "scene-card-studio"
 version = "0.5.0"
-description = "Compile personal photos into reproducible, editable visual narratives."
+description = "AI visual director for compiling personal photos into reproducible, editable visual narratives."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
 authors = [{ name = "swping999" }]
-dependencies = []
+keywords = ["codex", "codex-skill", "image-generation", "photo-narrative", "visual-storytelling"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Multimedia :: Graphics",
+]
+dependencies = ["Pillow>=10"]
+
+[project.urls]
+Homepage = "https://github.com/swping999/scene-card-studio"
+Documentation = "https://github.com/swping999/scene-card-studio#readme"
+Issues = "https://github.com/swping999/scene-card-studio/issues"
+Changelog = "https://github.com/swping999/scene-card-studio/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
-images = ["Pillow>=10"]
+images = []
 dev = ["pytest>=8", "Pillow>=10"]
 
 [project.scripts]
@@ -22,6 +40,25 @@ moments-to-pages = "moments_to_pages.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/moments_to_pages"]
+exclude = ["/src/moments_to_pages/assets/maps/**"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/skills",
+  "/evals",
+  "/README.md",
+  "/README.zh-CN.md",
+  "/CHANGELOG.md",
+  "/CONTRIBUTING.md",
+  "/DESIGN_PRINCIPLES.md",
+  "/LICENSE",
+  "/SECURITY.md",
+  "/pyproject.toml",
+]
+exclude = [
+  "/src/moments_to_pages/assets/maps/**",
+]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

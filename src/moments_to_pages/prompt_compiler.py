@@ -10,8 +10,9 @@ from .expression_profiles import expression_profile_names, resolve_expression_pr
 from .model import SceneCard
 from .narrative_systems import SUPPORTED_SYSTEMS, resolve_narrative_system
 from .presentation import build_presentation_contract
+from .readiness import assess_direction_readiness
 
-COMPILER_VERSION = "0.4.1"
+COMPILER_VERSION = "0.5.0"
 __all__ = ["SUPPORTED_SYSTEMS", "compile_manifest"]
 
 
@@ -600,11 +601,12 @@ def compile_manifest(
         prompts.append(item)
 
     upload_files = [record for prompt in prompts for record in prompt["sources"]]
+    direction_readiness = assess_direction_readiness(cards)
     sequence_review_required = system in {
         "cinematic-storyboard", "editorial-sequence", "street-reportage", "fashion-editorial"
     } and len(cards) > 1
     manifest: dict[str, Any] = {
-        "schema_version": "1.4",
+        "schema_version": "1.5",
         "compiler_version": COMPILER_VERSION,
         "source_mode": source_mode,
         "system": system,
@@ -614,6 +616,8 @@ def compile_manifest(
         "story": story_path,
         "source_base": "story-directory",
         "prompts": prompts,
+        "direction_readiness": direction_readiness,
+        "generation_ready": direction_readiness["generation_ready"],
         "presentation_contract": build_presentation_contract(cards, system, [prompt["id"] for prompt in prompts]),
         "review_policy": REVIEW_POLICY,
         "sequence_review_required": sequence_review_required,
