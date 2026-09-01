@@ -5,6 +5,7 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+scene-card-output/
 story.svg
 story.json
 !examples/generated-story.json

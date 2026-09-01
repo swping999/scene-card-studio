@@ -1,4 +1,4 @@
 interface:
   display_name: "Scene Card Studio"
-  short_description: "Compile photos into reproducible visual direction"
-  default_prompt: "Use $scene-card-studio to analyze my photos, compile a narrative-system prompt, generate paired Before/After images, and review the result."
+  short_description: "Direct one photo or a sequence into a reproducible visual narrative"
+  default_prompt: "Use $scene-card-studio to prepare a local one-command direction bundle for my photos, show me the selected System and Profile, then generate paired Before/After images only after upload consent and review the result."

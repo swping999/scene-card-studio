@@ -1,11 +1,10 @@
 from __future__ import annotations
 
+import json
+import re
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
-import json
-import re
-
 
 ILLEGAL_XML_CONTROLS = re.compile(r"[\x00-\x08\x0B\x0C\x0E-\x1F]")
 STORY_ROLES = {"moment", "opening", "development", "pause", "closing"}

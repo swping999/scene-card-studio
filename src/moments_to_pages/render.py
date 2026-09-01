@@ -1,16 +1,15 @@
 from __future__ import annotations
 
-from html import escape
-from pathlib import Path
-from urllib.parse import quote
 import base64
-from io import BytesIO
 import os
 import re
 import warnings
+from html import escape
+from io import BytesIO
+from pathlib import Path
+from urllib.parse import quote
 
 from .model import SceneCard
-
 
 PAPER = "#F3F0E8"
 INK = "#202321"

@@ -11,7 +11,13 @@ from PIL import Image
 from moments_to_pages.cli import main
 from moments_to_pages.director import recommend_systems
 from moments_to_pages.expression_profiles import expression_profile_names
-from moments_to_pages.model import Direction, Interpretation, Observation, SceneCard, TransformationPolicy
+from moments_to_pages.model import (
+    Direction,
+    Interpretation,
+    Observation,
+    SceneCard,
+    TransformationPolicy,
+)
 from moments_to_pages.privacy import validate_upload_consent
 from moments_to_pages.prompt_compiler import SUPPORTED_SYSTEMS, compile_manifest
 from moments_to_pages.review import bind_outputs, build_retry_manifest, review_decision

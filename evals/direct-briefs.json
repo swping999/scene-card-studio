@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Short bilingual user briefs that exercise every Narrative System and every non-default Expression Profile without naming artists or external projects.",
+  "cases": [
+    {
+      "id": "cinematic-rain",
+      "brief": "Turn this rainy platform pause into one cinematic night frame.",
+      "system": "cinematic-storyboard",
+      "expression_profile": "rain-nocturne"
+    },
+    {
+      "id": "memory-watercolor-contour",
+      "brief": "把真实照片建筑保留为锚点，与水彩轮廓地图结合成空间记忆。",
+      "system": "memory-atlas",
+      "expression_profile": "watercolor-contour"
+    },
+    {
+      "id": "family-graphite",
+      "brief": "Create a quiet family chronicle of care using graphite and tracing paper.",
+      "system": "family-archive",
+      "expression_profile": "graphite-paper"
+    },
+    {
+      "id": "minimal-window-light",
+      "brief": "把这个杯子做成安静窗光下的极简静物，强调材质和留白。",
+      "system": "minimal-editorial",
+      "expression_profile": "quiet-window-light"
+    },
+    {
+      "id": "editorial-rhythm",
+      "brief": "Build an editorial photo essay through rhythm, scale, pause, and layout.",
+      "system": "editorial-sequence",
+      "expression_profile": "source-led"
+    },
+    {
+      "id": "field-log",
+      "brief": "把维修工作现场变成尊重事实证据的观察型现场日志。",
+      "system": "field-log",
+      "expression_profile": "source-led"
+    },
+    {
+      "id": "museum-catalogue",
+      "brief": "Create an inspectable museum catalogue record for this artifact and its repairs.",
+      "system": "museum-catalogue",
+      "expression_profile": "source-led"
+    },
+    {
+      "id": "travel-journal",
+      "brief": "把车站、票据、行李和旅途门槛组织成一页旅行日志。",
+      "system": "travel-journal",
+      "expression_profile": "source-led"
+    },
+    {
+      "id": "street-monochrome",
+      "brief": "Turn this crowded crossing into factual black-and-white street reportage.",
+      "system": "street-reportage",
+      "expression_profile": "monochrome-reportage"
+    },
+    {
+      "id": "fashion-source-led",
+      "brief": "用服装结构、姿势、面料和大胆裁切完成一张时装编辑肖像。",
+      "system": "fashion-editorial",
+      "expression_profile": "source-led"
+    },
+    {
+      "id": "full-watercolor",
+      "brief": "把家庭照片里的人物、衣服、物件和环境全部画成统一水彩纪事。",
+      "system": "family-archive",
+      "expression_profile": "watercolor-chronicle"
+    },
+    {
+      "id": "heritage-portrait",
+      "brief": "把这张家庭肖像处理成克制银盐与手工着色的传统影像肖像。",
+      "system": "family-archive",
+      "expression_profile": "heritage-portrait"
+    },
+    {
+      "id": "dream-logic",
+      "brief": "Create a fashion editorial portrait with one coherent surreal dream-logic scale rule.",
+      "system": "fashion-editorial",
+      "expression_profile": "dream-logic"
+    }
+  ]
+}

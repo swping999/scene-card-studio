@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
 import colorsys
+from pathlib import Path
 
 from .model import Direction, Interpretation, Observation, SceneCard
 

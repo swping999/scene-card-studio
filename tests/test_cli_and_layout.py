@@ -1,15 +1,22 @@
+import base64
 import hashlib
 import json
-import base64
 import re
 from pathlib import Path
 
 import pytest
-from PIL import Image
+from PIL import Image, ImageChops, ImageStat
 
 import moments_to_pages.render as renderer
 from moments_to_pages.cli import main
-from moments_to_pages.model import load_cards
+from moments_to_pages.model import (
+    Direction,
+    Interpretation,
+    Observation,
+    SceneCard,
+    load_cards,
+)
+from moments_to_pages.workflow import select_direct_route
 
 
 def _story(tmp_path: Path, count: int = 3) -> Path:
@@ -78,6 +85,119 @@ def test_profiles_command_and_nested_output_directories(tmp_path: Path, capsys):
     rendered = tmp_path / "another" / "deep" / "workprint.png"
     assert main(["render", str(story), "--format", "png", "-o", str(rendered)]) == 0
     assert rendered.exists()
+
+
+def test_direct_command_creates_portable_local_bundle_without_claiming_generation(tmp_path: Path, capsys):
+    photo = tmp_path / "portrait.png"
+    Image.new("RGB", (360, 540), (120, 145, 170)).save(photo)
+    output = tmp_path / "direct-run"
+    assert main([
+        "direct",
+        str(photo),
+        "--brief",
+        "把这张家庭肖像处理成克制银盐与手工着色的传统影像肖像。",
+        "-o",
+        str(output),
+    ]) == 0
+    assert {path.name for path in output.iterdir()} == {
+        "story.json", "prompt-manifest.json", "workprint.svg", "run-summary.json"
+    }
+    story = json.loads((output / "story.json").read_text())
+    manifest = json.loads((output / "prompt-manifest.json").read_text())
+    summary = json.loads((output / "run-summary.json").read_text())
+    assert story[0]["source"] == "../portrait.png"
+    assert story[0]["direction"]["story_role"] == "moment"
+    assert manifest["source_mode"] == "single-photo"
+    assert manifest["system"] == "family-archive"
+    assert manifest["expression_profile"] == "heritage-portrait"
+    assert summary["generation"]["remote_generation_performed"] is False
+    assert summary["generation"]["workprint_is_directed_after"] is False
+    output_text = capsys.readouterr().out
+    assert "No source photo was uploaded" in output_text
+
+
+def test_direct_command_refuses_accidental_overwrite(tmp_path: Path):
+    photo = tmp_path / "photo.png"
+    Image.new("RGB", (100, 100), "gray").save(photo)
+    output = tmp_path / "run"
+    assert main(["direct", str(photo), "-o", str(output)]) == 0
+    with pytest.raises(SystemExit, match="Direct output already exists"):
+        main(["direct", str(photo), "-o", str(output)])
+    assert main(["direct", str(photo), "-o", str(output), "--force"]) == 0
+
+
+def test_direct_auto_system_respects_an_explicit_compatible_profile(tmp_path: Path):
+    photo = tmp_path / "photo.png"
+    Image.new("RGB", (120, 180), "gray").save(photo)
+    output = tmp_path / "watercolor"
+    assert main([
+        "direct", str(photo), "--expression-profile", "watercolor-chronicle", "-o", str(output)
+    ]) == 0
+    summary = json.loads((output / "run-summary.json").read_text())
+    assert summary["route"]["system"] in {
+        "memory-atlas", "family-archive", "museum-catalogue", "travel-journal"
+    }
+    assert summary["route"]["expression_profile"] == "watercolor-chronicle"
+    assert summary["route"]["system_selection"] == "automatic-compatible-with-profile"
+
+
+def test_direct_force_refuses_symlink_output_targets(tmp_path: Path):
+    photo = tmp_path / "photo.png"
+    Image.new("RGB", (100, 100), "gray").save(photo)
+    output = tmp_path / "run"
+    output.mkdir()
+    outside = tmp_path / "outside.json"
+    (output / "story.json").symlink_to(outside)
+    with pytest.raises(SystemExit, match="Refusing to replace non-regular"):
+        main(["direct", str(photo), "-o", str(output), "--force"])
+    assert not outside.exists()
+
+
+def test_direct_invalid_contract_does_not_leave_a_partial_bundle(tmp_path: Path):
+    photo = tmp_path / "photo.png"
+    Image.new("RGB", (100, 100), "gray").save(photo)
+    output = tmp_path / "invalid"
+    with pytest.raises(SystemExit, match="aspect ratio"):
+        main([
+            "direct", str(photo), "--aspect-ratio", "not-a-ratio", "-o", str(output)
+        ])
+    assert output.is_dir()
+    assert not any(output.iterdir())
+
+
+def test_bilingual_direct_brief_eval_matrix_routes_every_system_and_profile():
+    root = Path(__file__).resolve().parents[1]
+    matrix = json.loads((root / "evals/direct-briefs.json").read_text())
+    card = SceneCard(
+        source="fixture.png",
+        width=1200,
+        height=800,
+        palette=["#858B92", "#D8D5CC"],
+        brightness=.55,
+        saturation=.18,
+        orientation="landscape",
+        observation=Observation(),
+        interpretation=Interpretation(),
+        direction=Direction(),
+    )
+    routed_systems = set()
+    routed_profiles = set()
+    for case in matrix["cases"]:
+        route = select_direct_route([card], brief=case["brief"])
+        assert route["system"] == case["system"], case["id"]
+        assert route["expression_profile"] == case["expression_profile"], case["id"]
+        routed_systems.add(route["system"])
+        routed_profiles.add(route["expression_profile"])
+    assert routed_systems == {
+        "cinematic-storyboard", "memory-atlas", "family-archive", "minimal-editorial",
+        "editorial-sequence", "field-log", "museum-catalogue", "travel-journal",
+        "street-reportage", "fashion-editorial",
+    }
+    assert routed_profiles >= {
+        "source-led", "rain-nocturne", "quiet-window-light", "watercolor-contour",
+        "watercolor-chronicle", "graphite-paper", "heritage-portrait",
+        "monochrome-reportage", "dream-logic",
+    }
 
 
 def test_deterministic_presentation_uses_only_bound_metadata(tmp_path: Path, monkeypatch):
@@ -206,3 +326,9 @@ def test_published_single_photo_gallery_has_valid_roles_and_distinct_pairs():
         assert before.is_file()
         assert after.is_file()
         assert hashlib.sha256(before.read_bytes()).digest() != hashlib.sha256(after.read_bytes()).digest()
+        with Image.open(before) as before_image, Image.open(after) as after_image:
+            before_rgb = before_image.convert("RGB").resize((128, 128))
+            after_rgb = after_image.convert("RGB").resize((128, 128))
+            difference = ImageStat.Stat(ImageChops.difference(before_rgb, after_rgb))
+            normalized_mean_difference = sum(difference.mean) / (3 * 255)
+        assert normalized_mean_difference >= .06, case["id"]

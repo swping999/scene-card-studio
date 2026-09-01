@@ -9,7 +9,6 @@ from typing import Any
 
 from .prompt_compiler import REVIEW_POLICY
 
-
 CORRECTIONS = {
     "subject_fidelity": "Restore the exact source identity, count, proportions, pose, action, architecture, and defining material details. Do not redesign the subject.",
     "narrative_alignment": "Strengthen the stated narrative intent, emotional tone, story role, and director note without adding new story facts.",

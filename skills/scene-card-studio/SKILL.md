@@ -32,7 +32,13 @@ Build a visual story from the user's photographs without imitating a named artis
 7. Decide the output tier:
    - **Workprint**: use the deterministic renderer for analysis, sequencing, iteration, and editable layout.
    - **Presentation synthesis**: compile versioned prompts and use image generation to create a genuinely transformed artifact. Read `references/synthesis.md`, `references/prompt-compiler.md`, and `references/privacy.md`. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
-8. Write the cards to `story.json`. When the package is installed, run:
+8. For a new request, prefer the one-command local preparation path when the package is installed. Pass the user's own words through `--brief`; use `--system` or `--expression-profile` only when the user explicitly selects one:
+
+```bash
+scene-card-studio direct PHOTO [PHOTO ...] --brief "USER-SUPPLIED DIRECTION" --output-dir scene-card-output
+```
+
+   Inspect `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` before generation. `direct` may automatically select a non-default Profile only when the brief explicitly requests that expression; otherwise it must remain `source-led`. The Workprint is an analysis artifact, never the finished After. If staged control is required, run:
 
 ```bash
 scene-card-studio recommend story.json
@@ -41,7 +47,7 @@ scene-card-studio render story.json --style editorial-sequence --format png --ou
 scene-card-studio compile story.json --system cinematic-storyboard --output prompt-manifest.json
 ```
 
-9. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. Without consent, stop at local Workprint and Prompt Manifest output. Never treat photo analysis or prompt compilation as upload permission.
+9. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. Without consent, stop at the local Direct bundle or staged Workprint and Prompt Manifest output. Never treat photo analysis, automatic routing, or prompt compilation as upload permission.
 10. After consent, use every module in each compiled prompt and pass only the approved source photographs as image references. Default to **one source photograph → one standalone After image**. Combine sources only when explicitly requested or when spatial or archival synthesis requires it.
 11. Bind generated files with `scene-card-studio bind-outputs`. Require the decoded MIME, width, height, and aspect ratio to match each `output_contract`; do not review mismatched files.
 12. Keep visible text out of image synthesis. Put only user-supplied `metadata` values into the Manifest's `presentation_contract`, then run `scene-card-studio present render-manifest.json -o presentation.svg` to apply deterministic captions, dates, places, collection names, and catalogue identifiers. Omit missing fields instead of inventing them.

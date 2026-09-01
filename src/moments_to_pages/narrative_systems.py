@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import Any
 
-
 NARRATIVE_SYSTEMS: dict[str, dict[str, Any]] = {
     "cinematic-storyboard": {
         "display_name": "Cinematic Sequence",

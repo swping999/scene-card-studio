@@ -50,6 +50,8 @@ Studying a problem category or a common design convention is acceptable. Reconst
 
 Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
 
+Changes to automatic routing must update `evals/direct-briefs.json` when they add or alter a supported user intent. The matrix must continue to cover every Narrative System and every non-default Expression Profile through representative English and Chinese briefs. New `direct` behavior must remain local-only until the existing explicit-consent step.
+
 ## Pull requests
 
 Keep pull requests focused and include:

@@ -6,15 +6,16 @@ import os
 from pathlib import Path
 
 from .analyze import analyze_image, assign_story_roles
-from .model import load_cards, save_cards
 from .director import recommend_systems
 from .expression_profiles import expression_profile_names
+from .model import load_cards, save_cards
 from .narrative_systems import SUPPORTED_SYSTEMS
-from .prompt_compiler import compile_manifest
 from .presentation import render_presentation_svg
 from .privacy import build_upload_consent
+from .prompt_compiler import compile_manifest
 from .render import render_png, render_svg
 from .review import bind_outputs, build_retry_manifest, file_sha256
+from .workflow import run_direct
 
 
 def _write_json(path: Path, value: object) -> None:
@@ -29,6 +30,15 @@ def parser() -> argparse.ArgumentParser:
     analyze.add_argument("photos", nargs="+")
     analyze.add_argument("-o", "--output", default="story.json")
     analyze.add_argument("--reorder", action="store_true", help="Allow heuristic reordering; input order is preserved by default")
+    direct = commands.add_parser("direct", help="Analyze, recommend, compile, and create a local workprint in one command")
+    direct.add_argument("photos", nargs="+")
+    direct.add_argument("-o", "--output-dir", default="scene-card-output")
+    direct.add_argument("--brief", default="", help="User-supplied narrative or art-direction intent; improves automatic routing")
+    direct.add_argument("--system", choices=("auto", *SUPPORTED_SYSTEMS), default="auto")
+    direct.add_argument("--expression-profile", default="auto", help="Compatible Profile id, or auto; auto stays source-led unless the brief explicitly requests a treatment")
+    direct.add_argument("--aspect-ratio", default="source")
+    direct.add_argument("--reorder", action="store_true", help="Allow heuristic reordering; input order is preserved by default")
+    direct.add_argument("--force", action="store_true", help="Replace only the four known direct-run artifacts in the output directory")
     render = commands.add_parser("render", help="Render Scene Cards to editable SVG")
     render.add_argument("story")
     render.add_argument("-o", "--output")
@@ -77,6 +87,27 @@ def main(argv: list[str] | None = None) -> int:
         for card in cards:
             card.source = Path(os.path.relpath(Path(card.source).resolve(), output_base)).as_posix()
         save_cards(cards, output)
+    elif args.command == "direct":
+        try:
+            summary = run_direct(
+                [Path(value) for value in args.photos],
+                output_dir=Path(args.output_dir),
+                brief=args.brief,
+                system=args.system,
+                expression_profile=args.expression_profile,
+                aspect_ratio=args.aspect_ratio,
+                reorder=args.reorder,
+                force=args.force,
+            )
+        except (FileExistsError, FileNotFoundError, PermissionError, ValueError) as exc:
+            raise SystemExit(str(exc)) from exc
+        route = summary["route"]
+        print(f"Prepared {summary['source_count']} source photo(s) as {summary['source_mode']}.")
+        print(f"Narrative System: {route['system']} ({route['system_selection']})")
+        print(f"Expression Profile: {route['expression_profile']} ({route['profile_selection']})")
+        print(f"Output directory: {Path(args.output_dir).expanduser().resolve()}")
+        print("Created: story.json, prompt-manifest.json, workprint.svg, run-summary.json")
+        print("No source photo was uploaded and no generated After was claimed by this local preparation step.")
     elif args.command == "recommend":
         for item in recommend_systems(load_cards(Path(args.story))):
             print(f"{item.system}\t{item.score:.2f}\t{item.reason}")

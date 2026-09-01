@@ -11,7 +11,6 @@ from .model import SceneCard
 from .narrative_systems import SUPPORTED_SYSTEMS, resolve_narrative_system
 from .presentation import build_presentation_contract
 
-
 COMPILER_VERSION = "0.4.1"
 __all__ = ["SUPPORTED_SYSTEMS", "compile_manifest"]
 

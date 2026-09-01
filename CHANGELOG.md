@@ -2,6 +2,29 @@
 
 All notable changes to Scene Card Studio are documented here. Versions follow semantic versioning where practical; Prompt Manifest and Scene Card schemas retain their own explicit version numbers.
 
+## [0.5.0] - 2026-09-01
+
+### Added
+
+- `scene-card-studio direct` as a safe one-command local workflow for one photo or a related photo set.
+- Automatic bilingual Narrative System routing from a user-supplied `--brief`.
+- Conservative automatic Expression Profile selection: non-default Profiles require explicit visual-language cues; otherwise routing stays `source-led`.
+- A portable Direct bundle containing Scene Cards, Prompt Manifest, analysis Workprint, and a machine-readable run summary.
+- A 13-case bilingual routing evaluation matrix covering all ten Narrative Systems and every non-default Expression Profile.
+
+### Changed
+
+- Simplified the English and Chinese landing-page path without removing any Before/After or earlier benchmark case.
+- Updated the bundled Codex Skill to begin with the local Direct bundle and continue to remote generation only after explicit upload consent.
+- Improved recommendation vocabulary for cinematic, memory, family, editorial, field, museum, travel, street, fashion, and minimal requests in English and Chinese.
+
+### Safety and reliability
+
+- Direct runs refuse accidental overwrite unless `--force` is explicit and only replace their four known artifacts.
+- Direct runs state that no photo was uploaded and that the Workprint is not a generated After.
+- Heuristic default words no longer overpower an explicit user brief during routing.
+- Published Before/After regression now measures pixel-level visual difference instead of relying only on unequal file hashes.
+
 ## [0.4.3] - 2026-08-31
 
 ### Added
@@ -57,6 +80,7 @@ All notable changes to Scene Card Studio are documented here. Versions follow se
 
 - Added continuous integration for supported Python versions.
 
+[0.5.0]: https://github.com/swping999/scene-card-studio/compare/v0.4.3...v0.5.0
 [0.4.3]: https://github.com/swping999/scene-card-studio/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/swping999/scene-card-studio/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/swping999/scene-card-studio/releases/tag/v0.4.1

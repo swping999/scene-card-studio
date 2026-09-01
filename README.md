@@ -3,7 +3,7 @@
 <p align="center"><strong>AI visual director for turning personal photos into structured, editable visual narratives.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.3"><img alt="Version 0.4.3" src="https://img.shields.io/badge/version-0.4.3-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.5.0"><img alt="Version 0.5.0" src="https://img.shields.io/badge/version-0.5.0-315c8c?style=flat-square"></a>
   <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
@@ -24,6 +24,17 @@ Scene Card Studio turns observable photo evidence into editable narrative decisi
 photos → Scene Cards → Narrative System → Prompt Compiler → image generation → aesthetic review → retry / accept
 ```
 
+### One command to start
+
+After installation, one local command turns one photo or a related set into Scene Cards, an automatically routed Prompt Manifest, a clearly labelled analysis Workprint, and a run summary:
+
+```bash
+scene-card-studio direct photos/portrait.jpg \
+  --brief "a restrained hand-colored heritage portrait"
+```
+
+Use multiple paths or a glob for a sequence. `direct` selects a Narrative System from the bilingual brief and selects a non-default Expression Profile only when the brief explicitly asks for it. This preparation step never uploads a source photo and never presents its Workprint as a generated After.
+
 | At a glance | Project contract |
 | --- | --- |
 | Input | One photograph or a related photo sequence |
@@ -32,7 +43,7 @@ photos → Scene Cards → Narrative System → Prompt Compiler → image genera
 | Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
 | Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
 
-**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#v043--systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
+**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#v050--systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
 ### One photo or many
 
@@ -199,7 +210,7 @@ Scene Cards explicitly separate visible evidence from interpretation:
 
 The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
 
-## v0.4.3 · Systems, Profiles, and deterministic typography
+## v0.5.0 · Systems, Profiles, and deterministic typography
 
 The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Ten Narrative Systems are supported. The system defines how the story is read; the Profile defines how that mechanism is visually expressed. `source-led` remains the default.
 
@@ -262,7 +273,13 @@ git clone https://github.com/swping999/scene-card-studio.git
 cd scene-card-studio
 python -m pip install -e '.[images]'
 
-# One photo → one standalone directed After
+# Fast path: one photo → one prompt-ready local direction bundle
+scene-card-studio direct photos/portrait.jpg --brief "quiet family portrait with restrained silver-gelatin depth"
+
+# Fast path: many photos → one automatically routed narrative bundle
+scene-card-studio direct photos/*.jpg --brief "a travel journal built from stations, tickets, and thresholds" --output-dir travel-run
+
+# Advanced staged workflow
 scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
 scene-card-studio profiles --system family-archive
 scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
@@ -283,7 +300,11 @@ scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-For one photo, every system emits exactly one standalone prompt and labels the Manifest `single-photo`; no sequence continuity or invented adjacent scene is requested. For multiple photos, Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion emit one prompt per source, while Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt. Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Formal review refuses an unbound Prompt Manifest. `present` verifies bound output hashes and keeps generated pixels separate from deterministic text. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits.
+`direct` writes `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` into a dedicated output directory. It refuses accidental overwrites unless `--force` is explicit. For one photo, every system emits exactly one standalone prompt and labels the Manifest `single-photo`; no sequence continuity or invented adjacent scene is requested. For multiple photos, Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion emit one prompt per source, while Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt.
+
+Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Formal review refuses an unbound Prompt Manifest. `present` verifies bound output hashes and keeps generated pixels separate from deterministic text. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits.
+
+The repository also includes a [13-case bilingual short-brief routing matrix](evals/direct-briefs.json). CI checks all ten Narrative Systems, all non-default Profiles, single-photo contracts, multi-photo modes, output binding, retry provenance, safe image embedding, and pixel-level visual difference across every published Before/After pair.
 
 ## Codex Skill
 
@@ -297,8 +318,10 @@ cp -R skills/scene-card-studio ~/.codex/skills/
 Then ask:
 
 ```text
-Use $scene-card-studio to direct these photos as a quiet family archive.
+Use $scene-card-studio to direct this photo as a quiet hand-colored heritage portrait.
 ```
+
+The Skill uses the same local `direct` bundle first, lets you inspect the route, then asks for provider-, purpose-, and file-specific consent before any remote image generation.
 
 ## Originality and privacy
 

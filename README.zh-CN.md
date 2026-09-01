@@ -3,7 +3,7 @@
 <p align="center"><strong>把个人照片转化为结构化、可编辑视觉叙事的 AI 视觉导演。</strong></p>
 
 <p align="center">
-  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.4.3"><img alt="版本 0.4.3" src="https://img.shields.io/badge/version-0.4.3-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.5.0"><img alt="版本 0.5.0" src="https://img.shields.io/badge/version-0.5.0-315c8c?style=flat-square"></a>
   <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="持续集成" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
@@ -24,6 +24,17 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 照片 → Scene Cards → Narrative System → Prompt Compiler → 图像生成 → 审美检查 → 重试 / 接受
 ```
 
+### 一条命令开始
+
+完成安装后，一条本地命令就能把单张照片或一组相关照片整理为 Scene Cards、自动路由后的 Prompt Manifest、明确标注为分析稿的 Workprint，以及运行摘要：
+
+```bash
+scene-card-studio direct photos/portrait.jpg \
+  --brief "克制银盐与手工着色的传统影像肖像"
+```
+
+多张照片可以直接传入多个路径或使用通配符。`direct` 会根据中英文 Brief 推荐 Narrative System；只有 Brief 明确要求某种视觉表达时才会自动选择非默认 Expression Profile。这个准备步骤不会上传源照片，也不会把 Workprint 冒充生成完成的 After。
+
 | 项目速览 | 明确约定 |
 | --- | --- |
 | 输入 | 单张照片或一组有关联的照片序列 |
@@ -32,7 +43,7 @@ Scene Card Studio 将照片中可观察的事实转化为可编辑叙事决策�
 | 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
 | 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
 
-**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#v043--叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
+**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#v050--叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
 
 ### 单张或多张都可以
 
@@ -178,7 +189,7 @@ Scene Card 将信息明确分成三层：
 
 这种拆分避免把 AI 的推测伪装成照片事实，也允许用户在编译 Prompt 前修改任何导演判断。自动分析保持克制，所有 Scene Card 决策都可以编辑。
 
-## v0.4.3 · 叙事系统、表达 Profile 与确定性文字
+## v0.5.0 · 叙事系统、表达 Profile 与确定性文字
 
 Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持十个 Narrative System。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认仍为 `source-led`。
 
@@ -241,7 +252,13 @@ git clone https://github.com/swping999/scene-card-studio.git
 cd scene-card-studio
 python -m pip install -e '.[images]'
 
-# 单张照片 → 一张独立导演成片
+# 快速路径：单张照片 → 本地 Prompt-ready 导演包
+scene-card-studio direct photos/portrait.jpg --brief "安静家庭肖像，使用克制银盐层次"
+
+# 快速路径：多张照片 → 自动推荐的叙事导演包
+scene-card-studio direct photos/*.jpg --brief "由车站、票据和门槛构成的旅行日志" --output-dir travel-run
+
+# 需要逐步控制时使用以下高级流程
 scene-card-studio analyze photos/portrait.jpg --output portrait-story.json
 scene-card-studio profiles --system family-archive
 scene-card-studio compile portrait-story.json --system family-archive --expression-profile heritage-portrait --output portrait-manifest.json
@@ -261,7 +278,11 @@ scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard
 scene-card-studio consent prompt-manifest.json --provider PROVIDER --purpose "presentation synthesis" --confirm --output upload-consent.json
 ```
 
-输入单张照片时，所有系统都只编译一条独立 Prompt，并把 Manifest 标记为 `single-photo`；不会要求序列连续，也不会虚构相邻场景。输入多张照片时，电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 则编译一条多源合成 Prompt。云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认。正式审核拒绝未经绑定的 Prompt Manifest。`present` 会核验候选图片哈希，并让生成图像与确定性文字保持独立来源层。SVG 安全嵌入仍会完整解码和重编码源图、清除尾随数据与元数据，并限制字节数和像素数。
+`direct` 会在独立输出目录中写入 `story.json`、`prompt-manifest.json`、`workprint.svg` 和 `run-summary.json`；除非明确传入 `--force`，否则拒绝覆盖已有运行结果。输入单张照片时，所有系统都只编译一条独立 Prompt，并把 Manifest 标记为 `single-photo`；不会要求序列连续，也不会虚构相邻场景。输入多张照片时，电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 则编译一条多源合成 Prompt。
+
+云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认。正式审核拒绝未经绑定的 Prompt Manifest。`present` 会核验候选图片哈希，并让生成图像与确定性文字保持独立来源层。SVG 安全嵌入仍会完整解码和重编码源图、清除尾随数据与元数据，并限制字节数和像素数。
+
+仓库同时提供 [13 组中英文短 Brief 路由矩阵](evals/direct-briefs.json)。CI 会检查全部十个 Narrative System、全部非默认 Profile、单图合同、多图模式、输出绑定、Retry 来源链、安全图片嵌入，以及每组已发布 Before/After 的像素级视觉差异。
 
 ## Codex Skill
 
@@ -275,8 +296,10 @@ cp -R skills/scene-card-studio ~/.codex/skills/
 然后输入：
 
 ```text
-使用 $scene-card-studio 把这些照片编排成一组安静的家庭视觉档案。
+使用 $scene-card-studio 把这张照片导演成克制手工着色的传统影像肖像。
 ```
+
+Skill 会先使用同一套本地 `direct` 流程生成可检查的导演包；只有在用户确认服务商、用途与具体文件后，才继续远程图像生成。
 
 ## 原创与隐私
 

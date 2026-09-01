@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import Any
 
-
 WATERCOLOR_CHRONICLE: dict[str, Any] = {
     "render_mode": "full-redraw",
     "subject_fidelity": [
