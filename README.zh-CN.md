@@ -39,11 +39,11 @@ scene-card-studio direct photos/portrait.jpg \
 | --- | --- |
 | 输入 | 单张照片或一组有关联的照片序列 |
 | 导演方式 | 可观察事实 → 可编辑解释 → 明确视觉导演决策 |
-| 视觉词汇 | 10 个 Narrative Systems + 8 个可替换 Expression Profiles |
+| 视觉词汇 | 11 个 Narrative Systems + 18 个可替换 Expression Profiles |
 | 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
 | 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
 
-**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#v050--叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
+**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#当前叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
 
 ### 单张或多张都可以
 
@@ -54,6 +54,80 @@ scene-card-studio direct photos/portrait.jpg \
 运行 `scene-card-studio profiles` 可以查看兼容组合。每份 Manifest 都会明确记录 `single-photo`、`multi-photo-per-source` 或 `multi-photo-synthesis`，防止后续工具悄悄改变用户选择的源图模式。
 
 ## Before / After 首页案例
+
+### 风景主导的新扩展
+
+这批案例刻意以风景和物件为主，不再依赖普通人物照。每张 Before 都是新生成的日常输入，每张 After 都通过一种独立的叙事或材质系统，实质重建同一份可见证据。首个 Journey Taxonomy 案例把地点按移动、地标、水体、植物、天气和材质组织在同一空间中；它明确不复制参考图的配色、上下重复照片、贴纸竖排、白色描边、连接线与标题位置。
+
+#### Journey Taxonomy｜旅行地点分类
+
+| Before · 普通盐沼风景 | After · 一个语义地点场，不是贴纸板 |
+| --- | --- |
+| ![普通盐沼木栈道](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![旅行地点分类景观](examples/cases/v0.6-gallery/after/journey-taxonomy.png) |
+
+#### Mineral Ink Memory｜矿物色水墨记忆
+
+| Before · 杂乱的冬季石桥 | After · 连续的矿物颜料与墨色空间 |
+| --- | --- |
+| ![普通冬季石桥](examples/cases/v0.6-gallery/before/stone-bridge.png) | ![矿物色水墨石桥记忆](examples/cases/v0.6-gallery/after/mineral-ink-memory.png) |
+
+#### Impasto Light Study｜厚涂光线研究
+
+| Before · 平淡阴天湖面 | After · 用真实颜料厚度组织光线 |
+| --- | --- |
+| ![普通山湖随手拍](examples/cases/v0.6-gallery/before/mountain-lake.png) | ![厚涂山湖光线研究](examples/cases/v0.6-gallery/after/impasto-light-study.png) |
+
+#### Pixel Diary｜像素日记
+
+| Before · 空荡市场小巷 | After · 统一像素网格与空间层次 |
+| --- | --- |
+| ![普通空市场小巷](examples/cases/v0.6-gallery/before/empty-market-lane.png) | ![像素日记市场小巷](examples/cases/v0.6-gallery/after/pixel-diary.png) |
+
+#### Risograph Route｜孔版印刷路线
+
+| Before · 盐沼中的真实路线 | After · 限色油墨构成的路线节奏 |
+| --- | --- |
+| ![普通盐沼路线](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![孔版印刷路线画面](examples/cases/v0.6-gallery/after/risograph-route.png) |
+
+#### Gouache Place Study｜水粉地点研究
+
+| Before · 生硬的高地随手拍 | After · 不透明、哑光的地点绘画 |
+| --- | --- |
+| ![普通高地天文台](examples/cases/v0.6-gallery/before/highland-observatory.png) | ![水粉天文台地点研究](examples/cases/v0.6-gallery/after/gouache-place-study.png) |
+
+#### Cyanotype Archive｜蓝晒档案
+
+| Before · 杂乱野外工作台 | After · 与真实证据绑定的接触印相 |
+| --- | --- |
+| ![桌面上的普通野外物件](examples/cases/v0.6-gallery/before/field-desk.png) | ![蓝晒野外物件档案](examples/cases/v0.6-gallery/after/cyanotype-archive.png) |
+
+#### Paper Relief Landscape｜纸艺浮雕景观
+
+| Before · 扁平冬季地形 | After · 物理结构一致的纸艺浮雕 |
+| --- | --- |
+| ![普通石桥与梯田](examples/cases/v0.6-gallery/before/stone-bridge.png) | ![剪纸浮雕景观](examples/cases/v0.6-gallery/after/paper-relief-landscape.png) |
+
+#### Autochrome Memory｜早期彩色摄影记忆
+
+| Before · 普通湖边停留 | After · 克制的早期彩色材料记忆 |
+| --- | --- |
+| ![普通山湖与小船](examples/cases/v0.6-gallery/before/mountain-lake.png) | ![早期彩色摄影质感湖面记忆](examples/cases/v0.6-gallery/after/autochrome-memory.png) |
+
+#### Pixel + Ink Memory｜像素与水墨记忆 · 实验
+
+| Before · 单一摄影表面 | After · 近景像素、远景水墨 |
+| --- | --- |
+| ![普通空市场小巷](examples/cases/v0.6-gallery/before/empty-market-lane.png) | ![像素与水墨市场记忆](examples/cases/v0.6-gallery/after/pixel-ink-memory.png) |
+
+#### Sculpted Place Diorama｜立体地点微缩模型 · 3D
+
+| Before · 扁平风景照片 | After · 真实体积、地形与接触阴影 |
+| --- | --- |
+| ![普通盐沼木栈道](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![立体盐沼微缩地景](examples/cases/v0.6-gallery/after/sculpted-place-diorama.png) |
+
+[查看 11 份 Scene Card](examples/cases/v0.6-gallery/case-records.json) · [打开可复编译证据索引](examples/cases/v0.6-gallery/evidence/index.json) · [阅读原创性与案例说明](examples/cases/v0.6-gallery/README.md)
+
+## 之前的 v0.4 Before / After
 
 下面每一张 Before 都是为本项目重新生成的、刻意保留普通手机随手拍问题的原创输入；每一张 After 都对同一主体进行了实质视觉导演，不是给原图加边框、接触表或装饰拼贴。案例人物均为 AI 生成的虚构人物。
 
@@ -189,9 +263,9 @@ Scene Card 将信息明确分成三层：
 
 这种拆分避免把 AI 的推测伪装成照片事实，也允许用户在编译 Prompt 前修改任何导演判断。自动分析保持克制，所有 Scene Card 决策都可以编辑。
 
-## v0.5.0 · 叙事系统、表达 Profile 与确定性文字
+## 当前叙事系统、表达 Profile 与确定性文字
 
-Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持十个 Narrative System。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认仍为 `source-led`。
+Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替换的 Expression Profile 编译成版本化 JSON 生成合约。目前支持十一个 Narrative System。System 决定故事如何被阅读，Profile 决定这种机制如何被视觉表达；默认仍为 `source-led`。
 
 | Narrative System | 展示名称 | 阅读机制 |
 | --- | --- | --- |
@@ -203,10 +277,11 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `field-log` | Field Log | 可观察证据与纪实语境 |
 | `museum-catalogue` | Museum Catalogue | 可检查的图录画面与用户提供的藏品信息 |
 | `travel-journal` | Travel Journal | 移动、停顿、门槛与用户提供的旅行证据 |
+| `journey-taxonomy` | Journey Taxonomy | 把可见地点证据按语义组织为一个完整空间场 |
 | `street-reportage` | Street Reportage | 公共空间中的真实动作与事实序列 |
 | `fashion-editorial` | Fashion Editorial | 姿势、服装结构、裁切与镜头尺度节奏 |
 
-除默认 `source-led` 外，现在有 8 个可替换 Profile：`rain-nocturne`、`quiet-window-light`、`watercolor-contour`、`watercolor-chronicle`、`graphite-paper`、`heritage-portrait`、`monochrome-reportage`，以及约束更严格、锁定人物身份的 `dream-logic`。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名。
+除默认 `source-led` 外，现在有 18 个可替换 Profile。新增的十种材质语言包括矿物色水墨、厚涂、手工像素、孔版印刷、水粉、蓝晒、纸艺浮雕、早期彩色摄影、像素水墨融合，以及具有真实体积的 3D 微缩地景。`pixel-ink-memory` 明确标为实验功能。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名，不重复计数。
 
 | Expression Profile | 兼容的 Narrative Systems |
 | --- | --- |
@@ -219,6 +294,16 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `heritage-portrait` | Family Chronicle、Museum Catalogue |
 | `monochrome-reportage` | Street Reportage |
 | `dream-logic` | Memory Atlas、Fashion Editorial |
+| `mineral-ink-memory` | Memory Atlas、Travel Journal、Journey Taxonomy |
+| `impasto-light-study` | Quiet Editorial、Memory Atlas、Travel Journal、Journey Taxonomy |
+| `pixel-diary` | Memory Atlas、Travel Journal、Journey Taxonomy |
+| `risograph-route` | Memory Atlas、Travel Journal、Journey Taxonomy |
+| `gouache-place-study` | Memory Atlas、Travel Journal、Journey Taxonomy |
+| `cyanotype-archive` | Field Log、Family Chronicle、Museum Catalogue、Street Reportage |
+| `paper-relief-landscape` | Memory Atlas、Travel Journal、Journey Taxonomy |
+| `autochrome-memory` | Memory Atlas、Family Chronicle、Travel Journal、Journey Taxonomy |
+| `pixel-ink-memory` · 实验 | Memory Atlas、Journey Taxonomy |
+| `sculpted-place-diorama` · 3D | Memory Atlas、Travel Journal、Journey Taxonomy |
 
 所有可见文字现已移出图片生成阶段。Manifest 会提供 `presentation_contract`，`scene-card-studio present` 只把用户提供的标题、日期、地点、收藏名称和藏品编号确定性地排进 SVG；缺失信息直接省略，不进行猜测。
 
@@ -235,7 +320,7 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 9. 禁止项；
 10. 输出比例与格式。
 
-每条 Prompt 现在都带结构化 `output_contract`，明确 MIME、宽度、高度和比例。`bind-outputs` 会真实解码候选图片，格式或尺寸不符时在审核前直接失败。可选 `reference_output` 仅用于 Benchmark 对照；正式审核必须针对含有 `candidate_output` 的 Render Manifest。
+每条 Prompt 现在都带结构化 `output_contract`，明确 MIME、宽度、高度和比例。`bind-outputs` 会真实解码候选图片，格式或尺寸不符时在审核前直接失败。候选图片路径会相对于 Render Manifest 保存，整个目录可以迁移；正式审核还会重新打开并计算当前文件哈希，绑定后替换图片会使审核失败。可选 `reference_output` 仅用于 Benchmark 对照；正式审核必须针对含有 `candidate_output` 的 Render Manifest。
 
 序列系统还会检查人物一致性、光色连续性、节奏和整体叙事弧线。Retry 来源是一条完整哈希链：Prompt Manifest → 失败 Render Manifest → 失败审核 → Retry Manifest → 重试后 Render Manifest → 通过审核。每一段都记录父哈希和时间顺序。
 
@@ -292,20 +377,22 @@ scene-card-studio retry render-manifest.json review.json --output retry-manifest
 scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 ```
 
-`direct` 会在独立输出目录中写入 `story.json`、`prompt-manifest.json`、`workprint.svg` 和 `run-summary.json`；除非明确传入 `--force`，否则拒绝覆盖已有运行结果。`check` 会列出尚未补齐的语义字段。准备完成的 Story 可以通过 `--scene-cards` 重新进入同一流程；它的源图列表必须与命令中提供的照片完全一致，低级图像测量值也会根据真实文件重新计算。输入单张照片时，所有系统都只编译一条独立 Prompt，并把 Manifest 标记为 `single-photo`；不会要求序列连续，也不会虚构相邻场景。输入多张照片时，电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle 和 Travel Journal 则编译一条多源合成 Prompt。
+`direct` 会在独立输出目录中写入 `story.json`、`prompt-manifest.json`、`workprint.svg` 和 `run-summary.json`；除非明确传入 `--force`，否则拒绝覆盖已有运行结果。`check` 会列出尚未补齐的语义字段。准备完成的 Story 可以通过 `--scene-cards` 重新进入同一流程；它的源图列表必须与命令中提供的照片完全一致，低级图像测量值也会根据真实文件重新计算。输入单张照片时，所有系统都只编译一条独立 Prompt，并把 Manifest 标记为 `single-photo`；不会要求序列连续，也不会虚构相邻场景。输入多张照片时，电影、Quiet Editorial、Editorial Rhythm、Field Log、Museum、Street 与 Fashion 会为每张源图编译独立 Prompt；Memory Atlas、Family Chronicle、Travel Journal 和 Journey Taxonomy 则编译一条多源合成 Prompt。
 
-云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认。正式审核拒绝未经绑定的 Prompt Manifest。`present` 会核验候选图片哈希，并让生成图像与确定性文字保持独立来源层。SVG 安全嵌入仍会完整解码和重编码源图、清除尾随数据与元数据，并限制字节数和像素数。
+云端合成前必须记录 provider、用途和精确上传列表并由用户明确确认；缺少或未完成的方向就绪证据会默认拒绝。正式审核拒绝未经绑定的 Prompt Manifest，`retry` 也拒绝未完成或已经通过的审核。`present` 会核验候选图片哈希、写入可迁移的相对引用，并让生成图像与确定性文字保持独立来源层。图片分析、输出绑定和 SVG 安全嵌入都会限制字节数与像素数。
 
-仓库同时提供包含正向、否定与歧义表达的[中英文路由矩阵](evals/direct-briefs.json)。CI 会检查全部十个 Narrative System、全部非默认 Profile、单图合同、多图模式、语义就绪状态、正式审核、Retry 来源链、安全图片嵌入、首页案例可复编译证据，以及每组已发布 Before/After 的像素级视觉差异。
+仓库同时提供包含正向、否定与歧义表达的[中英文路由矩阵](evals/direct-briefs.json)。CI 会检查全部十一个 Narrative System、全部非默认 Profile、单图合同、多图模式、语义就绪状态、正式审核、Retry 来源链、安全图片嵌入、首页案例可复编译证据，以及每组已发布 Before/After 的像素级视觉差异。
 
 ## Codex Skill
 
-克隆仓库后，将内置 Skill 复制到 Codex Skills 目录并重启 Codex：
+Codex Skill 同时包含在源码和 Wheel 安装包中。将它安装到一个新的 Codex Skill 目录，然后重启 Codex：
 
 ```bash
-mkdir -p ~/.codex/skills
-cp -R skills/scene-card-studio ~/.codex/skills/
+scene-card-studio skill-path
+scene-card-studio install-skill --target ~/.codex/skills/scene-card-studio
 ```
+
+安装命令不会覆盖已有 Skill 目录。
 
 然后输入：
 

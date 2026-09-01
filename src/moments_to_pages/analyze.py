@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import colorsys
 from pathlib import Path
+import warnings
 
+from .image_safety import validate_raster_dimensions, validate_raster_path
 from .model import Direction, Interpretation, Observation, SceneCard
 
 
@@ -16,24 +18,31 @@ def analyze_image(path: Path) -> SceneCard:
     except ImportError as exc:
         raise RuntimeError("Photo analysis requires Pillow: pip install 'scene-card-studio[images]'") from exc
 
-    with Image.open(path) as image:
-        image = ImageOps.exif_transpose(image)
-        if image.mode in {"RGBA", "LA"} or "transparency" in image.info:
-            rgba = image.convert("RGBA")
-            background = Image.new("RGBA", rgba.size, "white")
-            background.alpha_composite(rgba)
-            image = background.convert("RGB")
-        else:
-            image = image.convert("RGB")
-        width, height = image.size
-        sample = image.copy()
-        sample.thumbnail((160, 160))
-        quantized = sample.quantize(colors=5, method=2).convert("RGB")
-        colors = quantized.getcolors(160 * 160) or []
-        ranked = sorted(colors, reverse=True)
-        palette = [_hex(rgb) for _, rgb in ranked[:5]]
-        pixel_data = sample.get_flattened_data() if hasattr(sample, "get_flattened_data") else sample.getdata()
-        pixels = list(pixel_data)
+    validate_raster_path(path)
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", Image.DecompressionBombWarning)
+            with Image.open(path) as image:
+                width, height = image.size
+                validate_raster_dimensions(width, height, path)
+                image = ImageOps.exif_transpose(image)
+                if image.mode in {"RGBA", "LA"} or "transparency" in image.info:
+                    rgba = image.convert("RGBA")
+                    background = Image.new("RGBA", rgba.size, "white")
+                    background.alpha_composite(rgba)
+                    image = background.convert("RGB")
+                else:
+                    image = image.convert("RGB")
+                sample = image.copy()
+                sample.thumbnail((160, 160))
+                quantized = sample.quantize(colors=5, method=2).convert("RGB")
+                colors = quantized.getcolors(160 * 160) or []
+                ranked = sorted(colors, reverse=True)
+                palette = [_hex(rgb) for _, rgb in ranked[:5]]
+                pixel_data = sample.get_flattened_data() if hasattr(sample, "get_flattened_data") else sample.getdata()
+                pixels = list(pixel_data)
+    except (Image.DecompressionBombError, Image.DecompressionBombWarning, OSError) as exc:
+        raise ValueError(f"Photo is not a safe decodable raster image: {path}") from exc
 
     hsv = [colorsys.rgb_to_hsv(r / 255, g / 255, b / 255) for r, g, b in pixels]
     brightness = round(sum(v for _, _, v in hsv) / len(hsv), 3)

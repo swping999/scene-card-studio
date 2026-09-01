@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-01",
+  "generator": "OpenAI built-in image generation",
+  "asset_scope": "All places and objects are fictional AI-generated examples created for this repository; no third-party style assets, prompts, or named-artist references were used.",
+  "cases": [
+    {
+      "case_id": "journey-taxonomy", "display_name": "Journey Taxonomy", "kind": "narrative_system", "system": "journey-taxonomy", "expression_profile": "source-led",
+      "before": "before/salt-marsh-boardwalk.png", "after": "after/journey-taxonomy.png",
+      "scene_card": {
+        "observation": {"subjects": ["wooden boardwalk", "red-roof hut", "tidal channels", "reed islands", "blue direction post"], "dominant_gesture": "boardwalk crosses tidal channels toward the hut", "quiet_regions": ["cloud field", "silver water"]},
+        "interpretation": {"narrative_intent": "read one coastal place through movement, landmark, water, vegetation, weather, and material", "emotional_tone": ["quiet", "elemental"], "confidence": 0.93, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Integrate source-backed categories through scale and material transitions, never stickers or repeated photographs.", "layout_emphasis": "boardwalk path, hut landmark, and nested tidal channels"},
+        "transformation": {"must_preserve": ["boardwalk", "hut", "tidal channels", "reed islands", "sea horizon", "blue post", "overcast weather"], "may_transform": ["crop", "tonal hierarchy", "graphite contour", "mineral paper texture", "material scale studies"], "must_remove": ["dead edge clutter", "inset photo", "sticker outlines", "connector lines", "labels"]}
+      }
+    },
+    {
+      "case_id": "mineral-ink-memory", "display_name": "Mineral Ink Memory", "kind": "expression_profile", "system": "memory-atlas", "expression_profile": "mineral-ink-memory",
+      "before": "before/stone-bridge.png", "after": "after/mineral-ink-memory.png",
+      "scene_card": {
+        "observation": {"subjects": ["low stone bridge", "stream", "winter terraces", "irrigation channel", "bare branches", "distant village"], "dominant_gesture": "stream passes under the bridge and recedes through terraces", "quiet_regions": ["pale sky", "distant haze"]},
+        "interpretation": {"narrative_intent": "hold a worked winter landscape through water and repeated ground", "emotional_tone": ["restrained", "weathered"], "confidence": 0.94, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Use mineral color and ink density to clarify depth without historical imitation.", "layout_emphasis": "bridge joints, dark stream, and receding terrace bands"},
+        "transformation": {"must_preserve": ["bridge geometry", "stream direction", "terraces", "channel", "branches", "village placement", "winter season"], "may_transform": ["all photographic surfaces into mineral pigment and ink", "crop", "value hierarchy"], "must_remove": ["red bucket", "yellow litter", "calligraphy", "seals", "photographic pixels"]}
+      }
+    },
+    {
+      "case_id": "impasto-light-study", "display_name": "Impasto Light Study", "kind": "expression_profile", "system": "memory-atlas", "expression_profile": "impasto-light-study",
+      "before": "before/mountain-lake.png", "after": "after/impasto-light-study.png",
+      "scene_card": {
+        "observation": {"subjects": ["faded blue boat", "reeds", "mountain lake", "ridge", "concrete landing", "cloud cover"], "dominant_gesture": "boat rests where reeds meet open water", "quiet_regions": ["open lake", "cloud field"]},
+        "interpretation": {"narrative_intent": "direct attention through one overcast path of light", "emotional_tone": ["luminous", "still"], "confidence": 0.92, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Vary paint thickness and let light, not generic texture, organize the place.", "layout_emphasis": "blue boat beneath a silver break in the clouds"},
+        "transformation": {"must_preserve": ["boat shape and wear", "reeds", "lake width", "ridge silhouette", "landing", "overcast weather"], "may_transform": ["all surfaces into oil paint", "crop", "light emphasis", "brush hierarchy"], "must_remove": ["life rings", "clipped railing", "photographic pixels", "canvas mockup"]}
+      }
+    },
+    {
+      "case_id": "pixel-diary", "display_name": "Pixel Diary", "kind": "expression_profile", "system": "travel-journal", "expression_profile": "pixel-diary",
+      "before": "before/empty-market-lane.png", "after": "after/pixel-diary.png",
+      "scene_card": {
+        "observation": {"subjects": ["empty market lane", "green awnings", "wet pavement", "stacked crates", "closed grilles", "bicycles"], "dominant_gesture": "wet lane narrows toward a cool blue opening", "quiet_regions": ["distant lane", "dark awning planes"]},
+        "interpretation": {"narrative_intent": "record a closed market as a quiet blue-hour journey frame", "emotional_tone": ["nocturnal", "observant"], "confidence": 0.95, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Rebuild the full scene on one pixel grid; keep depth and material evidence.", "layout_emphasis": "wet central path between awning masses"},
+        "transformation": {"must_preserve": ["empty scene", "lane perspective", "awnings", "crates", "bicycles", "wet ground", "closed stalls"], "may_transform": ["all surfaces into intentional pixel clusters", "crop", "limited palette", "dithering"], "must_remove": ["photographic pixels", "UI", "HUD", "text", "mixed pixel scales"]}
+      }
+    },
+    {
+      "case_id": "risograph-route", "display_name": "Risograph Route", "kind": "expression_profile", "system": "journey-taxonomy", "expression_profile": "risograph-route",
+      "before": "before/salt-marsh-boardwalk.png", "after": "after/risograph-route.png",
+      "scene_card": {
+        "observation": {"subjects": ["wooden boardwalk", "red-roof hut", "tidal channels", "reed islands", "blue direction post"], "dominant_gesture": "boardwalk leads through the marsh toward one hut", "quiet_regions": ["cloud field", "water"]},
+        "interpretation": {"narrative_intent": "make one route legible through limited ink and overprint", "emotional_tone": ["graphic", "weathered"], "confidence": 0.95, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Use only the real boardwalk as route evidence; fabricate no itinerary or labels.", "layout_emphasis": "vermilion boardwalk against indigo water and sky"},
+        "transformation": {"must_preserve": ["hut", "boardwalk perspective", "posts", "channels", "reeds", "horizon", "direction post"], "may_transform": ["all surfaces into two-ink risograph", "halftone", "overprint", "registration drift"], "must_remove": ["text", "stamps", "tickets", "pins", "stickers", "photographic pixels"]}
+      }
+    },
+    {
+      "case_id": "gouache-place-study", "display_name": "Gouache Place Study", "kind": "expression_profile", "system": "memory-atlas", "expression_profile": "gouache-place-study",
+      "before": "before/highland-observatory.png", "after": "after/gouache-place-study.png",
+      "scene_card": {
+        "observation": {"subjects": ["weathered observatory", "low dome", "red scooter", "blue bucket", "dry highland", "distant ridge"], "dominant_gesture": "white dome sits alone above a broad gravel foreground", "quiet_regions": ["pale sky", "dry ground"]},
+        "interpretation": {"narrative_intent": "describe an isolated highland structure through matte shape and color", "emotional_tone": ["dry", "clear"], "confidence": 0.96, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Simplify by opaque value groups while keeping wear and the two small color anchors.", "layout_emphasis": "white dome, red scooter, blue bucket, and dusty planes"},
+        "transformation": {"must_preserve": ["dome and ribs", "building geometry", "door", "window", "scooter", "bucket", "ridge", "worn plaster"], "may_transform": ["all surfaces into gouache", "crop", "shape grouping", "pencil underdrawing"], "must_remove": ["utility wire", "photographic pixels", "decorative outlines", "text"]}
+      }
+    },
+    {
+      "case_id": "cyanotype-archive", "display_name": "Cyanotype Archive", "kind": "expression_profile", "system": "museum-catalogue", "expression_profile": "cyanotype-archive",
+      "before": "before/field-desk.png", "after": "after/cyanotype-archive.png",
+      "scene_card": {
+        "observation": {"subjects": ["open brass compass", "water-stained notebook", "dried fern", "scratched magnifier"], "dominant_gesture": "four worn field objects scatter across a laminate table", "quiet_regions": ["empty tabletop between objects"]},
+        "interpretation": {"narrative_intent": "make field-wear and object relationships inspectable", "emotional_tone": ["precise", "material"], "confidence": 0.97, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Use contact-print evidence without inventing specimen names or measurements.", "layout_emphasis": "compass center, fern arc, notebook plane, magnifier diagonal"},
+        "transformation": {"must_preserve": ["compass form", "notebook spiral and stains", "fern shape", "magnifier silhouette and scratches"], "may_transform": ["all surfaces into cyanotype exposure", "arrangement", "tonal hierarchy"], "must_remove": ["water bottle", "cable", "receipt", "lamp edge", "labels", "measurements"]}
+      }
+    },
+    {
+      "case_id": "paper-relief-landscape", "display_name": "Paper Relief Landscape", "kind": "expression_profile", "system": "memory-atlas", "expression_profile": "paper-relief-landscape",
+      "before": "before/stone-bridge.png", "after": "after/paper-relief-landscape.png",
+      "scene_card": {
+        "observation": {"subjects": ["low stone bridge", "stream", "winter terraces", "irrigation channel", "bare branches", "distant village"], "dominant_gesture": "stream and channel pull the eye through layered terraces", "quiet_regions": ["pale sky", "distant haze"]},
+        "interpretation": {"narrative_intent": "turn terrain depth into one tactile paper landscape", "emotional_tone": ["tactile", "grounded"], "confidence": 0.95, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Use physical depth planes, not detached paper stickers.", "layout_emphasis": "cut stream channel, layered terraces, and bridge blocks"},
+        "transformation": {"must_preserve": ["bridge span and supports", "stream", "terraces", "channel", "branches", "village", "winter season"], "may_transform": ["all surfaces into layered cotton paper", "embossing", "raking light"], "must_remove": ["bucket", "litter", "floating cutouts", "sticker outlines", "text"]}
+      }
+    },
+    {
+      "case_id": "autochrome-memory", "display_name": "Autochrome Memory", "kind": "expression_profile", "system": "memory-atlas", "expression_profile": "autochrome-memory",
+      "before": "before/mountain-lake.png", "after": "after/autochrome-memory.png",
+      "scene_card": {
+        "observation": {"subjects": ["faded blue boat", "reeds", "mountain lake", "ridge", "concrete landing", "cloud cover"], "dominant_gesture": "boat rests beside open water below a clouded ridge", "quiet_regions": ["lake surface", "cloud field"]},
+        "interpretation": {"narrative_intent": "hold one lake stop as a gently time-softened color memory", "emotional_tone": ["contemplative", "subdued"], "confidence": 0.9, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Use early-color photographic material without fake age, date, or period fiction.", "layout_emphasis": "blue boat against luminous open water"},
+        "transformation": {"must_preserve": ["boat shape and wear", "reeds", "lake", "ridge", "clouds", "landing"], "may_transform": ["crop", "fine color grain", "optical softness", "highlight bloom", "tonal hierarchy"], "must_remove": ["life rings", "clipped railing", "fake scratches", "sepia", "vignette"]}
+      }
+    },
+    {
+      "case_id": "pixel-ink-memory", "display_name": "Pixel + Ink Memory", "kind": "experimental_profile", "system": "memory-atlas", "expression_profile": "pixel-ink-memory",
+      "before": "before/empty-market-lane.png", "after": "after/pixel-ink-memory.png",
+      "scene_card": {
+        "observation": {"subjects": ["empty market lane", "green awnings", "wet pavement", "stacked crates", "closed grilles", "bicycles"], "dominant_gesture": "lane narrows from tactile foreground into blue-hour distance", "quiet_regions": ["distant opening", "awning planes"]},
+        "interpretation": {"narrative_intent": "let near evidence stay crisp while distant memory dissolves", "emotional_tone": ["layered", "nocturnal"], "confidence": 0.88, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Pixel and ink must share one palette, light, composition, and depth transition.", "layout_emphasis": "pixel foreground flowing into ink-wash distance"},
+        "transformation": {"must_preserve": ["empty scene", "lane perspective", "awnings", "crates", "bicycles", "wet ground"], "may_transform": ["near surfaces into pixels", "distant surfaces into ink", "paper ground", "crop"], "must_remove": ["split screen", "glitch", "random splash", "UI", "photographic pixels", "text"]}
+      }
+    },
+    {
+      "case_id": "sculpted-place-diorama", "display_name": "Sculpted Place Diorama", "kind": "expression_profile", "system": "journey-taxonomy", "expression_profile": "sculpted-place-diorama",
+      "before": "before/salt-marsh-boardwalk.png", "after": "after/sculpted-place-diorama.png",
+      "scene_card": {
+        "observation": {"subjects": ["wooden boardwalk", "red-roof hut", "tidal channels", "reed islands", "blue direction post"], "dominant_gesture": "boardwalk spans shallow marsh terrain toward the hut", "quiet_regions": ["cloud field", "flat water"]},
+        "interpretation": {"narrative_intent": "rebuild one coastal route as a physical spatial portrait", "emotional_tone": ["dimensional", "quiet"], "confidence": 0.94, "method": "manually-directed example"},
+        "direction": {"story_role": "moment", "director_note": "Use consistent miniature scale, real volume, contact shadows, and source topology—not toy styling.", "layout_emphasis": "raised boardwalk above sculpted channels and reed islands"},
+        "transformation": {"must_preserve": ["hut", "boardwalk", "posts", "channels", "reeds", "sea horizon", "blue post"], "may_transform": ["all surfaces into plaster, resin, fibers, and miniature timber", "camera angle", "studio light"], "must_remove": ["toy-box border", "isometric tile", "cute redesign", "labels", "UI", "glossy CGI"]}
+      }
+    }
+  ]
+}

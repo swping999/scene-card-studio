@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.6.0",
+  "source_mode": "single-photo",
+  "system": "travel-journal",
+  "system_display_name": "Travel Journal",
+  "expression_profile": "pixel-diary",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-chronicle",
+    "mineral-ink-memory",
+    "impasto-light-study",
+    "pixel-diary",
+    "risograph-route",
+    "gouache-place-study",
+    "paper-relief-landscape",
+    "sculpted-place-diorama",
+    "autochrome-memory"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "travel-journal-01",
+      "mode": "journey-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/empty-market-lane.png",
+          "sha256": "9e2f18568bb7b00d3fad734d014d55628c3e5e78f4f2c34b2eedb263a06740ca"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied person, place, object, or threshold as one recognizable painted journey anchor: empty scene, lane perspective, awnings, crates, bicycles, wet ground, closed stalls.",
+          "Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to the source.",
+          "Preserve subject identity through stable silhouette, hairstyle, clothing colors, pose, landmark geometry, route direction, and object count."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — empty scene, lane perspective, awnings, crates, bicycles, wet ground, closed stalls.",
+          "MAY TRANSFORM — all surfaces into intentional pixel clusters, crop, limited palette, dithering.",
+          "MUST REMOVE — photographic pixels, UI, HUD, text, mixed pixel scales.",
+          "Rebuild the complete scene on one consistent pixel grid; simplify detail by hierarchy without changing the depicted event, place, or relationships."
+        ],
+        "narrative_intent": [
+          "Treat this source as one self-contained journey moment; do not invent movement, a second stop, destination, return, date, or route.",
+          "Source / moment: intent record a closed market as a quiet blue-hour journey frame; tone nocturnal, observant; emphasis wet central path between awning masses; director note Rebuild the full scene on one pixel grid; keep depth and material evidence."
+        ],
+        "composition": [
+          "Build one complete image from the source and Scene Card; do not add a postcard grid, itinerary, route, or app map.",
+          "Treat tickets, maps, receipts, and handwriting as usable evidence only when they were supplied or explicitly authorized.",
+          "Use a cinematic pixel-art composition with clear large shapes, readable depth bands, and one calm focal beat rather than a game screenshot or sticker sheet."
+        ],
+        "lighting": [
+          "Use the combined source palette (#1C201A, #62594E) while retaining distinct weather and time-of-day evidence.",
+          "Use a restrained source-derived palette, clustered highlights, controlled dithering, and coherent atmospheric perspective."
+        ],
+        "material": [
+          "Use crisp intentional pixels, selective dithering, compact color ramps, and hand-placed edge clusters; keep one pixel scale throughout the image.",
+          "Every paper, route, or travel mark must correspond to supplied evidence rather than decorative tourism motifs."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, threshold, quiet regions, and layout emphasis without implying an unseen route.",
+          "Keep all spatial claims inside this source; do not invent geography beyond the frame."
+        ],
+        "text_strategy": [
+          "Generate no dates, place names, coordinates, tickets, stamps, handwriting, captions, or route labels inside the image.",
+          "Place only user-supplied metadata later through the deterministic presentation_contract."
+        ],
+        "exclusions": [
+          "No generic scrapbook kit, tourism poster, passport-stamp collage, airline branding, app map, pins, arrows, or fabricated ephemera.",
+          "No named-artist or named-travel-publication imitation.",
+          "No UI, HUD, dialogue box, game logo, fake scanlines, mixed pixel sizes, vector-smooth faces, copied game assets, named-game imitation, or photographic fragments."
+        ],
+        "output": [
+          "Return one integrated pixel diary illustration PNG journey artifact at exactly 2:3.",
+          "The supplied source must remain a recognizable narrative anchor.",
+          "The result must read as one authored pixel diary frame, not a photo passed through a mosaic filter."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied person, place, object, or threshold as one recognizable painted journey anchor: empty scene, lane perspective, awnings, crates, bicycles, wet ground, closed stalls.\n- Keep faces, architecture, roads, horizons, vehicles, luggage, tickets, and identity-bearing details faithful to the source.\n- Preserve subject identity through stable silhouette, hairstyle, clothing colors, pose, landmark geometry, route direction, and object count.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — empty scene, lane perspective, awnings, crates, bicycles, wet ground, closed stalls.\n- MAY TRANSFORM — all surfaces into intentional pixel clusters, crop, limited palette, dithering.\n- MUST REMOVE — photographic pixels, UI, HUD, text, mixed pixel scales.\n- Rebuild the complete scene on one consistent pixel grid; simplify detail by hierarchy without changing the depicted event, place, or relationships.\n\nNARRATIVE INTENT\n- Treat this source as one self-contained journey moment; do not invent movement, a second stop, destination, return, date, or route.\n- Source / moment: intent record a closed market as a quiet blue-hour journey frame; tone nocturnal, observant; emphasis wet central path between awning masses; director note Rebuild the full scene on one pixel grid; keep depth and material evidence.\n\nCOMPOSITION\n- Build one complete image from the source and Scene Card; do not add a postcard grid, itinerary, route, or app map.\n- Treat tickets, maps, receipts, and handwriting as usable evidence only when they were supplied or explicitly authorized.\n- Use a cinematic pixel-art composition with clear large shapes, readable depth bands, and one calm focal beat rather than a game screenshot or sticker sheet.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#1C201A, #62594E) while retaining distinct weather and time-of-day evidence.\n- Use a restrained source-derived palette, clustered highlights, controlled dithering, and coherent atmospheric perspective.\n\nMATERIAL AND SURFACE\n- Use crisp intentional pixels, selective dithering, compact color ramps, and hand-placed edge clusters; keep one pixel scale throughout the image.\n- Every paper, route, or travel mark must correspond to supplied evidence rather than decorative tourism motifs.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, threshold, quiet regions, and layout emphasis without implying an unseen route.\n- Keep all spatial claims inside this source; do not invent geography beyond the frame.\n\nTEXT AND LABELS\n- Generate no dates, place names, coordinates, tickets, stamps, handwriting, captions, or route labels inside the image.\n- Place only user-supplied metadata later through the deterministic presentation_contract.\n\nEXCLUSIONS\n- No generic scrapbook kit, tourism poster, passport-stamp collage, airline branding, app map, pins, arrows, or fabricated ephemera.\n- No named-artist or named-travel-publication imitation.\n- No UI, HUD, dialogue box, game logo, fake scanlines, mixed pixel sizes, vector-smooth faces, copied game assets, named-game imitation, or photographic fragments.\n\nOUTPUT\n- Return one integrated pixel diary illustration PNG journey artifact at exactly 2:3.\n- The supplied source must remain a recognizable narrative anchor.\n- The result must read as one authored pixel diary frame, not a photo passed through a mosaic filter.",
+      "reference_output": {
+        "path": "../../after/pixel-diary.png",
+        "sha256": "1c0723429b39e75b49ccc4bfcf7882b4155950488341e5ce208b62047d9c2ccf"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/empty-market-lane.png",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Travel Journal",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date",
+      "source_note"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "travel-journal-01",
+        "caption": "PIXEL DIARY",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location",
+      "source_note"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/empty-market-lane.png",
+        "sha256": "9e2f18568bb7b00d3fad734d014d55628c3e5e78f4f2c34b2eedb263a06740ca"
+      }
+    ]
+  }
+}

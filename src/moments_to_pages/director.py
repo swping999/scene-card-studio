@@ -69,6 +69,7 @@ def recommend_systems(cards: list[SceneCard], brief: str = "") -> list[Recommend
     field_words = ("field log", "field note", "observation", "documentary", "evidence", "repair", "worksite", "现场日志", "田野", "观察", "纪实", "证据", "维修", "工作现场")
     museum_words = ("museum", "catalogue", "artifact", "collection", "object", "archive", "specimen", "exhibition", "repair", "patina", "博物馆", "图录", "藏品", "收藏", "物件", "档案", "标本", "展览", "修复", "包浆")
     travel_words = ("travel journal", "journey", "travel", "ticket", "station", "road", "hotel", "luggage", "threshold", "旅行日志", "旅途", "旅行", "票据", "车站", "道路", "酒店", "行李", "门槛")
+    taxonomy_words = ("journey taxonomy", "place taxonomy", "visual taxonomy", "travel taxonomy", "field guide", "visual dictionary", "classify the place", "classify the scene", "landscape elements", "taxonomy", "旅行分类", "旅途分类", "地点分类", "场景分类", "视觉分类", "视觉图鉴", "旅行图鉴", "地点图鉴", "场景拆解", "地貌元素", "分类呈现")
     street_words = ("street", "reportage", "crowd", "pedestrian", "market", "crossing", "traffic", "sidewalk", "街头", "纪实报道", "人群", "行人", "市场", "路口", "交通", "人行道")
     fashion_words = ("fashion", "editorial portrait", "garment", "outfit", "wardrobe", "pose", "fabric", "silhouette", "时尚", "服装", "时装", "穿搭", "造型", "姿势", "面料", "轮廓")
 
@@ -87,6 +88,7 @@ def recommend_systems(cards: list[SceneCard], brief: str = "") -> list[Recommend
     field_matches = count_terms(field_words)
     museum_matches = count_terms(museum_words)
     travel_matches = count_terms(travel_words)
+    taxonomy_matches = count_terms(taxonomy_words)
     street_matches = count_terms(street_words)
     fashion_matches = count_terms(fashion_words)
     def semantic_score(matches: int, negated: int, baseline: float) -> float:
@@ -115,6 +117,8 @@ def recommend_systems(cards: list[SceneCard], brief: str = "") -> list[Recommend
                        "Inspectable object evidence can form one deterministic catalogue plate." if single else "Inspectable object evidence and supplied metadata can form a deterministic catalogue sequence."),
         Recommendation("travel-journal", semantic_score(*travel_matches, .44),
                        "The visible place, threshold, or travel evidence can become one journey moment without invented geography." if single else "Supplied movement, thresholds, tickets, places, and pauses can form a journey record without invented geography."),
+        Recommendation("journey-taxonomy", semantic_score(*taxonomy_matches, .43),
+                       "Visible place, terrain, weather, living subjects, objects, and movement cues can become one source-bound visual taxonomy." if single else "Visible elements across the supplied journey can be classified by semantic role without inventing geography or decorative souvenirs."),
         Recommendation("street-reportage", semantic_score(*street_matches, .42),
                        "The observed public gesture and context can become one factual reportage image." if single else "Observed public gestures and environmental context can become a factual reportage sequence."),
         Recommendation("fashion-editorial", semantic_score(*fashion_matches, .40),
@@ -140,7 +144,9 @@ def recommend_expression_profile(system: str, cards: list[SceneCard], brief: str
         return ProfileRecommendation("quiet-window-light", "The brief explicitly requests a quiet window-light treatment.")
     if system == "memory-atlas" and contains("watercolor contour", "photographic anchor", "photo and watercolor", "水彩轮廓", "照片锚点", "照片与水彩", "真实照片建筑"):
         return ProfileRecommendation("watercolor-contour", "The brief asks to retain photographic anchors inside drawn watercolor geography.")
-    if system in {"memory-atlas", "family-archive", "museum-catalogue", "travel-journal"} and contains("watercolor", "paint everything", "fully painted", "水彩", "全部画成", "全画面绘制", "人物也水彩"):
+    if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("gouache", "opaque watercolor", "place study", "水粉", "不透明水彩", "地点写生", "场景写生"):
+        return ProfileRecommendation("gouache-place-study", "The brief explicitly requests an opaque gouache place study.")
+    if system in {"memory-atlas", "family-archive", "museum-catalogue", "travel-journal", "journey-taxonomy"} and contains("watercolor", "paint everything", "fully painted", "水彩", "全部画成", "全画面绘制", "人物也水彩"):
         return ProfileRecommendation("watercolor-chronicle", "The brief explicitly requests a coherent full-frame watercolor medium.")
     if system == "family-archive" and contains("graphite", "pencil", "tracing paper", "石墨", "铅笔", "描图纸", "素描"):
         return ProfileRecommendation("graphite-paper", "The brief explicitly requests graphite or tracing-paper expression.")
@@ -150,4 +156,22 @@ def recommend_expression_profile(system: str, cards: list[SceneCard], brief: str
         return ProfileRecommendation("monochrome-reportage", "The brief explicitly requests monochrome reportage.")
     if system in {"memory-atlas", "fashion-editorial"} and contains("dream logic", "surreal", "impossible", "梦境逻辑", "超现实", "不可能空间"):
         return ProfileRecommendation("dream-logic", "The brief explicitly requests identity-locked surreal spatial logic.")
+    if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("mineral ink", "mineral pigment", "ink memory", "矿物颜料", "矿物色", "矿物岩彩", "水墨记忆", "岩彩"):
+        return ProfileRecommendation("mineral-ink-memory", "The brief explicitly requests mineral pigment and ink as one memory medium.")
+    if system in {"minimal-editorial", "memory-atlas", "travel-journal", "journey-taxonomy"} and contains("impasto", "palette knife", "oil paint", "oil painting", "thick paint", "厚涂", "油画", "刮刀", "厚重笔触"):
+        return ProfileRecommendation("impasto-light-study", "The brief explicitly requests an impasto light study.")
+    if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("pixel diary", "pixel art", "pixel illustration", "像素日记", "像素画", "像素风", "像素插画"):
+        return ProfileRecommendation("pixel-diary", "The brief explicitly requests a consistent pixel-diary medium.")
+    if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("risograph", "riso", "soy ink", "孔版印刷", "孔版", "riso 印刷", "丝网套色"):
+        return ProfileRecommendation("risograph-route", "The brief explicitly requests a limited-ink risograph route treatment.")
+    if system in {"family-archive", "museum-catalogue", "field-log", "street-reportage"} and contains("cyanotype", "blueprint photograph", "sun print", "蓝晒", "蓝图摄影", "日光印相"):
+        return ProfileRecommendation("cyanotype-archive", "The brief explicitly requests a source-bound cyanotype archive treatment.")
+    if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("paper relief", "cut paper", "paper landscape", "纸浮雕", "纸雕", "剪纸地景", "层叠纸张", "纸艺地景"):
+        return ProfileRecommendation("paper-relief-landscape", "The brief explicitly requests one physically coherent paper-relief landscape.")
+    if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("3d diorama", "3d miniature", "miniature diorama", "sculpted diorama", "terrain model", "立体微缩", "微缩地景", "微缩模型", "立体地景", "实体模型", "3d 立体"):
+        return ProfileRecommendation("sculpted-place-diorama", "The brief explicitly requests a physically coherent sculpted place diorama.")
+    if system in {"family-archive", "memory-atlas", "travel-journal", "journey-taxonomy"} and contains("autochrome", "early color plate", "early color photograph", "奥托克罗姆", "早期彩色照片", "早期彩色印相"):
+        return ProfileRecommendation("autochrome-memory", "The brief explicitly requests a restrained early-color photographic memory treatment.")
+    if system in {"memory-atlas", "journey-taxonomy"} and contains("pixel ink", "pixel-and-ink", "pixel and ink", "ink pixel", "像素水墨", "像素与水墨", "像素岩彩"):
+        return ProfileRecommendation("pixel-ink-memory", "The brief explicitly requests the experimental pixel-and-ink fusion profile.")
     return ProfileRecommendation("source-led", "No explicit expression treatment was requested, so source-led is the safest default.")

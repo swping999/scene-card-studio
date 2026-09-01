@@ -1,0 +1,72 @@
+[
+  {
+    "source": "../../before/field-desk.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#B1A795",
+      "#C4B7A1",
+      "#656056",
+      "#958A75",
+      "#191918"
+    ],
+    "brightness": 0.637,
+    "saturation": 0.183,
+    "orientation": "portrait",
+    "caption": "CYANOTYPE ARCHIVE",
+    "observation": {
+      "subjects": [
+        "open brass compass",
+        "water-stained notebook",
+        "dried fern",
+        "scratched magnifier"
+      ],
+      "dominant_gesture": "four worn field objects scatter across a laminate table",
+      "quiet_regions": [
+        "empty tabletop between objects"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "make field-wear and object relationships inspectable",
+      "emotional_tone": [
+        "precise",
+        "material"
+      ],
+      "confidence": 0.97,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Use contact-print evidence without inventing specimen names or measurements.",
+      "layout_emphasis": "compass center, fern arc, notebook plane, magnifier diagonal"
+    },
+    "transformation": {
+      "must_preserve": [
+        "compass form",
+        "notebook spiral and stains",
+        "fern shape",
+        "magnifier silhouette and scratches"
+      ],
+      "may_transform": [
+        "all surfaces into cyanotype exposure",
+        "arrangement",
+        "tonal hierarchy"
+      ],
+      "must_remove": [
+        "water bottle",
+        "cable",
+        "receipt",
+        "lamp edge",
+        "labels",
+        "measurements"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

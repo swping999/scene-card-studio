@@ -4,9 +4,12 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from hashlib import sha256
 from math import gcd
+import os
 from pathlib import Path
 from typing import Any
+import warnings
 
+from .image_safety import validate_raster_dimensions, validate_raster_path
 from .prompt_compiler import REVIEW_POLICY
 
 CORRECTIONS = {
@@ -40,13 +43,18 @@ def _image_record(path: Path, display_path: str) -> dict[str, Any]:
         from PIL import Image, UnidentifiedImageError
     except ImportError as exc:
         raise RuntimeError("Output binding requires Pillow: pip install 'scene-card-studio[images]'") from exc
+    validate_raster_path(path)
     try:
-        with Image.open(path) as opened:
-            opened.verify()
-        with Image.open(path) as opened:
-            width, height = opened.size
-            mime = Image.MIME.get(opened.format or "")
-    except (UnidentifiedImageError, OSError) as exc:
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", Image.DecompressionBombWarning)
+            with Image.open(path) as opened:
+                width, height = opened.size
+                validate_raster_dimensions(width, height, path)
+                opened.verify()
+            with Image.open(path) as opened:
+                width, height = opened.size
+                mime = Image.MIME.get(opened.format or "")
+    except (Image.DecompressionBombError, Image.DecompressionBombWarning, UnidentifiedImageError, OSError) as exc:
         raise ValueError(f"Candidate output is not a decodable image: {path}") from exc
     if not mime:
         raise ValueError(f"Candidate output has an unsupported image format: {path}")
@@ -59,6 +67,31 @@ def _image_record(path: Path, display_path: str) -> dict[str, Any]:
         "height": height,
         "aspect_ratio": f"{width // divisor}:{height // divisor}",
     }
+
+
+def _portable_path(path: Path, base: Path) -> str:
+    try:
+        return Path(os.path.relpath(path.resolve(), base.resolve())).as_posix()
+    except ValueError as exc:
+        raise ValueError(
+            "Candidate output and Render Manifest must be on the same filesystem so the artifact remains portable"
+        ) from exc
+
+
+def _current_output_record(prompt: dict[str, Any], base: Path | None = None) -> dict[str, Any]:
+    stored = prompt.get("candidate_output")
+    if not isinstance(stored, dict) or not stored.get("path") or not stored.get("sha256"):
+        raise ValueError(f"Prompt {prompt.get('id')} has no candidate_output; run bind-outputs before formal review")
+    supplied = Path(str(stored["path"])).expanduser()
+    resolved = supplied if supplied.is_absolute() else (base or Path.cwd()) / supplied
+    current = _image_record(resolved, str(stored["path"]))
+    _validate_output_contract(prompt, current)
+    if current["sha256"] != stored["sha256"]:
+        raise ValueError(f"Bound candidate hash changed for {prompt.get('id')}")
+    for field in ("mime_type", "width", "height", "aspect_ratio"):
+        if current[field] != stored.get(field):
+            raise ValueError(f"Bound candidate metadata changed for {prompt.get('id')}: {field}")
+    return current
 
 
 def _validate_output_contract(prompt: dict[str, Any], record: dict[str, Any]) -> None:
@@ -74,12 +107,20 @@ def _validate_output_contract(prompt: dict[str, Any], record: dict[str, Any]) ->
         raise ValueError(f"Candidate output violates {prompt.get('id')} output_contract: {details}")
 
 
+def _require_render_manifest_contract(manifest: dict[str, Any]) -> None:
+    if manifest.get("artifact_type") != "render-manifest":
+        raise ValueError("Formal review requires a Render Manifest produced by bind-outputs")
+    if manifest.get("candidate_path_base") != "render-manifest-directory":
+        raise ValueError("Render Manifest must declare candidate paths relative to its own directory")
+
+
 def bind_outputs(
     manifest: dict[str, Any],
     bindings: dict[str, str],
     *,
     manifest_sha256: str,
     base: Path | None = None,
+    output_base: Path | None = None,
 ) -> dict[str, Any]:
     output = deepcopy(manifest)
     prompts = {item["id"]: item for item in output.get("prompts", [])}
@@ -92,12 +133,14 @@ def bind_outputs(
     for prompt_id, value in bindings.items():
         supplied = Path(value).expanduser()
         resolved = supplied if supplied.is_absolute() else ((base or Path.cwd()) / supplied)
-        record = _image_record(resolved, value)
+        record_base = output_base or base or Path.cwd()
+        record = _image_record(resolved, _portable_path(resolved, record_base))
         _validate_output_contract(prompts[prompt_id], record)
         prompts[prompt_id]["candidate_output"] = record
     output["artifact_type"] = "render-manifest"
     output["render_manifest_version"] = "1.0"
     output["parent_manifest_sha256"] = manifest_sha256
+    output["candidate_path_base"] = "render-manifest-directory"
     output["bound_at"] = _now()
     return output
 
@@ -135,9 +178,9 @@ def build_review_template(
     reviewer_name: str,
     reviewer_model: str,
     review_method: str,
+    base: Path | None = None,
 ) -> dict[str, Any]:
-    if manifest.get("artifact_type") != "render-manifest":
-        raise ValueError("Review template requires a Render Manifest produced by bind-outputs")
+    _require_render_manifest_contract(manifest)
     reviewer = {
         "type": reviewer_type.strip(),
         "name": reviewer_name.strip(),
@@ -152,7 +195,7 @@ def build_review_template(
     for prompt in manifest.get("prompts", []):
         results.append({
             "prompt_id": prompt.get("id"),
-            "output_sha256": _expected_output_hash(prompt),
+            "output_sha256": _expected_output_hash(prompt, base),
             "scores": {name: None for name in REVIEW_POLICY["dimensions"]},
             "notes": "",
         })
@@ -178,6 +221,7 @@ def build_review_record(
     assessment: dict[str, Any],
     *,
     manifest_sha256: str,
+    base: Path | None = None,
 ) -> dict[str, Any]:
     normalized = deepcopy(assessment)
     if not isinstance(normalized.get("reviewed_at"), str) or not normalized["reviewed_at"].strip():
@@ -203,7 +247,7 @@ def build_review_record(
     failed_prompt_ids: list[str] = []
     for result in result_items:
         prompt_id = result["prompt_id"]
-        if result.get("output_sha256") != _expected_output_hash(prompts[prompt_id]):
+        if result.get("output_sha256") != _expected_output_hash(prompts[prompt_id], base):
             raise ValueError(f"Assessment output_sha256 does not match prompt {prompt_id}")
         decision, failed = review_decision(result.get("scores", {}))
         reviewed = deepcopy(result)
@@ -230,8 +274,7 @@ def build_review_record(
 
 
 def _validate_assessment_metadata(assessment: dict[str, Any], manifest: dict[str, Any], expected_manifest_sha256: str) -> None:
-    if manifest.get("artifact_type") != "render-manifest":
-        raise ValueError("Formal review requires a Render Manifest produced by bind-outputs")
+    _require_render_manifest_contract(manifest)
     if assessment.get("manifest_sha256") != expected_manifest_sha256:
         raise ValueError("Assessment manifest_sha256 does not match the reviewed manifest")
     reviewer = assessment.get("reviewer")
@@ -266,12 +309,8 @@ def _validate_assessment_metadata(assessment: dict[str, Any], manifest: dict[str
         raise ValueError("Assessment reviewed_at is in the future")
 
 
-def _expected_output_hash(prompt: dict[str, Any]) -> str:
-    record = prompt.get("candidate_output")
-    if not isinstance(record, dict) or not record.get("sha256"):
-        raise ValueError(f"Prompt {prompt.get('id')} has no candidate_output; run bind-outputs before formal review")
-    _validate_output_contract(prompt, record)
-    return str(record["sha256"])
+def _expected_output_hash(prompt: dict[str, Any], base: Path | None = None) -> str:
+    return str(_current_output_record(prompt, base)["sha256"])
 
 
 def build_retry_manifest(
@@ -280,7 +319,15 @@ def build_retry_manifest(
     *,
     manifest_sha256: str,
     assessment_sha256: str,
+    base: Path | None = None,
 ) -> dict[str, Any]:
+    _require_render_manifest_contract(manifest)
+    if assessment.get("artifact_type") != "aesthetic-review":
+        raise ValueError("Retry requires a finalized aesthetic-review produced by scene-card-studio review")
+    if assessment.get("review_version") != "1.0":
+        raise ValueError("Retry requires a supported finalized aesthetic-review")
+    if assessment.get("decision") != "retry":
+        raise ValueError("Retry requires a finalized review whose decision is retry")
     _validate_assessment_metadata(assessment, manifest, manifest_sha256)
     original = {item["id"]: item for item in manifest.get("prompts", [])}
     result_items = assessment.get("results", [])
@@ -292,10 +339,37 @@ def build_retry_manifest(
     if set(results) - set(original):
         unknown = ", ".join(sorted(set(results) - set(original)))
         raise ValueError(f"Assessment contains unknown prompt ids: {unknown}")
+    if set(original) - set(results):
+        missing = ", ".join(sorted(set(original) - set(results)))
+        raise ValueError(f"Missing assessment for prompt ids: {missing}")
 
     sequence_failed: list[str] = []
     if manifest.get("sequence_review_required") and len(original) > 1:
         _, sequence_failed = sequence_review_decision(assessment.get("sequence_scores", {}))
+
+    expected_failed_prompt_ids: list[str] = []
+    for prompt_id, prompt in original.items():
+        result = results[prompt_id]
+        if result.get("output_sha256") != _expected_output_hash(prompt, base):
+            raise ValueError(f"Assessment output_sha256 does not match prompt {prompt_id}")
+        decision, failed = review_decision(result.get("scores", {}))
+        if result.get("decision") != decision or result.get("failed_dimensions") != failed:
+            raise ValueError(f"Assessment result for {prompt_id} is not a finalized review result")
+        if failed:
+            expected_failed_prompt_ids.append(prompt_id)
+    expected_retry_ids = list(original) if sequence_failed else expected_failed_prompt_ids
+    expected_top_level = {
+        "decision": "retry" if expected_retry_ids else "accept",
+        "failed_prompt_ids": expected_failed_prompt_ids,
+        "sequence_decision": "retry" if sequence_failed else "accept",
+        "sequence_failed_dimensions": sequence_failed,
+        "retry_prompt_ids": expected_retry_ids,
+    }
+    for field, expected in expected_top_level.items():
+        if assessment.get(field) != expected:
+            raise ValueError(f"Assessment {field} does not match its finalized scores")
+    if not expected_retry_ids:
+        raise ValueError("Retry review contains no failed prompt or sequence dimension")
 
     output = deepcopy(manifest)
     output["artifact_type"] = "retry-manifest"
@@ -310,12 +384,9 @@ def build_retry_manifest(
     retry_prompts: list[str] = []
     decisions = []
     for item in output.get("prompts", []):
-        reviewed_item = original[item["id"]]
         result = results.get(item["id"])
         if result is None:
             raise ValueError(f"Missing assessment for prompt id: {item['id']}")
-        if result.get("output_sha256") != _expected_output_hash(reviewed_item):
-            raise ValueError(f"Assessment output_sha256 does not match prompt {item['id']}")
         item.pop("candidate_output", None)
         decision, failed = review_decision(result.get("scores", {}))
         all_failed = list(failed)

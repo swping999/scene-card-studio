@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "source_record": "../case-records.json",
+  "purpose": "Recompilable Scene Cards and Prompt Manifests for the landscape-led v0.6 gallery.",
+  "cases": [
+    {
+      "case_id": "journey-taxonomy",
+      "display_name": "Journey Taxonomy",
+      "system": "journey-taxonomy",
+      "expression_profile": "source-led",
+      "story": "journey-taxonomy/story.json",
+      "story_sha256": "89b5ad7f1859c59d05bea9e5d92a15b43d014098ee0f6a8a5d1c88f6c0429d79",
+      "prompt_manifest": "journey-taxonomy/prompt-manifest.json",
+      "prompt_manifest_sha256": "565a0c65b2cc5242b913ef0ebbcaaf170d726fdf83ee0f34c1ecc33be06d3dbc",
+      "reference_output": "../after/journey-taxonomy.png"
+    },
+    {
+      "case_id": "mineral-ink-memory",
+      "display_name": "Mineral Ink Memory",
+      "system": "memory-atlas",
+      "expression_profile": "mineral-ink-memory",
+      "story": "mineral-ink-memory/story.json",
+      "story_sha256": "8ecfba5fcbdf1bba1585f939eba9ab7e931aa99c942b86b7f5f7b14ba9f5de58",
+      "prompt_manifest": "mineral-ink-memory/prompt-manifest.json",
+      "prompt_manifest_sha256": "cbfad33353ad01cf07e19f0b444b8e3eccfc639d135e3404786cbf30162ddece",
+      "reference_output": "../after/mineral-ink-memory.png"
+    },
+    {
+      "case_id": "impasto-light-study",
+      "display_name": "Impasto Light Study",
+      "system": "memory-atlas",
+      "expression_profile": "impasto-light-study",
+      "story": "impasto-light-study/story.json",
+      "story_sha256": "130eef3ac9669863da3e8c75e8771dcd4444e9dadb9c39b0a7f6fd6e4f0dcd8c",
+      "prompt_manifest": "impasto-light-study/prompt-manifest.json",
+      "prompt_manifest_sha256": "a781730aa97cbe9fa6f256c8cecc9ee351777f06b99a7933216eac1d1f4bdb45",
+      "reference_output": "../after/impasto-light-study.png"
+    },
+    {
+      "case_id": "pixel-diary",
+      "display_name": "Pixel Diary",
+      "system": "travel-journal",
+      "expression_profile": "pixel-diary",
+      "story": "pixel-diary/story.json",
+      "story_sha256": "8a267da25c3f1b9c09e7da8f0d5e71efb396b1561225eb551707ddcb29382bfd",
+      "prompt_manifest": "pixel-diary/prompt-manifest.json",
+      "prompt_manifest_sha256": "3192c23021df565e91d14959c2bc3b86da9e7e0ef719d1d2b346677bc1861d8f",
+      "reference_output": "../after/pixel-diary.png"
+    },
+    {
+      "case_id": "risograph-route",
+      "display_name": "Risograph Route",
+      "system": "journey-taxonomy",
+      "expression_profile": "risograph-route",
+      "story": "risograph-route/story.json",
+      "story_sha256": "8eabd1de512de107f3ffd7feceb7102d96a2f1d4abd0cba6fa3974eae350d050",
+      "prompt_manifest": "risograph-route/prompt-manifest.json",
+      "prompt_manifest_sha256": "76e45566e5e84595477b3ffecdae1aea50fb42da1a0ce35bba9862397ce51038",
+      "reference_output": "../after/risograph-route.png"
+    },
+    {
+      "case_id": "gouache-place-study",
+      "display_name": "Gouache Place Study",
+      "system": "memory-atlas",
+      "expression_profile": "gouache-place-study",
+      "story": "gouache-place-study/story.json",
+      "story_sha256": "5cbed94256376f3e77397ea803be295219f6d766247f246e48191b307d682396",
+      "prompt_manifest": "gouache-place-study/prompt-manifest.json",
+      "prompt_manifest_sha256": "c191b4a42354fd3ee9c6b2c102e4dec8e47face9a3f187020cc9c57b2ba69d13",
+      "reference_output": "../after/gouache-place-study.png"
+    },
+    {
+      "case_id": "cyanotype-archive",
+      "display_name": "Cyanotype Archive",
+      "system": "museum-catalogue",
+      "expression_profile": "cyanotype-archive",
+      "story": "cyanotype-archive/story.json",
+      "story_sha256": "438af2a634413c808237c262c1fd0063da22ca4c19f960049f4b1e6fb9108877",
+      "prompt_manifest": "cyanotype-archive/prompt-manifest.json",
+      "prompt_manifest_sha256": "8303ec101df80d574894d3399212d4aa1d300874e9eaded8f50c49578c576483",
+      "reference_output": "../after/cyanotype-archive.png"
+    },
+    {
+      "case_id": "paper-relief-landscape",
+      "display_name": "Paper Relief Landscape",
+      "system": "memory-atlas",
+      "expression_profile": "paper-relief-landscape",
+      "story": "paper-relief-landscape/story.json",
+      "story_sha256": "0f181f68c957c901e46013b5b193ae27a03d18009749cdaf8a87e1fcdebc137f",
+      "prompt_manifest": "paper-relief-landscape/prompt-manifest.json",
+      "prompt_manifest_sha256": "01f615eb4097b119c53e0478bc9de967d78a6327173bba492a20434fe5018c2f",
+      "reference_output": "../after/paper-relief-landscape.png"
+    },
+    {
+      "case_id": "autochrome-memory",
+      "display_name": "Autochrome Memory",
+      "system": "memory-atlas",
+      "expression_profile": "autochrome-memory",
+      "story": "autochrome-memory/story.json",
+      "story_sha256": "f8109255356f18a58c2a389742e5cfe2f51d7e29a4557a42b9cb6e2a8cbcc745",
+      "prompt_manifest": "autochrome-memory/prompt-manifest.json",
+      "prompt_manifest_sha256": "41f09d1a82458126712b5d24313ebbca1905b8b223ccbe4c1259ea92675c77a4",
+      "reference_output": "../after/autochrome-memory.png"
+    },
+    {
+      "case_id": "pixel-ink-memory",
+      "display_name": "Pixel + Ink Memory",
+      "system": "memory-atlas",
+      "expression_profile": "pixel-ink-memory",
+      "story": "pixel-ink-memory/story.json",
+      "story_sha256": "dbc170f055869ba048c9dc67959f98ed739661acd3ab5c7d4a51207e74eb3c14",
+      "prompt_manifest": "pixel-ink-memory/prompt-manifest.json",
+      "prompt_manifest_sha256": "1f0f3543f891c4d93013d6957b1353cf32c282b65695f08fffa8e439d438f90f",
+      "reference_output": "../after/pixel-ink-memory.png"
+    },
+    {
+      "case_id": "sculpted-place-diorama",
+      "display_name": "Sculpted Place Diorama",
+      "system": "journey-taxonomy",
+      "expression_profile": "sculpted-place-diorama",
+      "story": "sculpted-place-diorama/story.json",
+      "story_sha256": "018c1c10fbd0eca4d9d7ce8deccea3ca75e41c50d1d2f39adef8a1adac755169",
+      "prompt_manifest": "sculpted-place-diorama/prompt-manifest.json",
+      "prompt_manifest_sha256": "5dfcec495fa0ddc7e836ca91ba4a4acc8a5c99afcbc33fea0a711306947b43cc",
+      "reference_output": "../after/sculpted-place-diorama.png"
+    }
+  ]
+}

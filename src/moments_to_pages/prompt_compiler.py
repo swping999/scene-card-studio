@@ -12,7 +12,7 @@ from .narrative_systems import SUPPORTED_SYSTEMS, resolve_narrative_system
 from .presentation import build_presentation_contract
 from .readiness import assess_direction_readiness
 
-COMPILER_VERSION = "0.5.0"
+COMPILER_VERSION = "0.6.0"
 __all__ = ["SUPPORTED_SYSTEMS", "compile_manifest"]
 
 
@@ -172,6 +172,8 @@ def _profile_output(profile: dict[str, Any]) -> list[str]:
 
 
 def _render_medium(profile: dict[str, Any]) -> str:
+    if profile.get("output_medium"):
+        return str(profile["output_medium"])
     mode = profile.get("render_mode")
     if mode == "full-redraw":
         return "fully painted"
@@ -529,6 +531,77 @@ def _travel_journal_blocks(cards: list[SceneCard], aspect_ratio: str, profile: d
     )
 
 
+def _journey_taxonomy_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dict[str, Any]) -> PromptBlocks:
+    single = len(cards) == 1
+    subjects = [_joined(_policy_values(card)[0], Path(card.source).stem) for card in cards]
+    gestures = [_joined([card.observation.dominant_gesture], "no movement stated") for card in cards]
+    quiet_regions = [_joined(card.observation.quiet_regions, "no quiet region stated") for card in cards]
+    palette = _joined([color for card in cards for color in card.palette[:2]], "source-derived colors")
+    full_redraw = profile.get("render_mode") == "full-redraw"
+    evidence_lines = [
+        f"Source {index + 1:02d}: visible anchors {subjects[index]}; observed gesture {gestures[index]}; quiet region {quiet_regions[index]}."
+        for index in range(len(cards))
+    ]
+    return PromptBlocks(
+        subject_fidelity=[
+            f"Preserve the supplied place and all identity-bearing anchors as recognizable {'rendered' if full_redraw else 'photographic'} evidence: {'; '.join(subjects)}.",
+            "Keep people, animals, architecture, terrain contours, plants, vehicles, weather, and objects faithful wherever they are actually visible; omit categories absent from the sources.",
+            "Do not substitute generic icons, a different landscape, an invented species, or an imagined destination for observed evidence.",
+            *_profile_subject_lines(profile),
+        ],
+        transformation_policy=[
+            *[
+                line
+                for index, card in enumerate(cards)
+                for line in _transformation_lines(card, None if single else f"Source {index + 1:02d}")
+            ],
+            *_profile_policy_lines(profile),
+        ],
+        narrative_intent=[
+            "Read the supplied journey image as a visual taxonomy of one place: distinguish the dominant place anchor from supporting terrain, weather, living subjects, objects, materials, and movement evidence only when those categories are visible.",
+            "The mechanism is semantic classification, not decoration: every secondary study must explain what makes this particular place recognizable.",
+            *evidence_lines,
+            *_multi_card_context(cards),
+        ],
+        composition=[
+            "Create one integrated full-frame image in which visible semantic roles are differentiated inside the original perspective: movement may become a directional print rhythm, landmark a precise structural anchor, water a translucent tonal field, vegetation a tactile painted mass, weather a broad atmospheric wash, and material evidence a close-grained surface passage.",
+            "Treat those examples as roles, not mandatory decoration: assign a distinct but compatible visual register only to categories supported by the Scene Cards, and make every register interlock at real scene boundaries.",
+            "Organize categories through scale, depth, edge behavior, and shared ground along one clear visual path; do not create subordinate panels, equal cards, a top-and-bottom duplicate, a vertical sticker column, or a repeated source inset.",
+            "Let the Scene Card layout emphasis choose the dominant anchor; use only categories that have at least one visible source-backed element.",
+            *profile["composition"],
+        ],
+        lighting=[
+            f"Use the source palette ({palette}) and one coherent light model across the dominant scene and every subordinate study.",
+            *profile["lighting"],
+        ],
+        material=[
+            *profile["material"],
+            "Material transitions must occur at source-backed boundaries, clarify semantic role and depth, and remain part of one continuous place; they may not become detachable stickers, unrelated swatches, or a photographic image with decorative overlays.",
+        ],
+        spatial_relationships=[
+            "Retain source foreground-to-distance order, movement direction, and landmark relationships in the dominant view.",
+            "Make classification legible through adjacent material transitions and shared contours inside the place itself, never through connector lines, pins, arrows, detached studies, or labels.",
+            "Keep every relationship inside this one source; do not imply an unseen route or companion image."
+            if single
+            else "Preserve source order unless the Scene Cards explicitly authorize reordering; do not invent a route between unrelated places.",
+        ],
+        text_strategy=[
+            "Generate no captions, category names, coordinates, dates, map labels, handwriting, logos, watermarks, or interface text inside the image.",
+            "Apply user-supplied metadata later through the deterministic presentation_contract.",
+        ],
+        exclusions=[
+            "No blue scrapbook board, white sticker outlines, repeated top-and-bottom photo, thumbnail strip, vertical decal stack, boxed grid, specimen UI, or copied caption placement.",
+            "No generic travel poster, fabricated souvenirs, fake tickets, invented map, decorative arrows, or named-artist, named-studio, named-publication, or reference-image imitation.",
+            *_profile_exclusions(profile),
+        ],
+        output=[
+            f"Return one integrated {_render_medium(profile)} PNG Journey Taxonomy artifact at exactly {aspect_ratio}.",
+            "At first glance it must read as one beautiful directed place image; at second glance its visible taxonomy must become legible without text.",
+            *_profile_output(profile),
+        ],
+    )
+
+
 def compile_manifest(
     cards: list[SceneCard],
     system: str,
@@ -585,6 +658,8 @@ def compile_manifest(
             blocks = _memory_atlas_blocks(cards, ratio, profile)
         elif system == "family-archive":
             blocks = _family_archive_blocks(cards, ratio, profile)
+        elif system == "journey-taxonomy":
+            blocks = _journey_taxonomy_blocks(cards, ratio, profile)
         else:
             blocks = _travel_journal_blocks(cards, ratio, profile)
         item = {

@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.6.0",
+  "source_mode": "single-photo",
+  "system": "memory-atlas",
+  "system_display_name": "Memory Atlas",
+  "expression_profile": "pixel-ink-memory",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour",
+    "watercolor-chronicle",
+    "full-watercolor-memory",
+    "dream-logic",
+    "mineral-ink-memory",
+    "impasto-light-study",
+    "pixel-diary",
+    "risograph-route",
+    "gouache-place-study",
+    "paper-relief-landscape",
+    "sculpted-place-diorama",
+    "autochrome-memory",
+    "pixel-ink-memory"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/empty-market-lane.png",
+          "sha256": "9e2f18568bb7b00d3fad734d014d55628c3e5e78f4f2c34b2eedb263a06740ca"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place or subject as one recognizable painted anchor: empty scene, lane perspective, awnings, crates, bicycles, wet ground.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
+          "Preserve identity, silhouette, architecture, terrain, object count, movement direction, and source depth through a stable shared shape map."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — empty scene, lane perspective, awnings, crates, bicycles, wet ground.",
+          "MAY TRANSFORM — near surfaces into pixels, distant surfaces into ink, paper ground, crop.",
+          "MUST REMOVE — split screen, glitch, random splash, UI, photographic pixels, text.",
+          "Fuse only two material systems—intentional pixel clusters for near evidence and mineral-ink diffusion for memory distance—without changing the depicted event or place."
+        ],
+        "narrative_intent": [
+          "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
+          "Source / moment: intent let near evidence stay crisp while distant memory dissolves; tone layered, nocturnal; emphasis pixel foreground flowing into ink-wash distance; director note Pixel and ink must share one palette, light, composition, and depth transition."
+        ],
+        "composition": [
+          "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
+          "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
+          "Assign crisp pixel structure to identity-bearing anchors and let ink washes carry atmosphere and distance; transitions must follow depth, not arbitrary collage masks."
+        ],
+        "lighting": [
+          "Use the combined source palette (#1C201A, #62594E) without flattening every painted passage into one identical color treatment.",
+          "Use one source-derived palette and one light direction across both media so the fusion reads as a single image."
+        ],
+        "material": [
+          "Use deliberate pixel clusters, restrained dithering, absorbent ink blooms, paper tooth, and a narrow transitional band where the two media interlock.",
+          "Every added mark must perform a Scene Card-supported spatial function rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation.",
+          "No split-screen, half-and-half effect, glitch overlay, game UI, pasted photograph, random ink splash, named-artist or named-game imitation, or mixed lighting models."
+        ],
+        "output": [
+          "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
+          "The supplied place or subject must remain recognizable.",
+          "Experimental profile: accept only when the two media share one composition, palette, and depth logic."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: empty scene, lane perspective, awnings, crates, bicycles, wet ground.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve identity, silhouette, architecture, terrain, object count, movement direction, and source depth through a stable shared shape map.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — empty scene, lane perspective, awnings, crates, bicycles, wet ground.\n- MAY TRANSFORM — near surfaces into pixels, distant surfaces into ink, paper ground, crop.\n- MUST REMOVE — split screen, glitch, random splash, UI, photographic pixels, text.\n- Fuse only two material systems—intentional pixel clusters for near evidence and mineral-ink diffusion for memory distance—without changing the depicted event or place.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent let near evidence stay crisp while distant memory dissolves; tone layered, nocturnal; emphasis pixel foreground flowing into ink-wash distance; director note Pixel and ink must share one palette, light, composition, and depth transition.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Assign crisp pixel structure to identity-bearing anchors and let ink washes carry atmosphere and distance; transitions must follow depth, not arbitrary collage masks.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#1C201A, #62594E) without flattening every painted passage into one identical color treatment.\n- Use one source-derived palette and one light direction across both media so the fusion reads as a single image.\n\nMATERIAL AND SURFACE\n- Use deliberate pixel clusters, restrained dithering, absorbent ink blooms, paper tooth, and a narrow transitional band where the two media interlock.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No split-screen, half-and-half effect, glitch overlay, game UI, pasted photograph, random ink splash, named-artist or named-game imitation, or mixed lighting models.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- Experimental profile: accept only when the two media share one composition, palette, and depth logic.",
+      "reference_output": {
+        "path": "../../after/pixel-ink-memory.png",
+        "sha256": "4448ae5f23cc115e6ab349ba7b6be44e7cb5bbf2044dbb2b592e73be01bd9f77"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/empty-market-lane.png",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Memory Atlas",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "memory-atlas-01",
+        "caption": "PIXEL + INK MEMORY",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/empty-market-lane.png",
+        "sha256": "9e2f18568bb7b00d3fad734d014d55628c3e5e78f4f2c34b2eedb263a06740ca"
+      }
+    ]
+  }
+}

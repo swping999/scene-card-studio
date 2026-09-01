@@ -1,6 +1,6 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.5.0",
+  "compiler_version": "0.6.0",
   "source_mode": "single-photo",
   "system": "fashion-editorial",
   "system_display_name": "Fashion Editorial",

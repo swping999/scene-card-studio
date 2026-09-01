@@ -72,22 +72,23 @@ def test_public_text_has_no_local_user_paths_or_high_confidence_credentials():
 
 
 def test_gallery_scene_cards_and_manifests_are_reproducible():
-    gallery = ROOT / "examples/cases/v0.4-gallery"
-    subprocess.run(
-        [sys.executable, str(gallery / "build_evidence.py"), "--check"],
-        cwd=ROOT,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    index = json.loads((gallery / "evidence/index.json").read_text())
-    assert len(index["cases"]) == 13
-    for case in index["cases"]:
-        story_path = gallery / "evidence" / case["story"]
-        manifest_path = gallery / "evidence" / case["prompt_manifest"]
-        story = json.loads(story_path.read_text())
-        manifest = json.loads(manifest_path.read_text())
-        assert len(story) == 1
-        assert manifest["generation_ready"] is True
-        assert manifest["source_mode"] == "single-photo"
-        assert manifest["prompts"][0]["reference_output"]["sha256"]
+    for gallery_name, expected_count in (("v0.4-gallery", 13), ("v0.6-gallery", 11)):
+        gallery = ROOT / "examples/cases" / gallery_name
+        subprocess.run(
+            [sys.executable, str(gallery / "build_evidence.py"), "--check"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        index = json.loads((gallery / "evidence/index.json").read_text())
+        assert len(index["cases"]) == expected_count
+        for case in index["cases"]:
+            story_path = gallery / "evidence" / case["story"]
+            manifest_path = gallery / "evidence" / case["prompt_manifest"]
+            story = json.loads(story_path.read_text())
+            manifest = json.loads(manifest_path.read_text())
+            assert len(story) == 1
+            assert manifest["generation_ready"] is True
+            assert manifest["source_mode"] == "single-photo"
+            assert manifest["prompts"][0]["reference_output"]["sha256"]

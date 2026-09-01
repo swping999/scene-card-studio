@@ -1,12 +1,13 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.5.0",
+  "compiler_version": "0.6.0",
   "source_mode": "single-photo",
   "system": "field-log",
   "system_display_name": "Field Log",
   "expression_profile": "source-led",
   "available_expression_profiles": [
-    "source-led"
+    "source-led",
+    "cyanotype-archive"
   ],
   "story": "story.json",
   "source_base": "story-directory",

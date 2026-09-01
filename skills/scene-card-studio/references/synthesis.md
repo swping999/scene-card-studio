@@ -19,7 +19,7 @@ An After image must change the visual narrative, not merely place the same photo
 6. Bind every generated file to its Prompt ID with `scene-card-studio bind-outputs`; reject candidates whose decoded MIME, dimensions, or aspect ratio violate `output_contract`.
 7. Inspect each frame with the five-dimension rubric in `prompt-compiler.md`; for sequence systems, also inspect subject continuity, light/color continuity, rhythm, and narrative arc.
 8. Review only bound `candidate_output` records; never treat benchmark `reference_output` as a reviewed candidate.
-9. Accept every prompt that passes. For failures, create a hash-bound assessment, run `scene-card-studio retry`, regenerate only `retry_prompt_ids`, bind the post-retry candidates to the Retry Manifest, and review that new Render Manifest.
+9. Accept every prompt that passes. For failures, create a bound form with `scene-card-studio review-template`, fill the scores after inspecting the current files, and finalize it with `scene-card-studio review`. Only a finalized review whose decision is `retry` may enter `scene-card-studio retry`; regenerate only `retry_prompt_ids`, bind the post-retry candidates to the Retry Manifest, and review that new Render Manifest.
 10. Keep generated pixels free of visible text. After review, use `scene-card-studio present` to apply only supplied metadata through the deterministic overlay renderer.
 
 ## Memory Atlas
@@ -49,6 +49,13 @@ An After image must change the visual narrative, not merely place the same photo
 - Give each source object its own continuous photographic scene.
 - Remove accidental clutter and build hierarchy through scale, negative space, light, shadow, and material rhythm.
 - Avoid decorative prop styling, abstract overlays, fake magazine mastheads, generic luxury branding, and multi-object collages.
+
+## Journey Taxonomy
+
+- Begin with visible Scene Card evidence and omit empty categories rather than filling the frame with generic travel symbols.
+- Keep one dominant place image. Differentiate only visible semantic roles inside the original perspective—for example movement through directional print rhythm, water through a translucent tonal field, vegetation through a tactile painted mass, and weather through an atmospheric wash. Make the media interlock at real scene boundaries rather than becoming detached studies.
+- Do not duplicate the source as a second overview, draw connector lines, place map pins, arrange white-outlined stickers, or copy a reference's background, column, caption, or top/bottom structure.
+- The result must be beautiful as one directed image before its classification mechanism is noticed.
 
 ## Museum, Travel, Street, and Fashion
 

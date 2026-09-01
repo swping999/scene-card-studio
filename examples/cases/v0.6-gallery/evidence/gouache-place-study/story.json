@@ -1,0 +1,78 @@
+[
+  {
+    "source": "../../before/highland-observatory.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#A89A8D",
+      "#A4B2D7",
+      "#CCD3E0",
+      "#9F8B77",
+      "#B6C5E2"
+    ],
+    "brightness": 0.733,
+    "saturation": 0.186,
+    "orientation": "portrait",
+    "caption": "GOUACHE PLACE STUDY",
+    "observation": {
+      "subjects": [
+        "weathered observatory",
+        "low dome",
+        "red scooter",
+        "blue bucket",
+        "dry highland",
+        "distant ridge"
+      ],
+      "dominant_gesture": "white dome sits alone above a broad gravel foreground",
+      "quiet_regions": [
+        "pale sky",
+        "dry ground"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "describe an isolated highland structure through matte shape and color",
+      "emotional_tone": [
+        "dry",
+        "clear"
+      ],
+      "confidence": 0.96,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Simplify by opaque value groups while keeping wear and the two small color anchors.",
+      "layout_emphasis": "white dome, red scooter, blue bucket, and dusty planes"
+    },
+    "transformation": {
+      "must_preserve": [
+        "dome and ribs",
+        "building geometry",
+        "door",
+        "window",
+        "scooter",
+        "bucket",
+        "ridge",
+        "worn plaster"
+      ],
+      "may_transform": [
+        "all surfaces into gouache",
+        "crop",
+        "shape grouping",
+        "pencil underdrawing"
+      ],
+      "must_remove": [
+        "utility wire",
+        "photographic pixels",
+        "decorative outlines",
+        "text"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

@@ -1,5 +1,6 @@
 {
-  "manifest_sha256": "533fc3a8153d60aa1faa5e594dbfe1239bd58ae2025984ba01230a5e542d372d",
+  "schema_version": "1.0",
+  "manifest_sha256": "68f6afd3c8a824947d425634f5e13264acb918ab7973859c6908456b73c1b9cf",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution visual inspection against the compiled prompts and source references.",
   "reviewed_at": "2026-08-09T11:57:00Z",
@@ -14,7 +15,9 @@
         "system_distinctiveness": 5,
         "artifact_control": 5
       },
-      "notes": "Accepted: the mug remains ordinary and recognizable while clutter gives way to quiet light and scale."
+      "notes": "Accepted: the mug remains ordinary and recognizable while clutter gives way to quiet light and scale.",
+      "decision": "accept",
+      "failed_dimensions": []
     },
     {
       "prompt_id": "minimal-editorial-02",
@@ -26,7 +29,9 @@
         "system_distinctiveness": 5,
         "artifact_control": 5
       },
-      "notes": "Accepted: chipped blue paint and chair structure remain the specific material anchor."
+      "notes": "Accepted: chipped blue paint and chair structure remain the specific material anchor.",
+      "decision": "accept",
+      "failed_dimensions": []
     },
     {
       "prompt_id": "minimal-editorial-03",
@@ -38,7 +43,16 @@
         "system_distinctiveness": 5,
         "artifact_control": 5
       },
-      "notes": "Accepted: linen fibers and folds carry the frame without graphic overlays or decorative layout."
+      "notes": "Accepted: linen fibers and folds carry the frame without graphic overlays or decorative layout.",
+      "decision": "accept",
+      "failed_dimensions": []
     }
-  ]
+  ],
+  "artifact_type": "aesthetic-review",
+  "review_version": "1.0",
+  "decision": "accept",
+  "failed_prompt_ids": [],
+  "sequence_decision": "accept",
+  "sequence_failed_dimensions": [],
+  "retry_prompt_ids": []
 }

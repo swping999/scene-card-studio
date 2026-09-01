@@ -82,7 +82,7 @@
         "sha256": "eb73b3c8730978822096b0b1df55e77486416fe95da7b753a01a3f1111e2562e"
       },
       "candidate_output": {
-        "path": "examples/cases/cinematic-storyboard/photos/raw-bus-stop.png",
+        "path": "../photos/raw-bus-stop.png",
         "sha256": "e64251766ed818abea6dfc99384e44cdbde53a52fc5d74ea34f8fe5b42f74980",
         "mime_type": "image/png",
         "width": 1536,
@@ -162,7 +162,7 @@
         "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3"
       },
       "candidate_output": {
-        "path": "examples/cases/cinematic-storyboard/outputs/after-diner.png",
+        "path": "../outputs/after-diner.png",
         "sha256": "cbf685f287007edf9898a2995ebc14e5fc7a458840ab33dd429e17374dda59f3",
         "mime_type": "image/png",
         "width": 1536,
@@ -242,7 +242,7 @@
         "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d"
       },
       "candidate_output": {
-        "path": "examples/cases/cinematic-storyboard/outputs/after-taxi.png",
+        "path": "../outputs/after-taxi.png",
         "sha256": "9615c817097cffff5238e77d9394532db5fff15d376992525dd05b10dafffd9d",
         "mime_type": "image/png",
         "width": 1536,
@@ -296,5 +296,6 @@
   "artifact_type": "render-manifest",
   "render_manifest_version": "1.0",
   "parent_manifest_sha256": "8d0a032eec4cfe3f8b7b52977ac120186400228f1b32c3b47561756dd81b0054",
+  "candidate_path_base": "render-manifest-directory",
   "bound_at": "2026-08-09T11:56:49.824497Z"
 }

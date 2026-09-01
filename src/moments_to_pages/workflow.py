@@ -30,6 +30,7 @@ WORKPRINT_STYLES = {
     "field-log": "field-log",
     "museum-catalogue": "field-log",
     "travel-journal": "memory-atlas",
+    "journey-taxonomy": "memory-atlas",
     "street-reportage": "field-log",
     "fashion-editorial": "editorial-minimal",
 }
@@ -100,13 +101,16 @@ def select_direct_route(
     alternatives = [item for item in recommendations if item.system != selected_system]
     nearest = alternatives[0] if alternatives else None
     score_gap = selected_recommendation.score - nearest.score if nearest else 1.0
-    ambiguous = bool(
+    near_tie = bool(
         system == "auto"
         and nearest
         and selected_recommendation.score >= .8
         and nearest.score >= .8
         and abs(score_gap) < .06
     )
+    low_confidence = system == "auto" and selected_recommendation.score < .8
+    needs_route_confirmation = near_tie or low_confidence
+    confirmation_reason = "near-tie" if near_tie else "low-system-confidence" if low_confidence else None
     return {
         "system": selected_system,
         "system_selection": system_selection,
@@ -115,7 +119,8 @@ def select_direct_route(
         "profile_reason": profile_recommendation.reason if expression_profile == "auto" else "The user selected this compatible Expression Profile.",
         "system_score": selected_recommendation.score,
         "score_gap_to_nearest": round(score_gap, 3),
-        "needs_route_confirmation": ambiguous,
+        "needs_route_confirmation": needs_route_confirmation,
+        "route_confirmation_reason": confirmation_reason,
         "recommendations": [asdict(item) for item in recommendations[:3]],
     }
 

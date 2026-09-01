@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.6.0",
+  "source_mode": "single-photo",
+  "system": "journey-taxonomy",
+  "system_display_name": "Journey Taxonomy",
+  "expression_profile": "source-led",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-chronicle",
+    "mineral-ink-memory",
+    "impasto-light-study",
+    "pixel-diary",
+    "risograph-route",
+    "gouache-place-study",
+    "paper-relief-landscape",
+    "sculpted-place-diorama",
+    "autochrome-memory",
+    "pixel-ink-memory"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "journey-taxonomy-01",
+      "mode": "semantic-place-taxonomy",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/salt-marsh-boardwalk.png",
+          "sha256": "8a246374b6c91b623af4b9a52576571c523d5a43a89329991edf47844b5cc8d5"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place and all identity-bearing anchors as recognizable photographic evidence: boardwalk, hut, tidal channels, reed islands, sea horizon, blue post, overcast weather.",
+          "Keep people, animals, architecture, terrain contours, plants, vehicles, weather, and objects faithful wherever they are actually visible; omit categories absent from the sources.",
+          "Do not substitute generic icons, a different landscape, an invented species, or an imagined destination for observed evidence."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — boardwalk, hut, tidal channels, reed islands, sea horizon, blue post, overcast weather.",
+          "MAY TRANSFORM — crop, tonal hierarchy, graphite contour, mineral paper texture, material scale studies.",
+          "MUST REMOVE — dead edge clutter, inset photo, sticker outlines, connector lines, labels."
+        ],
+        "narrative_intent": [
+          "Read the supplied journey image as a visual taxonomy of one place: distinguish the dominant place anchor from supporting terrain, weather, living subjects, objects, materials, and movement evidence only when those categories are visible.",
+          "The mechanism is semantic classification, not decoration: every secondary study must explain what makes this particular place recognizable.",
+          "Source 01: visible anchors boardwalk, hut, tidal channels, reed islands, sea horizon, blue post, overcast weather; observed gesture boardwalk crosses tidal channels toward the hut; quiet region cloud field, silver water.",
+          "Source / moment: intent read one coastal place through movement, landmark, water, vegetation, weather, and material; tone quiet, elemental; emphasis boardwalk path, hut landmark, and nested tidal channels; director note Integrate source-backed categories through scale and material transitions, never stickers or repeated photographs."
+        ],
+        "composition": [
+          "Create one integrated full-frame image in which visible semantic roles are differentiated inside the original perspective: movement may become a directional print rhythm, landmark a precise structural anchor, water a translucent tonal field, vegetation a tactile painted mass, weather a broad atmospheric wash, and material evidence a close-grained surface passage.",
+          "Treat those examples as roles, not mandatory decoration: assign a distinct but compatible visual register only to categories supported by the Scene Cards, and make every register interlock at real scene boundaries.",
+          "Organize categories through scale, depth, edge behavior, and shared ground along one clear visual path; do not create subordinate panels, equal cards, a top-and-bottom duplicate, a vertical sticker column, or a repeated source inset.",
+          "Let the Scene Card layout emphasis choose the dominant anchor; use only categories that have at least one visible source-backed element.",
+          "Build one semantic place field from visible evidence, grouping observed elements by role rather than by decorative similarity."
+        ],
+        "lighting": [
+          "Use the source palette (#A9B5CB, #969AA3) and one coherent light model across the dominant scene and every subordinate study.",
+          "Preserve source time, weather, and color relationships across the dominant scene and its material studies."
+        ],
+        "material": [
+          "Keep every extracted visual cue traceable to a supplied person, place, object, texture, plant, animal, weather condition, or route feature.",
+          "Material transitions must occur at source-backed boundaries, clarify semantic role and depth, and remain part of one continuous place; they may not become detachable stickers, unrelated swatches, or a photographic image with decorative overlays."
+        ],
+        "spatial_relationships": [
+          "Retain source foreground-to-distance order, movement direction, and landmark relationships in the dominant view.",
+          "Make classification legible through adjacent material transitions and shared contours inside the place itself, never through connector lines, pins, arrows, detached studies, or labels.",
+          "Keep every relationship inside this one source; do not imply an unseen route or companion image."
+        ],
+        "text_strategy": [
+          "Generate no captions, category names, coordinates, dates, map labels, handwriting, logos, watermarks, or interface text inside the image.",
+          "Apply user-supplied metadata later through the deterministic presentation_contract."
+        ],
+        "exclusions": [
+          "No blue scrapbook board, white sticker outlines, repeated top-and-bottom photo, thumbnail strip, vertical decal stack, boxed grid, specimen UI, or copied caption placement.",
+          "No generic travel poster, fabricated souvenirs, fake tickets, invented map, decorative arrows, or named-artist, named-studio, named-publication, or reference-image imitation."
+        ],
+        "output": [
+          "Return one integrated photographic PNG Journey Taxonomy artifact at exactly 2:3.",
+          "At first glance it must read as one beautiful directed place image; at second glance its visible taxonomy must become legible without text."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place and all identity-bearing anchors as recognizable photographic evidence: boardwalk, hut, tidal channels, reed islands, sea horizon, blue post, overcast weather.\n- Keep people, animals, architecture, terrain contours, plants, vehicles, weather, and objects faithful wherever they are actually visible; omit categories absent from the sources.\n- Do not substitute generic icons, a different landscape, an invented species, or an imagined destination for observed evidence.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — boardwalk, hut, tidal channels, reed islands, sea horizon, blue post, overcast weather.\n- MAY TRANSFORM — crop, tonal hierarchy, graphite contour, mineral paper texture, material scale studies.\n- MUST REMOVE — dead edge clutter, inset photo, sticker outlines, connector lines, labels.\n\nNARRATIVE INTENT\n- Read the supplied journey image as a visual taxonomy of one place: distinguish the dominant place anchor from supporting terrain, weather, living subjects, objects, materials, and movement evidence only when those categories are visible.\n- The mechanism is semantic classification, not decoration: every secondary study must explain what makes this particular place recognizable.\n- Source 01: visible anchors boardwalk, hut, tidal channels, reed islands, sea horizon, blue post, overcast weather; observed gesture boardwalk crosses tidal channels toward the hut; quiet region cloud field, silver water.\n- Source / moment: intent read one coastal place through movement, landmark, water, vegetation, weather, and material; tone quiet, elemental; emphasis boardwalk path, hut landmark, and nested tidal channels; director note Integrate source-backed categories through scale and material transitions, never stickers or repeated photographs.\n\nCOMPOSITION\n- Create one integrated full-frame image in which visible semantic roles are differentiated inside the original perspective: movement may become a directional print rhythm, landmark a precise structural anchor, water a translucent tonal field, vegetation a tactile painted mass, weather a broad atmospheric wash, and material evidence a close-grained surface passage.\n- Treat those examples as roles, not mandatory decoration: assign a distinct but compatible visual register only to categories supported by the Scene Cards, and make every register interlock at real scene boundaries.\n- Organize categories through scale, depth, edge behavior, and shared ground along one clear visual path; do not create subordinate panels, equal cards, a top-and-bottom duplicate, a vertical sticker column, or a repeated source inset.\n- Let the Scene Card layout emphasis choose the dominant anchor; use only categories that have at least one visible source-backed element.\n- Build one semantic place field from visible evidence, grouping observed elements by role rather than by decorative similarity.\n\nLIGHTING AND COLOR\n- Use the source palette (#A9B5CB, #969AA3) and one coherent light model across the dominant scene and every subordinate study.\n- Preserve source time, weather, and color relationships across the dominant scene and its material studies.\n\nMATERIAL AND SURFACE\n- Keep every extracted visual cue traceable to a supplied person, place, object, texture, plant, animal, weather condition, or route feature.\n- Material transitions must occur at source-backed boundaries, clarify semantic role and depth, and remain part of one continuous place; they may not become detachable stickers, unrelated swatches, or a photographic image with decorative overlays.\n\nSPATIAL RELATIONSHIPS\n- Retain source foreground-to-distance order, movement direction, and landmark relationships in the dominant view.\n- Make classification legible through adjacent material transitions and shared contours inside the place itself, never through connector lines, pins, arrows, detached studies, or labels.\n- Keep every relationship inside this one source; do not imply an unseen route or companion image.\n\nTEXT AND LABELS\n- Generate no captions, category names, coordinates, dates, map labels, handwriting, logos, watermarks, or interface text inside the image.\n- Apply user-supplied metadata later through the deterministic presentation_contract.\n\nEXCLUSIONS\n- No blue scrapbook board, white sticker outlines, repeated top-and-bottom photo, thumbnail strip, vertical decal stack, boxed grid, specimen UI, or copied caption placement.\n- No generic travel poster, fabricated souvenirs, fake tickets, invented map, decorative arrows, or named-artist, named-studio, named-publication, or reference-image imitation.\n\nOUTPUT\n- Return one integrated photographic PNG Journey Taxonomy artifact at exactly 2:3.\n- At first glance it must read as one beautiful directed place image; at second glance its visible taxonomy must become legible without text.",
+      "reference_output": {
+        "path": "../../after/journey-taxonomy.png",
+        "sha256": "acb08cae3f48fdb67e5d14b97a21e7600b7a71b0cb922d3a4e0f4c961eefe892"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/salt-marsh-boardwalk.png",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Journey Taxonomy",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date",
+      "source_note"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "journey-taxonomy-01",
+        "caption": "JOURNEY TAXONOMY",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location",
+      "source_note"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/salt-marsh-boardwalk.png",
+        "sha256": "8a246374b6c91b623af4b9a52576571c523d5a43a89329991edf47844b5cc8d5"
+      }
+    ]
+  }
+}

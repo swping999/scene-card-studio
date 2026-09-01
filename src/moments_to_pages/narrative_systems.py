@@ -51,6 +51,12 @@ NARRATIVE_SYSTEMS: dict[str, dict[str, Any]] = {
         "artifact_mode": "journey-synthesis",
         "metadata_fields": ("caption", "location", "date", "source_note"),
     },
+    "journey-taxonomy": {
+        "display_name": "Journey Taxonomy",
+        "prompt_mode": "synthesis",
+        "artifact_mode": "semantic-place-taxonomy",
+        "metadata_fields": ("caption", "location", "date", "source_note"),
+    },
     "street-reportage": {
         "display_name": "Street Reportage",
         "prompt_mode": "per-source",

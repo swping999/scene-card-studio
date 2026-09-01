@@ -36,7 +36,11 @@ Each prompt contains:
 9. exclusions;
 10. output contract and format.
 
-With one Scene Card, every system emits exactly one standalone prompt, assigns `source_mode: single-photo`, and omits sequence continuity or invented adjacent scenes. With multiple Scene Cards, Cinematic Sequence, Quiet Editorial, Editorial Rhythm, Field Log, Museum Catalogue, Street Reportage, and Fashion Editorial emit one prompt per source and assign `multi-photo-per-source`; Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt and assign `multi-photo-synthesis`. Sequence systems include a shared continuity contract only when more than one source is present.
+With one Scene Card, every system emits exactly one standalone prompt, assigns `source_mode: single-photo`, and omits sequence continuity or invented adjacent scenes. With multiple Scene Cards, Cinematic Sequence, Quiet Editorial, Editorial Rhythm, Field Log, Museum Catalogue, Street Reportage, and Fashion Editorial emit one prompt per source and assign `multi-photo-per-source`; Memory Atlas, Family Chronicle, Travel Journal, and Journey Taxonomy emit one synthesis prompt and assign `multi-photo-synthesis`. Sequence systems include a shared continuity contract only when more than one source is present.
+
+For Journey Taxonomy, classification is a narrative mechanism, not a scrapbook layout. Every visible category must be supported by the Scene Cards. The compiled exclusions reject duplicated overview photos, blue sticker boards, white cutout outlines, connector lines, equal cards, copied caption placement, and fabricated travel objects.
+
+For full-redraw Profiles, review material coherence as part of `system_distinctiveness` and `artifact_control`: watercolor cannot retain photographic skin; pixel work must use one pixel scale; risograph must use a limited overprint logic; paper relief needs one physical light model; mixed pixel-and-ink work must share palette and depth.
 
 Every Manifest also includes a `presentation_contract`. Generated images must contain no visible typography. After binding candidate outputs, apply only supplied Scene Card metadata with:
 

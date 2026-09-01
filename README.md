@@ -39,11 +39,11 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 | --- | --- |
 | Input | One photograph or a related photo sequence |
 | Direction | Observable evidence → editable interpretation → explicit art direction |
-| Visual vocabulary | 10 Narrative Systems + 8 replaceable Expression Profiles |
+| Visual vocabulary | 11 Narrative Systems + 18 replaceable Expression Profiles |
 | Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
 | Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
 
-**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#v050--systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
+**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#current-systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
 ### One photo or many
 
@@ -54,6 +54,80 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 Check compatible combinations with `scene-card-studio profiles`. The compiler records `single-photo`, `multi-photo-per-source`, or `multi-photo-synthesis` in every Manifest so downstream tools cannot silently change the requested source mode.
 
 ## Before / After
+
+### Landscape-led expansion
+
+These new cases deliberately favor places and objects over portraits. Each Before is a newly generated, ordinary source image; each After materially rebuilds the same evidence through a distinct narrative or material system. The opening Journey Taxonomy case classifies a place by movement, landmark, water, vegetation, weather, and material—without copying the supplied social reference's palette, repeated photograph, sticker column, connector lines, or caption layout.
+
+#### Journey Taxonomy
+
+| Before · ordinary salt-marsh view | After · one semantic place field, not a sticker board |
+| --- | --- |
+| ![Ordinary salt-marsh boardwalk](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![Journey Taxonomy landscape](examples/cases/v0.6-gallery/after/journey-taxonomy.png) |
+
+#### Mineral Ink Memory
+
+| Before · cluttered winter bridge | After · continuous mineral pigment and ink |
+| --- | --- |
+| ![Ordinary winter stone bridge](examples/cases/v0.6-gallery/before/stone-bridge.png) | ![Mineral ink bridge memory](examples/cases/v0.6-gallery/after/mineral-ink-memory.png) |
+
+#### Impasto Light Study
+
+| Before · flat overcast lake | After · light organized through physical paint depth |
+| --- | --- |
+| ![Ordinary mountain-lake snapshot](examples/cases/v0.6-gallery/before/mountain-lake.png) | ![Impasto mountain-lake light study](examples/cases/v0.6-gallery/after/impasto-light-study.png) |
+
+#### Pixel Diary
+
+| Before · empty market lane | After · one authored pixel grid and depth system |
+| --- | --- |
+| ![Ordinary empty market lane](examples/cases/v0.6-gallery/before/empty-market-lane.png) | ![Pixel diary market lane](examples/cases/v0.6-gallery/after/pixel-diary.png) |
+
+#### Risograph Route
+
+| Before · literal route through a marsh | After · limited-ink route rhythm |
+| --- | --- |
+| ![Ordinary salt-marsh route](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![Risograph route print](examples/cases/v0.6-gallery/after/risograph-route.png) |
+
+#### Gouache Place Study
+
+| Before · harsh highland snapshot | After · opaque matte place painting |
+| --- | --- |
+| ![Ordinary highland observatory](examples/cases/v0.6-gallery/before/highland-observatory.png) | ![Gouache observatory place study](examples/cases/v0.6-gallery/after/gouache-place-study.png) |
+
+#### Cyanotype Archive
+
+| Before · messy field desk | After · evidence-bound contact-print study |
+| --- | --- |
+| ![Ordinary field objects on a desk](examples/cases/v0.6-gallery/before/field-desk.png) | ![Cyanotype field-object archive](examples/cases/v0.6-gallery/after/cyanotype-archive.png) |
+
+#### Paper Relief Landscape
+
+| Before · flat winter terrain | After · one physically coherent paper relief |
+| --- | --- |
+| ![Ordinary stone bridge and terraces](examples/cases/v0.6-gallery/before/stone-bridge.png) | ![Cut-paper relief landscape](examples/cases/v0.6-gallery/after/paper-relief-landscape.png) |
+
+#### Autochrome Memory
+
+| Before · casual lake stop | After · restrained early-color material memory |
+| --- | --- |
+| ![Ordinary mountain lake and boat](examples/cases/v0.6-gallery/before/mountain-lake.png) | ![Autochrome-inspired lake memory](examples/cases/v0.6-gallery/after/autochrome-memory.png) |
+
+#### Pixel + Ink Memory · experimental
+
+| Before · one photographic surface | After · near evidence in pixels, distance in ink |
+| --- | --- |
+| ![Ordinary empty market lane](examples/cases/v0.6-gallery/before/empty-market-lane.png) | ![Pixel and ink market memory](examples/cases/v0.6-gallery/after/pixel-ink-memory.png) |
+
+#### Sculpted Place Diorama · 3D
+
+| Before · flat landscape photograph | After · physical miniature topology and real volume |
+| --- | --- |
+| ![Ordinary salt-marsh boardwalk](examples/cases/v0.6-gallery/before/salt-marsh-boardwalk.png) | ![Sculpted three-dimensional salt-marsh diorama](examples/cases/v0.6-gallery/after/sculpted-place-diorama.png) |
+
+[Inspect the 11 Scene Cards](examples/cases/v0.6-gallery/case-records.json) · [Open the recompilable evidence index](examples/cases/v0.6-gallery/evidence/index.json) · [Read the originality and case notes](examples/cases/v0.6-gallery/README.md)
+
+## Previous v0.4 Before / After
 
 Every Before below is a newly generated, deliberately unpolished phone-style source made for this repository. Every After is a materially redirected image of that source—not the same image inside a border, contact sheet, or decorative collage. The people are fictional AI-generated subjects.
 
@@ -210,9 +284,9 @@ Scene Cards explicitly separate visible evidence from interpretation:
 
 The distinction prevents inferred meaning from being presented as photographic fact. Automatic analysis remains conservative, and every Scene Card decision can be edited before prompt compilation.
 
-## v0.5.0 · Systems, Profiles, and deterministic typography
+## Current systems, Profiles, and deterministic typography
 
-The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Ten Narrative Systems are supported. The system defines how the story is read; the Profile defines how that mechanism is visually expressed. `source-led` remains the default.
+The compiler turns Scene Card evidence, one Narrative System, and one replaceable Expression Profile into a versioned JSON generation contract. Eleven Narrative Systems are supported. The system defines how the story is read; the Profile defines how that mechanism is visually expressed. `source-led` remains the default.
 
 | Narrative System | Display name | Reading mechanism |
 | --- | --- | --- |
@@ -224,10 +298,11 @@ The compiler turns Scene Card evidence, one Narrative System, and one replaceabl
 | `field-log` | Field Log | observed evidence and documentary context |
 | `museum-catalogue` | Museum Catalogue | inspectable plates and supplied collection metadata |
 | `travel-journal` | Travel Journal | movement, pauses, thresholds, supplied journey evidence |
+| `journey-taxonomy` | Journey Taxonomy | semantic groups of visible place evidence organized into one spatial field |
 | `street-reportage` | Street Reportage | observed public gestures and factual sequence |
 | `fashion-editorial` | Fashion Editorial | pose, garment construction, crop, shot-scale rhythm |
 
-Eight replaceable Profiles are available beyond the default `source-led`: `rain-nocturne`, `quiet-window-light`, `watercolor-contour`, `watercolor-chronicle`, `graphite-paper`, `heritage-portrait`, `monochrome-reportage`, and the stricter identity-locked `dream-logic`. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas.
+Eighteen replaceable Profiles are available beyond the default `source-led`. Ten materially distinct additions expand the system beyond photography: mineral ink, impasto, authored pixel art, risograph, gouache, cyanotype, paper relief, early-color photography, pixel-and-ink fusion, and a physically sculpted 3D diorama. `pixel-ink-memory` is explicitly experimental. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas and is not counted separately.
 
 | Expression Profile | Compatible Narrative Systems |
 | --- | --- |
@@ -240,6 +315,16 @@ Eight replaceable Profiles are available beyond the default `source-led`: `rain-
 | `heritage-portrait` | Family Chronicle, Museum Catalogue |
 | `monochrome-reportage` | Street Reportage |
 | `dream-logic` | Memory Atlas, Fashion Editorial |
+| `mineral-ink-memory` | Memory Atlas, Travel Journal, Journey Taxonomy |
+| `impasto-light-study` | Quiet Editorial, Memory Atlas, Travel Journal, Journey Taxonomy |
+| `pixel-diary` | Memory Atlas, Travel Journal, Journey Taxonomy |
+| `risograph-route` | Memory Atlas, Travel Journal, Journey Taxonomy |
+| `gouache-place-study` | Memory Atlas, Travel Journal, Journey Taxonomy |
+| `cyanotype-archive` | Field Log, Family Chronicle, Museum Catalogue, Street Reportage |
+| `paper-relief-landscape` | Memory Atlas, Travel Journal, Journey Taxonomy |
+| `autochrome-memory` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy |
+| `pixel-ink-memory` · experimental | Memory Atlas, Journey Taxonomy |
+| `sculpted-place-diorama` · 3D | Memory Atlas, Travel Journal, Journey Taxonomy |
 
 Visible text is no longer delegated to the image model. Every Manifest includes a `presentation_contract`; `scene-card-studio present` applies only supplied captions, dates, locations, collection names, and catalogue identifiers as a deterministic SVG overlay. Missing metadata is omitted rather than inferred.
 
@@ -256,7 +341,7 @@ Every compiled prompt contains the same ten modules:
 9. exclusions;
 10. output ratio and format.
 
-Every prompt now carries a structured `output_contract` with exact MIME type, width, height, and aspect ratio. `bind-outputs` decodes the candidate and rejects format or dimension mismatches before review. Optional `reference_output` records are benchmark comparisons only: a formal review must target a Render Manifest containing `candidate_output` records.
+Every prompt now carries a structured `output_contract` with exact MIME type, width, height, and aspect ratio. `bind-outputs` decodes the candidate and rejects format or dimension mismatches before review. Candidate paths are stored relative to the Render Manifest so bundles remain portable. Formal review reopens and re-hashes the current files; replacing an image after binding invalidates the review. Optional `reference_output` records are benchmark comparisons only: a formal review must target a Render Manifest containing `candidate_output` records.
 
 Sequence systems additionally review subject continuity, light/color continuity, rhythm, and narrative arc. Retry provenance is a closed hash chain: Prompt Manifest → failed Render Manifest → failed Review → Retry Manifest → post-retry Render Manifest → accepted Review. Each link records its parent hash and chronology.
 
@@ -314,20 +399,22 @@ scene-card-studio retry render-manifest.json review.json --output retry-manifest
 scene-card-studio bind-outputs retry-manifest.json --result cinematic-storyboard-01=after-01-retry.png --output post-retry-render-manifest.json
 ```
 
-`direct` writes `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` into a dedicated output directory. It refuses accidental overwrites unless `--force` is explicit. `check` reports the exact semantic fields that remain incomplete. A prepared story may re-enter the same flow through `--scene-cards`; its source list must match the supplied photos exactly, and low-level image measurements are refreshed from the files. For one photo, every system emits exactly one standalone prompt and labels the Manifest `single-photo`; no sequence continuity or invented adjacent scene is requested. For multiple photos, Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion emit one prompt per source, while Memory Atlas, Family Chronicle, and Travel Journal emit one synthesis prompt.
+`direct` writes `story.json`, `prompt-manifest.json`, `workprint.svg`, and `run-summary.json` into a dedicated output directory. It refuses accidental overwrites unless `--force` is explicit. `check` reports the exact semantic fields that remain incomplete. A prepared story may re-enter the same flow through `--scene-cards`; its source list must match the supplied photos exactly, and low-level image measurements are refreshed from the files. For one photo, every system emits exactly one standalone prompt and labels the Manifest `single-photo`; no sequence continuity or invented adjacent scene is requested. For multiple photos, Cinematic, Quiet Editorial, Editorial Rhythm, Field Log, Museum, Street, and Fashion emit one prompt per source, while Memory Atlas, Family Chronicle, Travel Journal, and Journey Taxonomy emit one synthesis prompt.
 
-Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Formal review refuses an unbound Prompt Manifest. `present` verifies bound output hashes and keeps generated pixels separate from deterministic text. Safe SVG embedding fully decodes and re-encodes raster images, strips appended data and metadata, and enforces source-byte and pixel limits.
+Cloud synthesis requires explicit consent containing the provider, purpose, and exact upload list. Missing or incomplete direction-readiness evidence fails closed. Formal review refuses an unbound Prompt Manifest, and `retry` refuses an unfinished or accepted review. `present` verifies bound output hashes, writes portable relative image references, and keeps generated pixels separate from deterministic text. Raster analysis, output binding, and safe SVG embedding enforce source-byte and pixel limits.
 
-The repository also includes a [bilingual routing matrix](evals/direct-briefs.json) with positive, negated, and ambiguous briefs. CI checks all ten Narrative Systems, all non-default Profiles, single-photo contracts, multi-photo modes, semantic readiness, formal review, retry provenance, safe image embedding, recompilable gallery evidence, and pixel-level visual difference across every published Before/After pair.
+The repository also includes a [bilingual routing matrix](evals/direct-briefs.json) with positive, negated, and ambiguous briefs. CI checks all eleven Narrative Systems, all non-default Profiles, single-photo contracts, multi-photo modes, semantic readiness, formal review, retry provenance, safe image embedding, recompilable gallery evidence, and pixel-level visual difference across every published Before/After pair.
 
 ## Codex Skill
 
-After cloning the repository, copy the bundled skill into your Codex skills directory and restart Codex:
+The Codex Skill is included in both source checkouts and built wheels. Install it into a new Codex Skill directory, then restart Codex:
 
 ```bash
-mkdir -p ~/.codex/skills
-cp -R skills/scene-card-studio ~/.codex/skills/
+scene-card-studio skill-path
+scene-card-studio install-skill --target ~/.codex/skills/scene-card-studio
 ```
+
+The install command refuses to overwrite an existing Skill directory.
 
 Then ask:
 

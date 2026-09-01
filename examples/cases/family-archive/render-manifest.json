@@ -95,7 +95,7 @@
         "sha256": "17ff5ef9bfbafbed8a5fde7ee32f6e5a6ff540d05cf8ba7d1e8e19322161e06a"
       },
       "candidate_output": {
-        "path": "examples/cases/family-archive/outputs/family-archive-ai-composite.png",
+        "path": "outputs/family-archive-ai-composite.png",
         "sha256": "17ff5ef9bfbafbed8a5fde7ee32f6e5a6ff540d05cf8ba7d1e8e19322161e06a",
         "mime_type": "image/png",
         "width": 1024,
@@ -148,5 +148,6 @@
   "artifact_type": "render-manifest",
   "render_manifest_version": "1.0",
   "parent_manifest_sha256": "9ddd3a08801039965bb93f74d9a41d33fb8f08f26d58767ac88df0d167b890ef",
+  "candidate_path_base": "render-manifest-directory",
   "bound_at": "2026-08-09T11:56:49.672395Z"
 }

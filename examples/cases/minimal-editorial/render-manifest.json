@@ -80,7 +80,7 @@
         "sha256": "e82a4f661a822cba6f722c427bd25ea8721ece80e0fcd11c08585f88b290772b"
       },
       "candidate_output": {
-        "path": "examples/cases/minimal-editorial/outputs/after-mug.png",
+        "path": "outputs/after-mug.png",
         "sha256": "e82a4f661a822cba6f722c427bd25ea8721ece80e0fcd11c08585f88b290772b",
         "mime_type": "image/png",
         "width": 1536,
@@ -158,7 +158,7 @@
         "sha256": "2628a8170025f0fc82a23c1f4c33d89db4ccc65ea769d078c5d46c3cec54b438"
       },
       "candidate_output": {
-        "path": "examples/cases/minimal-editorial/outputs/after-chair.png",
+        "path": "outputs/after-chair.png",
         "sha256": "2628a8170025f0fc82a23c1f4c33d89db4ccc65ea769d078c5d46c3cec54b438",
         "mime_type": "image/png",
         "width": 1536,
@@ -236,7 +236,7 @@
         "sha256": "23ad95d17c0f95cdb0697314c66b21fd53220f9592f2a91c8a6057b252577c52"
       },
       "candidate_output": {
-        "path": "examples/cases/minimal-editorial/outputs/after-linen.png",
+        "path": "outputs/after-linen.png",
         "sha256": "23ad95d17c0f95cdb0697314c66b21fd53220f9592f2a91c8a6057b252577c52",
         "mime_type": "image/png",
         "width": 1536,
@@ -289,5 +289,6 @@
   "artifact_type": "render-manifest",
   "render_manifest_version": "1.0",
   "parent_manifest_sha256": "dd5aacc07c16d31b8cde2bbdb1ea9b4a9d4b63cae3307757f72032f706f1bde5",
+  "candidate_path_base": "render-manifest-directory",
   "bound_at": "2026-08-09T11:56:49.744978Z"
 }

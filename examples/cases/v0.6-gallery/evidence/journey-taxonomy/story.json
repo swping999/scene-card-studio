@@ -1,0 +1,78 @@
+[
+  {
+    "source": "../../before/salt-marsh-boardwalk.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#A9B5CB",
+      "#969AA3",
+      "#6B655F",
+      "#B9C5DC",
+      "#CAD4E8"
+    ],
+    "brightness": 0.632,
+    "saturation": 0.157,
+    "orientation": "portrait",
+    "caption": "JOURNEY TAXONOMY",
+    "observation": {
+      "subjects": [
+        "wooden boardwalk",
+        "red-roof hut",
+        "tidal channels",
+        "reed islands",
+        "blue direction post"
+      ],
+      "dominant_gesture": "boardwalk crosses tidal channels toward the hut",
+      "quiet_regions": [
+        "cloud field",
+        "silver water"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "read one coastal place through movement, landmark, water, vegetation, weather, and material",
+      "emotional_tone": [
+        "quiet",
+        "elemental"
+      ],
+      "confidence": 0.93,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Integrate source-backed categories through scale and material transitions, never stickers or repeated photographs.",
+      "layout_emphasis": "boardwalk path, hut landmark, and nested tidal channels"
+    },
+    "transformation": {
+      "must_preserve": [
+        "boardwalk",
+        "hut",
+        "tidal channels",
+        "reed islands",
+        "sea horizon",
+        "blue post",
+        "overcast weather"
+      ],
+      "may_transform": [
+        "crop",
+        "tonal hierarchy",
+        "graphite contour",
+        "mineral paper texture",
+        "material scale studies"
+      ],
+      "must_remove": [
+        "dead edge clutter",
+        "inset photo",
+        "sticker outlines",
+        "connector lines",
+        "labels"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

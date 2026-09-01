@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from hashlib import sha256
 from html import escape
+import os
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -56,6 +57,8 @@ def build_presentation_contract(cards: list[SceneCard], system: str, prompt_ids:
 def render_presentation_svg(manifest: dict[str, Any], output: Path, base: Path | None = None) -> None:
     if manifest.get("artifact_type") != "render-manifest":
         raise ValueError("Presentation rendering requires a Render Manifest produced by bind-outputs")
+    if manifest.get("candidate_path_base") != "render-manifest-directory":
+        raise ValueError("Render Manifest must declare candidate paths relative to its own directory")
     contract = manifest.get("presentation_contract")
     if not isinstance(contract, dict) or contract.get("renderer") != "deterministic-overlay":
         raise ValueError("Render Manifest has no deterministic presentation_contract")
@@ -94,9 +97,11 @@ def render_presentation_svg(manifest: dict[str, Any], output: Path, base: Path |
         if sha256(resolved.read_bytes()).hexdigest() != candidate["sha256"]:
             raise ValueError(f"Bound candidate hash changed for {prompt_id}")
         try:
-            href = resolved.resolve().relative_to(output.resolve().parent).as_posix()
-        except ValueError:
-            href = resolved.resolve().as_uri()
+            href = Path(os.path.relpath(resolved.resolve(), output.resolve().parent)).as_posix()
+        except ValueError as exc:
+            raise ValueError(
+                "Bound candidate and presentation must be on the same filesystem so the SVG remains portable"
+            ) from exc
         encoded_href = quote(href, safe="/:.")
         y = 190 + prompt_index * section_height
         parts.extend([

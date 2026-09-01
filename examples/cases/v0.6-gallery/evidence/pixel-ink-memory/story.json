@@ -1,0 +1,78 @@
+[
+  {
+    "source": "../../before/empty-market-lane.png",
+    "width": 1086,
+    "height": 1448,
+    "palette": [
+      "#1C201A",
+      "#62594E",
+      "#524839",
+      "#96856C",
+      "#897860"
+    ],
+    "brightness": 0.275,
+    "saturation": 0.293,
+    "orientation": "portrait",
+    "caption": "PIXEL + INK MEMORY",
+    "observation": {
+      "subjects": [
+        "empty market lane",
+        "green awnings",
+        "wet pavement",
+        "stacked crates",
+        "closed grilles",
+        "bicycles"
+      ],
+      "dominant_gesture": "lane narrows from tactile foreground into blue-hour distance",
+      "quiet_regions": [
+        "distant opening",
+        "awning planes"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "let near evidence stay crisp while distant memory dissolves",
+      "emotional_tone": [
+        "layered",
+        "nocturnal"
+      ],
+      "confidence": 0.88,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Pixel and ink must share one palette, light, composition, and depth transition.",
+      "layout_emphasis": "pixel foreground flowing into ink-wash distance"
+    },
+    "transformation": {
+      "must_preserve": [
+        "empty scene",
+        "lane perspective",
+        "awnings",
+        "crates",
+        "bicycles",
+        "wet ground"
+      ],
+      "may_transform": [
+        "near surfaces into pixels",
+        "distant surfaces into ink",
+        "paper ground",
+        "crop"
+      ],
+      "must_remove": [
+        "split screen",
+        "glitch",
+        "random splash",
+        "UI",
+        "photographic pixels",
+        "text"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

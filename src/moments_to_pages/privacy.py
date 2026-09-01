@@ -4,6 +4,18 @@ from datetime import datetime, timezone
 from typing import Any
 
 
+def _require_generation_ready(manifest: dict[str, Any]) -> None:
+    readiness = manifest.get("direction_readiness")
+    if not isinstance(readiness, dict):
+        raise ValueError("Manifest direction_readiness is required before recording upload consent")
+    if readiness.get("generation_ready") is not True:
+        raise ValueError(
+            "Semantic Scene Card direction is incomplete; finish the fields listed in direction_readiness before recording upload consent"
+        )
+    if manifest.get("generation_ready") is not True:
+        raise ValueError("The automatic route is unresolved; select a Narrative System explicitly before recording upload consent")
+
+
 def build_upload_consent(
     manifest: dict[str, Any],
     *,
@@ -18,13 +30,7 @@ def build_upload_consent(
         raise ValueError("provider is required")
     if not purpose.strip():
         raise ValueError("purpose is required")
-    readiness = manifest.get("direction_readiness")
-    if isinstance(readiness, dict) and readiness.get("generation_ready") is not True:
-        raise ValueError(
-            "Semantic Scene Card direction is incomplete; finish the fields listed in direction_readiness before recording upload consent"
-        )
-    if isinstance(readiness, dict) and manifest.get("generation_ready") is not True:
-        raise ValueError("The automatic route is unresolved; select a Narrative System explicitly before recording upload consent")
+    _require_generation_ready(manifest)
     files = manifest.get("privacy", {}).get("files", [])
     if not files:
         raise ValueError("Manifest contains no upload file list")
@@ -41,6 +47,7 @@ def build_upload_consent(
 
 
 def validate_upload_consent(record: dict[str, Any], manifest: dict[str, Any], manifest_sha256: str) -> None:
+    _require_generation_ready(manifest)
     if record.get("manifest_sha256") != manifest_sha256:
         raise ValueError("Upload consent does not match the current manifest")
     if record.get("user_explicitly_consented") is not True:

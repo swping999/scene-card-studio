@@ -40,7 +40,14 @@ moments-to-pages = "moments_to_pages.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/moments_to_pages"]
-exclude = ["/src/moments_to_pages/assets/maps/**"]
+exclude = [
+  "/src/moments_to_pages/assets/maps/**",
+  "/skills/scene-card-studio/**/__pycache__/**",
+  "/skills/scene-card-studio/**/*.pyc",
+]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"skills/scene-card-studio" = "share/scene-card-studio/skill"
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -58,6 +65,8 @@ include = [
 ]
 exclude = [
   "/src/moments_to_pages/assets/maps/**",
+  "/skills/scene-card-studio/**/__pycache__/**",
+  "/skills/scene-card-studio/**/*.pyc",
 ]
 
 [tool.pytest.ini_options]

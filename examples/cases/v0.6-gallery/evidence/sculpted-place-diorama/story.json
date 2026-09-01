@@ -1,0 +1,77 @@
+[
+  {
+    "source": "../../before/salt-marsh-boardwalk.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#A9B5CB",
+      "#969AA3",
+      "#6B655F",
+      "#B9C5DC",
+      "#CAD4E8"
+    ],
+    "brightness": 0.632,
+    "saturation": 0.157,
+    "orientation": "portrait",
+    "caption": "SCULPTED PLACE DIORAMA",
+    "observation": {
+      "subjects": [
+        "wooden boardwalk",
+        "red-roof hut",
+        "tidal channels",
+        "reed islands",
+        "blue direction post"
+      ],
+      "dominant_gesture": "boardwalk spans shallow marsh terrain toward the hut",
+      "quiet_regions": [
+        "cloud field",
+        "flat water"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "rebuild one coastal route as a physical spatial portrait",
+      "emotional_tone": [
+        "dimensional",
+        "quiet"
+      ],
+      "confidence": 0.94,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Use consistent miniature scale, real volume, contact shadows, and source topology—not toy styling.",
+      "layout_emphasis": "raised boardwalk above sculpted channels and reed islands"
+    },
+    "transformation": {
+      "must_preserve": [
+        "hut",
+        "boardwalk",
+        "posts",
+        "channels",
+        "reeds",
+        "sea horizon",
+        "blue post"
+      ],
+      "may_transform": [
+        "all surfaces into plaster, resin, fibers, and miniature timber",
+        "camera angle",
+        "studio light"
+      ],
+      "must_remove": [
+        "toy-box border",
+        "isometric tile",
+        "cute redesign",
+        "labels",
+        "UI",
+        "glossy CGI"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

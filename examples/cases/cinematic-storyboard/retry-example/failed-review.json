@@ -1,5 +1,6 @@
 {
-  "manifest_sha256": "39178caefd3dfc5b44cfc77ecee4dd25e9f7922735b538a9d66f9371b40d2df7",
+  "schema_version": "1.0",
+  "manifest_sha256": "ac526ed161c7497dfa4edeebe3826a50762eec57195983ace8d12028ae77d03f",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution frame and sequence inspection against the compiled prompts and source references.",
   "reviewed_at": "2026-08-09T11:57:00Z",
@@ -20,7 +21,13 @@
         "system_distinctiveness": 1,
         "artifact_control": 4
       },
-      "notes": "Rejected: this is still the undirected source snapshot. Preserve the shelter and waiting figure, but rebuild the crop, motivated rain light, depth, and opening-frame tension."
+      "notes": "Rejected: this is still the undirected source snapshot. Preserve the shelter and waiting figure, but rebuild the crop, motivated rain light, depth, and opening-frame tension.",
+      "decision": "retry",
+      "failed_dimensions": [
+        "narrative_alignment",
+        "composition",
+        "system_distinctiveness"
+      ]
     },
     {
       "prompt_id": "cinematic-storyboard-02",
@@ -32,7 +39,9 @@
         "system_distinctiveness": 5,
         "artifact_control": 5
       },
-      "notes": "Accepted unchanged."
+      "notes": "Accepted unchanged.",
+      "decision": "accept",
+      "failed_dimensions": []
     },
     {
       "prompt_id": "cinematic-storyboard-03",
@@ -44,7 +53,20 @@
         "system_distinctiveness": 5,
         "artifact_control": 4
       },
-      "notes": "Accepted unchanged."
+      "notes": "Accepted unchanged.",
+      "decision": "accept",
+      "failed_dimensions": []
     }
+  ],
+  "artifact_type": "aesthetic-review",
+  "review_version": "1.0",
+  "decision": "retry",
+  "failed_prompt_ids": [
+    "cinematic-storyboard-01"
+  ],
+  "sequence_decision": "accept",
+  "sequence_failed_dimensions": [],
+  "retry_prompt_ids": [
+    "cinematic-storyboard-01"
   ]
 }

@@ -10,19 +10,26 @@ All notable changes to Scene Card Studio are documented here. Versions follow se
 - `--scene-cards` support for rerunning `direct` with visually inspected, source-matched semantic direction.
 - Hash-bound `review-template` and `review` commands for a complete Accept/Retry path.
 - Recompilable `story.json` and Prompt Manifest evidence for all 13 landing-page cases.
-- Negation-aware routing and explicit confirmation when two automatically recommended Systems tie.
+- Negation-aware routing and explicit confirmation when automatically recommended Systems tie or remain below the confidence threshold.
+- Portable Render Manifest candidate paths plus `skill-path` and `install-skill` commands for the wheel-bundled Codex Skill.
+- `Journey Taxonomy`, an original landscape-led Narrative System that organizes supplied place evidence by semantic role without copying a reference layout.
+- Ten material Expression Profiles: mineral ink, impasto, pixel diary, risograph, gouache, cyanotype, paper relief, autochrome, experimental pixel-and-ink, and a physically sculpted 3D place diorama.
+- An 11-case, landscape-first Before/After gallery with Scene Cards and recompilable Prompt Manifest evidence.
 
 ### Changed
 
 - Prompt Manifest schema 1.5 records semantic readiness and route readiness separately.
 - Upload consent now refuses incomplete semantic direction or an unresolved automatic route.
 - Pillow is installed with the core package; package metadata and source-distribution boundaries are explicit.
+- Review reopens the current candidate files, while Retry requires a finalized failed review and refuses accepted or unfinished assessments.
 
 ### Safety and reliability
 
 - Prepared Scene Cards must match the supplied source files in the same order; low-level measurements are refreshed from those files.
 - Reference After images remain benchmarks and cannot substitute for formally bound candidate outputs.
 - Routing evaluations now include negated and ambiguous bilingual briefs.
+- Routing evaluations cover every new system and material Profile in both English and Chinese.
+- Story, candidate, and presentation references remain relative and do not emit local `file://` paths; raster analysis and output binding enforce byte and pixel limits.
 
 ## [0.5.0] - 2026-09-01
 

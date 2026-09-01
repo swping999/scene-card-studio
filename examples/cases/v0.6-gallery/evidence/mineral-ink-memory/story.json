@@ -1,0 +1,77 @@
+[
+  {
+    "source": "../../before/stone-bridge.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#625D50",
+      "#312E23",
+      "#524A36",
+      "#DEE0E4",
+      "#433B2C"
+    ],
+    "brightness": 0.426,
+    "saturation": 0.223,
+    "orientation": "portrait",
+    "caption": "MINERAL INK MEMORY",
+    "observation": {
+      "subjects": [
+        "low stone bridge",
+        "stream",
+        "winter terraces",
+        "irrigation channel",
+        "bare branches",
+        "distant village"
+      ],
+      "dominant_gesture": "stream passes under the bridge and recedes through terraces",
+      "quiet_regions": [
+        "pale sky",
+        "distant haze"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "hold a worked winter landscape through water and repeated ground",
+      "emotional_tone": [
+        "restrained",
+        "weathered"
+      ],
+      "confidence": 0.94,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Use mineral color and ink density to clarify depth without historical imitation.",
+      "layout_emphasis": "bridge joints, dark stream, and receding terrace bands"
+    },
+    "transformation": {
+      "must_preserve": [
+        "bridge geometry",
+        "stream direction",
+        "terraces",
+        "channel",
+        "branches",
+        "village placement",
+        "winter season"
+      ],
+      "may_transform": [
+        "all photographic surfaces into mineral pigment and ink",
+        "crop",
+        "value hierarchy"
+      ],
+      "must_remove": [
+        "red bucket",
+        "yellow litter",
+        "calligraphy",
+        "seals",
+        "photographic pixels"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

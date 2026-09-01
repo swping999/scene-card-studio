@@ -272,13 +272,13 @@
   "artifact_type": "retry-manifest",
   "parent_manifest_sha256": "8d0a032eec4cfe3f8b7b52977ac120186400228f1b32c3b47561756dd81b0054",
   "retry_manifest_version": "1.0",
-  "parent_render_manifest_sha256": "39178caefd3dfc5b44cfc77ecee4dd25e9f7922735b538a9d66f9371b40d2df7",
+  "parent_render_manifest_sha256": "ac526ed161c7497dfa4edeebe3826a50762eec57195983ace8d12028ae77d03f",
   "parent_prompt_manifest_sha256": "8d0a032eec4cfe3f8b7b52977ac120186400228f1b32c3b47561756dd81b0054",
-  "failed_review_sha256": "93ae8ef92cf809a79198b2dde0af02596699d859b66dc7a12721649f87624fd7",
+  "failed_review_sha256": "293741bb1fc5b2505734146b6eaceda6aa2b1581ac945cc3bd3fae39db639f27",
   "generated_at": "2026-08-09T11:57:49.350012Z",
   "retry_iteration": 1,
   "review_binding": {
-    "reviewed_manifest_sha256": "39178caefd3dfc5b44cfc77ecee4dd25e9f7922735b538a9d66f9371b40d2df7",
+    "reviewed_manifest_sha256": "ac526ed161c7497dfa4edeebe3826a50762eec57195983ace8d12028ae77d03f",
     "reviewer": {
       "type": "human",
       "name": "repository curator",
@@ -286,7 +286,7 @@
     },
     "reviewed_at": "2026-08-09T11:57:00Z",
     "review_method": "Full-resolution frame and sequence inspection against the compiled prompts and source references.",
-    "assessment_sha256": "93ae8ef92cf809a79198b2dde0af02596699d859b66dc7a12721649f87624fd7"
+    "assessment_sha256": "293741bb1fc5b2505734146b6eaceda6aa2b1581ac945cc3bd3fae39db639f27"
   },
   "review_decisions": [
     {

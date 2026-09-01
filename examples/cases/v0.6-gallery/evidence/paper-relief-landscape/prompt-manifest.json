@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.6.0",
+  "source_mode": "single-photo",
+  "system": "memory-atlas",
+  "system_display_name": "Memory Atlas",
+  "expression_profile": "paper-relief-landscape",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour",
+    "watercolor-chronicle",
+    "full-watercolor-memory",
+    "dream-logic",
+    "mineral-ink-memory",
+    "impasto-light-study",
+    "pixel-diary",
+    "risograph-route",
+    "gouache-place-study",
+    "paper-relief-landscape",
+    "sculpted-place-diorama",
+    "autochrome-memory",
+    "pixel-ink-memory"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/stone-bridge.png",
+          "sha256": "bd832417e2c52dcd3ed44ea871735dcd243c0fd804f28ab5e564da9d08029860"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place or subject as one recognizable painted anchor: bridge span and supports, stream, terraces, channel, branches, village, winter season.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
+          "Preserve landmark silhouette, terrain layers, subject identity through profile and color, object count, route direction, and source depth order."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — bridge span and supports, stream, terraces, channel, branches, village, winter season.",
+          "MAY TRANSFORM — all surfaces into layered cotton paper, embossing, raking light.",
+          "MUST REMOVE — bucket, litter, floating cutouts, sticker outlines, text.",
+          "Translate the whole scene into cut and molded paper relief; simplify surfaces by depth plane without adding decorative travel icons or changing geography."
+        ],
+        "narrative_intent": [
+          "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
+          "Source / moment: intent turn terrain depth into one tactile paper landscape; tone tactile, grounded; emphasis cut stream channel, layered terraces, and bridge blocks; director note Use physical depth planes, not detached paper stickers."
+        ],
+        "composition": [
+          "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
+          "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
+          "Construct one integrated bas-relief image with varied plane depth, selective apertures, and a dominant spatial path; avoid a sticker board or separated cutout collection."
+        ],
+        "lighting": [
+          "Use the combined source palette (#625D50, #312E23) without flattening every painted passage into one identical color treatment.",
+          "Use one plausible raking light so cast shadows clarify paper depth while respecting the source's overall time and atmosphere."
+        ],
+        "material": [
+          "Use deckled cotton paper, layered pulp, subtle fibers, embossed terrain, clean cut edges, and restrained shadow gaps at a consistent physical scale.",
+          "Every added mark must perform a Scene Card-supported spatial function rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation.",
+          "No white sticker outlines, floating icons, scrapbook page, duplicated source photo, foam-board look, excessive drop shadows, text, or named-paper-artist imitation."
+        ],
+        "output": [
+          "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
+          "The supplied place or subject must remain recognizable.",
+          "The result must read as one physically coherent paper landscape photographed from a single viewpoint."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: bridge span and supports, stream, terraces, channel, branches, village, winter season.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve landmark silhouette, terrain layers, subject identity through profile and color, object count, route direction, and source depth order.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — bridge span and supports, stream, terraces, channel, branches, village, winter season.\n- MAY TRANSFORM — all surfaces into layered cotton paper, embossing, raking light.\n- MUST REMOVE — bucket, litter, floating cutouts, sticker outlines, text.\n- Translate the whole scene into cut and molded paper relief; simplify surfaces by depth plane without adding decorative travel icons or changing geography.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent turn terrain depth into one tactile paper landscape; tone tactile, grounded; emphasis cut stream channel, layered terraces, and bridge blocks; director note Use physical depth planes, not detached paper stickers.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Construct one integrated bas-relief image with varied plane depth, selective apertures, and a dominant spatial path; avoid a sticker board or separated cutout collection.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#625D50, #312E23) without flattening every painted passage into one identical color treatment.\n- Use one plausible raking light so cast shadows clarify paper depth while respecting the source's overall time and atmosphere.\n\nMATERIAL AND SURFACE\n- Use deckled cotton paper, layered pulp, subtle fibers, embossed terrain, clean cut edges, and restrained shadow gaps at a consistent physical scale.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No white sticker outlines, floating icons, scrapbook page, duplicated source photo, foam-board look, excessive drop shadows, text, or named-paper-artist imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one physically coherent paper landscape photographed from a single viewpoint.",
+      "reference_output": {
+        "path": "../../after/paper-relief-landscape.png",
+        "sha256": "64d6cc5abb86e88abd4a610a6d10376314e0ff633a42e60ef0c8c3e138dc887d"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/stone-bridge.png",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Memory Atlas",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "memory-atlas-01",
+        "caption": "PAPER RELIEF LANDSCAPE",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/stone-bridge.png",
+        "sha256": "bd832417e2c52dcd3ed44ea871735dcd243c0fd804f28ab5e564da9d08029860"
+      }
+    ]
+  }
+}

@@ -1,13 +1,21 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.5.0",
+  "compiler_version": "0.6.0",
   "source_mode": "single-photo",
   "system": "travel-journal",
   "system_display_name": "Travel Journal",
   "expression_profile": "source-led",
   "available_expression_profiles": [
     "source-led",
-    "watercolor-chronicle"
+    "watercolor-chronicle",
+    "mineral-ink-memory",
+    "impasto-light-study",
+    "pixel-diary",
+    "risograph-route",
+    "gouache-place-study",
+    "paper-relief-landscape",
+    "sculpted-place-diorama",
+    "autochrome-memory"
   ],
   "story": "story.json",
   "source_base": "story-directory",

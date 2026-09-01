@@ -22,6 +22,7 @@ from .review import (
     build_review_template,
     file_sha256,
 )
+from .skill_bundle import bundled_skill_path, install_bundled_skill
 from .workflow import run_direct
 
 
@@ -97,6 +98,9 @@ def parser() -> argparse.ArgumentParser:
     present = commands.add_parser("present", help="Apply deterministic typography and supplied metadata to a Render Manifest")
     present.add_argument("manifest")
     present.add_argument("-o", "--output", default="presentation.svg")
+    commands.add_parser("skill-path", help="Print the bundled Codex Skill directory")
+    install_skill = commands.add_parser("install-skill", help="Copy the bundled Codex Skill to a new directory")
+    install_skill.add_argument("--target", required=True, help="Destination Skill directory, for example ~/.codex/skills/scene-card-studio")
     return root
 
 
@@ -153,16 +157,18 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{system}\t{','.join(expression_profile_names(system))}")
     elif args.command == "compile":
         story_path = Path(args.story)
+        output_path = Path(args.output)
+        story_reference = Path(os.path.relpath(story_path.resolve(), output_path.resolve().parent)).as_posix()
         manifest = compile_manifest(
             load_cards(story_path, resolve_sources=False),
             args.system,
             aspect_ratio=args.aspect_ratio,
             expression_profile=args.expression_profile,
             source_root=story_path.resolve().parent,
-            story_path=str(story_path),
+            story_path=story_reference,
             reference_outputs=args.reference_output,
         )
-        _write_json(Path(args.output), manifest)
+        _write_json(output_path, manifest)
     elif args.command == "retry":
         manifest_path = Path(args.manifest)
         assessment_path = Path(args.assessment)
@@ -173,6 +179,7 @@ def main(argv: list[str] | None = None) -> int:
             assessment,
             manifest_sha256=file_sha256(manifest_path),
             assessment_sha256=file_sha256(assessment_path),
+            base=manifest_path.resolve().parent,
         )
         _write_json(Path(args.output), retry_manifest)
     elif args.command == "bind-outputs":
@@ -186,8 +193,15 @@ def main(argv: list[str] | None = None) -> int:
             bindings[prompt_id] = path
         manifest_path = Path(args.manifest)
         manifest = json.loads(manifest_path.read_text())
-        bound = bind_outputs(manifest, bindings, manifest_sha256=file_sha256(manifest_path), base=Path.cwd())
-        _write_json(Path(args.output), bound)
+        output_path = Path(args.output)
+        bound = bind_outputs(
+            manifest,
+            bindings,
+            manifest_sha256=file_sha256(manifest_path),
+            base=Path.cwd(),
+            output_base=output_path.resolve().parent,
+        )
+        _write_json(output_path, bound)
     elif args.command == "review-template":
         manifest_path = Path(args.manifest)
         template = build_review_template(
@@ -197,6 +211,7 @@ def main(argv: list[str] | None = None) -> int:
             reviewer_name=args.reviewer_name,
             reviewer_model=args.reviewer_model,
             review_method=args.method,
+            base=manifest_path.resolve().parent,
         )
         _write_json(Path(args.output), template)
     elif args.command == "review":
@@ -206,6 +221,7 @@ def main(argv: list[str] | None = None) -> int:
             json.loads(manifest_path.read_text()),
             json.loads(assessment_path.read_text()),
             manifest_sha256=file_sha256(manifest_path),
+            base=manifest_path.resolve().parent,
         )
         _write_json(Path(args.output), record)
         print(f"Review decision: {record['decision']}")
@@ -226,6 +242,14 @@ def main(argv: list[str] | None = None) -> int:
         if output.suffix.lower() != ".svg":
             raise SystemExit("Presentation output extension must be .svg")
         render_presentation_svg(json.loads(manifest_path.read_text()), output, base=manifest_path.resolve().parent)
+    elif args.command == "skill-path":
+        print(bundled_skill_path())
+    elif args.command == "install-skill":
+        try:
+            installed = install_bundled_skill(Path(args.target))
+        except (FileExistsError, FileNotFoundError, PermissionError) as exc:
+            raise SystemExit(str(exc)) from exc
+        print(installed)
     elif args.command == "render":
         story_path = Path(args.story)
         output = Path(args.output) if args.output else Path(f"story.{args.format}")

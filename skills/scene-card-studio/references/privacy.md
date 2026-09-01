@@ -4,7 +4,7 @@ Keep analysis, Scene Cards, prompt compilation, and workprint rendering local by
 
 Before sending any source photograph to a remote or cloud image-generation provider:
 
-1. Run `scene-card-studio check story.json` and require `generation-ready`; then compile the Prompt Manifest and require `generation_ready: true` with no unresolved route tie.
+1. Run `scene-card-studio check story.json` and require `generation-ready`; then compile the Prompt Manifest and require `generation_ready: true` with no unresolved route tie or low-confidence automatic System choice.
 2. Tell the user the exact provider, purpose, and `privacy.files` list, including every path.
 3. Ask for explicit consent to upload those files to that provider for that purpose.
 4. Continue only after the user clearly agrees.

@@ -1,5 +1,6 @@
 {
-  "manifest_sha256": "1349df3c02e4743ecde89daf37e9213a4fcb82e158fbbaa48ec7d6021224b2b5",
+  "schema_version": "1.0",
+  "manifest_sha256": "89312fa7b539b717b70e32fb90c3aed0023b280415737627dea4b148ac71b3f0",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution visual inspection against the compiled prompt and source references.",
   "reviewed_at": "2026-08-09T11:57:00Z",
@@ -14,7 +15,16 @@
         "system_distinctiveness": 5,
         "artifact_control": 4
       },
-      "notes": "Accepted: documentary gestures remain primary and archival materials support continuity without invented metadata."
+      "notes": "Accepted: documentary gestures remain primary and archival materials support continuity without invented metadata.",
+      "decision": "accept",
+      "failed_dimensions": []
     }
-  ]
+  ],
+  "artifact_type": "aesthetic-review",
+  "review_version": "1.0",
+  "decision": "accept",
+  "failed_prompt_ids": [],
+  "sequence_decision": "accept",
+  "sequence_failed_dimensions": [],
+  "retry_prompt_ids": []
 }

@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.6.0",
+  "source_mode": "single-photo",
+  "system": "memory-atlas",
+  "system_display_name": "Memory Atlas",
+  "expression_profile": "gouache-place-study",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour",
+    "watercolor-chronicle",
+    "full-watercolor-memory",
+    "dream-logic",
+    "mineral-ink-memory",
+    "impasto-light-study",
+    "pixel-diary",
+    "risograph-route",
+    "gouache-place-study",
+    "paper-relief-landscape",
+    "sculpted-place-diorama",
+    "autochrome-memory",
+    "pixel-ink-memory"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/highland-observatory.png",
+          "sha256": "f09e22e865e6ff5129277dccfe641e1edf8dacf4a1a5929af50378ec81a485ea"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place or subject as one recognizable painted anchor: dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
+          "Preserve recognizable people, architecture, terrain contours, route direction, object count, and source composition while simplifying small detail."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.",
+          "MAY TRANSFORM — all surfaces into gouache, crop, shape grouping, pencil underdrawing.",
+          "MUST REMOVE — utility wire, photographic pixels, decorative outlines, text.",
+          "Repaint every visible element in opaque gouache; allow shape simplification and edge hierarchy but no invented location, season, props, or characters."
+        ],
+        "narrative_intent": [
+          "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
+          "Source / moment: intent describe an isolated highland structure through matte shape and color; tone dry, clear; emphasis white dome, red scooter, blue bucket, and dusty planes; director note Simplify by opaque value groups while keeping wear and the two small color anchors."
+        ],
+        "composition": [
+          "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
+          "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
+          "Build a confident place study from interlocking matte shapes, clear foreground-to-distance layers, and one source-supported focal relationship."
+        ],
+        "lighting": [
+          "Use the combined source palette (#A89A8D, #A4B2D7) without flattening every painted passage into one identical color treatment.",
+          "Preserve source light and weather through compact value groups, warm-cool adjacency, and restrained opaque highlights."
+        ],
+        "material": [
+          "Use matte gouache coverage, dry opaque scumble, visible brush edges, subtle paper tooth, and selective pencil underdrawing without photographic residue.",
+          "Every added mark must perform a Scene Card-supported spatial function rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation.",
+          "No named-illustrator imitation, generic children's-book decoration, outlines around every object, pasted photo, frame, lettering, or fabricated travel ephemera."
+        ],
+        "output": [
+          "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
+          "The supplied place or subject must remain recognizable.",
+          "The result must read as one complete hand-painted place study rather than a border treatment."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve recognizable people, architecture, terrain contours, route direction, object count, and source composition while simplifying small detail.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.\n- MAY TRANSFORM — all surfaces into gouache, crop, shape grouping, pencil underdrawing.\n- MUST REMOVE — utility wire, photographic pixels, decorative outlines, text.\n- Repaint every visible element in opaque gouache; allow shape simplification and edge hierarchy but no invented location, season, props, or characters.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent describe an isolated highland structure through matte shape and color; tone dry, clear; emphasis white dome, red scooter, blue bucket, and dusty planes; director note Simplify by opaque value groups while keeping wear and the two small color anchors.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Build a confident place study from interlocking matte shapes, clear foreground-to-distance layers, and one source-supported focal relationship.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#A89A8D, #A4B2D7) without flattening every painted passage into one identical color treatment.\n- Preserve source light and weather through compact value groups, warm-cool adjacency, and restrained opaque highlights.\n\nMATERIAL AND SURFACE\n- Use matte gouache coverage, dry opaque scumble, visible brush edges, subtle paper tooth, and selective pencil underdrawing without photographic residue.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No named-illustrator imitation, generic children's-book decoration, outlines around every object, pasted photo, frame, lettering, or fabricated travel ephemera.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one complete hand-painted place study rather than a border treatment.",
+      "reference_output": {
+        "path": "../../after/gouache-place-study.png",
+        "sha256": "42ec91f19229063bd2b636328f9cf1d8a7e499a90976820100a08d706070c01e"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/highland-observatory.png",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Memory Atlas",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "memory-atlas-01",
+        "caption": "GOUACHE PLACE STUDY",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/highland-observatory.png",
+        "sha256": "f09e22e865e6ff5129277dccfe641e1edf8dacf4a1a5929af50378ec81a485ea"
+      }
+    ]
+  }
+}

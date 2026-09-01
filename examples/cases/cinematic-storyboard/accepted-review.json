@@ -1,5 +1,6 @@
 {
-  "manifest_sha256": "6fcea29637fd489c7fbe7b3d960c20a0d6a5d4bc3788f18bef2c6bbb744dc503",
+  "schema_version": "1.0",
+  "manifest_sha256": "2af3c154bcb257fbb6030771b4d51abbd273b1f3951352952e729378a4e3eece",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution frame and sequence inspection against the compiled prompts and source references.",
   "reviewed_at": "2026-08-09T11:59:00Z",
@@ -20,7 +21,9 @@
         "system_distinctiveness": 5,
         "artifact_control": 4
       },
-      "notes": "Accepted: the waiting figure and shelter remain recognizable; motivated rain light establishes the opening."
+      "notes": "Accepted: the waiting figure and shelter remain recognizable; motivated rain light establishes the opening.",
+      "decision": "accept",
+      "failed_dimensions": []
     },
     {
       "prompt_id": "cinematic-storyboard-02",
@@ -32,7 +35,9 @@
         "system_distinctiveness": 5,
         "artifact_control": 5
       },
-      "notes": "Accepted: the diner remains a plausible continuous scene and wet glass carries the pause."
+      "notes": "Accepted: the diner remains a plausible continuous scene and wet glass carries the pause.",
+      "decision": "accept",
+      "failed_dimensions": []
     },
     {
       "prompt_id": "cinematic-storyboard-03",
@@ -44,7 +49,16 @@
         "system_distinctiveness": 5,
         "artifact_control": 4
       },
-      "notes": "Accepted: the taxi, intersection, and red reflection remain coherent as the closing movement."
+      "notes": "Accepted: the taxi, intersection, and red reflection remain coherent as the closing movement.",
+      "decision": "accept",
+      "failed_dimensions": []
     }
-  ]
+  ],
+  "artifact_type": "aesthetic-review",
+  "review_version": "1.0",
+  "decision": "accept",
+  "failed_prompt_ids": [],
+  "sequence_decision": "accept",
+  "sequence_failed_dimensions": [],
+  "retry_prompt_ids": []
 }

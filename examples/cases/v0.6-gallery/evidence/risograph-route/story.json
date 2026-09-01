@@ -1,0 +1,78 @@
+[
+  {
+    "source": "../../before/salt-marsh-boardwalk.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#A9B5CB",
+      "#969AA3",
+      "#6B655F",
+      "#B9C5DC",
+      "#CAD4E8"
+    ],
+    "brightness": 0.632,
+    "saturation": 0.157,
+    "orientation": "portrait",
+    "caption": "RISOGRAPH ROUTE",
+    "observation": {
+      "subjects": [
+        "wooden boardwalk",
+        "red-roof hut",
+        "tidal channels",
+        "reed islands",
+        "blue direction post"
+      ],
+      "dominant_gesture": "boardwalk leads through the marsh toward one hut",
+      "quiet_regions": [
+        "cloud field",
+        "water"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "make one route legible through limited ink and overprint",
+      "emotional_tone": [
+        "graphic",
+        "weathered"
+      ],
+      "confidence": 0.95,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Use only the real boardwalk as route evidence; fabricate no itinerary or labels.",
+      "layout_emphasis": "vermilion boardwalk against indigo water and sky"
+    },
+    "transformation": {
+      "must_preserve": [
+        "hut",
+        "boardwalk perspective",
+        "posts",
+        "channels",
+        "reeds",
+        "horizon",
+        "direction post"
+      ],
+      "may_transform": [
+        "all surfaces into two-ink risograph",
+        "halftone",
+        "overprint",
+        "registration drift"
+      ],
+      "must_remove": [
+        "text",
+        "stamps",
+        "tickets",
+        "pins",
+        "stickers",
+        "photographic pixels"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

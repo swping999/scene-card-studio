@@ -79,6 +79,72 @@
       "brief": "Create a fashion editorial portrait with one coherent surreal dream-logic scale rule.",
       "system": "fashion-editorial",
       "expression_profile": "dream-logic"
+    },
+    {
+      "id": "journey-taxonomy",
+      "brief": "把这张旅行照片做成地点图鉴和视觉分类，用场景拆解呈现真实元素。",
+      "system": "journey-taxonomy",
+      "expression_profile": "source-led"
+    },
+    {
+      "id": "mineral-ink-memory",
+      "brief": "Turn this road, ridge, and spatial memory into one mineral ink memory image.",
+      "system": "memory-atlas",
+      "expression_profile": "mineral-ink-memory"
+    },
+    {
+      "id": "impasto-light-study",
+      "brief": "把这个安静杯子做成窗边厚涂油画光线研究，保留真实磨损。",
+      "system": "minimal-editorial",
+      "expression_profile": "impasto-light-study"
+    },
+    {
+      "id": "pixel-diary",
+      "brief": "把车站、行李和旅途门槛做成统一像素日记。",
+      "system": "travel-journal",
+      "expression_profile": "pixel-diary"
+    },
+    {
+      "id": "risograph-route",
+      "brief": "Create a travel journal from this station route as a limited-ink risograph print.",
+      "system": "travel-journal",
+      "expression_profile": "risograph-route"
+    },
+    {
+      "id": "gouache-place-study",
+      "brief": "把旅途中的车站和行李画成一张不透明水彩地点写生。",
+      "system": "travel-journal",
+      "expression_profile": "gouache-place-study"
+    },
+    {
+      "id": "cyanotype-archive",
+      "brief": "Create a museum catalogue record of this repaired artifact as a cyanotype archive study.",
+      "system": "museum-catalogue",
+      "expression_profile": "cyanotype-archive"
+    },
+    {
+      "id": "paper-relief-landscape",
+      "brief": "把这段道路、地貌和空间记忆做成完整纸浮雕地景。",
+      "system": "memory-atlas",
+      "expression_profile": "paper-relief-landscape"
+    },
+    {
+      "id": "autochrome-memory",
+      "brief": "把这张家庭纪事肖像做成克制的早期彩色照片记忆，不改变人物年龄。",
+      "system": "family-archive",
+      "expression_profile": "autochrome-memory"
+    },
+    {
+      "id": "pixel-ink-memory",
+      "brief": "Create a memory atlas with one experimental pixel-and-ink fusion while preserving the place.",
+      "system": "memory-atlas",
+      "expression_profile": "pixel-ink-memory"
+    },
+    {
+      "id": "sculpted-place-diorama",
+      "brief": "把车站、行李和旅途门槛重建成一个有真实体积和实体光影的立体微缩地景。",
+      "system": "travel-journal",
+      "expression_profile": "sculpted-place-diorama"
     }
   ],
   "adversarial_cases": [

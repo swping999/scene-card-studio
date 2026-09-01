@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.6.0",
+  "source_mode": "single-photo",
+  "system": "memory-atlas",
+  "system_display_name": "Memory Atlas",
+  "expression_profile": "mineral-ink-memory",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-contour",
+    "watercolor-chronicle",
+    "full-watercolor-memory",
+    "dream-logic",
+    "mineral-ink-memory",
+    "impasto-light-study",
+    "pixel-diary",
+    "risograph-route",
+    "gouache-place-study",
+    "paper-relief-landscape",
+    "sculpted-place-diorama",
+    "autochrome-memory",
+    "pixel-ink-memory"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "memory-atlas-01",
+      "mode": "spatial-synthesis",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/stone-bridge.png",
+          "sha256": "bd832417e2c52dcd3ed44ea871735dcd243c0fd804f28ab5e564da9d08029860"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the supplied place or subject as one recognizable painted anchor: bridge geometry, stream direction, terraces, channel, branches, village placement, winter season.",
+          "Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.",
+          "Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.",
+          "Preserve identity-bearing faces, architecture, terrain silhouettes, route direction, object count, and the source's foreground-to-distance structure."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — bridge geometry, stream direction, terraces, channel, branches, village placement, winter season.",
+          "MAY TRANSFORM — all photographic surfaces into mineral pigment and ink, crop, value hierarchy.",
+          "MUST REMOVE — red bucket, yellow litter, calligraphy, seals, photographic pixels.",
+          "Translate the complete visible scene into mineral pigment, ink wash, and absorbent paper; change medium and emphasis, not place, identity, chronology, or geography."
+        ],
+        "narrative_intent": [
+          "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
+          "Source / moment: intent hold a worked winter landscape through water and repeated ground; tone restrained, weathered; emphasis bridge joints, dark stream, and receding terrace bands; director note Use mineral color and ink density to clarify depth without historical imitation."
+        ],
+        "composition": [
+          "Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.",
+          "Use spatial hierarchy inside the single scene without inventing off-frame geography.",
+          "Use ink density, mineral-color islands, reserved paper, and receding washes to organize memory without turning the image into a decorative scroll or collage."
+        ],
+        "lighting": [
+          "Use the combined source palette (#625D50, #312E23) without flattening every painted passage into one identical color treatment.",
+          "Convert source light into layered ink values and restrained mineral accents while keeping the original light direction and atmospheric depth legible."
+        ],
+        "material": [
+          "Use fibrous paper, pooled ink edges, dry-brush stone texture, granulating mineral blue-green and earth pigments, and sparse opaque accents.",
+          "Every added mark must perform a Scene Card-supported spatial function rather than decoration."
+        ],
+        "spatial_relationships": [
+          "Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.",
+          "Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy."
+        ],
+        "text_strategy": [
+          "Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions."
+        ],
+        "exclusions": [
+          "No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.",
+          "No fantasy architecture, generic tourism poster, or named-artist imitation.",
+          "No calligraphy, seals, copied historical composition, imitation of a named painter, floating decorative motifs, photographic cutouts, or generic fantasy mountains."
+        ],
+        "output": [
+          "Return one integrated PNG spatial-memory artifact at exactly 2:3.",
+          "The supplied place or subject must remain recognizable.",
+          "The result must read as one contemporary mineral-ink memory image derived from the supplied evidence."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: bridge geometry, stream direction, terraces, channel, branches, village placement, winter season.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve identity-bearing faces, architecture, terrain silhouettes, route direction, object count, and the source's foreground-to-distance structure.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — bridge geometry, stream direction, terraces, channel, branches, village placement, winter season.\n- MAY TRANSFORM — all photographic surfaces into mineral pigment and ink, crop, value hierarchy.\n- MUST REMOVE — red bucket, yellow litter, calligraphy, seals, photographic pixels.\n- Translate the complete visible scene into mineral pigment, ink wash, and absorbent paper; change medium and emphasis, not place, identity, chronology, or geography.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent hold a worked winter landscape through water and repeated ground; tone restrained, weathered; emphasis bridge joints, dark stream, and receding terrace bands; director note Use mineral color and ink density to clarify depth without historical imitation.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Use ink density, mineral-color islands, reserved paper, and receding washes to organize memory without turning the image into a decorative scroll or collage.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#625D50, #312E23) without flattening every painted passage into one identical color treatment.\n- Convert source light into layered ink values and restrained mineral accents while keeping the original light direction and atmospheric depth legible.\n\nMATERIAL AND SURFACE\n- Use fibrous paper, pooled ink edges, dry-brush stone texture, granulating mineral blue-green and earth pigments, and sparse opaque accents.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No calligraphy, seals, copied historical composition, imitation of a named painter, floating decorative motifs, photographic cutouts, or generic fantasy mountains.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one contemporary mineral-ink memory image derived from the supplied evidence.",
+      "reference_output": {
+        "path": "../../after/mineral-ink-memory.png",
+        "sha256": "ee94da813aaa7e0e3762df46d54e39d53ad1e9050b4b1afbcc5b7638fbcb420d"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/stone-bridge.png",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Memory Atlas",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "location",
+      "date"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "memory-atlas-01",
+        "caption": "MINERAL INK MEMORY",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "date",
+      "location"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/stone-bridge.png",
+        "sha256": "bd832417e2c52dcd3ed44ea871735dcd243c0fd804f28ab5e564da9d08029860"
+      }
+    ]
+  }
+}

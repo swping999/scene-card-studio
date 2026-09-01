@@ -74,6 +74,247 @@ DREAM_LOGIC: dict[str, Any] = {
     "output": ["The result must express one legible dream rule while remaining immediately traceable to the supplied subjects."],
 }
 
+MINERAL_INK_MEMORY: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "mineral-ink painting",
+    "subject_fidelity": [
+        "Preserve identity-bearing faces, architecture, terrain silhouettes, route direction, object count, and the source's foreground-to-distance structure.",
+    ],
+    "transformation_policy": [
+        "Translate the complete visible scene into mineral pigment, ink wash, and absorbent paper; change medium and emphasis, not place, identity, chronology, or geography.",
+    ],
+    "composition": [
+        "Use ink density, mineral-color islands, reserved paper, and receding washes to organize memory without turning the image into a decorative scroll or collage.",
+    ],
+    "lighting": [
+        "Convert source light into layered ink values and restrained mineral accents while keeping the original light direction and atmospheric depth legible.",
+    ],
+    "material": [
+        "Use fibrous paper, pooled ink edges, dry-brush stone texture, granulating mineral blue-green and earth pigments, and sparse opaque accents.",
+    ],
+    "exclusions": [
+        "No calligraphy, seals, copied historical composition, imitation of a named painter, floating decorative motifs, photographic cutouts, or generic fantasy mountains.",
+    ],
+    "output": ["The result must read as one contemporary mineral-ink memory image derived from the supplied evidence."],
+}
+
+IMPASTO_LIGHT_STUDY: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "impasto light study",
+    "subject_fidelity": [
+        "Preserve the recognizable subject silhouette, face geometry when present, architecture, object relationships, horizon, and camera position.",
+    ],
+    "transformation_policy": [
+        "Translate the complete scene into a materially painted light study; allow brush simplification but do not invent props, costume, weather, or location.",
+    ],
+    "composition": [
+        "Let one source-supported light path control the focal hierarchy; concentrate thick paint around illuminated structure and reduce secondary areas into quieter planes.",
+    ],
+    "lighting": [
+        "Keep the source light direction and temperature relationships; build luminous color through adjacent strokes rather than digital glow or bloom.",
+    ],
+    "material": [
+        "Use visible loaded-brush ridges, palette-knife interruptions, broken color, matte ground, and selective thick highlights with believable paint depth.",
+    ],
+    "exclusions": [
+        "No named-painter imitation, generic starry swirls, uniformly thick texture, plastic 3D paint, photographic islands, frame, canvas mockup, or gallery wall.",
+    ],
+    "output": ["The result must read as one resolved contemporary painting in which light—not a filter—directs attention."],
+}
+
+PIXEL_DIARY: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "pixel diary illustration",
+    "subject_fidelity": [
+        "Preserve subject identity through stable silhouette, hairstyle, clothing colors, pose, landmark geometry, route direction, and object count.",
+    ],
+    "transformation_policy": [
+        "Rebuild the complete scene on one consistent pixel grid; simplify detail by hierarchy without changing the depicted event, place, or relationships.",
+    ],
+    "composition": [
+        "Use a cinematic pixel-art composition with clear large shapes, readable depth bands, and one calm focal beat rather than a game screenshot or sticker sheet.",
+    ],
+    "lighting": [
+        "Use a restrained source-derived palette, clustered highlights, controlled dithering, and coherent atmospheric perspective.",
+    ],
+    "material": [
+        "Use crisp intentional pixels, selective dithering, compact color ramps, and hand-placed edge clusters; keep one pixel scale throughout the image.",
+    ],
+    "exclusions": [
+        "No UI, HUD, dialogue box, game logo, fake scanlines, mixed pixel sizes, vector-smooth faces, copied game assets, named-game imitation, or photographic fragments.",
+    ],
+    "output": ["The result must read as one authored pixel diary frame, not a photo passed through a mosaic filter."],
+}
+
+RISOGRAPH_ROUTE: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "risograph route print",
+    "subject_fidelity": [
+        "Preserve the supplied landmark silhouettes, people, objects, movement direction, and spatial order as legible print shapes.",
+    ],
+    "transformation_policy": [
+        "Translate visible evidence into a limited-ink print system; route marks may connect only locations or directions supported by the Scene Cards.",
+    ],
+    "composition": [
+        "Use one asymmetric poster-like field with a dominant place anchor, smaller evidence clusters, and directional rhythm; avoid equal cards and scrapbook stickers.",
+    ],
+    "lighting": [
+        "Express value using two or three source-derived ink layers, overprint mixtures, and unprinted paper rather than gradients or digital glow.",
+    ],
+    "material": [
+        "Use soy-ink grain, halftone density, slight registration drift, paper tooth, and transparent overprint while keeping fine identity cues readable.",
+    ],
+    "exclusions": [
+        "No fabricated map labels, stamps, ticket collage, blue scrapbook board, white sticker outlines, duplicated inset photo, named-designer imitation, or unreadable generated text.",
+    ],
+    "output": ["The result must read as an original route-led risograph print whose marks remain traceable to supplied evidence."],
+}
+
+GOUACHE_PLACE_STUDY: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "gouache place study",
+    "subject_fidelity": [
+        "Preserve recognizable people, architecture, terrain contours, route direction, object count, and source composition while simplifying small detail.",
+    ],
+    "transformation_policy": [
+        "Repaint every visible element in opaque gouache; allow shape simplification and edge hierarchy but no invented location, season, props, or characters.",
+    ],
+    "composition": [
+        "Build a confident place study from interlocking matte shapes, clear foreground-to-distance layers, and one source-supported focal relationship.",
+    ],
+    "lighting": [
+        "Preserve source light and weather through compact value groups, warm-cool adjacency, and restrained opaque highlights.",
+    ],
+    "material": [
+        "Use matte gouache coverage, dry opaque scumble, visible brush edges, subtle paper tooth, and selective pencil underdrawing without photographic residue.",
+    ],
+    "exclusions": [
+        "No named-illustrator imitation, generic children's-book decoration, outlines around every object, pasted photo, frame, lettering, or fabricated travel ephemera.",
+    ],
+    "output": ["The result must read as one complete hand-painted place study rather than a border treatment."],
+}
+
+CYANOTYPE_ARCHIVE: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "cyanotype archive study",
+    "subject_fidelity": [
+        "Preserve the subject contour, material damage, joins, tool relationships, gesture, and identifying structure as readable tonal evidence.",
+    ],
+    "transformation_policy": [
+        "Translate the complete visible record into a cyanotype-like contact-print language; do not invent specimen names, provenance, measurements, or scientific claims.",
+    ],
+    "composition": [
+        "Use one inspectable evidence field with deliberate exposure variation and negative-space hierarchy, not a faux antique page or equal specimen grid.",
+    ],
+    "lighting": [
+        "Convert source luminance into deep Prussian-blue density, clear paper highlights, and readable midtone exposure without crushing identity-bearing detail.",
+    ],
+    "material": [
+        "Use sensitized-paper grain, contact shadows, brushed emulsion edges, slight exposure irregularity, and clean uncoated paper where the composition needs air.",
+    ],
+    "exclusions": [
+        "No invented handwriting, measurements, botanical labels, stamps, fake damage, duplicated specimens, named-photographer imitation, or decorative blueprint grid.",
+    ],
+    "output": ["The result must read as a contemporary evidence-bound cyanotype archive object."],
+}
+
+PAPER_RELIEF_LANDSCAPE: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "cut-paper relief landscape",
+    "subject_fidelity": [
+        "Preserve landmark silhouette, terrain layers, subject identity through profile and color, object count, route direction, and source depth order.",
+    ],
+    "transformation_policy": [
+        "Translate the whole scene into cut and molded paper relief; simplify surfaces by depth plane without adding decorative travel icons or changing geography.",
+    ],
+    "composition": [
+        "Construct one integrated bas-relief image with varied plane depth, selective apertures, and a dominant spatial path; avoid a sticker board or separated cutout collection.",
+    ],
+    "lighting": [
+        "Use one plausible raking light so cast shadows clarify paper depth while respecting the source's overall time and atmosphere.",
+    ],
+    "material": [
+        "Use deckled cotton paper, layered pulp, subtle fibers, embossed terrain, clean cut edges, and restrained shadow gaps at a consistent physical scale.",
+    ],
+    "exclusions": [
+        "No white sticker outlines, floating icons, scrapbook page, duplicated source photo, foam-board look, excessive drop shadows, text, or named-paper-artist imitation.",
+    ],
+    "output": ["The result must read as one physically coherent paper landscape photographed from a single viewpoint."],
+}
+
+SCULPTED_PLACE_DIORAMA: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "sculpted miniature place diorama",
+    "subject_fidelity": [
+        "Preserve landmark silhouette, terrain topology, water direction, architecture, subject count, route geometry, and the source's near-to-far relationships.",
+    ],
+    "transformation_policy": [
+        "Rebuild the complete scene as one physically plausible miniature diorama; simplify only surface detail and scale, never place identity, geography, weather evidence, or object relationships.",
+    ],
+    "composition": [
+        "Use a single continuous terrain base with convincing elevation, embedded routes, and controlled foreground-to-distance scale; frame it as a collectible spatial portrait rather than a toy display.",
+    ],
+    "lighting": [
+        "Use one studio-like physical light derived from the source direction, with soft cast shadows, contact shadows, and atmospheric depth that reveal volume without glossy spectacle.",
+    ],
+    "material": [
+        "Use hand-sculpted plaster, matte resin, fine scenic fibers, translucent water material, weathered miniature timber or stone, and subtle tool marks at one consistent scale.",
+    ],
+    "exclusions": [
+        "No toy-box border, isometric game tile, floating platform, cute character redesign, plastic CGI gloss, oversized props, UI, labels, branded model kit, or named-studio imitation.",
+    ],
+    "output": ["The result must read as one refined physical place model photographed in a real studio, not a generic 3D filter."],
+}
+
+AUTOCHROME_MEMORY: dict[str, Any] = {
+    "render_mode": "heritage-photograph",
+    "output_medium": "autochrome-inspired memory photograph",
+    "subject_fidelity": [
+        "Preserve present-day identity, age, pose, clothing, architecture, object placement, and the source moment without converting it into a historical reenactment.",
+    ],
+    "transformation_policy": [
+        "Authorize only an early-color photographic material treatment and restrained tonal direction; do not invent period costume, ancestry, or date.",
+    ],
+    "composition": [
+        "Use quiet observational framing, stable subject separation, and source-supported breathing room rather than theatrical nostalgia.",
+    ],
+    "lighting": [
+        "Preserve source light while using gentle highlight bloom, muted color separation, and low-contrast shadow color characteristic of an early color plate.",
+    ],
+    "material": [
+        "Use fine stochastic color grain, soft optical edges, delicate muted reds and blue-greens, glass-plate luminosity, and restrained surface variation.",
+    ],
+    "exclusions": [
+        "No fake scratches, sepia wash, vignette cliché, costume change, de-aging, fabricated date, named-photographer imitation, or generic mobile vintage preset.",
+    ],
+    "output": ["The result must read as a carefully directed memory photograph, not a novelty antique filter."],
+}
+
+PIXEL_INK_MEMORY: dict[str, Any] = {
+    "experimental": True,
+    "render_mode": "full-redraw",
+    "output_medium": "pixel-and-ink memory illustration",
+    "subject_fidelity": [
+        "Preserve identity, silhouette, architecture, terrain, object count, movement direction, and source depth through a stable shared shape map.",
+    ],
+    "transformation_policy": [
+        "Fuse only two material systems—intentional pixel clusters for near evidence and mineral-ink diffusion for memory distance—without changing the depicted event or place.",
+    ],
+    "composition": [
+        "Assign crisp pixel structure to identity-bearing anchors and let ink washes carry atmosphere and distance; transitions must follow depth, not arbitrary collage masks.",
+    ],
+    "lighting": [
+        "Use one source-derived palette and one light direction across both media so the fusion reads as a single image.",
+    ],
+    "material": [
+        "Use deliberate pixel clusters, restrained dithering, absorbent ink blooms, paper tooth, and a narrow transitional band where the two media interlock.",
+    ],
+    "exclusions": [
+        "No split-screen, half-and-half effect, glitch overlay, game UI, pasted photograph, random ink splash, named-artist or named-game imitation, or mixed lighting models.",
+    ],
+    "output": ["Experimental profile: accept only when the two media share one composition, palette, and depth logic."],
+}
+
 
 EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     "cinematic-storyboard": {
@@ -99,6 +340,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
             "lighting": ["Use one plausible directional window source with a clear shadow structure and gentle tonal falloff."],
             "material": ["Emphasize tactile fibers, glaze, chipped paint, folds, and small imperfections without sterile CGI polish."],
         },
+        "impasto-light-study": IMPASTO_LIGHT_STUDY,
     },
     "editorial-sequence": {
         "source-led": {
@@ -113,6 +355,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
             "lighting": ["Retain available light and believable exposure, including imperfect documentary conditions."],
             "material": ["Preserve weather, wear, dust, skin, fabric, tools, and surfaces as observed."],
         },
+        "cyanotype-archive": CYANOTYPE_ARCHIVE,
     },
     "memory-atlas": {
         "source-led": {
@@ -128,6 +371,15 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "watercolor-chronicle": WATERCOLOR_CHRONICLE,
         "full-watercolor-memory": {"alias_for": "watercolor-chronicle", **WATERCOLOR_CHRONICLE},
         "dream-logic": DREAM_LOGIC,
+        "mineral-ink-memory": MINERAL_INK_MEMORY,
+        "impasto-light-study": IMPASTO_LIGHT_STUDY,
+        "pixel-diary": PIXEL_DIARY,
+        "risograph-route": RISOGRAPH_ROUTE,
+        "gouache-place-study": GOUACHE_PLACE_STUDY,
+        "paper-relief-landscape": PAPER_RELIEF_LANDSCAPE,
+        "sculpted-place-diorama": SCULPTED_PLACE_DIORAMA,
+        "autochrome-memory": AUTOCHROME_MEMORY,
+        "pixel-ink-memory": PIXEL_INK_MEMORY,
     },
     "family-archive": {
         "source-led": {
@@ -142,6 +394,8 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         },
         "watercolor-chronicle": WATERCOLOR_CHRONICLE,
         "heritage-portrait": HERITAGE_PORTRAIT,
+        "cyanotype-archive": CYANOTYPE_ARCHIVE,
+        "autochrome-memory": AUTOCHROME_MEMORY,
     },
     "museum-catalogue": {
         "source-led": {
@@ -151,6 +405,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         },
         "watercolor-chronicle": WATERCOLOR_CHRONICLE,
         "heritage-portrait": HERITAGE_PORTRAIT,
+        "cyanotype-archive": CYANOTYPE_ARCHIVE,
     },
     "travel-journal": {
         "source-led": {
@@ -159,6 +414,31 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
             "material": ["Use only supplied or explicitly authorized tickets, maps, handwriting, paper, fabric, and environmental traces."],
         },
         "watercolor-chronicle": WATERCOLOR_CHRONICLE,
+        "mineral-ink-memory": MINERAL_INK_MEMORY,
+        "impasto-light-study": IMPASTO_LIGHT_STUDY,
+        "pixel-diary": PIXEL_DIARY,
+        "risograph-route": RISOGRAPH_ROUTE,
+        "gouache-place-study": GOUACHE_PLACE_STUDY,
+        "paper-relief-landscape": PAPER_RELIEF_LANDSCAPE,
+        "sculpted-place-diorama": SCULPTED_PLACE_DIORAMA,
+        "autochrome-memory": AUTOCHROME_MEMORY,
+    },
+    "journey-taxonomy": {
+        "source-led": {
+            "composition": ["Build one semantic place field from visible evidence, grouping observed elements by role rather than by decorative similarity."],
+            "lighting": ["Preserve source time, weather, and color relationships across the dominant scene and its material studies."],
+            "material": ["Keep every extracted visual cue traceable to a supplied person, place, object, texture, plant, animal, weather condition, or route feature."],
+        },
+        "watercolor-chronicle": WATERCOLOR_CHRONICLE,
+        "mineral-ink-memory": MINERAL_INK_MEMORY,
+        "impasto-light-study": IMPASTO_LIGHT_STUDY,
+        "pixel-diary": PIXEL_DIARY,
+        "risograph-route": RISOGRAPH_ROUTE,
+        "gouache-place-study": GOUACHE_PLACE_STUDY,
+        "paper-relief-landscape": PAPER_RELIEF_LANDSCAPE,
+        "sculpted-place-diorama": SCULPTED_PLACE_DIORAMA,
+        "autochrome-memory": AUTOCHROME_MEMORY,
+        "pixel-ink-memory": PIXEL_INK_MEMORY,
     },
     "street-reportage": {
         "source-led": {
@@ -171,6 +451,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
             "lighting": ["Convert source luminance into a detailed black-and-white scale with protected skin and shadow information."],
             "material": ["Use restrained silver-rich grain and crisp local contrast without crushed blacks or artificial damage."],
         },
+        "cyanotype-archive": CYANOTYPE_ARCHIVE,
     },
     "fashion-editorial": {
         "source-led": {

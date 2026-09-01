@@ -1,6 +1,6 @@
 ---
 name: scene-card-studio
-description: Turn one user-supplied photo or a related photo set into standalone art-directed Before/After images, a coherent visual narrative, versioned image-generation prompts, and editable story layouts. Use when the user wants a single-photo visual treatment, photo essay, cinematic sequence, memory atlas, family chronicle, quiet editorial, field log, watercolor chronicle, heritage portrait, museum catalogue, travel journal, street reportage, fashion editorial, dream-logic treatment, contact sheet, social carousel, or sequenced photographic story.
+description: Turn one user-supplied photo or a related photo set into standalone art-directed Before/After images, a coherent visual narrative, versioned image-generation prompts, and editable story layouts. Use for a single-photo treatment, photo essay, cinematic sequence, memory atlas, family chronicle, quiet editorial, field log, museum catalogue, travel journal, journey taxonomy, street reportage, fashion editorial, watercolor, heritage, ink, impasto, pixel, risograph, gouache, cyanotype, paper-relief, sculpted 3D diorama, autochrome, or dream-logic treatment.
 ---
 
 # Scene Card Studio
@@ -22,6 +22,7 @@ Build a visual story from the user's photographs without imitating a named artis
    - `field-log` when observation and documentary detail matter.
    - `museum-catalogue` for inspectable subjects and supplied collection metadata;
    - `travel-journal` for movement, pauses, thresholds, and user-supplied journey evidence;
+   - `journey-taxonomy` when the goal is to classify visible place elements by semantic role. Keep one dominant place image, omit absent categories, use no duplicated inset photo, sticker column, connector line, or copied reference composition;
    - `street-reportage` for observed public gestures and environmental context;
    - `fashion-editorial` for pose, garment construction, movement, and shot-scale rhythm.
    Run `scene-card-studio profiles --system SYSTEM_ID` when available, and use only a Profile listed for the selected system.
@@ -46,7 +47,7 @@ scene-card-studio direct PHOTO [PHOTO ...] --brief "USER-SUPPLIED DIRECTION" \
   --scene-cards scene-card-output/story.json --output-dir scene-card-output --force
 ```
 
-   Continue only when `check` reports `generation-ready` and the rerun reports `prompt-ready`. If two Narrative Systems tie, `direct` reports `needs-route-confirmation`; resolve the system with the user or an explicit `--system`. `direct` may automatically select a non-default Profile only when the brief explicitly requests that expression; otherwise it must remain `source-led`. The Workprint is an analysis artifact, never the finished After. If staged control is required, run:
+   Continue only when `check` reports `generation-ready` and the rerun reports `prompt-ready`. If two Narrative Systems tie or the automatic System score is low, `direct` reports `needs-route-confirmation`; resolve the system with the user or an explicit `--system`. `direct` may automatically select a non-default Profile only when the brief explicitly requests that expression; otherwise it must remain `source-led`. The Workprint is an analysis artifact, never the finished After. If staged control is required, run:
 
 ```bash
 scene-card-studio recommend story.json
@@ -57,6 +58,7 @@ scene-card-studio compile story.json --system cinematic-storyboard --output prom
 
 9. Before any remote or cloud generation, show the user the provider, purpose, and exact `privacy.files` list. Ask for explicit consent and record it with `scene-card-studio consent`. The command must refuse a Manifest whose semantic direction or route is not ready. Without consent, stop at the local Direct bundle or staged Workprint and Prompt Manifest output. Never treat photo analysis, automatic routing, or prompt compilation as upload permission.
 10. After consent, use every module in each compiled prompt and pass only the approved source photographs as image references. Default to **one source photograph → one standalone After image**. Combine sources only when explicitly requested or when spatial or archival synthesis requires it.
+   For medium-led Profiles, verify that the entire visible image follows one material system. Reject photo-plus-border effects, photographic islands inside full-redraw Profiles, inconsistent pixel scales, fake archive labels, and decorative route marks unsupported by Scene Cards.
 11. Bind generated files with `scene-card-studio bind-outputs`. Require the decoded MIME, width, height, and aspect ratio to match each `output_contract`; do not review mismatched files.
 12. Keep visible text out of image synthesis. Put only user-supplied `metadata` values into the Manifest's `presentation_contract`, then run `scene-card-studio present render-manifest.json -o presentation.svg` to apply deterministic captions, dates, places, collection names, and catalogue identifiers. Omit missing fields instead of inventing them.
 13. Review only `candidate_output` records in the Render Manifest. A `reference_output` is benchmark evidence and never satisfies formal review. Create a bound form with `scene-card-studio review-template`, inspect the full-resolution output, fill every score, then run `scene-card-studio review` to produce the formal Accept/Retry record. For sequence systems, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
@@ -72,6 +74,7 @@ scene-card-studio compile story.json --system cinematic-storyboard --output prom
 - Keep captions short and concrete. Mark uncertain interpretations as uncertain.
 - Do not save source photos into a repository unless the user explicitly requests it.
 - Do not imitate a living artist, photographer, or director by name. Translate requests into general visual and narrative mechanisms.
+- Borrow only general mechanisms such as classification, sequencing, or material translation. Never copy another project's palette, composition, sticker silhouettes, caption placement, prompts, assets, or example arrangement.
 
 ## Bundled resources
 

@@ -1,0 +1,78 @@
+[
+  {
+    "source": "../../before/empty-market-lane.png",
+    "width": 1086,
+    "height": 1448,
+    "palette": [
+      "#1C201A",
+      "#62594E",
+      "#524839",
+      "#96856C",
+      "#897860"
+    ],
+    "brightness": 0.275,
+    "saturation": 0.293,
+    "orientation": "portrait",
+    "caption": "PIXEL DIARY",
+    "observation": {
+      "subjects": [
+        "empty market lane",
+        "green awnings",
+        "wet pavement",
+        "stacked crates",
+        "closed grilles",
+        "bicycles"
+      ],
+      "dominant_gesture": "wet lane narrows toward a cool blue opening",
+      "quiet_regions": [
+        "distant lane",
+        "dark awning planes"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "record a closed market as a quiet blue-hour journey frame",
+      "emotional_tone": [
+        "nocturnal",
+        "observant"
+      ],
+      "confidence": 0.95,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Rebuild the full scene on one pixel grid; keep depth and material evidence.",
+      "layout_emphasis": "wet central path between awning masses"
+    },
+    "transformation": {
+      "must_preserve": [
+        "empty scene",
+        "lane perspective",
+        "awnings",
+        "crates",
+        "bicycles",
+        "wet ground",
+        "closed stalls"
+      ],
+      "may_transform": [
+        "all surfaces into intentional pixel clusters",
+        "crop",
+        "limited palette",
+        "dithering"
+      ],
+      "must_remove": [
+        "photographic pixels",
+        "UI",
+        "HUD",
+        "text",
+        "mixed pixel scales"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

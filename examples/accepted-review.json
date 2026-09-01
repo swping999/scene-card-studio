@@ -1,5 +1,6 @@
 {
-  "manifest_sha256": "8624e3a4009de13ddd0b1ebe6bc91463cd422bbad265860aa99344df5ddff378",
+  "schema_version": "1.0",
+  "manifest_sha256": "de2284924ad98dafbae9e489cac220003f7d7ba5b166abf1b3ab22a02a24dd4c",
   "reviewer": {"type": "human", "name": "repository curator", "model": "visual inspection"},
   "review_method": "Full-resolution visual inspection against the compiled prompt and source references.",
   "reviewed_at": "2026-08-09T11:57:00Z",
@@ -14,7 +15,16 @@
         "system_distinctiveness": 5,
         "artifact_control": 4
       },
-      "notes": "Accepted: photographed architecture remains legible while drawn geography carries the spatial memory."
+      "notes": "Accepted: photographed architecture remains legible while drawn geography carries the spatial memory.",
+      "decision": "accept",
+      "failed_dimensions": []
     }
-  ]
+  ],
+  "artifact_type": "aesthetic-review",
+  "review_version": "1.0",
+  "decision": "accept",
+  "failed_prompt_ids": [],
+  "sequence_decision": "accept",
+  "sequence_failed_dimensions": [],
+  "retry_prompt_ids": []
 }

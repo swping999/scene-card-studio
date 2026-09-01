@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.5",
+  "compiler_version": "0.6.0",
+  "source_mode": "single-photo",
+  "system": "museum-catalogue",
+  "system_display_name": "Museum Catalogue",
+  "expression_profile": "cyanotype-archive",
+  "available_expression_profiles": [
+    "source-led",
+    "watercolor-chronicle",
+    "heritage-portrait",
+    "cyanotype-archive"
+  ],
+  "story": "story.json",
+  "source_base": "story-directory",
+  "prompts": [
+    {
+      "id": "museum-catalogue-01",
+      "mode": "catalogue-plate",
+      "source_indexes": [
+        0
+      ],
+      "sources": [
+        {
+          "path": "../../before/field-desk.png",
+          "sha256": "15df59d74b0c186e80632cc84f6663ff8558b2a42b627ef95102d3cbd0741d81"
+        }
+      ],
+      "output_contract": {
+        "mime_type": "image/png",
+        "width": 1024,
+        "height": 1536,
+        "aspect_ratio": "2:3"
+      },
+      "blocks": {
+        "subject_fidelity": [
+          "Preserve the recognizable identity, count, proportions, position, and defining details of: compass form, notebook spiral and stains, fern shape, magnifier silhouette and scratches.",
+          "Preserve the observed action or structural gesture: four worn field objects scatter across a laminate table.",
+          "Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.",
+          "Preserve the subject contour, material damage, joins, tool relationships, gesture, and identifying structure as readable tonal evidence."
+        ],
+        "transformation_policy": [
+          "MUST PRESERVE — compass form, notebook spiral and stains, fern shape, magnifier silhouette and scratches.",
+          "MAY TRANSFORM — all surfaces into cyanotype exposure, arrangement, tonal hierarchy.",
+          "MUST REMOVE — water bottle, cable, receipt, lamp edge, labels, measurements.",
+          "Translate the complete visible record into a cyanotype-like contact-print language; do not invent specimen names, provenance, measurements, or scientific claims."
+        ],
+        "narrative_intent": [
+          "Narrative intent: make field-wear and object relationships inspectable.",
+          "Emotional tone: precise, material. Story role: moment.",
+          "Director note: Use contact-print evidence without inventing specimen names or measurements.",
+          "Visual emphasis: compass center, fern arc, notebook plane, magnifier diagonal.",
+          "Present the supplied subject as an inspectable catalogue plate; do not claim provenance, period, maker, value, or collection history absent from metadata."
+        ],
+        "composition": [
+          "Create one clean continuous plate with controlled margins inside the image and a complete, uncropped view of identity-bearing details.",
+          "Use empty tabletop between objects as controlled breathing room where compatible with the observed scene.",
+          "Use one inspectable evidence field with deliberate exposure variation and negative-space hierarchy, not a faux antique page or equal specimen grid."
+        ],
+        "lighting": [
+          "Build from the source palette (#B1A795, #C4B7A1, #656056, #958A75) and preserve truthful skin, object, and environment relationships.",
+          "Convert source luminance into deep Prussian-blue density, clear paper highlights, and readable midtone exposure without crushing identity-bearing detail."
+        ],
+        "material": [
+          "Use sensitized-paper grain, contact shadows, brushed emulsion edges, slight exposure irregularity, and clean uncoated paper where the composition needs air.",
+          "Keep identity-bearing surface evidence specific; avoid a generic preset finish."
+        ],
+        "spatial_relationships": [
+          "Preserve scale cues, support, joins, repairs, wear, and material relief; use a neutral ground only when it does not alter evidence."
+        ],
+        "text_strategy": [
+          "Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.",
+          "Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract."
+        ],
+        "exclusions": [
+          "No fake museum room, pedestal spectacle, auction luxury styling, invented accession label, certificate, frame, or wall text.",
+          "Do not imitate a named artist, photographer, publication, brand, or campaign.",
+          "No invented handwriting, measurements, botanical labels, stamps, fake damage, duplicated specimens, named-photographer imitation, or decorative blueprint grid."
+        ],
+        "output": [
+          "Return one standalone cyanotype archive study PNG frame at exactly 2:3.",
+          "Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.",
+          "The result must read as a contemporary evidence-bound cyanotype archive object."
+        ]
+      },
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the recognizable identity, count, proportions, position, and defining details of: compass form, notebook spiral and stains, fern shape, magnifier silhouette and scratches.\n- Preserve the observed action or structural gesture: four worn field objects scatter across a laminate table.\n- Treat the source photograph as visual evidence: do not replace the location, reconstruct hidden content, or invent people, objects, or events.\n- Preserve the subject contour, material damage, joins, tool relationships, gesture, and identifying structure as readable tonal evidence.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — compass form, notebook spiral and stains, fern shape, magnifier silhouette and scratches.\n- MAY TRANSFORM — all surfaces into cyanotype exposure, arrangement, tonal hierarchy.\n- MUST REMOVE — water bottle, cable, receipt, lamp edge, labels, measurements.\n- Translate the complete visible record into a cyanotype-like contact-print language; do not invent specimen names, provenance, measurements, or scientific claims.\n\nNARRATIVE INTENT\n- Narrative intent: make field-wear and object relationships inspectable.\n- Emotional tone: precise, material. Story role: moment.\n- Director note: Use contact-print evidence without inventing specimen names or measurements.\n- Visual emphasis: compass center, fern arc, notebook plane, magnifier diagonal.\n- Present the supplied subject as an inspectable catalogue plate; do not claim provenance, period, maker, value, or collection history absent from metadata.\n\nCOMPOSITION\n- Create one clean continuous plate with controlled margins inside the image and a complete, uncropped view of identity-bearing details.\n- Use empty tabletop between objects as controlled breathing room where compatible with the observed scene.\n- Use one inspectable evidence field with deliberate exposure variation and negative-space hierarchy, not a faux antique page or equal specimen grid.\n\nLIGHTING AND COLOR\n- Build from the source palette (#B1A795, #C4B7A1, #656056, #958A75) and preserve truthful skin, object, and environment relationships.\n- Convert source luminance into deep Prussian-blue density, clear paper highlights, and readable midtone exposure without crushing identity-bearing detail.\n\nMATERIAL AND SURFACE\n- Use sensitized-paper grain, contact shadows, brushed emulsion edges, slight exposure irregularity, and clean uncoated paper where the composition needs air.\n- Keep identity-bearing surface evidence specific; avoid a generic preset finish.\n\nSPATIAL RELATIONSHIPS\n- Preserve scale cues, support, joins, repairs, wear, and material relief; use a neutral ground only when it does not alter evidence.\n\nTEXT AND LABELS\n- Generate no visible typography, captions, dates, locations, catalogue numbers, logos, watermarks, or interface labels inside the image.\n- Reserve all supplied metadata for the deterministic presentation layer defined by presentation_contract.\n\nEXCLUSIONS\n- No fake museum room, pedestal spectacle, auction luxury styling, invented accession label, certificate, frame, or wall text.\n- Do not imitate a named artist, photographer, publication, brand, or campaign.\n- No invented handwriting, measurements, botanical labels, stamps, fake damage, duplicated specimens, named-photographer imitation, or decorative blueprint grid.\n\nOUTPUT\n- Return one standalone cyanotype archive study PNG frame at exactly 2:3.\n- Keep the supplied subject immediately recognizable and leave typography to the deterministic renderer.\n- The result must read as a contemporary evidence-bound cyanotype archive object.",
+      "reference_output": {
+        "path": "../../after/cyanotype-archive.png",
+        "sha256": "3711a57d9d5163206712efbf1c3689678ea28fbb23255f42e831e0d5c8964c75"
+      }
+    }
+  ],
+  "direction_readiness": {
+    "schema_version": "1.0",
+    "status": "generation-ready",
+    "generation_ready": true,
+    "card_count": 1,
+    "cards": [
+      {
+        "source_index": 0,
+        "source": "../../before/field-desk.png",
+        "ready": true,
+        "missing_fields": [],
+        "analysis_method": "manually-directed example"
+      }
+    ],
+    "required_semantic_fields": [
+      "observation.subjects",
+      "observation.dominant_gesture",
+      "interpretation.narrative_intent",
+      "direction.director_note",
+      "direction.layout_emphasis",
+      "transformation.must_preserve",
+      "transformation.may_transform"
+    ]
+  },
+  "generation_ready": true,
+  "presentation_contract": {
+    "schema_version": "1.0",
+    "renderer": "deterministic-overlay",
+    "display_name": "Museum Catalogue",
+    "source_mode": "single-photo",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": [
+      "caption",
+      "collection",
+      "catalogue_id",
+      "date",
+      "source_note"
+    ],
+    "entries": [
+      {
+        "source_index": 0,
+        "prompt_id": "museum-catalogue-01",
+        "caption": "CYANOTYPE ARCHIVE",
+        "story_role": "moment"
+      }
+    ],
+    "missing_optional_metadata": [
+      "catalogue_id",
+      "collection",
+      "date",
+      "source_note"
+    ],
+    "rules": [
+      "Render labels only from the entries in this contract.",
+      "Omit missing fields; never infer names, dates, locations, collection data, or catalogue identifiers.",
+      "Keep generated image pixels and deterministic typography as separate provenance layers."
+    ]
+  },
+  "review_policy": {
+    "scale": "1-5",
+    "accept_threshold": 4,
+    "hard_gates": [
+      "subject_fidelity",
+      "artifact_control"
+    ],
+    "dimensions": {
+      "subject_fidelity": "Recognizable people, objects, architecture, action, and identity-bearing details remain faithful to the source.",
+      "narrative_alignment": "The image expresses the Scene Card intent, emotional tone, story role, and director note.",
+      "composition": "The frame has a clear hierarchy, intentional depth, crop safety, and no accidental dead zones.",
+      "system_distinctiveness": "The result uses the selected Narrative System's mechanism and chosen expression profile rather than a generic beauty treatment.",
+      "artifact_control": "No distorted anatomy, broken geometry, invented metadata, unwanted text, collage seams, or synthetic clutter."
+    },
+    "sequence_dimensions": {
+      "subject_continuity": "Recurring people, clothing, objects, locations, and identity-bearing details remain consistent across frames.",
+      "light_color_continuity": "Light direction, exposure progression, and palette form a coherent sequence rather than unrelated grades.",
+      "rhythm": "Shot scale, density, and pauses create intentional pacing without repetitive framing.",
+      "narrative_arc": "Opening, development, pause, and closing roles read as one arc without invented events."
+    }
+  },
+  "sequence_review_required": false,
+  "privacy": {
+    "upload_requires_explicit_consent": true,
+    "consent_status": "not-recorded",
+    "provider": null,
+    "purpose": "presentation synthesis",
+    "files": [
+      {
+        "path": "../../before/field-desk.png",
+        "sha256": "15df59d74b0c186e80632cc84f6663ff8558b2a42b627ef95102d3cbd0741d81"
+      }
+    ]
+  }
+}

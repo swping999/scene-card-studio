@@ -1,0 +1,77 @@
+[
+  {
+    "source": "../../before/stone-bridge.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#625D50",
+      "#312E23",
+      "#524A36",
+      "#DEE0E4",
+      "#433B2C"
+    ],
+    "brightness": 0.426,
+    "saturation": 0.223,
+    "orientation": "portrait",
+    "caption": "PAPER RELIEF LANDSCAPE",
+    "observation": {
+      "subjects": [
+        "low stone bridge",
+        "stream",
+        "winter terraces",
+        "irrigation channel",
+        "bare branches",
+        "distant village"
+      ],
+      "dominant_gesture": "stream and channel pull the eye through layered terraces",
+      "quiet_regions": [
+        "pale sky",
+        "distant haze"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "turn terrain depth into one tactile paper landscape",
+      "emotional_tone": [
+        "tactile",
+        "grounded"
+      ],
+      "confidence": 0.95,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Use physical depth planes, not detached paper stickers.",
+      "layout_emphasis": "cut stream channel, layered terraces, and bridge blocks"
+    },
+    "transformation": {
+      "must_preserve": [
+        "bridge span and supports",
+        "stream",
+        "terraces",
+        "channel",
+        "branches",
+        "village",
+        "winter season"
+      ],
+      "may_transform": [
+        "all surfaces into layered cotton paper",
+        "embossing",
+        "raking light"
+      ],
+      "must_remove": [
+        "bucket",
+        "litter",
+        "floating cutouts",
+        "sticker outlines",
+        "text"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

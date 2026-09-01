@@ -1,0 +1,78 @@
+[
+  {
+    "source": "../../before/mountain-lake.png",
+    "width": 1122,
+    "height": 1402,
+    "palette": [
+      "#CFDCE5",
+      "#585F5E",
+      "#232620",
+      "#92A0A8",
+      "#B6C9D6"
+    ],
+    "brightness": 0.567,
+    "saturation": 0.185,
+    "orientation": "portrait",
+    "caption": "AUTOCHROME MEMORY",
+    "observation": {
+      "subjects": [
+        "faded blue boat",
+        "reeds",
+        "mountain lake",
+        "ridge",
+        "concrete landing",
+        "cloud cover"
+      ],
+      "dominant_gesture": "boat rests beside open water below a clouded ridge",
+      "quiet_regions": [
+        "lake surface",
+        "cloud field"
+      ]
+    },
+    "interpretation": {
+      "narrative_intent": "hold one lake stop as a gently time-softened color memory",
+      "emotional_tone": [
+        "contemplative",
+        "subdued"
+      ],
+      "confidence": 0.9,
+      "method": "manually-directed example"
+    },
+    "direction": {
+      "story_role": "moment",
+      "director_note": "Use early-color photographic material without fake age, date, or period fiction.",
+      "layout_emphasis": "blue boat against luminous open water"
+    },
+    "transformation": {
+      "must_preserve": [
+        "boat shape and wear",
+        "reeds",
+        "lake",
+        "ridge",
+        "clouds",
+        "landing"
+      ],
+      "may_transform": [
+        "crop",
+        "fine color grain",
+        "optical softness",
+        "highlight bloom",
+        "tonal hierarchy"
+      ],
+      "must_remove": [
+        "life rings",
+        "clipped railing",
+        "fake scratches",
+        "sepia",
+        "vignette"
+      ]
+    },
+    "metadata": {
+      "date": "",
+      "location": "",
+      "collection": "",
+      "catalogue_id": "",
+      "source_note": ""
+    }
+  }
+]

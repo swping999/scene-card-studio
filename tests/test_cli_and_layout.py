@@ -9,6 +9,7 @@ from PIL import Image, ImageChops, ImageStat
 
 import moments_to_pages.render as renderer
 import moments_to_pages.workflow as workflow
+import moments_to_pages.image_safety as image_safety
 from moments_to_pages.cli import main
 from moments_to_pages.model import (
     Direction,
@@ -59,6 +60,58 @@ def test_analyze_paths_are_relative_to_nested_story(tmp_path: Path, monkeypatch)
     manifest = tmp_path / "out" / "manifest.json"
     assert main(["compile", str(story), "--system", "minimal-editorial", "-o", str(manifest)]) == 0
     assert json.loads(manifest.read_text())["prompts"][0]["sources"][0]["sha256"]
+
+
+def test_nested_manifests_keep_story_candidates_and_svg_portable(tmp_path: Path, monkeypatch):
+    story = _story(tmp_path, 1)
+    monkeypatch.chdir(tmp_path)
+    prompt_path = tmp_path / "bundle" / "manifests" / "prompt-manifest.json"
+    assert main([
+        "compile", str(story.resolve()), "--system", "minimal-editorial", "-o", str(prompt_path)
+    ]) == 0
+    prompt = json.loads(prompt_path.read_text())
+    assert str(tmp_path) not in prompt["story"]
+    assert (prompt_path.parent / prompt["story"]).resolve() == story.resolve()
+
+    candidate = tmp_path / "outputs" / "candidate.png"
+    candidate.parent.mkdir()
+    Image.new("RGB", (1536, 1024), "navy").save(candidate)
+    render_path = tmp_path / "bundle" / "review" / "render-manifest.json"
+    assert main([
+        "bind-outputs", str(prompt_path),
+        "--result", "minimal-editorial-01=outputs/candidate.png",
+        "-o", str(render_path),
+    ]) == 0
+    render_manifest = json.loads(render_path.read_text())
+    stored = render_manifest["prompts"][0]["candidate_output"]["path"]
+    assert not Path(stored).is_absolute()
+    assert (render_path.parent / stored).resolve() == candidate.resolve()
+
+    presentation = tmp_path / "bundle" / "presentation" / "result.svg"
+    assert main(["present", str(render_path), "-o", str(presentation)]) == 0
+    svg = presentation.read_text()
+    assert "file:///" not in svg and "file%3A///" not in svg
+    assert str(tmp_path) not in svg
+
+
+def test_bundled_skill_can_be_located_and_copied(tmp_path: Path, capsys):
+    assert main(["skill-path"]) == 0
+    source = Path(capsys.readouterr().out.strip())
+    assert (source / "SKILL.md").is_file()
+    destination = tmp_path / "installed" / "scene-card-studio"
+    assert main(["install-skill", "--target", str(destination)]) == 0
+    assert (destination / "SKILL.md").is_file()
+    assert not list(destination.rglob("*.pyc"))
+    with pytest.raises(SystemExit, match="Refusing to overwrite"):
+        main(["install-skill", "--target", str(destination)])
+
+
+def test_analysis_rejects_images_over_the_pixel_limit(tmp_path: Path, monkeypatch):
+    image = tmp_path / "large.png"
+    Image.new("RGB", (20, 20), "navy").save(image)
+    monkeypatch.setattr(image_safety, "MAX_RASTER_PIXELS", 100)
+    with pytest.raises(ValueError, match="pixel safety limit"):
+        main(["analyze", str(image), "-o", str(tmp_path / "story.json")])
 
 
 def test_profiles_command_and_nested_output_directories(tmp_path: Path, capsys):
@@ -281,12 +334,15 @@ def test_bilingual_direct_brief_eval_matrix_routes_every_system_and_profile():
     assert routed_systems == {
         "cinematic-storyboard", "memory-atlas", "family-archive", "minimal-editorial",
         "editorial-sequence", "field-log", "museum-catalogue", "travel-journal",
-        "street-reportage", "fashion-editorial",
+        "journey-taxonomy", "street-reportage", "fashion-editorial",
     }
     assert routed_profiles >= {
         "source-led", "rain-nocturne", "quiet-window-light", "watercolor-contour",
         "watercolor-chronicle", "graphite-paper", "heritage-portrait",
-        "monochrome-reportage", "dream-logic",
+        "monochrome-reportage", "dream-logic", "mineral-ink-memory",
+        "impasto-light-study", "pixel-diary", "risograph-route",
+        "gouache-place-study", "cyanotype-archive", "paper-relief-landscape",
+        "sculpted-place-diorama", "autochrome-memory", "pixel-ink-memory",
     }
     for case in matrix["adversarial_cases"]:
         route = select_direct_route([card], brief=case["brief"])
@@ -326,6 +382,11 @@ def test_direct_routing_respects_negation_and_flags_real_ties():
     )
     assert explicit["system"] == "minimal-editorial"
     assert explicit["needs_route_confirmation"] is False
+
+    low_confidence = select_direct_route([card], brief="Keep this portrait faithful and restrained.")
+    assert low_confidence["system_score"] < .8
+    assert low_confidence["needs_route_confirmation"] is True
+    assert low_confidence["route_confirmation_reason"] == "low-system-confidence"
 
 
 def test_deterministic_presentation_uses_only_bound_metadata(tmp_path: Path, monkeypatch):
@@ -442,21 +503,22 @@ def test_renderer_has_no_case_copy_and_layout_emphasis_changes_layout(tmp_path: 
         assert leaked not in renderer_source
 
 
-def test_published_single_photo_gallery_has_valid_roles_and_distinct_pairs():
+def test_published_single_photo_galleries_have_valid_roles_and_distinct_pairs():
     root = Path(__file__).resolve().parents[1]
-    gallery = root / "examples/cases/v0.4-gallery"
-    records = json.loads((gallery / "case-records.json").read_text())
-    assert len(records["cases"]) == 13
-    for case in records["cases"]:
-        assert case["scene_card"]["direction"]["story_role"] == "moment"
-        before = gallery / case["before"]
-        after = gallery / case["after"]
-        assert before.is_file()
-        assert after.is_file()
-        assert hashlib.sha256(before.read_bytes()).digest() != hashlib.sha256(after.read_bytes()).digest()
-        with Image.open(before) as before_image, Image.open(after) as after_image:
-            before_rgb = before_image.convert("RGB").resize((128, 128))
-            after_rgb = after_image.convert("RGB").resize((128, 128))
-            difference = ImageStat.Stat(ImageChops.difference(before_rgb, after_rgb))
-            normalized_mean_difference = sum(difference.mean) / (3 * 255)
-        assert normalized_mean_difference >= .06, case["id"]
+    for gallery_name, expected_count in (("v0.4-gallery", 13), ("v0.6-gallery", 11)):
+        gallery = root / "examples/cases" / gallery_name
+        records = json.loads((gallery / "case-records.json").read_text())
+        assert len(records["cases"]) == expected_count
+        for case in records["cases"]:
+            assert case["scene_card"]["direction"]["story_role"] == "moment"
+            before = gallery / case["before"]
+            after = gallery / case["after"]
+            assert before.is_file()
+            assert after.is_file()
+            assert hashlib.sha256(before.read_bytes()).digest() != hashlib.sha256(after.read_bytes()).digest()
+            with Image.open(before) as before_image, Image.open(after) as after_image:
+                before_rgb = before_image.convert("RGB").resize((128, 128))
+                after_rgb = after_image.convert("RGB").resize((128, 128))
+                difference = ImageStat.Stat(ImageChops.difference(before_rgb, after_rgb))
+                normalized_mean_difference = sum(difference.mean) / (3 * 255)
+            assert normalized_mean_difference >= .06, case["case_id"]
