@@ -143,6 +143,37 @@ def _render_journey_keepsake_svg(
     output.write_text("\n".join(parts) + "\n")
 
 
+def _render_ink_poetry_svg(
+    manifest: dict[str, Any], contract: dict[str, Any], prompt_map: dict[str, Any], output: Path, base_path: Path
+) -> None:
+    """Present a generated ink scene with user-supplied poetry as an overlay."""
+    width = 1200
+    section_height = 1480
+    prompt_ids = list(prompt_map)
+    height = 80 + section_height * len(prompt_ids)
+    entries = contract.get("entries", [])
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" data-presentation-style="ink-poetry">',
+        '<rect width="100%" height="100%" fill="#F2EBDD"/>',
+    ]
+    for index, prompt_id in enumerate(prompt_ids):
+        prompt = prompt_map[prompt_id]
+        candidate = prompt["candidate_output"]
+        encoded_href = _candidate_href(candidate, prompt_id, output, base_path)
+        entry = next((item for item in entries if item.get("prompt_id") == prompt_id), {})
+        caption = escape(str(entry.get("caption", "")).strip()[:80])
+        y = 40 + index * section_height
+        parts.extend([
+            f'<image href="{encoded_href}" x="90" y="{y+40}" width="1020" height="1280" preserveAspectRatio="xMidYMid meet"/>',
+            f'<text x="1080" y="{y+180}" font-family="serif" font-size="28" fill="#262B2A" style="writing-mode:tb;glyph-orientation-vertical:0">{caption}</text>',
+            f'<circle cx="1083" cy="{y+106}" r="8" fill="#A74A36"/>',
+            f'<text x="92" y="{y+1370}" font-family="serif" font-size="18" letter-spacing="5" fill="#6C746F">SCENE CARD STUDIO · INK POETRY</text>',
+        ])
+    parts.append('</svg>')
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text("\n".join(parts) + "\n")
+
+
 def render_presentation_svg(
     manifest: dict[str, Any], output: Path, base: Path | None = None, style: str = "standard"
 ) -> None:
@@ -163,11 +194,14 @@ def render_presentation_svg(
         if not isinstance(candidate, dict) or not candidate.get("path") or not candidate.get("sha256"):
             raise ValueError(f"Prompt {prompt.get('id')} has no bound candidate_output")
 
-    if style not in {"standard", "journey-keepsake"}:
+    if style not in {"standard", "journey-keepsake", "ink-poetry"}:
         raise ValueError(f"Unknown presentation style: {style}")
     base_path = (base or Path.cwd()).resolve()
     if style == "journey-keepsake":
         _render_journey_keepsake_svg(manifest, contract, prompt_map, output, base_path)
+        return
+    if style == "ink-poetry":
+        _render_ink_poetry_svg(manifest, contract, prompt_map, output, base_path)
         return
 
     prompt_ids = list(prompt_map)

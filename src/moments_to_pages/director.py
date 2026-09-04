@@ -146,6 +146,8 @@ def recommend_expression_profile(system: str, cards: list[SceneCard], brief: str
         return ProfileRecommendation("travel-zine", "The brief explicitly requests a restrained travel-zine editorial language.")
     if system in {"minimal-editorial", "memory-atlas", "family-archive", "museum-catalogue"} and contains("chinese photo editorial", "ink editorial", "restrained chinese editorial", "中国风编辑", "水墨摄影编辑", "照片水墨", "宣纸编辑"):
         return ProfileRecommendation("chinese-photo-editorial", "The brief explicitly requests a restrained ink-and-paper photo editorial.")
+    if system in {"minimal-editorial", "memory-atlas", "family-archive", "museum-catalogue", "travel-journal", "journey-taxonomy"} and contains("chinese ink poetry", "ink poem", "poetic chinese style", "国风诗意", "国风水墨", "古风诗句", "水墨诗句", "国风照片"):
+        return ProfileRecommendation("chinese-ink-poetry", "The brief explicitly requests a Chinese ink-poetry image with user-supplied typography.")
     if system in {"memory-atlas", "travel-journal", "family-archive", "journey-taxonomy"} and contains("selective material relief", "real subject relief", "relief environment", "主体真实背景浮雕", "真实主体浮雕环境", "真实背景浮雕", "船真实山浮雕", "选择性材质浮雕"):
         return ProfileRecommendation("selective-material-relief", "The brief explicitly requests a real subject with a transformed relief environment.")
     if system == "memory-atlas" and contains("watercolor contour", "photographic anchor", "photo and watercolor", "水彩轮廓", "照片锚点", "照片与水彩", "真实照片建筑"):

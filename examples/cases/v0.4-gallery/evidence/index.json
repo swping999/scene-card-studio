@@ -22,7 +22,7 @@
       "story": "memory-atlas/story.json",
       "story_sha256": "f37a6e7dff616aa5723e18bb2b60c5ac56a5143c1b40cb67870efcb4beea248a",
       "prompt_manifest": "memory-atlas/prompt-manifest.json",
-      "prompt_manifest_sha256": "b1fc01bd1e40bcf82327f9d1cc09e40e8f97213c9325d0eb613898a9408f607c",
+      "prompt_manifest_sha256": "a3a8387664b947d6b7b998ec62352b21ad7c162ff820a40a8ca37fb188011d0a",
       "reference_output": "../after/memory-atlas.jpg"
     },
     {
@@ -33,7 +33,7 @@
       "story": "family-chronicle/story.json",
       "story_sha256": "c97732000a63e4599caecec2d70081bd1e373a0daec3b2d1682726b43a721590",
       "prompt_manifest": "family-chronicle/prompt-manifest.json",
-      "prompt_manifest_sha256": "01ec2ac130945d1d9c8b89e31082832ae266f5ffcf259d9616faa1c09f714294",
+      "prompt_manifest_sha256": "f1340498e92b89b23647b8fcd9785a0efb1b71efbd3aa77be67cbe63a7d45760",
       "reference_output": "../after/family-chronicle.jpg"
     },
     {
@@ -44,7 +44,7 @@
       "story": "quiet-editorial/story.json",
       "story_sha256": "ddc2d586bffcc82d6bdc64481d2f4e52da51763b155316f0221a9400e073339a",
       "prompt_manifest": "quiet-editorial/prompt-manifest.json",
-      "prompt_manifest_sha256": "892fcbead4aaf613c3f110b4be067f0c59ab8774fe031ba65cb0e2826a75663d",
+      "prompt_manifest_sha256": "f545c170410f48d6f23f9d40f240e749b9f86fd22bd6a72e8d97298ded074e49",
       "reference_output": "../after/quiet-editorial.jpg"
     },
     {
@@ -77,7 +77,7 @@
       "story": "watercolor-chronicle/story.json",
       "story_sha256": "51b14b6f98745ee230bb36ec2cf08fbed6f6ddafe435819cdb8193c393d4b6e9",
       "prompt_manifest": "watercolor-chronicle/prompt-manifest.json",
-      "prompt_manifest_sha256": "1cc57516698892806f2f3ff601d6bd9724d1affeba814bed86e18a0fc9992078",
+      "prompt_manifest_sha256": "33118357c5d344b1b34e89f0d92d313ad156f73b47800a2d3e67dc6f431c9282",
       "reference_output": "../after/watercolor-chronicle.jpg"
     },
     {
@@ -88,7 +88,7 @@
       "story": "heritage-portrait/story.json",
       "story_sha256": "f818340d604e45fe8f34090bfbe2b2f14f520b7163c6cdca01aa27b89969e685",
       "prompt_manifest": "heritage-portrait/prompt-manifest.json",
-      "prompt_manifest_sha256": "e7269d42bc3db95730840e17c92f0a83a7dff44d8242857cac7a121c0a2129ff",
+      "prompt_manifest_sha256": "38db1ca78bf382202a07cd3e7408298f2d1250faccaa86476ef826e662ad6d42",
       "reference_output": "../after/heritage-portrait.jpg"
     },
     {
@@ -99,7 +99,7 @@
       "story": "museum-catalogue/story.json",
       "story_sha256": "330c479d3bc8f060e665538592bad54656bd55ee02e04995eaae192b09b76c1f",
       "prompt_manifest": "museum-catalogue/prompt-manifest.json",
-      "prompt_manifest_sha256": "b47954028e41c1c3df2312b7a3a195de603e9ffaf9b918ca4e32722bfe1ce420",
+      "prompt_manifest_sha256": "f455f49f445e781558176e1646fee0b612da0bb49a5aaaaf70c82d1e95f01499",
       "reference_output": "../after/museum-catalogue.jpg"
     },
     {
@@ -110,7 +110,7 @@
       "story": "travel-journal/story.json",
       "story_sha256": "667f56a24b0462594b9419af53d2d3268f4fc92d2a236bee78314ea27f694409",
       "prompt_manifest": "travel-journal/prompt-manifest.json",
-      "prompt_manifest_sha256": "7645a0823085c9f5b869bc6cf23dc6472c5a4cfd5aa2342c8d068ca35ab9ee4a",
+      "prompt_manifest_sha256": "b41fd48612f501e3fac634539ef71a9e5f709af2f95536c91b02da8adaca86ef",
       "reference_output": "../after/travel-journal.jpg"
     },
     {
@@ -143,7 +143,7 @@
       "story": "dream-logic/story.json",
       "story_sha256": "59a578b5395856ae87531453fc47c528b566dfea241a87aa5269c506911aa00b",
       "prompt_manifest": "dream-logic/prompt-manifest.json",
-      "prompt_manifest_sha256": "b23ca3f83094a6d0e5d95bc2a41a46ca79afaa0c3189fab9653139e8d2d5dad0",
+      "prompt_manifest_sha256": "860f2de0d29a91dd753f79a5378be8685f164b02be78606ad6913bb7bc42d684",
       "reference_output": "../after/dream-logic.jpg"
     }
   ]

@@ -11,7 +11,8 @@
     "watercolor-chronicle",
     "heritage-portrait",
     "cyanotype-archive",
-    "chinese-photo-editorial"
+    "chinese-photo-editorial",
+    "chinese-ink-poetry"
   ],
   "story": "story.json",
   "source_base": "story-directory",

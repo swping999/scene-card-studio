@@ -39,7 +39,7 @@ scene-card-studio direct photos/portrait.jpg \
 | --- | --- |
 | 输入 | 单张照片或一组有关联的照片序列 |
 | 导演方式 | 可观察事实 → 可编辑解释 → 明确视觉导演决策 |
-| 视觉词汇 | 11 个 Narrative Systems + 22 个可替换 Expression Profiles |
+| 视觉词汇 | 11 个 Narrative Systems + 23 个可替换 Expression Profiles |
 | 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
 | 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
 
@@ -55,11 +55,11 @@ scene-card-studio direct photos/portrait.jpg \
 
 ## v0.7 After-only 视觉导演画廊
 
-首页先展示完成后的 After，不再要求公开展示 Before/After 对照。三组新案例分别强调真实主体与环境浮雕、克制水墨纸张编辑、以及留白充足的旅行 Zine。旧的 Before/After 证据案例仍保留在下方，没有删除。
+首页先展示完成后的 After，不再要求公开展示 Before/After 对照。四组新案例分别强调真实主体与环境浮雕、克制水墨纸张编辑、留白充足的旅行 Zine，以及带确定性诗句排版的国风水墨成片。旧的 Before/After 证据案例仍保留在下方，没有删除。
 
-| Selective Material Relief｜选择性材质浮雕 | Chinese Photo Editorial｜水墨摄影编辑 | Travel Zine｜旅行 Zine |
-| --- | --- | --- |
-| [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![水墨纸张海岸摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![留白旅行 Zine 铁路画面](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
+| Selective Material Relief｜选择性材质浮雕 | Chinese Photo Editorial｜水墨摄影编辑 | Travel Zine｜旅行 Zine | Chinese Ink Poetry｜国风诗意水墨 |
+| --- | --- | --- | --- |
+| [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![水墨纸张海岸摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![留白旅行 Zine 铁路画面](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![国风水墨山湖与诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) |
 
 [打开 v0.7 After-only 画廊与资产记录](examples/cases/v0.7-director-gallery/README.md)
 
@@ -72,6 +72,12 @@ scene-card-studio direct photos/portrait.jpg \
 | [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![水墨纸张海岸摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![留白旅行 Zine 铁路画面](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
 | [![连续纤维山湖地景](examples/cases/v0.6-gallery/after/threaded-landscape.png)](examples/cases/v0.6-gallery/after/threaded-landscape.png) | [![分层纸艺浮雕景观](examples/cases/v0.6-gallery/after/paper-relief-landscape.png)](examples/cases/v0.6-gallery/after/paper-relief-landscape.png) | [![不透明水粉地点研究](examples/cases/v0.6-gallery/after/gouache-place-study.png)](examples/cases/v0.6-gallery/after/gouache-place-study.png) |
 | [![矿物色水墨石桥记忆](examples/cases/v0.6-gallery/after/mineral-ink-memory.png)](examples/cases/v0.6-gallery/after/mineral-ink-memory.png) | [![厚涂湖面光线研究](examples/cases/v0.6-gallery/after/impasto-light-study.png)](examples/cases/v0.6-gallery/after/impasto-light-study.png) | [![蓝晒野外物件档案](examples/cases/v0.6-gallery/after/cyanotype-archive.png)](examples/cases/v0.6-gallery/after/cyanotype-archive.png) |
+
+#### Chinese Ink Poetry｜国风诗意
+
+如果你要的是明确的国风照片成片，使用 `chinese-ink-poetry`：先把照片统一转成水墨与宣纸视觉，再把用户提供的诗句或短文案用确定性的竖排文字层叠加。诗句不会交给图像模型生成。
+
+[![水墨山湖与诗句叠加](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
 
 ## Before / After 首页案例
 
@@ -317,7 +323,7 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `street-reportage` | Street Reportage | 公共空间中的真实动作与事实序列 |
 | `fashion-editorial` | Fashion Editorial | 姿势、服装结构、裁切与镜头尺度节奏 |
 
-除默认 `source-led` 外，现在有 19 个可替换 Profile。新增的十一种材质语言包括矿物色水墨、厚涂、手工像素、孔版印刷、水粉、蓝晒、纸艺浮雕、早期彩色摄影、像素水墨融合、具有真实体积的 3D 微缩地景，以及连续的纤维地景浮雕。`pixel-ink-memory` 明确标为实验功能。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名，不重复计数。
+除默认 `source-led` 外，现在有 23 个可替换 Profile，包含材质、摄影、编辑、国风诗意与空间浮雕等视觉语言。`pixel-ink-memory` 明确标为实验功能。v0.3.3 的 `full-watercolor-memory` 在 Memory Atlas 中继续作为 `watercolor-chronicle` 的兼容别名，不重复计数。
 
 | Expression Profile | 兼容的 Narrative Systems |
 | --- | --- |
@@ -341,6 +347,10 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `pixel-ink-memory` · 实验 | Memory Atlas、Journey Taxonomy |
 | `sculpted-place-diorama` · 3D | Memory Atlas、Travel Journal、Journey Taxonomy |
 | `threaded-landscape` | Family Chronicle、Memory Atlas、Travel Journal、Journey Taxonomy |
+| `travel-zine` | Memory Atlas、Family Chronicle、Travel Journal、Journey Taxonomy |
+| `chinese-photo-editorial` | Quiet Editorial、Memory Atlas、Family Chronicle、Museum Catalogue、Travel Journal |
+| `chinese-ink-poetry` | Quiet Editorial、Memory Atlas、Family Chronicle、Museum Catalogue、Travel Journal、Journey Taxonomy |
+| `selective-material-relief` | Memory Atlas、Family Chronicle、Travel Journal、Journey Taxonomy |
 
 ### Journey Keepsake｜旅行收藏凭证
 
@@ -355,6 +365,14 @@ scene-card-studio present render-manifest.json \
 它不会生成第二张图片、不会修改候选图像素、不会复刻上下对照，也不会使用参考 Prompt 中的示例文案和版面比例。
 
 所有可见文字现已移出图片生成阶段。Manifest 会提供 `presentation_contract`，`scene-card-studio present` 只把用户提供的标题、日期、地点、收藏名称和藏品编号确定性地排进 SVG；缺失信息直接省略，不进行猜测。
+
+国风诗意版式使用 `--style ink-poetry`，诗句必须来自 Scene Card 的用户 caption，绝不在图片生成像素中自动编造：
+
+```bash
+scene-card-studio present render-manifest.json \
+  --style ink-poetry \
+  --output ink-poetry.svg
+```
 
 每条编译提示词都固定包含十个模块：
 

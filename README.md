@@ -39,7 +39,7 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 | --- | --- |
 | Input | One photograph or a related photo sequence |
 | Direction | Observable evidence → editable interpretation → explicit art direction |
-| Visual vocabulary | 11 Narrative Systems + 22 replaceable Expression Profiles |
+| Visual vocabulary | 11 Narrative Systems + 23 replaceable Expression Profiles |
 | Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
 | Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
 
@@ -55,11 +55,11 @@ Check compatible combinations with `scene-card-studio profiles`. The compiler re
 
 ## After-only Director Gallery · v0.7
 
-The public showcase leads with the finished After image. These three new cases are designed to make the visual difference obvious: a real subject with a relief environment, a restrained ink-and-paper editorial, and a sparse travel-zine page. Older Before/After evidence cases remain below and are not deleted.
+The public showcase leads with the finished After image. These four new cases are designed to make the visual difference obvious: a real subject with a relief environment, a restrained ink-and-paper editorial, a sparse travel-zine page, and a Guofeng ink-poetry image with deterministic verse typography. Older Before/After evidence cases remain below and are not deleted.
 
-| Selective Material Relief | Chinese Photo Editorial | Travel Zine |
-| --- | --- | --- |
-| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
+| Selective Material Relief | Chinese Photo Editorial | Travel Zine | Chinese Ink Poetry |
+| --- | --- | --- | --- |
+| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![Chinese ink landscape with poem](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) |
 
 [Open the v0.7 After-only gallery and asset records](examples/cases/v0.7-director-gallery/README.md)
 
@@ -72,6 +72,12 @@ These are the most visually distinctive finished images in the repository. The c
 | [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
 | [![Continuous threaded lake landscape](examples/cases/v0.6-gallery/after/threaded-landscape.png)](examples/cases/v0.6-gallery/after/threaded-landscape.png) | [![Layered paper relief landscape](examples/cases/v0.6-gallery/after/paper-relief-landscape.png)](examples/cases/v0.6-gallery/after/paper-relief-landscape.png) | [![Opaque gouache place study](examples/cases/v0.6-gallery/after/gouache-place-study.png)](examples/cases/v0.6-gallery/after/gouache-place-study.png) |
 | [![Mineral ink bridge memory](examples/cases/v0.6-gallery/after/mineral-ink-memory.png)](examples/cases/v0.6-gallery/after/mineral-ink-memory.png) | [![Impasto lake light study](examples/cases/v0.6-gallery/after/impasto-light-study.png)](examples/cases/v0.6-gallery/after/impasto-light-study.png) | [![Cyanotype field-object archive](examples/cases/v0.6-gallery/after/cyanotype-archive.png)](examples/cases/v0.6-gallery/after/cyanotype-archive.png) |
+
+#### Chinese Ink Poetry · Guofeng
+
+Use `chinese-ink-poetry` when the desired result is explicitly Chinese/Guofeng: repaint the supplied photo in ink and rice-paper language, then add a user-supplied poem or short caption as deterministic vertical typography.
+
+[![Chinese ink landscape with poem overlay](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
 
 ## Before / After
 
@@ -338,7 +344,7 @@ The compiler turns Scene Card evidence, one Narrative System, and one replaceabl
 | `street-reportage` | Street Reportage | observed public gestures and factual sequence |
 | `fashion-editorial` | Fashion Editorial | pose, garment construction, crop, shot-scale rhythm |
 
-Nineteen replaceable Profiles are available beyond the default `source-led`. Eleven materially distinct additions expand the system beyond photography: mineral ink, impasto, authored pixel art, risograph, gouache, cyanotype, paper relief, early-color photography, pixel-and-ink fusion, a physically sculpted 3D diorama, and continuous threaded textile relief. `pixel-ink-memory` is explicitly experimental. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas and is not counted separately.
+Twenty-three replaceable Profiles are available beyond the default `source-led`. They include material, photographic, editorial, Guofeng ink-poetry, and spatial-relief languages. `pixel-ink-memory` is explicitly experimental. The v0.3.3 name `full-watercolor-memory` remains a compatibility alias for `watercolor-chronicle` inside Memory Atlas and is not counted separately.
 
 | Expression Profile | Compatible Narrative Systems |
 | --- | --- |
@@ -362,6 +368,10 @@ Nineteen replaceable Profiles are available beyond the default `source-led`. Ele
 | `pixel-ink-memory` · experimental | Memory Atlas, Journey Taxonomy |
 | `sculpted-place-diorama` · 3D | Memory Atlas, Travel Journal, Journey Taxonomy |
 | `threaded-landscape` | Family Chronicle, Memory Atlas, Travel Journal, Journey Taxonomy |
+| `travel-zine` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy |
+| `chinese-photo-editorial` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal |
+| `chinese-ink-poetry` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal, Journey Taxonomy |
+| `selective-material-relief` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy |
 
 ### Journey Keepsake presentation
 
@@ -376,6 +386,14 @@ scene-card-studio present render-manifest.json \
 It does not generate a second image, change candidate pixels, reproduce an upper/lower comparison, or borrow sample slogans and layout proportions from a reference prompt.
 
 Visible text is no longer delegated to the image model. Every Manifest includes a `presentation_contract`; `scene-card-studio present` applies only supplied captions, dates, locations, collection names, and catalogue identifiers as a deterministic SVG overlay. Missing metadata is omitted rather than inferred.
+
+For Guofeng poem layouts, use `--style ink-poetry`; the poem must come from the user's Scene Card caption and is never generated inside the image pixels:
+
+```bash
+scene-card-studio present render-manifest.json \
+  --style ink-poetry \
+  --output ink-poetry.svg
+```
 
 Every compiled prompt contains the same ten modules:
 

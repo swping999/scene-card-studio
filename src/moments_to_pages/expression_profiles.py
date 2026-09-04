@@ -385,6 +385,32 @@ CHINESE_PHOTO_EDITORIAL: dict[str, Any] = {
     "output": ["Keep all Chinese titles, dates, and captions for the deterministic presentation layer; do not render text inside the image model output."],
 }
 
+CHINESE_INK_POETRY: dict[str, Any] = {
+    "render_mode": "full-redraw",
+    "output_medium": "contemporary Chinese ink-and-paper poem image",
+    "design_tokens": {
+        "palette": ["warm-paper", "ink-black", "mist-gray", "seal-red"],
+        "composition": {"negative_space": "high", "asymmetry": "high", "focal_subject": "source-locked"},
+        "texture": {"paper": "xuan-inspired", "ink_bleed": "controlled", "wash_edges": "varied"},
+        "typography": {"orientation": ["vertical", "horizontal"], "caption_density": "low", "source": "user-supplied"},
+    },
+    "subject_fidelity": [
+        "Repaint the supplied photo as one coherent ink-and-color-wash scene while preserving the recognizable subject, pose, architecture, horizon, and spatial evidence.",
+    ],
+    "transformation_policy": [
+        "Use ink wash, light color wash, rice-paper texture, and restrained brush structure across the scene; transform medium, not identity or event.",
+        "The poem or title is a user-supplied caption rendered later by the deterministic presentation layer, never invented or rasterized by the image model.",
+    ],
+    "composition": [
+        "Build a calm vertical scroll-like composition with one source-derived focal scene, large reserved paper space, asymmetrical brush mass, and a single restrained vermilion accent only when present in the brief.",
+        "Let the supplied caption occupy the requested quiet text zone; do not crowd the image with ornaments.",
+    ],
+    "lighting": ["Translate source light into ink density and transparent color washes while retaining its direction and atmospheric depth."],
+    "material": ["Use fibrous warm paper, pooled ink edges, dry-brush texture, transparent mineral color, and selective unfinished paper; avoid glossy digital gradients."],
+    "exclusions": ["No generated poem, pseudo-Chinese glyphs, invented historical quotations, famous-poet attribution, imperial costume, dragons, clouds, gold ornament, or named-artist imitation."],
+    "output": ["Return a single finished Chinese ink-poetry image with no visible text; the user-supplied poem is added afterward as deterministic typography."],
+}
+
 SELECTIVE_MATERIAL_RELIEF: dict[str, Any] = {
     "render_mode": "selective-material-relief",
     "output_medium": "photographic subject with continuous relief environment",
@@ -435,6 +461,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         },
         "impasto-light-study": IMPASTO_LIGHT_STUDY,
         "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "chinese-ink-poetry": CHINESE_INK_POETRY,
     },
     "editorial-sequence": {
         "source-led": {
@@ -477,6 +504,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "pixel-ink-memory": PIXEL_INK_MEMORY,
         "travel-zine": TRAVEL_ZINE,
         "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "chinese-ink-poetry": CHINESE_INK_POETRY,
         "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "family-archive": {
@@ -497,6 +525,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "threaded-landscape": THREADED_LANDSCAPE,
         "travel-zine": TRAVEL_ZINE,
         "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "chinese-ink-poetry": CHINESE_INK_POETRY,
         "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "museum-catalogue": {
@@ -509,6 +538,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "heritage-portrait": HERITAGE_PORTRAIT,
         "cyanotype-archive": CYANOTYPE_ARCHIVE,
         "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "chinese-ink-poetry": CHINESE_INK_POETRY,
     },
     "travel-journal": {
         "source-led": {
@@ -528,6 +558,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "autochrome-memory": AUTOCHROME_MEMORY,
         "travel-zine": TRAVEL_ZINE,
         "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "chinese-ink-poetry": CHINESE_INK_POETRY,
         "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "journey-taxonomy": {
@@ -548,6 +579,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "autochrome-memory": AUTOCHROME_MEMORY,
         "pixel-ink-memory": PIXEL_INK_MEMORY,
         "travel-zine": TRAVEL_ZINE,
+        "chinese-ink-poetry": CHINESE_INK_POETRY,
         "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "street-reportage": {
