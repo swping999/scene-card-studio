@@ -1,10 +1,11 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "family-archive",
   "system_display_name": "Family Chronicle",
   "expression_profile": "source-led",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "graphite-paper",
@@ -12,7 +13,10 @@
     "heritage-portrait",
     "cyanotype-archive",
     "autochrome-memory",
-    "threaded-landscape"
+    "threaded-landscape",
+    "travel-zine",
+    "chinese-photo-editorial",
+    "selective-material-relief"
   ],
   "story": "story.json",
   "source_base": "story-directory",
@@ -47,6 +51,10 @@
           "MUST REMOVE — rice cooker, medicine clutter, harsh bulb."
         ],
         "narrative_intent": [
+          "Narrative intent: shared work observed across age.",
+          "Emotional tone: intimate, patient. Story role: moment.",
+          "Director note: Build meaning from the supplied folding gesture; do not invent a family history.",
+          "Visual emphasis: hands, cloth, and the space between figures.",
           "Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships.",
           "Source / moment: intent shared work observed across age; tone intimate, patient; emphasis hands, cloth, and the space between figures; director note Build meaning from the supplied folding gesture; do not invent a family history."
         ],
@@ -78,7 +86,7 @@
           "Subjects and gestures must remain photographic, natural, and immediately recognizable."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied documentary subject and visible action: both identities, ages, clothing, hands, folding action.\n- Keep face, hands, clothing, body proportions, object handling, and gesture faithful: two people folding cloth at the same table.\n- Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — both identities, ages, clothing, hands, folding action.\n- MAY TRANSFORM — light, crop, subtle graphite studies, tracing-paper marks.\n- MUST REMOVE — rice cooker, medicine clutter, harsh bulb.\n\nNARRATIVE INTENT\n- Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships.\n- Source / moment: intent shared work observed across age; tone intimate, patient; emphasis hands, cloth, and the space between figures; director note Build meaning from the supplied folding gesture; do not invent a family history.\n\nCOMPOSITION\n- Use this Scene Card's layout emphasis to direct one complete image; keep important face, hands, and action uncropped.\n- Build an archival relationship from supplied gestures and objects, varying scale by Scene Card emphasis.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#D8D5D0, #A6A29E) without applying a generic nostalgic filter.\n- Preserve natural documentary light and source-supported tonal differences.\n\nMATERIAL AND SURFACE\n- Use only archival materials supported by supplied objects, surfaces, and repeated gestures.\n- Every added archive material must refer to a supplied object, surface, or repeated gesture.\n\nSPATIAL RELATIONSHIPS\n- Use only relationships visible or stated within this Scene Card; do not invent relatives, companion images, or archival layers.\n- Keep documentary subjects visually primary and expression-profile materials secondary.\n\nTEXT AND LABELS\n- Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks.\n\nEXCLUSIONS\n- No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.\n- No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.\n\nOUTPUT\n- Return one integrated PNG documentary archive artifact at exactly 2:3.\n- Subjects and gestures must remain photographic, natural, and immediately recognizable.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied documentary subject and visible action: both identities, ages, clothing, hands, folding action.\n- Keep face, hands, clothing, body proportions, object handling, and gesture faithful: two people folding cloth at the same table.\n- Do not beautify, de-age, restage, invent kinship, or label the subjects as fictional unless the user supplied that fact.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — both identities, ages, clothing, hands, folding action.\n- MAY TRANSFORM — light, crop, subtle graphite studies, tracing-paper marks.\n- MUST REMOVE — rice cooker, medicine clutter, harsh bulb.\n\nNARRATIVE INTENT\n- Narrative intent: shared work observed across age.\n- Emotional tone: intimate, patient. Story role: moment.\n- Director note: Build meaning from the supplied folding gesture; do not invent a family history.\n- Visual emphasis: hands, cloth, and the space between figures.\n- Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships.\n- Source / moment: intent shared work observed across age; tone intimate, patient; emphasis hands, cloth, and the space between figures; director note Build meaning from the supplied folding gesture; do not invent a family history.\n\nCOMPOSITION\n- Use this Scene Card's layout emphasis to direct one complete image; keep important face, hands, and action uncropped.\n- Build an archival relationship from supplied gestures and objects, varying scale by Scene Card emphasis.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#D8D5D0, #A6A29E) without applying a generic nostalgic filter.\n- Preserve natural documentary light and source-supported tonal differences.\n\nMATERIAL AND SURFACE\n- Use only archival materials supported by supplied objects, surfaces, and repeated gestures.\n- Every added archive material must refer to a supplied object, surface, or repeated gesture.\n\nSPATIAL RELATIONSHIPS\n- Use only relationships visible or stated within this Scene Card; do not invent relatives, companion images, or archival layers.\n- Keep documentary subjects visually primary and expression-profile materials secondary.\n\nTEXT AND LABELS\n- Generate no invented names, dates, kinship labels, handwriting, captions, stamps, logos, or watermarks.\n\nEXCLUSIONS\n- No greeting card, family-tree diagram, scrapbook kit, equal photo grid, sentimental stock-photo glow, or fake antique filter.\n- No distorted hands or faces, decorative clutter, fabricated documents, or named-artist imitation.\n\nOUTPUT\n- Return one integrated PNG documentary archive artifact at exactly 2:3.\n- Subjects and gestures must remain photographic, natural, and immediately recognizable.",
       "reference_output": {
         "path": "../../after/family-chronicle.jpg",
         "sha256": "e2f6f5edf97237ec0dcf98e245c10b2026f7167f92f6ab0bad8b2f76a441eea0"

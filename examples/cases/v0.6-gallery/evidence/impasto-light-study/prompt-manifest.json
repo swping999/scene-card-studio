@@ -1,10 +1,11 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "memory-atlas",
   "system_display_name": "Memory Atlas",
   "expression_profile": "impasto-light-study",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "watercolor-contour",
@@ -20,7 +21,10 @@
     "sculpted-place-diorama",
     "threaded-landscape",
     "autochrome-memory",
-    "pixel-ink-memory"
+    "pixel-ink-memory",
+    "travel-zine",
+    "chinese-photo-editorial",
+    "selective-material-relief"
   ],
   "story": "story.json",
   "source_base": "story-directory",
@@ -57,6 +61,10 @@
           "Translate the complete scene into a materially painted light study; allow brush simplification but do not invent props, costume, weather, or location."
         ],
         "narrative_intent": [
+          "Narrative intent: direct attention through one overcast path of light.",
+          "Emotional tone: luminous, still. Story role: moment.",
+          "Director note: Vary paint thickness and let light, not generic texture, organize the place.",
+          "Visual emphasis: blue boat beneath a silver break in the clouds.",
           "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
           "Source / moment: intent direct attention through one overcast path of light; tone luminous, still; emphasis blue boat beneath a silver break in the clouds; director note Vary paint thickness and let light, not generic texture, organize the place."
         ],
@@ -91,7 +99,7 @@
           "The result must read as one resolved contemporary painting in which light—not a filter—directs attention."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve the recognizable subject silhouette, face geometry when present, architecture, object relationships, horizon, and camera position.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- MAY TRANSFORM — all surfaces into oil paint, crop, light emphasis, brush hierarchy.\n- MUST REMOVE — life rings, clipped railing, photographic pixels, canvas mockup.\n- Translate the complete scene into a materially painted light study; allow brush simplification but do not invent props, costume, weather, or location.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent direct attention through one overcast path of light; tone luminous, still; emphasis blue boat beneath a silver break in the clouds; director note Vary paint thickness and let light, not generic texture, organize the place.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Let one source-supported light path control the focal hierarchy; concentrate thick paint around illuminated structure and reduce secondary areas into quieter planes.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#CFDCE5, #585F5E) without flattening every painted passage into one identical color treatment.\n- Keep the source light direction and temperature relationships; build luminous color through adjacent strokes rather than digital glow or bloom.\n\nMATERIAL AND SURFACE\n- Use visible loaded-brush ridges, palette-knife interruptions, broken color, matte ground, and selective thick highlights with believable paint depth.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No named-painter imitation, generic starry swirls, uniformly thick texture, plastic 3D paint, photographic islands, frame, canvas mockup, or gallery wall.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one resolved contemporary painting in which light—not a filter—directs attention.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve the recognizable subject silhouette, face geometry when present, architecture, object relationships, horizon, and camera position.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — boat shape and wear, reeds, lake width, ridge silhouette, landing, overcast weather.\n- MAY TRANSFORM — all surfaces into oil paint, crop, light emphasis, brush hierarchy.\n- MUST REMOVE — life rings, clipped railing, photographic pixels, canvas mockup.\n- Translate the complete scene into a materially painted light study; allow brush simplification but do not invent props, costume, weather, or location.\n\nNARRATIVE INTENT\n- Narrative intent: direct attention through one overcast path of light.\n- Emotional tone: luminous, still. Story role: moment.\n- Director note: Vary paint thickness and let light, not generic texture, organize the place.\n- Visual emphasis: blue boat beneath a silver break in the clouds.\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent direct attention through one overcast path of light; tone luminous, still; emphasis blue boat beneath a silver break in the clouds; director note Vary paint thickness and let light, not generic texture, organize the place.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Let one source-supported light path control the focal hierarchy; concentrate thick paint around illuminated structure and reduce secondary areas into quieter planes.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#CFDCE5, #585F5E) without flattening every painted passage into one identical color treatment.\n- Keep the source light direction and temperature relationships; build luminous color through adjacent strokes rather than digital glow or bloom.\n\nMATERIAL AND SURFACE\n- Use visible loaded-brush ridges, palette-knife interruptions, broken color, matte ground, and selective thick highlights with believable paint depth.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No named-painter imitation, generic starry swirls, uniformly thick texture, plastic 3D paint, photographic islands, frame, canvas mockup, or gallery wall.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one resolved contemporary painting in which light—not a filter—directs attention.",
       "reference_output": {
         "path": "../../after/impasto-light-study.png",
         "sha256": "da1ffe2731e30995aa86fc3bd238c225b177e64c9209183bdd4a8628bb9a881b"

@@ -40,7 +40,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Integrate source-backed categories through scale and material transitions, never stickers or repeated photographs.",
-      "layout_emphasis": "boardwalk path, hut landmark, and nested tidal channels"
+      "layout_emphasis": "boardwalk path, hut landmark, and nested tidal channels",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -65,7 +68,11 @@
         "sticker outlines",
         "connector lines",
         "labels"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

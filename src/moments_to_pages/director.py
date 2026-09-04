@@ -142,6 +142,12 @@ def recommend_expression_profile(system: str, cards: list[SceneCard], brief: str
         return ProfileRecommendation("rain-nocturne", "The brief explicitly requests rain or nocturnal atmosphere.")
     if system == "minimal-editorial" and contains("window light", "quiet window", "窗光", "窗边光", "安静窗光"):
         return ProfileRecommendation("quiet-window-light", "The brief explicitly requests a quiet window-light treatment.")
+    if system in {"memory-atlas", "travel-journal", "family-archive", "journey-taxonomy"} and contains("travel zine", "journey zine", "travel diary editorial", "旅行zine", "旅行手账", "旅行日记排版", "旅途手账"):
+        return ProfileRecommendation("travel-zine", "The brief explicitly requests a restrained travel-zine editorial language.")
+    if system in {"minimal-editorial", "memory-atlas", "family-archive", "museum-catalogue"} and contains("chinese photo editorial", "ink editorial", "restrained chinese editorial", "中国风编辑", "水墨摄影编辑", "照片水墨", "宣纸编辑"):
+        return ProfileRecommendation("chinese-photo-editorial", "The brief explicitly requests a restrained ink-and-paper photo editorial.")
+    if system in {"memory-atlas", "travel-journal", "family-archive", "journey-taxonomy"} and contains("selective material relief", "real subject relief", "relief environment", "主体真实背景浮雕", "真实主体浮雕环境", "真实背景浮雕", "船真实山浮雕", "选择性材质浮雕"):
+        return ProfileRecommendation("selective-material-relief", "The brief explicitly requests a real subject with a transformed relief environment.")
     if system == "memory-atlas" and contains("watercolor contour", "photographic anchor", "photo and watercolor", "水彩轮廓", "照片锚点", "照片与水彩", "真实照片建筑"):
         return ProfileRecommendation("watercolor-contour", "The brief asks to retain photographic anchors inside drawn watercolor geography.")
     if system in {"memory-atlas", "travel-journal", "journey-taxonomy"} and contains("gouache", "opaque watercolor", "place study", "水粉", "不透明水彩", "地点写生", "场景写生"):

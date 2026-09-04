@@ -9,9 +9,9 @@
       "system": "journey-taxonomy",
       "expression_profile": "source-led",
       "story": "journey-taxonomy/story.json",
-      "story_sha256": "89b5ad7f1859c59d05bea9e5d92a15b43d014098ee0f6a8a5d1c88f6c0429d79",
+      "story_sha256": "23d7ee480626a3726f349417c7fb71756b766b18e3dd363375dc75ac2f7e20f0",
       "prompt_manifest": "journey-taxonomy/prompt-manifest.json",
-      "prompt_manifest_sha256": "addfb345906bf113582706a129bba1d97c919464d66f1fe3975cacb3bebc3068",
+      "prompt_manifest_sha256": "5edf3746b1eb50a294406e752aaaed51f9c363e900024565352d2aec9fef226f",
       "reference_output": "../after/journey-taxonomy.png"
     },
     {
@@ -20,9 +20,9 @@
       "system": "memory-atlas",
       "expression_profile": "mineral-ink-memory",
       "story": "mineral-ink-memory/story.json",
-      "story_sha256": "8ecfba5fcbdf1bba1585f939eba9ab7e931aa99c942b86b7f5f7b14ba9f5de58",
+      "story_sha256": "a57428a536ac5d678968afcd9a577d9b3a195b2aca6a2def97d86249eb314742",
       "prompt_manifest": "mineral-ink-memory/prompt-manifest.json",
-      "prompt_manifest_sha256": "c5d05a9b78268b6046b8b06098f51c877a3756619a4eb40f456b89ddc62b3ae8",
+      "prompt_manifest_sha256": "b30cf8dffaf5394d8ba4b2dfd1adc77d877494d1cf2340c55087db81ebe08918",
       "reference_output": "../after/mineral-ink-memory.png"
     },
     {
@@ -31,9 +31,9 @@
       "system": "memory-atlas",
       "expression_profile": "impasto-light-study",
       "story": "impasto-light-study/story.json",
-      "story_sha256": "130eef3ac9669863da3e8c75e8771dcd4444e9dadb9c39b0a7f6fd6e4f0dcd8c",
+      "story_sha256": "0670da93913e4555702807b1eeab9b9fc9e19f5026ff12acc6f259ae662517cc",
       "prompt_manifest": "impasto-light-study/prompt-manifest.json",
-      "prompt_manifest_sha256": "de48cf18d70cd3a47801b045040d0612465450583b95503ef163de8627dd96d7",
+      "prompt_manifest_sha256": "3f4bcfe680a521017ca14dda759bdfde54340c88c1883beb6812634da79a911f",
       "reference_output": "../after/impasto-light-study.png"
     },
     {
@@ -42,9 +42,9 @@
       "system": "travel-journal",
       "expression_profile": "pixel-diary",
       "story": "pixel-diary/story.json",
-      "story_sha256": "8a267da25c3f1b9c09e7da8f0d5e71efb396b1561225eb551707ddcb29382bfd",
+      "story_sha256": "7b23eb31655e37883f610d6697d1b02b44728022e4b88b04ad5f67f6c37a38c7",
       "prompt_manifest": "pixel-diary/prompt-manifest.json",
-      "prompt_manifest_sha256": "e0535c618e0a25894196daff4663c1df3d8b8dd04b4884e2112f305a135cb373",
+      "prompt_manifest_sha256": "3abb83641acfbe88a6a90d9f06de0ed55c96b89f724594d4bae0706766248ba8",
       "reference_output": "../after/pixel-diary.png"
     },
     {
@@ -53,9 +53,9 @@
       "system": "journey-taxonomy",
       "expression_profile": "risograph-route",
       "story": "risograph-route/story.json",
-      "story_sha256": "8eabd1de512de107f3ffd7feceb7102d96a2f1d4abd0cba6fa3974eae350d050",
+      "story_sha256": "895a5d4e1757afd77aef729ecd09636fabac38c2c8786b191c0456cf587f1219",
       "prompt_manifest": "risograph-route/prompt-manifest.json",
-      "prompt_manifest_sha256": "80df6a2dab72095d76e4a5f924f5501e34658a7ff2ced2476cc93b7a44207771",
+      "prompt_manifest_sha256": "1a226952c2fee27490b9321bcd3136ce60ba3499b79a8a557b0fb262dc55c742",
       "reference_output": "../after/risograph-route.png"
     },
     {
@@ -64,9 +64,9 @@
       "system": "memory-atlas",
       "expression_profile": "gouache-place-study",
       "story": "gouache-place-study/story.json",
-      "story_sha256": "5cbed94256376f3e77397ea803be295219f6d766247f246e48191b307d682396",
+      "story_sha256": "fa91e073c1d85c264abbde7d808758ee4e6626596c55202daa02d68f6a9f1ab2",
       "prompt_manifest": "gouache-place-study/prompt-manifest.json",
-      "prompt_manifest_sha256": "83d8839716906f869fe241cf219015f9a4af88741b7704893fc4edd7935f9978",
+      "prompt_manifest_sha256": "ba64375bb64450577e3adc6d3e7c2585483350261be005594a60d639b1b31abd",
       "reference_output": "../after/gouache-place-study.png"
     },
     {
@@ -75,9 +75,9 @@
       "system": "museum-catalogue",
       "expression_profile": "cyanotype-archive",
       "story": "cyanotype-archive/story.json",
-      "story_sha256": "438af2a634413c808237c262c1fd0063da22ca4c19f960049f4b1e6fb9108877",
+      "story_sha256": "628a58c959947d50fe8a5da45653dffca65384990e12b187ed0b74b3a9c5ce0c",
       "prompt_manifest": "cyanotype-archive/prompt-manifest.json",
-      "prompt_manifest_sha256": "e08ca187135f14c2f43d0c4c50218d46abd405717de66fc0e6935e32a49830fd",
+      "prompt_manifest_sha256": "0309c228d65149bae18e8d4c762076ddc683d6f85b40f0005df607c42dad34a3",
       "reference_output": "../after/cyanotype-archive.png"
     },
     {
@@ -86,9 +86,9 @@
       "system": "memory-atlas",
       "expression_profile": "paper-relief-landscape",
       "story": "paper-relief-landscape/story.json",
-      "story_sha256": "0f181f68c957c901e46013b5b193ae27a03d18009749cdaf8a87e1fcdebc137f",
+      "story_sha256": "badac3a52ebbd004026391c9b1d06b37f68ee4381dfe6a0bf1471e4a4913cc77",
       "prompt_manifest": "paper-relief-landscape/prompt-manifest.json",
-      "prompt_manifest_sha256": "8fad80185b5f85da1bb482878965d5138ae0ecf237d69b97be8a6091d3091cc4",
+      "prompt_manifest_sha256": "35cbff5b02c3944462e5a17b445499381e6e4f94a6ee2d71c41ef0e65f87b310",
       "reference_output": "../after/paper-relief-landscape.png"
     },
     {
@@ -97,9 +97,9 @@
       "system": "memory-atlas",
       "expression_profile": "autochrome-memory",
       "story": "autochrome-memory/story.json",
-      "story_sha256": "f8109255356f18a58c2a389742e5cfe2f51d7e29a4557a42b9cb6e2a8cbcc745",
+      "story_sha256": "45ac6a2ea3e737c84cc4ac2726e315bcf7a05ef7f8b11a963e21f4bad1f5246c",
       "prompt_manifest": "autochrome-memory/prompt-manifest.json",
-      "prompt_manifest_sha256": "98f43626f881bbef3272de7d6366e46334618ba8f797db227b8162dc12346ae1",
+      "prompt_manifest_sha256": "a9dfa33afa645d87685f3869a7b1e3931de2db0cf4d2807e1d76e5d9d0f7a9b2",
       "reference_output": "../after/autochrome-memory.png"
     },
     {
@@ -108,9 +108,9 @@
       "system": "memory-atlas",
       "expression_profile": "pixel-ink-memory",
       "story": "pixel-ink-memory/story.json",
-      "story_sha256": "dbc170f055869ba048c9dc67959f98ed739661acd3ab5c7d4a51207e74eb3c14",
+      "story_sha256": "4539f9fd1c5f13a78f9ceb9b9da1363dacc169541a6bee7e6480069e95b2c5e4",
       "prompt_manifest": "pixel-ink-memory/prompt-manifest.json",
-      "prompt_manifest_sha256": "824df838d8c46d7b9503d568f8afc5e6709a936a93fdaa5ccd276d715be56576",
+      "prompt_manifest_sha256": "2d03f3b76446b5a59e2b35cd69b8dced32ae3aa1201766b83dfaef22ac6abf1e",
       "reference_output": "../after/pixel-ink-memory.png"
     },
     {
@@ -119,9 +119,9 @@
       "system": "journey-taxonomy",
       "expression_profile": "sculpted-place-diorama",
       "story": "sculpted-place-diorama/story.json",
-      "story_sha256": "018c1c10fbd0eca4d9d7ce8deccea3ca75e41c50d1d2f39adef8a1adac755169",
+      "story_sha256": "838cced85a41345dbaabda7b4eb35906f69c6d740fcd93d27b12bd7b85b0f4f4",
       "prompt_manifest": "sculpted-place-diorama/prompt-manifest.json",
-      "prompt_manifest_sha256": "8e16a09f5c0ecf6e8834729be34e457312821996ce71777ee415c7926bbb1c32",
+      "prompt_manifest_sha256": "9c06f8530700dfd3b086d9c5a6c8be78f7a68ec8190d33ff2307a3659e693e16",
       "reference_output": "../after/sculpted-place-diorama.png"
     },
     {
@@ -130,9 +130,9 @@
       "system": "memory-atlas",
       "expression_profile": "threaded-landscape",
       "story": "threaded-landscape/story.json",
-      "story_sha256": "34fd0bbf844a611ff9fb293885da2da390dd1de7c02d715415b10b99cd03d898",
+      "story_sha256": "70c0610c333e787dd58a059c8cd3bd79391bb85e12688face7ccab90e70a5b54",
       "prompt_manifest": "threaded-landscape/prompt-manifest.json",
-      "prompt_manifest_sha256": "81bab87b51fa0b5a481dc7c9ec01768012f380f475574e736d42b9f789cc58cb",
+      "prompt_manifest_sha256": "ffa22ad14ac0614ea6bb988235d2fd6d52e861d2634e5b45f4285d3c9ec729c1",
       "reference_output": "../after/threaded-landscape.png"
     }
   ]

@@ -41,7 +41,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Use physical depth planes, not detached paper stickers.",
-      "layout_emphasis": "cut stream channel, layered terraces, and bridge blocks"
+      "layout_emphasis": "cut stream channel, layered terraces, and bridge blocks",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -64,7 +67,11 @@
         "floating cutouts",
         "sticker outlines",
         "text"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

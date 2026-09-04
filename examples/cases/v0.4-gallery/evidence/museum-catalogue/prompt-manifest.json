@@ -1,15 +1,17 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "museum-catalogue",
   "system_display_name": "Museum Catalogue",
   "expression_profile": "source-led",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "watercolor-chronicle",
     "heritage-portrait",
-    "cyanotype-archive"
+    "cyanotype-archive",
+    "chinese-photo-editorial"
   ],
   "story": "story.json",
   "source_base": "story-directory",

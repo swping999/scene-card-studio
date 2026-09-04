@@ -1,10 +1,11 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "journey-taxonomy",
   "system_display_name": "Journey Taxonomy",
   "expression_profile": "risograph-route",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "watercolor-chronicle",
@@ -17,7 +18,9 @@
     "sculpted-place-diorama",
     "threaded-landscape",
     "autochrome-memory",
-    "pixel-ink-memory"
+    "pixel-ink-memory",
+    "travel-zine",
+    "selective-material-relief"
   ],
   "story": "story.json",
   "source_base": "story-directory",

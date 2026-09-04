@@ -3,7 +3,7 @@
 <p align="center"><strong>把个人照片转化为结构化、可编辑视觉叙事的 AI 视觉导演。</strong></p>
 
 <p align="center">
-  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.5.0"><img alt="版本 0.5.0" src="https://img.shields.io/badge/version-0.5.0-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.7.0"><img alt="版本 0.7.0" src="https://img.shields.io/badge/version-0.7.0-315c8c?style=flat-square"></a>
   <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="持续集成" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
@@ -39,7 +39,7 @@ scene-card-studio direct photos/portrait.jpg \
 | --- | --- |
 | 输入 | 单张照片或一组有关联的照片序列 |
 | 导演方式 | 可观察事实 → 可编辑解释 → 明确视觉导演决策 |
-| 视觉词汇 | 11 个 Narrative Systems + 19 个可替换 Expression Profiles |
+| 视觉词汇 | 11 个 Narrative Systems + 22 个可替换 Expression Profiles |
 | 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
 | 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
 
@@ -47,11 +47,21 @@ scene-card-studio direct photos/portrait.jpg \
 
 ### 单张或多张都可以
 
-- **一张照片 → 一张经过导演的独立成片。** 为它选择兼容的 Narrative System 和 Expression Profile，输出一组独立 Before/After；不会强迫单张照片变成接触表、序列或装饰拼贴。
+- **一张照片 → 一张经过导演的独立 After。** 为它选择兼容的 Narrative System 和 Expression Profile，输出一张独立成片；不会强迫单张照片变成接触表、序列或装饰拼贴。
 - **多张照片 → 一个连贯故事。** 每张都需要独立 After 时使用逐张导演；地点、旅程或重复关系需要进入同一画面时，选择多源合成系统。
 - **表达风格可以编辑。** Narrative System 决定照片或故事如何被阅读，Expression Profile 决定画面如何表达。因此单张照片也能使用 `source-led`、`watercolor-chronicle`、`heritage-portrait`、`dream-logic`，或所选系统支持的其他 Profile。
 
 运行 `scene-card-studio profiles` 可以查看兼容组合。每份 Manifest 都会明确记录 `single-photo`、`multi-photo-per-source` 或 `multi-photo-synthesis`，防止后续工具悄悄改变用户选择的源图模式。
+
+## v0.7 After-only 视觉导演画廊
+
+首页先展示完成后的 After，不再要求公开展示 Before/After 对照。三组新案例分别强调真实主体与环境浮雕、克制水墨纸张编辑、以及留白充足的旅行 Zine。旧的 Before/After 证据案例仍保留在下方，没有删除。
+
+| Selective Material Relief｜选择性材质浮雕 | Chinese Photo Editorial｜水墨摄影编辑 | Travel Zine｜旅行 Zine |
+| --- | --- | --- |
+| [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![水墨纸张海岸摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![留白旅行 Zine 铁路画面](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
+
+[打开 v0.7 After-only 画廊与资产记录](examples/cases/v0.7-director-gallery/README.md)
 
 ## Before / After 首页案例
 

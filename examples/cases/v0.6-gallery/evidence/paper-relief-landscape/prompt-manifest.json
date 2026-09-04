@@ -1,10 +1,11 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "memory-atlas",
   "system_display_name": "Memory Atlas",
   "expression_profile": "paper-relief-landscape",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "watercolor-contour",
@@ -20,7 +21,10 @@
     "sculpted-place-diorama",
     "threaded-landscape",
     "autochrome-memory",
-    "pixel-ink-memory"
+    "pixel-ink-memory",
+    "travel-zine",
+    "chinese-photo-editorial",
+    "selective-material-relief"
   ],
   "story": "story.json",
   "source_base": "story-directory",
@@ -57,6 +61,10 @@
           "Translate the whole scene into cut and molded paper relief; simplify surfaces by depth plane without adding decorative travel icons or changing geography."
         ],
         "narrative_intent": [
+          "Narrative intent: turn terrain depth into one tactile paper landscape.",
+          "Emotional tone: tactile, grounded. Story role: moment.",
+          "Director note: Use physical depth planes, not detached paper stickers.",
+          "Visual emphasis: cut stream channel, layered terraces, and bridge blocks.",
           "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
           "Source / moment: intent turn terrain depth into one tactile paper landscape; tone tactile, grounded; emphasis cut stream channel, layered terraces, and bridge blocks; director note Use physical depth planes, not detached paper stickers."
         ],
@@ -91,7 +99,7 @@
           "The result must read as one physically coherent paper landscape photographed from a single viewpoint."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: bridge span and supports, stream, terraces, channel, branches, village, winter season.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve landmark silhouette, terrain layers, subject identity through profile and color, object count, route direction, and source depth order.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — bridge span and supports, stream, terraces, channel, branches, village, winter season.\n- MAY TRANSFORM — all surfaces into layered cotton paper, embossing, raking light.\n- MUST REMOVE — bucket, litter, floating cutouts, sticker outlines, text.\n- Translate the whole scene into cut and molded paper relief; simplify surfaces by depth plane without adding decorative travel icons or changing geography.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent turn terrain depth into one tactile paper landscape; tone tactile, grounded; emphasis cut stream channel, layered terraces, and bridge blocks; director note Use physical depth planes, not detached paper stickers.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Construct one integrated bas-relief image with varied plane depth, selective apertures, and a dominant spatial path; avoid a sticker board or separated cutout collection.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#625D50, #312E23) without flattening every painted passage into one identical color treatment.\n- Use one plausible raking light so cast shadows clarify paper depth while respecting the source's overall time and atmosphere.\n\nMATERIAL AND SURFACE\n- Use deckled cotton paper, layered pulp, subtle fibers, embossed terrain, clean cut edges, and restrained shadow gaps at a consistent physical scale.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No white sticker outlines, floating icons, scrapbook page, duplicated source photo, foam-board look, excessive drop shadows, text, or named-paper-artist imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one physically coherent paper landscape photographed from a single viewpoint.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: bridge span and supports, stream, terraces, channel, branches, village, winter season.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve landmark silhouette, terrain layers, subject identity through profile and color, object count, route direction, and source depth order.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — bridge span and supports, stream, terraces, channel, branches, village, winter season.\n- MAY TRANSFORM — all surfaces into layered cotton paper, embossing, raking light.\n- MUST REMOVE — bucket, litter, floating cutouts, sticker outlines, text.\n- Translate the whole scene into cut and molded paper relief; simplify surfaces by depth plane without adding decorative travel icons or changing geography.\n\nNARRATIVE INTENT\n- Narrative intent: turn terrain depth into one tactile paper landscape.\n- Emotional tone: tactile, grounded. Story role: moment.\n- Director note: Use physical depth planes, not detached paper stickers.\n- Visual emphasis: cut stream channel, layered terraces, and bridge blocks.\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent turn terrain depth into one tactile paper landscape; tone tactile, grounded; emphasis cut stream channel, layered terraces, and bridge blocks; director note Use physical depth planes, not detached paper stickers.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Construct one integrated bas-relief image with varied plane depth, selective apertures, and a dominant spatial path; avoid a sticker board or separated cutout collection.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#625D50, #312E23) without flattening every painted passage into one identical color treatment.\n- Use one plausible raking light so cast shadows clarify paper depth while respecting the source's overall time and atmosphere.\n\nMATERIAL AND SURFACE\n- Use deckled cotton paper, layered pulp, subtle fibers, embossed terrain, clean cut edges, and restrained shadow gaps at a consistent physical scale.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No white sticker outlines, floating icons, scrapbook page, duplicated source photo, foam-board look, excessive drop shadows, text, or named-paper-artist imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one physically coherent paper landscape photographed from a single viewpoint.",
       "reference_output": {
         "path": "../../after/paper-relief-landscape.png",
         "sha256": "64d6cc5abb86e88abd4a610a6d10376314e0ff633a42e60ef0c8c3e138dc887d"

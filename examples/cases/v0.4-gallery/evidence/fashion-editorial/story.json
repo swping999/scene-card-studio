@@ -38,7 +38,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Direct the existing outfit through crop, movement, light, and architecture; invent no fashion items.",
-      "layout_emphasis": "coat silhouette and vertical corridor light"
+      "layout_emphasis": "coat silhouette and vertical corridor light",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -60,7 +63,11 @@
         "branding",
         "beauty retouching",
         "cover text"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

@@ -2,6 +2,19 @@
 
 All notable changes to Scene Card Studio are documented here. Versions follow semantic versioning where practical; Prompt Manifest and Scene Card schemas retain their own explicit version numbers.
 
+## [0.7.0] - 2026-09-04
+
+### Added
+
+- v0.7 After-only Director Gallery with `travel-zine`, `chinese-photo-editorial`, and `selective-material-relief` examples.
+- Structured `expression_profile_tokens` in Prompt Manifests for composition, palette, texture, and typography decisions.
+- Scene Card direction fields for negative space, text zone, typography orientation, material transition, and source-light/perspective preservation.
+
+### Changed
+
+- Public showcase guidance now leads with finished After images while retaining prior Before/After evidence cases.
+- Bilingual routing recognizes the new travel, ink-editorial, and selective-relief vocabulary.
+
 ## [Unreleased]
 
 ### Added

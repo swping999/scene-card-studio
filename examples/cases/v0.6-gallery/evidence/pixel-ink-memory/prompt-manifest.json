@@ -1,10 +1,11 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "memory-atlas",
   "system_display_name": "Memory Atlas",
   "expression_profile": "pixel-ink-memory",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "watercolor-contour",
@@ -20,7 +21,10 @@
     "sculpted-place-diorama",
     "threaded-landscape",
     "autochrome-memory",
-    "pixel-ink-memory"
+    "pixel-ink-memory",
+    "travel-zine",
+    "chinese-photo-editorial",
+    "selective-material-relief"
   ],
   "story": "story.json",
   "source_base": "story-directory",
@@ -57,6 +61,10 @@
           "Fuse only two material systems—intentional pixel clusters for near evidence and mineral-ink diffusion for memory distance—without changing the depicted event or place."
         ],
         "narrative_intent": [
+          "Narrative intent: let near evidence stay crisp while distant memory dissolves.",
+          "Emotional tone: layered, nocturnal. Story role: moment.",
+          "Director note: Pixel and ink must share one palette, light, composition, and depth transition.",
+          "Visual emphasis: pixel foreground flowing into ink-wash distance.",
           "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
           "Source / moment: intent let near evidence stay crisp while distant memory dissolves; tone layered, nocturnal; emphasis pixel foreground flowing into ink-wash distance; director note Pixel and ink must share one palette, light, composition, and depth transition."
         ],
@@ -91,7 +99,7 @@
           "Experimental profile: accept only when the two media share one composition, palette, and depth logic."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: empty scene, lane perspective, awnings, crates, bicycles, wet ground.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve identity, silhouette, architecture, terrain, object count, movement direction, and source depth through a stable shared shape map.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — empty scene, lane perspective, awnings, crates, bicycles, wet ground.\n- MAY TRANSFORM — near surfaces into pixels, distant surfaces into ink, paper ground, crop.\n- MUST REMOVE — split screen, glitch, random splash, UI, photographic pixels, text.\n- Fuse only two material systems—intentional pixel clusters for near evidence and mineral-ink diffusion for memory distance—without changing the depicted event or place.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent let near evidence stay crisp while distant memory dissolves; tone layered, nocturnal; emphasis pixel foreground flowing into ink-wash distance; director note Pixel and ink must share one palette, light, composition, and depth transition.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Assign crisp pixel structure to identity-bearing anchors and let ink washes carry atmosphere and distance; transitions must follow depth, not arbitrary collage masks.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#1C201A, #62594E) without flattening every painted passage into one identical color treatment.\n- Use one source-derived palette and one light direction across both media so the fusion reads as a single image.\n\nMATERIAL AND SURFACE\n- Use deliberate pixel clusters, restrained dithering, absorbent ink blooms, paper tooth, and a narrow transitional band where the two media interlock.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No split-screen, half-and-half effect, glitch overlay, game UI, pasted photograph, random ink splash, named-artist or named-game imitation, or mixed lighting models.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- Experimental profile: accept only when the two media share one composition, palette, and depth logic.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: empty scene, lane perspective, awnings, crates, bicycles, wet ground.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve identity, silhouette, architecture, terrain, object count, movement direction, and source depth through a stable shared shape map.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — empty scene, lane perspective, awnings, crates, bicycles, wet ground.\n- MAY TRANSFORM — near surfaces into pixels, distant surfaces into ink, paper ground, crop.\n- MUST REMOVE — split screen, glitch, random splash, UI, photographic pixels, text.\n- Fuse only two material systems—intentional pixel clusters for near evidence and mineral-ink diffusion for memory distance—without changing the depicted event or place.\n\nNARRATIVE INTENT\n- Narrative intent: let near evidence stay crisp while distant memory dissolves.\n- Emotional tone: layered, nocturnal. Story role: moment.\n- Director note: Pixel and ink must share one palette, light, composition, and depth transition.\n- Visual emphasis: pixel foreground flowing into ink-wash distance.\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent let near evidence stay crisp while distant memory dissolves; tone layered, nocturnal; emphasis pixel foreground flowing into ink-wash distance; director note Pixel and ink must share one palette, light, composition, and depth transition.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Assign crisp pixel structure to identity-bearing anchors and let ink washes carry atmosphere and distance; transitions must follow depth, not arbitrary collage masks.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#1C201A, #62594E) without flattening every painted passage into one identical color treatment.\n- Use one source-derived palette and one light direction across both media so the fusion reads as a single image.\n\nMATERIAL AND SURFACE\n- Use deliberate pixel clusters, restrained dithering, absorbent ink blooms, paper tooth, and a narrow transitional band where the two media interlock.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No split-screen, half-and-half effect, glitch overlay, game UI, pasted photograph, random ink splash, named-artist or named-game imitation, or mixed lighting models.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- Experimental profile: accept only when the two media share one composition, palette, and depth logic.",
       "reference_output": {
         "path": "../../after/pixel-ink-memory.png",
         "sha256": "4448ae5f23cc115e6ab349ba7b6be44e7cb5bbf2044dbb2b592e73be01bd9f77"

@@ -41,7 +41,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Vary paint thickness and let light, not generic texture, organize the place.",
-      "layout_emphasis": "blue boat beneath a silver break in the clouds"
+      "layout_emphasis": "blue boat beneath a silver break in the clouds",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -63,7 +66,11 @@
         "clipped railing",
         "photographic pixels",
         "canvas mockup"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

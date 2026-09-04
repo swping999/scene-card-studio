@@ -12,7 +12,7 @@ from .narrative_systems import SUPPORTED_SYSTEMS, resolve_narrative_system
 from .presentation import build_presentation_contract
 from .readiness import assess_direction_readiness
 
-COMPILER_VERSION = "0.6.1"
+COMPILER_VERSION = "0.7.0"
 __all__ = ["SUPPORTED_SYSTEMS", "compile_manifest"]
 
 
@@ -129,11 +129,21 @@ def _policy_values(card: SceneCard) -> tuple[list[str], list[str], list[str]]:
 def _transformation_lines(card: SceneCard, label: str | None = None) -> list[str]:
     preserve, transform, remove = _policy_values(card)
     prefix = f"{label}: " if label else ""
-    return [
+    lines = [
         f"{prefix}MUST PRESERVE — {_joined(preserve, 'the primary visible subject and identity-bearing details')}.",
         f"{prefix}MAY TRANSFORM — {_joined(transform, 'crop, exposure, and presentation only')}.",
         f"{prefix}MUST REMOVE — {_joined(remove, 'nothing not explicitly authorized')}.",
     ]
+    if card.transformation.transition_mode != "none":
+        lines.append(
+            f"{prefix}TRANSITION — use {card.transformation.transition_mode} transitions with softness "
+            f"{card.transformation.transition_softness:.2f}; transitions must follow real subject/environment boundaries."
+        )
+    if card.transformation.preserve_lighting:
+        lines.append(f"{prefix}PRESERVE LIGHTING — keep the source light direction, contrast, and color relationships.")
+    if card.transformation.preserve_perspective:
+        lines.append(f"{prefix}PRESERVE PERSPECTIVE — keep camera position, horizon, scale, and spatial geometry.")
+    return lines
 
 
 def _base_fidelity(card: SceneCard) -> list[str]:
@@ -147,12 +157,19 @@ def _base_fidelity(card: SceneCard) -> list[str]:
 
 
 def _base_narrative(card: SceneCard) -> list[str]:
-    return [
+    lines = [
         f"Narrative intent: {card.interpretation.narrative_intent}.",
         f"Emotional tone: {_joined(card.interpretation.emotional_tone, 'quiet')}. Story role: {card.story_role}.",
         f"Director note: {card.direction.director_note}",
         f"Visual emphasis: {card.direction.layout_emphasis}.",
     ]
+    if card.direction.negative_space_target:
+        lines.append(f"Negative-space target: reserve approximately {card.direction.negative_space_target:.0%} of the frame for breathing room.")
+    if card.direction.text_zone != "none":
+        lines.append(f"Text zone: keep the {card.direction.text_zone} area quiet for deterministic typography overlay.")
+    if card.direction.typography_orientation != "horizontal":
+        lines.append(f"Typography orientation: {card.direction.typography_orientation}; do not ask the image model to render text.")
+    return lines
 
 
 def _profile_subject_lines(profile: dict[str, Any]) -> list[str]:
@@ -169,6 +186,12 @@ def _profile_exclusions(profile: dict[str, Any]) -> list[str]:
 
 def _profile_output(profile: dict[str, Any]) -> list[str]:
     return list(profile.get("output", []))
+
+
+def _profile_design_tokens(profile: dict[str, Any]) -> dict[str, Any]:
+    """Expose structured design tokens alongside prose prompt rules."""
+    tokens = profile.get("design_tokens", {})
+    return dict(tokens) if isinstance(tokens, dict) else {}
 
 
 def _render_medium(profile: dict[str, Any]) -> str:
@@ -295,6 +318,7 @@ def _memory_atlas_blocks(cards: list[SceneCard], aspect_ratio: str, profile: dic
             *profile.get("transformation_policy", []),
         ],
         narrative_intent=[
+            *(_base_narrative(cards[0]) if single else []),
             "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey." if single else "Connect the supplied places as remembered spatial experience rather than literal navigation.",
             *_multi_card_context(cards),
         ],
@@ -349,6 +373,7 @@ def _family_archive_blocks(cards: list[SceneCard], aspect_ratio: str, profile: d
             *_profile_policy_lines(profile),
         ],
         narrative_intent=[
+            *(_base_narrative(cards[0]) if single else []),
             "Build one self-contained archival portrait or record only from the supplied Scene Card; do not assume care, inheritance, continuity, or family relationships." if single else "Build archival meaning only from the supplied Scene Card interpretations; do not assume care, inheritance, continuity, or family relationships.",
             *_multi_card_context(cards),
         ],
@@ -490,6 +515,7 @@ def _travel_journal_blocks(cards: list[SceneCard], aspect_ratio: str, profile: d
             *_profile_policy_lines(profile),
         ],
         narrative_intent=[
+            *(_base_narrative(cards[0]) if single else []),
             "Treat this source as one self-contained journey moment; do not invent movement, a second stop, destination, return, date, or route."
             if single
             else "Build a journey from supplied movement, pauses, thresholds, and Scene Card roles; do not invent a destination, return, date, or route.",
@@ -687,6 +713,7 @@ def compile_manifest(
         "system": system,
         "system_display_name": spec["display_name"],
         "expression_profile": profile["name"],
+        "expression_profile_tokens": _profile_design_tokens(profile),
         "available_expression_profiles": list(expression_profile_names(system)),
         "story": story_path,
         "source_base": "story-directory",

@@ -9,6 +9,9 @@ from typing import Any
 ILLEGAL_XML_CONTROLS = re.compile(r"[\x00-\x08\x0B\x0C\x0E-\x1F]")
 STORY_ROLES = {"moment", "opening", "development", "pause", "closing"}
 ORIENTATIONS = {"portrait", "landscape", "square"}
+TEXT_ZONES = {"none", "left", "right", "top", "bottom", "center"}
+TYPOGRAPHY_ORIENTATIONS = {"horizontal", "vertical", "mixed"}
+TRANSITION_MODES = {"none", "soft", "material-blend", "ink-dissolve"}
 
 
 def _validate_text(value: str, field_name: str) -> None:
@@ -45,6 +48,9 @@ class Direction:
     story_role: str = "moment"
     director_note: str = "Preserve the observed scene and let sequencing carry the meaning."
     layout_emphasis: str = "photograph"
+    negative_space_target: float = 0.0
+    text_zone: str = "none"
+    typography_orientation: str = "horizontal"
 
 
 @dataclass
@@ -52,6 +58,10 @@ class TransformationPolicy:
     must_preserve: list[str] = field(default_factory=list)
     may_transform: list[str] = field(default_factory=list)
     must_remove: list[str] = field(default_factory=list)
+    transition_mode: str = "none"
+    transition_softness: float = 0.0
+    preserve_lighting: bool = False
+    preserve_perspective: bool = False
 
 
 @dataclass
@@ -117,9 +127,22 @@ class SceneCard:
             raise ValueError(f"direction.story_role must be one of: {', '.join(sorted(STORY_ROLES))}")
         _validate_text(self.direction.director_note, "direction.director_note")
         _validate_text(self.direction.layout_emphasis, "direction.layout_emphasis")
+        if isinstance(self.direction.negative_space_target, bool) or not isinstance(self.direction.negative_space_target, (int, float)) or not 0 <= self.direction.negative_space_target <= 1:
+            raise ValueError("direction.negative_space_target must be between 0 and 1")
+        if self.direction.text_zone not in TEXT_ZONES:
+            raise ValueError(f"direction.text_zone must be one of: {', '.join(sorted(TEXT_ZONES))}")
+        if self.direction.typography_orientation not in TYPOGRAPHY_ORIENTATIONS:
+            raise ValueError(f"direction.typography_orientation must be one of: {', '.join(sorted(TYPOGRAPHY_ORIENTATIONS))}")
         _validate_string_list(self.transformation.must_preserve, "transformation.must_preserve")
         _validate_string_list(self.transformation.may_transform, "transformation.may_transform")
         _validate_string_list(self.transformation.must_remove, "transformation.must_remove")
+        if self.transformation.transition_mode not in TRANSITION_MODES:
+            raise ValueError(f"transformation.transition_mode must be one of: {', '.join(sorted(TRANSITION_MODES))}")
+        if isinstance(self.transformation.transition_softness, bool) or not isinstance(self.transformation.transition_softness, (int, float)) or not 0 <= self.transformation.transition_softness <= 1:
+            raise ValueError("transformation.transition_softness must be between 0 and 1")
+        for field_name in ("preserve_lighting", "preserve_perspective"):
+            if not isinstance(getattr(self.transformation, field_name), bool):
+                raise ValueError(f"transformation.{field_name} must be a boolean")
         for field_name in ("date", "location", "collection", "catalogue_id", "source_note"):
             _validate_text(getattr(self.metadata, field_name), f"metadata.{field_name}")
         groups = {

@@ -40,7 +40,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Let existing platform and rail geometry become the journey notation.",
-      "layout_emphasis": "suitcase against receding yellow line and rails"
+      "layout_emphasis": "suitcase against receding yellow line and rails",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -61,7 +64,11 @@
         "pins",
         "fake place names",
         "scrapbook collage"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

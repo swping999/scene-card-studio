@@ -38,7 +38,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Record wear faithfully; do not restore the object or sell it as luxury.",
-      "layout_emphasis": "front grille, controls, strap, and surface wear"
+      "layout_emphasis": "front grille, controls, strap, and surface wear",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -60,7 +63,11 @@
         "plastic stool",
         "storage clutter",
         "invented labels"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

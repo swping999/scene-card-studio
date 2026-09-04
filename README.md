@@ -3,7 +3,7 @@
 <p align="center"><strong>AI visual director for turning personal photos into structured, editable visual narratives.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.5.0"><img alt="Version 0.5.0" src="https://img.shields.io/badge/version-0.5.0-315c8c?style=flat-square"></a>
+  <a href="https://github.com/swping999/scene-card-studio/releases/tag/v0.7.0"><img alt="Version 0.7.0" src="https://img.shields.io/badge/version-0.7.0-315c8c?style=flat-square"></a>
   <a href="https://github.com/swping999/scene-card-studio/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/swping999/scene-card-studio/ci.yml?branch=main&style=flat-square&label=tests"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-315c8c?style=flat-square">
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
@@ -39,7 +39,7 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 | --- | --- |
 | Input | One photograph or a related photo sequence |
 | Direction | Observable evidence → editable interpretation → explicit art direction |
-| Visual vocabulary | 11 Narrative Systems + 19 replaceable Expression Profiles |
+| Visual vocabulary | 11 Narrative Systems + 22 replaceable Expression Profiles |
 | Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
 | Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
 
@@ -47,11 +47,21 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 
 ### One photo or many
 
-- **One photo → one directed image.** Choose a compatible Narrative System and Expression Profile, then produce one standalone Before/After pair. A single photo is never forced into a contact sheet, sequence, or decorative collage.
+- **One photo → one directed After.** Choose a compatible Narrative System and Expression Profile, then produce one standalone After. A single photo is never forced into a contact sheet, sequence, or decorative collage.
 - **Many photos → one coherent story.** Use per-photo direction when every source needs its own After, or choose a synthesis system when place, journey, or repeated relationships need to share one artifact.
 - **Style remains editable.** The Narrative System controls how the image or story is read; the Expression Profile controls how it is visually expressed. A single photo can therefore use `source-led`, `watercolor-chronicle`, `heritage-portrait`, `dream-logic`, or another profile supported by the selected system.
 
 Check compatible combinations with `scene-card-studio profiles`. The compiler records `single-photo`, `multi-photo-per-source`, or `multi-photo-synthesis` in every Manifest so downstream tools cannot silently change the requested source mode.
+
+## After-only Director Gallery · v0.7
+
+The public showcase leads with the finished After image. These three new cases are designed to make the visual difference obvious: a real subject with a relief environment, a restrained ink-and-paper editorial, and a sparse travel-zine page. Older Before/After evidence cases remain below and are not deleted.
+
+| Selective Material Relief | Chinese Photo Editorial | Travel Zine |
+| --- | --- | --- |
+| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
+
+[Open the v0.7 After-only gallery and asset records](examples/cases/v0.7-director-gallery/README.md)
 
 ## Before / After
 

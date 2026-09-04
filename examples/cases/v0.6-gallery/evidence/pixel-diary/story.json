@@ -41,7 +41,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Rebuild the full scene on one pixel grid; keep depth and material evidence.",
-      "layout_emphasis": "wet central path between awning masses"
+      "layout_emphasis": "wet central path between awning masses",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -65,7 +68,11 @@
         "HUD",
         "text",
         "mixed pixel scales"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

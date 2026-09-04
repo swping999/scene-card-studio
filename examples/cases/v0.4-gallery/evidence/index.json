@@ -9,9 +9,9 @@
       "system": "cinematic-storyboard",
       "expression_profile": "source-led",
       "story": "cinematic-sequence/story.json",
-      "story_sha256": "da6e973f5a7dd8751c31a5a4cabe8fd0ec45fd71ac5501f673ab2392d1b113be",
+      "story_sha256": "09fc1fac5b0c8bf9799ba2e13f3244d5dbf06d1875cab2aaf05fce4111761c2b",
       "prompt_manifest": "cinematic-sequence/prompt-manifest.json",
-      "prompt_manifest_sha256": "8f66b6be0cbebb41ea9b023b45835bb41824a115bf613fd5dc1b622786f3a80b",
+      "prompt_manifest_sha256": "2148c96c4ea66bb4da1a61fc1f6012f158e5e9496bc5c2b32371d2e3dbe72fe2",
       "reference_output": "../after/cinematic-sequence.jpg"
     },
     {
@@ -20,9 +20,9 @@
       "system": "memory-atlas",
       "expression_profile": "watercolor-contour",
       "story": "memory-atlas/story.json",
-      "story_sha256": "45dc7c1d0fae9a7d90835fcfbac59330db70cecd42db529ae7aa51abdc772969",
+      "story_sha256": "f37a6e7dff616aa5723e18bb2b60c5ac56a5143c1b40cb67870efcb4beea248a",
       "prompt_manifest": "memory-atlas/prompt-manifest.json",
-      "prompt_manifest_sha256": "9f84dcf29a62faecefe8388c08e283dcb063b82ddfa28a5ff023b564233bfc33",
+      "prompt_manifest_sha256": "b1fc01bd1e40bcf82327f9d1cc09e40e8f97213c9325d0eb613898a9408f607c",
       "reference_output": "../after/memory-atlas.jpg"
     },
     {
@@ -31,9 +31,9 @@
       "system": "family-archive",
       "expression_profile": "source-led",
       "story": "family-chronicle/story.json",
-      "story_sha256": "e2a24c4d45fc932072fb8aeebbdb1ee5ddb46e948938b09bd34d61672471a7f7",
+      "story_sha256": "c97732000a63e4599caecec2d70081bd1e373a0daec3b2d1682726b43a721590",
       "prompt_manifest": "family-chronicle/prompt-manifest.json",
-      "prompt_manifest_sha256": "62de935bf3303f9014b2baa691fab149018a7fc96f109d3065703f3cc6a294b8",
+      "prompt_manifest_sha256": "01ec2ac130945d1d9c8b89e31082832ae266f5ffcf259d9616faa1c09f714294",
       "reference_output": "../after/family-chronicle.jpg"
     },
     {
@@ -42,9 +42,9 @@
       "system": "minimal-editorial",
       "expression_profile": "source-led",
       "story": "quiet-editorial/story.json",
-      "story_sha256": "d6f48b83484fab5d02bc03b6aa8ec61116ec5d70c26f40927d9ea59cc8f5cb10",
+      "story_sha256": "ddc2d586bffcc82d6bdc64481d2f4e52da51763b155316f0221a9400e073339a",
       "prompt_manifest": "quiet-editorial/prompt-manifest.json",
-      "prompt_manifest_sha256": "21ff23d600daef59f0b5d552c261fac08c78448755d318c593ccafd1e677afb3",
+      "prompt_manifest_sha256": "892fcbead4aaf613c3f110b4be067f0c59ab8774fe031ba65cb0e2826a75663d",
       "reference_output": "../after/quiet-editorial.jpg"
     },
     {
@@ -53,9 +53,9 @@
       "system": "editorial-sequence",
       "expression_profile": "source-led",
       "story": "editorial-rhythm/story.json",
-      "story_sha256": "e7c2a52317589a1b7767b24281bf8d8fb3e4a2015363f333a60a513644e8f39d",
+      "story_sha256": "cade5b07936bad2c3f214c99764b464874c265fee3f9d4a12d9f0a1f3b4c8c0d",
       "prompt_manifest": "editorial-rhythm/prompt-manifest.json",
-      "prompt_manifest_sha256": "c4f64ca9fb8fc2aa999f2d0945c3e03778e10a686b8afe6001d309a5504f7d45",
+      "prompt_manifest_sha256": "b6a2b3bb5ad9f30c0879d327a6061892bcb0f2ac8aaab46555261e222e2c9438",
       "reference_output": "../after/editorial-rhythm.jpg"
     },
     {
@@ -64,9 +64,9 @@
       "system": "field-log",
       "expression_profile": "source-led",
       "story": "field-log/story.json",
-      "story_sha256": "f58625e41e011e35ac6f7f4ef27338713b0edf6260aba13c90da5c79f6a28703",
+      "story_sha256": "278555c94b526e954b8f611c07e5372ba9d2a56f2ef79c96c5b86f075ce50e2d",
       "prompt_manifest": "field-log/prompt-manifest.json",
-      "prompt_manifest_sha256": "3cf595d0e5e121b503e01c1b2441af36bfc227fbe9bf0d8f4276cef548bce950",
+      "prompt_manifest_sha256": "52f9a0973bb0aae557a68698038000232d94454ea29858ff706a452ccf95814a",
       "reference_output": "../after/field-log.jpg"
     },
     {
@@ -75,9 +75,9 @@
       "system": "memory-atlas",
       "expression_profile": "watercolor-chronicle",
       "story": "watercolor-chronicle/story.json",
-      "story_sha256": "cecd498568b14f56f2b783401dbad38986f72b5a3c61535acdbc595e521a29c7",
+      "story_sha256": "51b14b6f98745ee230bb36ec2cf08fbed6f6ddafe435819cdb8193c393d4b6e9",
       "prompt_manifest": "watercolor-chronicle/prompt-manifest.json",
-      "prompt_manifest_sha256": "7454ad28f91622d92097871af6c482c7c87232f420222805b90df1f22cf75705",
+      "prompt_manifest_sha256": "1cc57516698892806f2f3ff601d6bd9724d1affeba814bed86e18a0fc9992078",
       "reference_output": "../after/watercolor-chronicle.jpg"
     },
     {
@@ -86,9 +86,9 @@
       "system": "family-archive",
       "expression_profile": "heritage-portrait",
       "story": "heritage-portrait/story.json",
-      "story_sha256": "918dc890bb9934fe09dcbe311e15bd5ea850423a08fd4af93bee2dee4b1c5b7c",
+      "story_sha256": "f818340d604e45fe8f34090bfbe2b2f14f520b7163c6cdca01aa27b89969e685",
       "prompt_manifest": "heritage-portrait/prompt-manifest.json",
-      "prompt_manifest_sha256": "46eeca3abe9141983b8aab38f2c728fb53f5d059091947a828061380f0e2ec6c",
+      "prompt_manifest_sha256": "e7269d42bc3db95730840e17c92f0a83a7dff44d8242857cac7a121c0a2129ff",
       "reference_output": "../after/heritage-portrait.jpg"
     },
     {
@@ -97,9 +97,9 @@
       "system": "museum-catalogue",
       "expression_profile": "source-led",
       "story": "museum-catalogue/story.json",
-      "story_sha256": "dc032309756f4d77fb261342619db79af539fd3e85978507d5848b2208b861b2",
+      "story_sha256": "330c479d3bc8f060e665538592bad54656bd55ee02e04995eaae192b09b76c1f",
       "prompt_manifest": "museum-catalogue/prompt-manifest.json",
-      "prompt_manifest_sha256": "e5177f0e4f988362a7dbb9d07767edac25a5cae5c4590635adde0b60549e3fe6",
+      "prompt_manifest_sha256": "b47954028e41c1c3df2312b7a3a195de603e9ffaf9b918ca4e32722bfe1ce420",
       "reference_output": "../after/museum-catalogue.jpg"
     },
     {
@@ -108,9 +108,9 @@
       "system": "travel-journal",
       "expression_profile": "source-led",
       "story": "travel-journal/story.json",
-      "story_sha256": "20688d3986d4591844190910e7553a36fb9fec0c82c1c02cc8ce4f4045adc018",
+      "story_sha256": "667f56a24b0462594b9419af53d2d3268f4fc92d2a236bee78314ea27f694409",
       "prompt_manifest": "travel-journal/prompt-manifest.json",
-      "prompt_manifest_sha256": "32e922cb42f554ebdabe499d10a1c0120e9ffbd4e79a4f7bcc399ea8d966841d",
+      "prompt_manifest_sha256": "7645a0823085c9f5b869bc6cf23dc6472c5a4cfd5aa2342c8d068ca35ab9ee4a",
       "reference_output": "../after/travel-journal.jpg"
     },
     {
@@ -119,9 +119,9 @@
       "system": "street-reportage",
       "expression_profile": "monochrome-reportage",
       "story": "street-reportage/story.json",
-      "story_sha256": "35365af646eea4e2a00ee32cb71722e7f42d1528747c0d54a5b215fb2e7e0155",
+      "story_sha256": "81fbf73ba0607cfc3ab4ab8b4561fbe14b864b478fca82d5cd1d373d16f1b471",
       "prompt_manifest": "street-reportage/prompt-manifest.json",
-      "prompt_manifest_sha256": "11f3ab57020d332705aac0f6ff4e65b9bb12466772a99a614892d80b6d2be8d3",
+      "prompt_manifest_sha256": "22abfb7793da3890c3e99b2f309e3dcc1d3037a5dd727c333b43d4dd75dda6f7",
       "reference_output": "../after/street-reportage.jpg"
     },
     {
@@ -130,9 +130,9 @@
       "system": "fashion-editorial",
       "expression_profile": "source-led",
       "story": "fashion-editorial/story.json",
-      "story_sha256": "2e44a707f22039b7ffa6a04556f5588268ab03faa769f5ba083e9893402fd731",
+      "story_sha256": "0ebac32a1808b93c1bda8e0be73e517a02364399b5c658d50b841a34068cc0a4",
       "prompt_manifest": "fashion-editorial/prompt-manifest.json",
-      "prompt_manifest_sha256": "3ff915acbf694f025fbc0c1c32049ea6e7482d2e5f8e4310bbafa53ff59d6c5e",
+      "prompt_manifest_sha256": "34ced1f019874d5ad2c9e74cd102680817fe2ca2b7b94c8194191da38224bff1",
       "reference_output": "../after/fashion-editorial.jpg"
     },
     {
@@ -141,9 +141,9 @@
       "system": "memory-atlas",
       "expression_profile": "dream-logic",
       "story": "dream-logic/story.json",
-      "story_sha256": "140a03e004528f5e35a633b6127f7f887d53c07e9ef9866ee25ffacc4f84f1b1",
+      "story_sha256": "59a578b5395856ae87531453fc47c528b566dfea241a87aa5269c506911aa00b",
       "prompt_manifest": "dream-logic/prompt-manifest.json",
-      "prompt_manifest_sha256": "6c12537448707009dc2244dbc684d8f0430c083ff86c1c6b09b27ad69042e941",
+      "prompt_manifest_sha256": "b23ca3f83094a6d0e5d95bc2a41a46ca79afaa0c3189fab9653139e8d2d5dad0",
       "reference_output": "../after/dream-logic.jpg"
     }
   ]

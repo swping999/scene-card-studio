@@ -37,7 +37,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Use physical spacing, crop, color, and shadow—not a grid—to make rhythm.",
-      "layout_emphasis": "staggered chair silhouettes"
+      "layout_emphasis": "staggered chair silhouettes",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -55,7 +58,11 @@
         "crates",
         "mop bucket",
         "cleaning clutter"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

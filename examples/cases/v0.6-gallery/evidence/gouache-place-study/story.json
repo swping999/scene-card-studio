@@ -41,7 +41,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Simplify by opaque value groups while keeping wear and the two small color anchors.",
-      "layout_emphasis": "white dome, red scooter, blue bucket, and dusty planes"
+      "layout_emphasis": "white dome, red scooter, blue bucket, and dusty planes",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -65,7 +68,11 @@
         "photographic pixels",
         "decorative outlines",
         "text"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

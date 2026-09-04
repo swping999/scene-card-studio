@@ -99,7 +99,7 @@ def test_all_systems_compile_with_policy_profiles_and_presentation_contract(tmp_
     for system in SUPPORTED_SYSTEMS:
         manifest = compile_manifest(cards, system, source_root=tmp_path)
         manifests[system] = manifest
-        assert manifest["compiler_version"] == "0.6.1"
+        assert manifest["compiler_version"] == "0.7.0"
         assert manifest["schema_version"] == "1.5"
         assert manifest["source_mode"] == (
             "multi-photo-per-source"
@@ -589,3 +589,34 @@ def test_published_retry_example_is_a_complete_hash_chain():
         base=failed_render_path.parent,
     )
     assert rebuilt_retry["retry_prompt_ids"] == retry["retry_prompt_ids"] == ["cinematic-storyboard-01"]
+
+
+def test_v07_profiles_expose_tokens_and_scene_direction(tmp_path: Path):
+    card = _cards(tmp_path)[0]
+    card.direction.negative_space_target = .35
+    card.direction.text_zone = "left"
+    card.direction.typography_orientation = "vertical"
+    card.transformation.transition_mode = "material-blend"
+    card.transformation.transition_softness = .7
+    card.transformation.preserve_lighting = True
+    card.transformation.preserve_perspective = True
+    manifest = compile_manifest(
+        [card], "memory-atlas", source_root=tmp_path,
+        expression_profile="selective-material-relief",
+    )
+    prompt = manifest["prompts"][0]["compiled_prompt"]
+    assert manifest["expression_profile_tokens"]["composition"]["relief_extent"] == "environment-only"
+    assert "Negative-space target: reserve approximately 35%" in prompt
+    assert "Text zone: keep the left area quiet" in prompt
+    assert "Typography orientation: vertical" in prompt
+    assert "TRANSITION — use material-blend" in prompt
+    assert "PRESERVE LIGHTING" in prompt
+    assert "PRESERVE PERSPECTIVE" in prompt
+
+
+def test_new_profile_routing_supports_chinese_and_travel_terms(tmp_path: Path):
+    card = _cards(tmp_path)[0]
+    from moments_to_pages.director import recommend_expression_profile
+    assert recommend_expression_profile("travel-journal", [card], "旅行手账，保留真实路线").profile == "travel-zine"
+    assert recommend_expression_profile("minimal-editorial", [card], "照片水墨，宣纸编辑").profile == "chinese-photo-editorial"
+    assert recommend_expression_profile("memory-atlas", [card], "船真实背景浮雕").profile == "selective-material-relief"

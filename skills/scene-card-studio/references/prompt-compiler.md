@@ -18,6 +18,9 @@ For `memory-atlas`, choose deliberately:
 - `source-led` derives the visual language only from supplied evidence;
 - `watercolor-contour` keeps people and places photographic while drawing the remembered geography around them;
 - `watercolor-chronicle` repaints people, clothing, architecture, landscape, and spatial transitions in one continuous watercolor medium while preserving identity and source geometry.
+- `travel-zine` creates a sparse source-bound travel page; it may use only supplied route, date, location, ticket, map, paper, or handwriting evidence.
+- `selective-material-relief` keeps the main subject photographic and transforms only an authorized environment into a continuous relief, with source light and perspective preserved.
+- `chinese-photo-editorial` uses restrained ink and uncoated paper as an editorial language; bamboo, seals, mountains, calligraphy, costume, and other motifs are never automatic.
 
 `full-watercolor-memory` remains a compatibility alias. Prefer the canonical `watercolor-chronicle` name in new Manifests.
 

@@ -1,14 +1,16 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "minimal-editorial",
   "system_display_name": "Quiet Editorial",
   "expression_profile": "source-led",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "quiet-window-light",
-    "impasto-light-study"
+    "impasto-light-study",
+    "chinese-photo-editorial"
   ],
   "story": "story.json",
   "source_base": "story-directory",

@@ -41,7 +41,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Pixel and ink must share one palette, light, composition, and depth transition.",
-      "layout_emphasis": "pixel foreground flowing into ink-wash distance"
+      "layout_emphasis": "pixel foreground flowing into ink-wash distance",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -65,7 +68,11 @@
         "UI",
         "photographic pixels",
         "text"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

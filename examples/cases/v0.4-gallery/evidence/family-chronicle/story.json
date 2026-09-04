@@ -38,7 +38,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Build meaning from the supplied folding gesture; do not invent a family history.",
-      "layout_emphasis": "hands, cloth, and the space between figures"
+      "layout_emphasis": "hands, cloth, and the space between figures",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -58,7 +61,11 @@
         "rice cooker",
         "medicine clutter",
         "harsh bulb"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

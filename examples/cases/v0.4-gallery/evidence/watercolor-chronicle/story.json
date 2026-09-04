@@ -39,7 +39,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Repaint every visible element together; never leave the person as a photographic cutout.",
-      "layout_emphasis": "yellow umbrella against blue-grey sea"
+      "layout_emphasis": "yellow umbrella against blue-grey sea",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -58,7 +61,11 @@
         "photographic pixels",
         "cutout edges",
         "scrapbook decoration"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

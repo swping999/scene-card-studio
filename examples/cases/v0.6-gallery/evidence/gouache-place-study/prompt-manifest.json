@@ -1,10 +1,11 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "memory-atlas",
   "system_display_name": "Memory Atlas",
   "expression_profile": "gouache-place-study",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "watercolor-contour",
@@ -20,7 +21,10 @@
     "sculpted-place-diorama",
     "threaded-landscape",
     "autochrome-memory",
-    "pixel-ink-memory"
+    "pixel-ink-memory",
+    "travel-zine",
+    "chinese-photo-editorial",
+    "selective-material-relief"
   ],
   "story": "story.json",
   "source_base": "story-directory",
@@ -57,6 +61,10 @@
           "Repaint every visible element in opaque gouache; allow shape simplification and edge hierarchy but no invented location, season, props, or characters."
         ],
         "narrative_intent": [
+          "Narrative intent: describe an isolated highland structure through matte shape and color.",
+          "Emotional tone: dry, clear. Story role: moment.",
+          "Director note: Simplify by opaque value groups while keeping wear and the two small color anchors.",
+          "Visual emphasis: white dome, red scooter, blue bucket, and dusty planes.",
           "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
           "Source / moment: intent describe an isolated highland structure through matte shape and color; tone dry, clear; emphasis white dome, red scooter, blue bucket, and dusty planes; director note Simplify by opaque value groups while keeping wear and the two small color anchors."
         ],
@@ -91,7 +99,7 @@
           "The result must read as one complete hand-painted place study rather than a border treatment."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve recognizable people, architecture, terrain contours, route direction, object count, and source composition while simplifying small detail.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.\n- MAY TRANSFORM — all surfaces into gouache, crop, shape grouping, pencil underdrawing.\n- MUST REMOVE — utility wire, photographic pixels, decorative outlines, text.\n- Repaint every visible element in opaque gouache; allow shape simplification and edge hierarchy but no invented location, season, props, or characters.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent describe an isolated highland structure through matte shape and color; tone dry, clear; emphasis white dome, red scooter, blue bucket, and dusty planes; director note Simplify by opaque value groups while keeping wear and the two small color anchors.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Build a confident place study from interlocking matte shapes, clear foreground-to-distance layers, and one source-supported focal relationship.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#A89A8D, #A4B2D7) without flattening every painted passage into one identical color treatment.\n- Preserve source light and weather through compact value groups, warm-cool adjacency, and restrained opaque highlights.\n\nMATERIAL AND SURFACE\n- Use matte gouache coverage, dry opaque scumble, visible brush edges, subtle paper tooth, and selective pencil underdrawing without photographic residue.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No named-illustrator imitation, generic children's-book decoration, outlines around every object, pasted photo, frame, lettering, or fabricated travel ephemera.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one complete hand-painted place study rather than a border treatment.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable painted anchor: dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n- Preserve recognizable people, architecture, terrain contours, route direction, object count, and source composition while simplifying small detail.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — dome and ribs, building geometry, door, window, scooter, bucket, ridge, worn plaster.\n- MAY TRANSFORM — all surfaces into gouache, crop, shape grouping, pencil underdrawing.\n- MUST REMOVE — utility wire, photographic pixels, decorative outlines, text.\n- Repaint every visible element in opaque gouache; allow shape simplification and edge hierarchy but no invented location, season, props, or characters.\n\nNARRATIVE INTENT\n- Narrative intent: describe an isolated highland structure through matte shape and color.\n- Emotional tone: dry, clear. Story role: moment.\n- Director note: Simplify by opaque value groups while keeping wear and the two small color anchors.\n- Visual emphasis: white dome, red scooter, blue bucket, and dusty planes.\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent describe an isolated highland structure through matte shape and color; tone dry, clear; emphasis white dome, red scooter, blue bucket, and dusty planes; director note Simplify by opaque value groups while keeping wear and the two small color anchors.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Build a confident place study from interlocking matte shapes, clear foreground-to-distance layers, and one source-supported focal relationship.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#A89A8D, #A4B2D7) without flattening every painted passage into one identical color treatment.\n- Preserve source light and weather through compact value groups, warm-cool adjacency, and restrained opaque highlights.\n\nMATERIAL AND SURFACE\n- Use matte gouache coverage, dry opaque scumble, visible brush edges, subtle paper tooth, and selective pencil underdrawing without photographic residue.\n- Every added mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n- No named-illustrator imitation, generic children's-book decoration, outlines around every object, pasted photo, frame, lettering, or fabricated travel ephemera.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.\n- The result must read as one complete hand-painted place study rather than a border treatment.",
       "reference_output": {
         "path": "../../after/gouache-place-study.png",
         "sha256": "42ec91f19229063bd2b636328f9cf1d8a7e499a90976820100a08d706070c01e"

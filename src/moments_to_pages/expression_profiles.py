@@ -342,6 +342,67 @@ PIXEL_INK_MEMORY: dict[str, Any] = {
 }
 
 
+TRAVEL_ZINE: dict[str, Any] = {
+    "render_mode": "source-bound-editorial",
+    "output_medium": "travel zine editorial",
+    "design_tokens": {
+        "palette": {"base": "warm-ivory", "accent": "muted-olive", "ink": "soft-charcoal"},
+        "composition": {"density": "low", "asymmetry": "high", "primary_image_ratio": 0.62},
+        "texture": {"paper": "aged-uncoated", "grain": "subtle", "torn_edges": "source-supported-only"},
+        "typography": {"hierarchy": "editorial", "orientation": ["horizontal", "vertical"], "caption_density": "low"},
+    },
+    "subject_fidelity": [
+        "Keep the supplied photograph as the primary evidence; preserve people, architecture, terrain, horizon, and camera perspective.",
+    ],
+    "transformation_policy": [
+        "Use only source-supported route, date, location, ticket, map, paper, or handwriting cues; never fabricate travel facts or souvenirs.",
+    ],
+    "composition": [
+        "Build one quiet travel-zine page around a single memory node: one dominant image, at most two source-derived detail studies, and generous irregular whitespace.",
+        "Use route marks only when they correspond to visible or user-supplied geography; avoid a dense scrapbook board.",
+    ],
+    "lighting": ["Preserve source time, weather, and light direction; paper warmth must not wash out the photograph."],
+    "material": ["Use restrained uncoated paper, tape, folds, or torn edges only when supported by the brief or source evidence; keep edges tactile but not sticker-like."],
+    "exclusions": ["No fabricated tickets, dates, coordinates, map labels, handwriting, logos, or decorative sticker pile; no copied travel-zine layout."],
+    "output": ["The result must read as an authored travel memory page, not a generic collage template."],
+}
+
+CHINESE_PHOTO_EDITORIAL: dict[str, Any] = {
+    "render_mode": "restrained-ink-editorial",
+    "output_medium": "contemporary ink-and-paper photo editorial",
+    "design_tokens": {
+        "palette": ["warm-paper", "ink-black", "diluted-gray", "seal-red-optional"],
+        "composition": {"vertical_whitespace": "high", "asymmetry": "high", "motif_density": "low"},
+        "texture": {"paper": "xuan-inspired-uncoated", "ink_bleed": "subtle", "brush_marks": "source-supported-only"},
+        "typography": {"orientation": ["horizontal", "vertical"], "caption_density": "low"},
+    },
+    "subject_fidelity": ["Keep the supplied photograph and its identity-bearing subject readable; transform medium and framing, not the person's identity, place, or event."],
+    "transformation_policy": ["Use ink wash, dry brush, and paper grain as a restrained editorial layer; bamboo, seals, mountains, calligraphy, and other motifs are optional and may appear only when source-supported or explicitly requested."],
+    "composition": ["Use an asymmetric editorial field with large quiet paper areas, one photographic anchor, and a small number of source-derived ink passages; keep the image contemporary rather than costume-like."],
+    "lighting": ["Preserve the source light direction and facial/structural modeling while translating values into ink density."],
+    "material": ["Use warm uncoated paper, transparent washes, dry-brush edges, and controlled bleed; keep the subject's photographic evidence from dissolving into a generic painting."],
+    "exclusions": ["No invented bamboo forest, mountains, seals, historical costume, gold ornament, dragon/cloud motifs, generated calligraphy, or named-artist imitation."],
+    "output": ["Keep all Chinese titles, dates, and captions for the deterministic presentation layer; do not render text inside the image model output."],
+}
+
+SELECTIVE_MATERIAL_RELIEF: dict[str, Any] = {
+    "render_mode": "selective-material-relief",
+    "output_medium": "photographic subject with continuous relief environment",
+    "design_tokens": {
+        "composition": {"subject_fidelity": "high", "relief_extent": "environment-only", "depth": "shallow-to-moderate"},
+        "material": {"surface": "paper-clay-stone", "edge_transition": "soft", "shadow": "source-consistent"},
+        "lighting": {"continuity": "source-derived", "specular": "restrained"},
+    },
+    "subject_fidelity": ["Keep the main person, animal, vehicle, vessel, or object photographic and unmistakably real, including silhouette, texture, scale, and contact shadow."],
+    "transformation_policy": ["Transform only the authorized environment into a continuous low-relief material; blend at real boundaries with no halo, cutout, or sticker edge."],
+    "composition": ["Make the real subject the focal anchor and let relief depth explain the surrounding place; preserve camera position, horizon, and perspective."],
+    "lighting": ["Preserve source light direction, color, and shadow footprint across the photographic subject and relief environment."],
+    "material": ["Use believable shallow relief with layered paper, clay, plaster, or carved terrain; surface grain must follow geography and recede with depth."],
+    "exclusions": ["No full-scene cartoonization, floating cutout, sticker outline, plastic CGI, unrelated diorama props, duplicated subject, or invented geography."],
+    "output": ["At first glance the subject must be a real photograph; the surrounding material transformation should be visible only as a coherent spatial intervention."],
+}
+
+
 EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
     "cinematic-storyboard": {
         "source-led": {
@@ -362,11 +423,18 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
             "material": ["Let actual wear, fibers, glaze, scratches, and dents determine the material language."],
         },
         "quiet-window-light": {
+            "design_tokens": {
+                "palette": ["warm-ivory", "olive-gray", "window-gold", "charcoal"],
+                "composition": {"negative_space": "generous", "shadow_geometry": "explicit", "density": "low"},
+                "texture": {"film_grain": "fine", "dust": "subtle", "surfaces": "tactile"},
+            },
             "composition": ["Use asymmetrical art-book framing with one clear hierarchy and generous but believable negative space."],
-            "lighting": ["Use one plausible directional window source with a clear shadow structure and gentle tonal falloff."],
-            "material": ["Emphasize tactile fibers, glaze, chipped paint, folds, and small imperfections without sterile CGI polish."],
+            "lighting": ["Use one plausible directional window source with a clear geometric shadow structure, warm side light, protected highlights, and gentle tonal falloff."],
+            "material": ["Emphasize tactile fibers, glaze, chipped paint, folds, fine film grain, and small imperfections without sterile CGI polish or dreamy glow."],
+            "exclusions": ["No neon, plastic CGI, over-smoothed skin, artificial bokeh, or generic cinematic preset."],
         },
         "impasto-light-study": IMPASTO_LIGHT_STUDY,
+        "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
     },
     "editorial-sequence": {
         "source-led": {
@@ -407,6 +475,9 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "threaded-landscape": THREADED_LANDSCAPE,
         "autochrome-memory": AUTOCHROME_MEMORY,
         "pixel-ink-memory": PIXEL_INK_MEMORY,
+        "travel-zine": TRAVEL_ZINE,
+        "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "family-archive": {
         "source-led": {
@@ -424,6 +495,9 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "cyanotype-archive": CYANOTYPE_ARCHIVE,
         "autochrome-memory": AUTOCHROME_MEMORY,
         "threaded-landscape": THREADED_LANDSCAPE,
+        "travel-zine": TRAVEL_ZINE,
+        "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "museum-catalogue": {
         "source-led": {
@@ -434,6 +508,7 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "watercolor-chronicle": WATERCOLOR_CHRONICLE,
         "heritage-portrait": HERITAGE_PORTRAIT,
         "cyanotype-archive": CYANOTYPE_ARCHIVE,
+        "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
     },
     "travel-journal": {
         "source-led": {
@@ -451,6 +526,9 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "sculpted-place-diorama": SCULPTED_PLACE_DIORAMA,
         "threaded-landscape": THREADED_LANDSCAPE,
         "autochrome-memory": AUTOCHROME_MEMORY,
+        "travel-zine": TRAVEL_ZINE,
+        "chinese-photo-editorial": CHINESE_PHOTO_EDITORIAL,
+        "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "journey-taxonomy": {
         "source-led": {
@@ -469,6 +547,8 @@ EXPRESSION_PROFILES: dict[str, dict[str, dict[str, Any]]] = {
         "threaded-landscape": THREADED_LANDSCAPE,
         "autochrome-memory": AUTOCHROME_MEMORY,
         "pixel-ink-memory": PIXEL_INK_MEMORY,
+        "travel-zine": TRAVEL_ZINE,
+        "selective-material-relief": SELECTIVE_MATERIAL_RELIEF,
     },
     "street-reportage": {
         "source-led": {

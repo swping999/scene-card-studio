@@ -1,6 +1,6 @@
 ---
 name: scene-card-studio
-description: Turn one user-supplied photo or a related photo set into standalone art-directed Before/After images, a coherent visual narrative, versioned image-generation prompts, and editable story layouts. Use for a single-photo treatment, photo essay, cinematic sequence, memory atlas, family chronicle, quiet editorial, field log, museum catalogue, travel journal, journey taxonomy, street reportage, fashion editorial, watercolor, heritage, ink, impasto, pixel, risograph, gouache, cyanotype, paper-relief, sculpted 3D diorama, threaded textile relief, autochrome, or dream-logic treatment.
+description: Turn one user-supplied photo or a related photo set into art-directed After images, coherent visual narratives, versioned prompts, and editable story layouts. Use for cinematic, memory, archive, editorial, travel, reportage, museum, watercolor, heritage, ink, relief, textile, pixel, risograph, gouache, or 3D treatments.
 ---
 
 # Scene Card Studio
@@ -25,6 +25,7 @@ Build a visual story from the user's photographs without imitating a named artis
    - `journey-taxonomy` when the goal is to classify visible place elements by semantic role. Keep one dominant place image, omit absent categories, use no duplicated inset photo, sticker column, connector line, or copied reference composition;
    - `street-reportage` for observed public gestures and environmental context;
    - `fashion-editorial` for pose, garment construction, movement, and shot-scale rhythm.
+   - v0.7 profiles add `travel-zine` (restrained source-bound travel page), `chinese-photo-editorial` (contemporary ink-and-paper photo treatment without invented motifs), and `selective-material-relief` (real photographic subject with an environment-only relief transformation). These are visual expression profiles, not new Narrative Systems.
    Run `scene-card-studio profiles --system SYSTEM_ID` when available, and use only a Profile listed for the selected system.
 6. Choose the source mode before choosing the output tier:
    - **Single-photo mode**: select one compatible Narrative System and Expression Profile, then produce exactly one standalone After for the supplied Before. Do not require a sequence and do not substitute a border, contact sheet, page mockup, or decorative collage for transformation.
@@ -63,7 +64,7 @@ scene-card-studio compile story.json --system cinematic-storyboard --output prom
 12. Keep visible text out of image synthesis. Put only user-supplied `metadata` values into the Manifest's `presentation_contract`, then run `scene-card-studio present render-manifest.json -o presentation.svg` to apply deterministic captions, dates, places, collection names, and catalogue identifiers. For an original asymmetric travel-collectible layout, add `--style journey-keepsake`; it must present the generated After as the dominant image, never recreate a reference's upper/lower comparison, sample slogans, ticket proportions, or decorative arrangement. Omit missing fields instead of inventing them.
 13. Review only `candidate_output` records in the Render Manifest. A `reference_output` is benchmark evidence and never satisfies formal review. Create a bound form with `scene-card-studio review-template`, inspect the full-resolution output, fill every score, then run `scene-card-studio review` to produce the formal Accept/Retry record. For sequence systems, also score identity continuity, light/color continuity, rhythm, and narrative arc. Accept only when every score is at least 4.
 14. If a dimension fails, pass the finalized hash-bound review to `scene-card-studio retry`, regenerate only `retry_prompt_ids`, and bind all resulting candidates to the Retry Manifest. Accept only a new `scene-card-studio review` record bound to this post-retry Render Manifest. Do not reuse the pre-retry review or candidates.
-15. Return paired Before and After artifacts, Scene Cards, accepted Render Manifest, review record, deterministic presentation when used, and a short explanation. When several one-to-one transformations exist, show every pair separately.
+15. For a public showcase, show the finished After image first and do not require a Before/After split. Keep paired source/After artifacts, Scene Cards, manifests, and review records in the reproducibility bundle when needed; never delete prior Before/After evidence cases.
 
 ## Guardrails
 

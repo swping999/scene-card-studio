@@ -39,7 +39,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Keep the architecture photographic while geography enters the same material world.",
-      "layout_emphasis": "road-to-ridge spatial continuity"
+      "layout_emphasis": "road-to-ridge spatial continuity",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -60,7 +63,11 @@
         "connector lines",
         "thumbnail collage",
         "labels"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

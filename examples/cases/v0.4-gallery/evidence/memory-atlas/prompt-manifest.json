@@ -1,10 +1,11 @@
 {
   "schema_version": "1.5",
-  "compiler_version": "0.6.1",
+  "compiler_version": "0.7.0",
   "source_mode": "single-photo",
   "system": "memory-atlas",
   "system_display_name": "Memory Atlas",
   "expression_profile": "watercolor-contour",
+  "expression_profile_tokens": {},
   "available_expression_profiles": [
     "source-led",
     "watercolor-contour",
@@ -20,7 +21,10 @@
     "sculpted-place-diorama",
     "threaded-landscape",
     "autochrome-memory",
-    "pixel-ink-memory"
+    "pixel-ink-memory",
+    "travel-zine",
+    "chinese-photo-editorial",
+    "selective-material-relief"
   ],
   "story": "story.json",
   "source_base": "story-directory",
@@ -55,6 +59,10 @@
           "MUST REMOVE — map pins, connector lines, thumbnail collage, labels."
         ],
         "narrative_intent": [
+          "Narrative intent: place held through route and terrain.",
+          "Emotional tone: remote, material. Story role: moment.",
+          "Director note: Keep the architecture photographic while geography enters the same material world.",
+          "Visual emphasis: road-to-ridge spatial continuity.",
           "Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.",
           "Source / moment: intent place held through route and terrain; tone remote, material; emphasis road-to-ridge spatial continuity; director note Keep the architecture photographic while geography enters the same material world."
         ],
@@ -87,7 +95,7 @@
           "The supplied place or subject must remain recognizable."
         ]
       },
-      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable photographic anchor: building geometry, red gate, blue barrel, pole and wires, road, ridge.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — building geometry, red gate, blue barrel, pole and wires, road, ridge.\n- MAY TRANSFORM — sky, terrain surface, road texture.\n- MUST REMOVE — map pins, connector lines, thumbnail collage, labels.\n\nNARRATIVE INTENT\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent place held through route and terrain; tone remote, material; emphasis road-to-ridge spatial continuity; director note Keep the architecture photographic while geography enters the same material world.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Embed real photographic places into one hand-drawn geography with varied scale and selective edge overlap.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#8BB3ED, #A9CBF4) without flattening every photograph into one identical color treatment.\n- Preserve photographic light while unifying the field with restrained paper warmth.\n\nMATERIAL AND SURFACE\n- Use watercolor terrain, pencil contours, torn archival paper, faint coastline texture, and subtle travel ephemera.\n- Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.",
+      "compiled_prompt": "SUBJECT FIDELITY\n- Preserve the supplied place or subject as one recognizable photographic anchor: building geometry, red gate, blue barrel, pole and wires, road, ridge.\n- Keep identity-bearing architecture, horizon, entrances, objects, people, and spatial details faithful to the source.\n- Do not invent destinations, geographic facts, events, or a return that is absent from the Scene Cards.\n\nTRANSFORMATION POLICY\n- MUST PRESERVE — building geometry, red gate, blue barrel, pole and wires, road, ridge.\n- MAY TRANSFORM — sky, terrain surface, road texture.\n- MUST REMOVE — map pins, connector lines, thumbnail collage, labels.\n\nNARRATIVE INTENT\n- Narrative intent: place held through route and terrain.\n- Emotional tone: remote, material. Story role: moment.\n- Director note: Keep the architecture photographic while geography enters the same material world.\n- Visual emphasis: road-to-ridge spatial continuity.\n- Treat the supplied place as one self-contained spatial memory; do not invent another location or a journey.\n- Source / moment: intent place held through route and terrain; tone remote, material; emphasis road-to-ridge spatial continuity; director note Keep the architecture photographic while geography enters the same material world.\n\nCOMPOSITION\n- Build one continuous image from this source and its Scene Card; do not add panels, a route, or a departure–return arc.\n- Use spatial hierarchy inside the single scene without inventing off-frame geography.\n- Embed real photographic places into one hand-drawn geography with varied scale and selective edge overlap.\n\nLIGHTING AND COLOR\n- Use the combined source palette (#8BB3ED, #A9CBF4) without flattening every photograph into one identical color treatment.\n- Preserve photographic light while unifying the field with restrained paper warmth.\n\nMATERIAL AND SURFACE\n- Use watercolor terrain, pencil contours, torn archival paper, faint coastline texture, and subtle travel ephemera.\n- Every non-photographic mark must perform a Scene Card-supported spatial function rather than decoration.\n\nSPATIAL RELATIONSHIPS\n- Use the source's visible direction, quiet regions, and layout emphasis as the complete spatial relationship.\n- Use scale changes only to express Scene Card-supported distance or memory, not assumed cartographic accuracy.\n\nTEXT AND LABELS\n- Use no invented place names, dates, coordinates, map pins, interface labels, or route instructions.\n\nEXCLUSIONS\n- No generic UI map, flowchart, scrapbook grid, postcard collage, or equal photo panels.\n- No fantasy architecture, generic tourism poster, or named-artist imitation.\n\nOUTPUT\n- Return one integrated PNG spatial-memory artifact at exactly 2:3.\n- The supplied place or subject must remain recognizable.",
       "reference_output": {
         "path": "../../after/memory-atlas.jpg",
         "sha256": "11468459c9cbef1d37d4842d2d3215c6457c8b559a575fb3c5dac8708a9eaa4b"

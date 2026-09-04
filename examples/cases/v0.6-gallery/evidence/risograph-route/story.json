@@ -40,7 +40,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Use only the real boardwalk as route evidence; fabricate no itinerary or labels.",
-      "layout_emphasis": "vermilion boardwalk against indigo water and sky"
+      "layout_emphasis": "vermilion boardwalk against indigo water and sky",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -65,7 +68,11 @@
         "pins",
         "stickers",
         "photographic pixels"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",

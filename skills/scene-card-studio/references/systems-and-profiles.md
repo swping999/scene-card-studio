@@ -42,6 +42,9 @@ Choose a Narrative System for how the photographs are read. Choose an Expression
 | `threaded-landscape` | Family Chronicle, Memory Atlas, Travel Journal, Journey Taxonomy | repaint the complete scene as one continuous woven, embroidered, felted, and selectively tufted textile relief |
 | `autochrome-memory` | Family Chronicle, Memory Atlas, Travel Journal, Journey Taxonomy | restrained early-color photographic material without period fiction |
 | `pixel-ink-memory` | Memory Atlas, Journey Taxonomy | experimental two-medium fusion: crisp near evidence, ink-wash distance |
+| `travel-zine` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy | restrained source-bound travel page with one memory node, sparse route evidence, and generous whitespace |
+| `chinese-photo-editorial` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue | contemporary ink-and-paper photo editorial; motifs are source-supported or explicitly requested, never automatic |
+| `selective-material-relief` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy | real photographic subject remains intact while only the authorized environment becomes a continuous shallow relief |
 
 `full-watercolor-memory` remains a Memory Atlas compatibility alias for `watercolor-chronicle`.
 
@@ -49,6 +52,8 @@ Use only the Profiles listed in the compiled Manifest's `available_expression_pr
 Run `scene-card-studio profiles` or `scene-card-studio profiles --system family-archive` to inspect compatible combinations before compiling.
 
 `pixel-ink-memory` is explicitly experimental. Accept it only when pixel and ink regions share one palette, light model, composition, and depth logic; reject a split-screen or arbitrary half-and-half effect.
+
+`travel-zine`, `chinese-photo-editorial`, and `selective-material-relief` are mechanism profiles, not generic filters. Their structured `expression_profile_tokens` in the Prompt Manifest describe composition, palette, texture, and typography decisions. Keep generated text out of pixels and apply known metadata in the deterministic presentation layer.
 
 ## Journey Taxonomy originality contract
 

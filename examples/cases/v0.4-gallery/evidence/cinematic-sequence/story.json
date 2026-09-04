@@ -37,7 +37,10 @@
     "direction": {
       "story_role": "moment",
       "director_note": "Let motivated rain light organize the wait without turning it into a poster.",
-      "layout_emphasis": "figure against receding metro geometry"
+      "layout_emphasis": "figure against receding metro geometry",
+      "negative_space_target": 0.0,
+      "text_zone": "none",
+      "typography_orientation": "horizontal"
     },
     "transformation": {
       "must_preserve": [
@@ -57,7 +60,11 @@
         "scooter clutter",
         "vending glare",
         "dead foreground"
-      ]
+      ],
+      "transition_mode": "none",
+      "transition_softness": 0.0,
+      "preserve_lighting": false,
+      "preserve_perspective": false
     },
     "metadata": {
       "date": "",
