@@ -1,0 +1,26 @@
+{
+  "artifact_type": "render-manifest",
+  "candidate_path_base": "render-manifest-directory",
+  "system": "memory-atlas",
+  "prompts": [
+    {
+      "id": "memory-atlas-ink-poetry-01",
+      "candidate_output": {
+        "path": "after/chinese-ink-poetry.png",
+        "sha256": "c161590879fe95d51cfbe8081094a452ceea52137c0611ccf55ffcfad03d9154"
+      }
+    }
+  ],
+  "presentation_contract": {
+    "renderer": "deterministic-overlay",
+    "display_name": "Chinese Ink Poetry",
+    "image_generation_text_policy": "no-visible-text",
+    "allowed_metadata_fields": ["caption"],
+    "entries": [
+      {
+        "prompt_id": "memory-atlas-ink-poetry-01",
+        "caption": "山静云闲，舟自横"
+      }
+    ]
+  }
+}

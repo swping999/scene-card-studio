@@ -32,6 +32,18 @@
       "height": 1402,
       "aspect_ratio": "4:5",
       "sha256": "38780ec1b3db7437ebb0d44468ada21e8ea117c7120b83ce203cd8c3846bcabc"
+    },
+    {
+      "id": "chinese-ink-poetry",
+      "system": "memory-atlas",
+      "expression_profile": "chinese-ink-poetry",
+      "presentation_style": "ink-poetry",
+      "file": "after/chinese-ink-poetry-presented.svg",
+      "source_image": "after/chinese-ink-poetry.png",
+      "width": 1122,
+      "height": 1402,
+      "aspect_ratio": "4:5",
+      "caption_source": "user-supplied Scene Card caption"
     }
   ]
 }
