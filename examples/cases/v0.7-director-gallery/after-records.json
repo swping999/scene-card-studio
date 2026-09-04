@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "gallery": "v0.7-director-gallery",
+  "presentation": "after-only",
+  "records": [
+    {
+      "id": "selective-material-relief",
+      "system": "memory-atlas",
+      "expression_profile": "selective-material-relief",
+      "file": "after/selective-material-relief.png",
+      "width": 1122,
+      "height": 1402,
+      "aspect_ratio": "4:5",
+      "sha256": "8ce79ff05fd4c7204f30ce65aff232c4e489fe39ba47434657df8323e9e8b55d"
+    },
+    {
+      "id": "chinese-photo-editorial",
+      "system": "minimal-editorial",
+      "expression_profile": "chinese-photo-editorial",
+      "file": "after/chinese-photo-editorial.png",
+      "width": 1122,
+      "height": 1402,
+      "aspect_ratio": "4:5",
+      "sha256": "21ea95545371950d72944635cf6a9b0373dc81f78eeca097af9ec3b90c358cd0"
+    },
+    {
+      "id": "travel-zine",
+      "system": "travel-journal",
+      "expression_profile": "travel-zine",
+      "file": "after/travel-zine.png",
+      "width": 1122,
+      "height": 1402,
+      "aspect_ratio": "4:5",
+      "sha256": "38780ec1b3db7437ebb0d44468ada21e8ea117c7120b83ce203cd8c3846bcabc"
+    }
+  ]
+}

@@ -63,6 +63,16 @@ The public showcase leads with the finished After image. These three new cases a
 
 [Open the v0.7 After-only gallery and asset records](examples/cases/v0.7-director-gallery/README.md)
 
+### Selected After Gallery · strongest material cases
+
+These are the most visually distinctive finished images in the repository. The complete evidence galleries remain below; this top section is intentionally curated for first-time visitors.
+
+| Relief environment | Ink editorial | Travel zine |
+| --- | --- | --- |
+| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
+| [![Continuous threaded lake landscape](examples/cases/v0.6-gallery/after/threaded-landscape.png)](examples/cases/v0.6-gallery/after/threaded-landscape.png) | [![Layered paper relief landscape](examples/cases/v0.6-gallery/after/paper-relief-landscape.png)](examples/cases/v0.6-gallery/after/paper-relief-landscape.png) | [![Opaque gouache place study](examples/cases/v0.6-gallery/after/gouache-place-study.png)](examples/cases/v0.6-gallery/after/gouache-place-study.png) |
+| [![Mineral ink bridge memory](examples/cases/v0.6-gallery/after/mineral-ink-memory.png)](examples/cases/v0.6-gallery/after/mineral-ink-memory.png) | [![Impasto lake light study](examples/cases/v0.6-gallery/after/impasto-light-study.png)](examples/cases/v0.6-gallery/after/impasto-light-study.png) | [![Cyanotype field-object archive](examples/cases/v0.6-gallery/after/cyanotype-archive.png)](examples/cases/v0.6-gallery/after/cyanotype-archive.png) |
+
 ## Before / After
 
 ### Landscape-led expansion

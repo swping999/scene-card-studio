@@ -63,6 +63,16 @@ scene-card-studio direct photos/portrait.jpg \
 
 [打开 v0.7 After-only 画廊与资产记录](examples/cases/v0.7-director-gallery/README.md)
 
+### 精选 After 画廊｜最有辨识度的材质案例
+
+下面先展示仓库里视觉差异最明显的成片，完整证据画廊继续保留在后面；这个区域专门服务第一次打开仓库的访客。
+
+| 环境浮雕 | 水墨编辑 | 旅行 Zine |
+| --- | --- | --- |
+| [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![水墨纸张海岸摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![留白旅行 Zine 铁路画面](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) |
+| [![连续纤维山湖地景](examples/cases/v0.6-gallery/after/threaded-landscape.png)](examples/cases/v0.6-gallery/after/threaded-landscape.png) | [![分层纸艺浮雕景观](examples/cases/v0.6-gallery/after/paper-relief-landscape.png)](examples/cases/v0.6-gallery/after/paper-relief-landscape.png) | [![不透明水粉地点研究](examples/cases/v0.6-gallery/after/gouache-place-study.png)](examples/cases/v0.6-gallery/after/gouache-place-study.png) |
+| [![矿物色水墨石桥记忆](examples/cases/v0.6-gallery/after/mineral-ink-memory.png)](examples/cases/v0.6-gallery/after/mineral-ink-memory.png) | [![厚涂湖面光线研究](examples/cases/v0.6-gallery/after/impasto-light-study.png)](examples/cases/v0.6-gallery/after/impasto-light-study.png) | [![蓝晒野外物件档案](examples/cases/v0.6-gallery/after/cyanotype-archive.png)](examples/cases/v0.6-gallery/after/cyanotype-archive.png) |
+
 ## Before / After 首页案例
 
 ### 风景主导的新扩展
