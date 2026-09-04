@@ -242,7 +242,10 @@ def test_new_systems_and_profiles_have_distinct_director_rules(tmp_path: Path):
 
     ink_poetry = compile_manifest(cards, "journey-taxonomy", source_root=tmp_path, expression_profile="chinese-ink-poetry")
     ink_prompt = ink_poetry["prompts"][0]["compiled_prompt"]
-    assert "contemporary Chinese ink-and-paper poem image" in ink_prompt
+    assert "contemporary Chinese photographic ink-and-paper poem image" in ink_prompt
+    assert "dominant visual anchor" in ink_prompt
+    assert "actual home or location photographic" in ink_prompt
+    assert "No full-scene repaint" in ink_prompt
     assert "user-supplied poem" in ink_prompt
     assert "no visible text" in ink_prompt
 

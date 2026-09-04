@@ -45,7 +45,7 @@ Choose a Narrative System for how the photographs are read. Choose an Expression
 | `travel-zine` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy | restrained source-bound travel page with one memory node, sparse route evidence, and generous whitespace |
 | `chinese-photo-editorial` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue | contemporary ink-and-paper photo editorial; motifs are source-supported or explicitly requested, never automatic |
 | `selective-material-relief` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy | real photographic subject remains intact while only the authorized environment becomes a continuous shallow relief |
-| `chinese-ink-poetry` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal, Journey Taxonomy | explicit Guofeng ink-and-paper repaint with user-supplied poem/caption applied later as deterministic typography |
+| `chinese-ink-poetry` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal, Journey Taxonomy | real photographic subject and actual setting dissolve selectively into source-derived ink/paper, with user-supplied poem/caption applied later as deterministic typography |
 
 `full-watercolor-memory` remains a Memory Atlas compatibility alias for `watercolor-chronicle`.
 

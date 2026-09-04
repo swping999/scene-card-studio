@@ -43,7 +43,18 @@
       "width": 1122,
       "height": 1402,
       "aspect_ratio": "4:5",
-      "caption_source": "user-supplied Scene Card caption"
+      "sha256": "6ff2e515129655368dd49ed1abdb00d620660e104c14d4a529ef6102e78897a1",
+      "caption_source": "user-supplied Scene Card caption",
+      "mechanism": "photographic subject and actual setting retained; source-derived peripheral regions transition into ink and paper"
+    },
+    {
+      "id": "chinese-ink-poetry-full-redraw-study",
+      "status": "historical-study",
+      "file": "after/chinese-ink-poetry-full-redraw-presented.svg",
+      "source_image": "after/chinese-ink-poetry-full-redraw.png",
+      "width": 1122,
+      "height": 1402,
+      "aspect_ratio": "4:5"
     }
   ]
 }

@@ -7,7 +7,7 @@
       "id": "memory-atlas-ink-poetry-01",
       "candidate_output": {
         "path": "after/chinese-ink-poetry.png",
-        "sha256": "c161590879fe95d51cfbe8081094a452ceea52137c0611ccf55ffcfad03d9154"
+        "sha256": "6ff2e515129655368dd49ed1abdb00d620660e104c14d4a529ef6102e78897a1"
       }
     }
   ],
@@ -19,7 +19,7 @@
     "entries": [
       {
         "prompt_id": "memory-atlas-ink-poetry-01",
-        "caption": "山静云闲，舟自横"
+        "caption": "窗影入墨，闲看岁长"
       }
     ]
   }

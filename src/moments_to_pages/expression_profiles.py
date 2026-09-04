@@ -386,29 +386,31 @@ CHINESE_PHOTO_EDITORIAL: dict[str, Any] = {
 }
 
 CHINESE_INK_POETRY: dict[str, Any] = {
-    "render_mode": "full-redraw",
-    "output_medium": "contemporary Chinese ink-and-paper poem image",
+    "render_mode": "photo-anchor-ink-transition",
+    "output_medium": "contemporary Chinese photographic ink-and-paper poem image",
     "design_tokens": {
         "palette": ["warm-paper", "ink-black", "mist-gray", "seal-red"],
-        "composition": {"negative_space": "high", "asymmetry": "high", "focal_subject": "source-locked"},
+        "composition": {"negative_space": "high", "asymmetry": "high", "photographic_anchor": "55-70%", "focal_subject": "source-locked"},
         "texture": {"paper": "xuan-inspired", "ink_bleed": "controlled", "wash_edges": "varied"},
         "typography": {"orientation": ["vertical", "horizontal"], "caption_density": "low", "source": "user-supplied"},
     },
     "subject_fidelity": [
-        "Repaint the supplied photo as one coherent ink-and-color-wash scene while preserving the recognizable subject, pose, architecture, horizon, and spatial evidence.",
+        "Keep the recognizable subject, pose, window, furniture, architecture, and the user's actual home or location photographic; preserve their identity, perspective, scale, light, and spatial relationships.",
     ],
     "transformation_policy": [
-        "Use ink wash, light color wash, rice-paper texture, and restrained brush structure across the scene; transform medium, not identity or event.",
+        "Keep the source photograph as the dominant visual anchor and transform only selected peripheral regions into ink wash, light color wash, dry brush, and warm paper.",
+        "Derive every ink passage from the supplied room, wall, window shadow, plant, landscape, or other visible source evidence; do not replace the user's setting with an invented Chinese landscape.",
         "The poem or title is a user-supplied caption rendered later by the deterministic presentation layer, never invented or rasterized by the image model.",
     ],
     "composition": [
-        "Build a calm vertical scroll-like composition with one source-derived focal scene, large reserved paper space, asymmetrical brush mass, and a single restrained vermilion accent only when present in the brief.",
+        "Build one integrated photographic field whose outer edges dissolve organically into ink and warm paper; retain roughly 55–70% legible photographic evidence and avoid a rectangular pasted-photo boundary.",
+        "Use large quiet paper space, asymmetrical brush mass, and a single restrained vermilion accent only when explicitly requested.",
         "Let the supplied caption occupy the requested quiet text zone; do not crowd the image with ornaments.",
     ],
-    "lighting": ["Translate source light into ink density and transparent color washes while retaining its direction and atmospheric depth."],
-    "material": ["Use fibrous warm paper, pooled ink edges, dry-brush texture, transparent mineral color, and selective unfinished paper; avoid glossy digital gradients."],
-    "exclusions": ["No generated poem, pseudo-Chinese glyphs, invented historical quotations, famous-poet attribution, imperial costume, dragons, clouds, gold ornament, or named-artist imitation."],
-    "output": ["Return a single finished Chinese ink-poetry image with no visible text; the user-supplied poem is added afterward as deterministic typography."],
+    "lighting": ["Preserve the source light on the photographic subject and continue that same direction through ink density and transparent washes."],
+    "material": ["Keep photographic fur, skin, fabric, wood, wall, and architectural texture where identity and place live; transition only selected edges into fibrous warm paper, pooled ink, dry brush, and transparent wash."],
+    "exclusions": ["No full-scene repaint, photo cutout, rectangular collage frame, unrelated mountains, invented bamboo forest, generated poem, pseudo-Chinese glyphs, historical quotation attribution, imperial costume, dragons, clouds, gold ornament, or named-artist imitation."],
+    "output": ["Return one integrated photo-and-ink image with no visible text; the real subject and its own setting must remain recognizable, and the user-supplied poem is added afterward as deterministic typography."],
 }
 
 SELECTIVE_MATERIAL_RELIEF: dict[str, Any] = {

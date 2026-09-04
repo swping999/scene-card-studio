@@ -55,11 +55,11 @@ scene-card-studio direct photos/portrait.jpg \
 
 ## v0.7 After-only 视觉导演画廊
 
-首页先展示完成后的 After，不再要求公开展示 Before/After 对照。四组新案例分别强调真实主体与环境浮雕、克制水墨纸张编辑、留白充足的旅行 Zine，以及带确定性诗句排版的国风水墨成片。旧的 Before/After 证据案例仍保留在下方，没有删除。
+首页先展示完成后的 After，不再要求公开展示 Before/After 对照。四组新案例分别强调真实主体与环境浮雕、克制水墨纸张编辑、留白充足的旅行 Zine，以及保留真实主体和自家环境、再让画面边缘过渡成水墨并叠加诗句的国风照片。旧的 Before/After 证据案例仍保留在下方，没有删除。
 
 | Selective Material Relief｜选择性材质浮雕 | Chinese Photo Editorial｜水墨摄影编辑 | Travel Zine｜旅行 Zine | Chinese Ink Poetry｜国风诗意水墨 |
 | --- | --- | --- | --- |
-| [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![水墨纸张海岸摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![留白旅行 Zine 铁路画面](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![国风水墨山湖与诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) |
+| [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![水墨纸张海岸摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![留白旅行 Zine 铁路画面](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![真实猫与自家窗台逐渐过渡为水墨并配诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) |
 
 [打开 v0.7 After-only 画廊与资产记录](examples/cases/v0.7-director-gallery/README.md)
 
@@ -75,9 +75,9 @@ scene-card-studio direct photos/portrait.jpg \
 
 #### Chinese Ink Poetry｜国风诗意
 
-如果你要的是明确的国风照片成片，使用 `chinese-ink-poetry`：先把照片统一转成水墨与宣纸视觉，再把用户提供的诗句或短文案用确定性的竖排文字层叠加。诗句不会交给图像模型生成。
+如果你要的是明确的国风照片成片，使用 `chinese-ink-poetry`：猫、人、窗台、家具和自己家的空间仍是可辨认的真实照片，只让照片边缘以及来源于原场景的墙面、植物、窗影等区域逐渐过渡成水墨与宣纸，再把用户提供的诗句或短文案用确定性的竖排文字层叠加。不会凭空换成山水背景，诗句也不会交给图像模型生成。
 
-[![水墨山湖与诗句叠加](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
+[![真实猫与自家窗台逐渐过渡为水墨并配诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
 
 ## Before / After 首页案例
 

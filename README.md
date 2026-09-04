@@ -55,11 +55,11 @@ Check compatible combinations with `scene-card-studio profiles`. The compiler re
 
 ## After-only Director Gallery · v0.7
 
-The public showcase leads with the finished After image. These four new cases are designed to make the visual difference obvious: a real subject with a relief environment, a restrained ink-and-paper editorial, a sparse travel-zine page, and a Guofeng ink-poetry image with deterministic verse typography. Older Before/After evidence cases remain below and are not deleted.
+The public showcase leads with the finished After image. These four new cases are designed to make the visual difference obvious: a real subject with a relief environment, a restrained ink-and-paper editorial, a sparse travel-zine page, and a source-faithful Guofeng photo whose real subject and home dissolve selectively into ink before deterministic verse typography is added. Older Before/After evidence cases remain below and are not deleted.
 
 | Selective Material Relief | Chinese Photo Editorial | Travel Zine | Chinese Ink Poetry |
 | --- | --- | --- | --- |
-| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![Chinese ink landscape with poem](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) |
+| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![Photographic cat and home transitioning into Chinese ink with poem](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) |
 
 [Open the v0.7 After-only gallery and asset records](examples/cases/v0.7-director-gallery/README.md)
 
@@ -75,9 +75,9 @@ These are the most visually distinctive finished images in the repository. The c
 
 #### Chinese Ink Poetry · Guofeng
 
-Use `chinese-ink-poetry` when the desired result is explicitly Chinese/Guofeng: repaint the supplied photo in ink and rice-paper language, then add a user-supplied poem or short caption as deterministic vertical typography.
+Use `chinese-ink-poetry` when the desired result is explicitly Chinese/Guofeng: keep the photographed subject and the user's own setting recognizable, let only source-derived peripheral regions dissolve into ink and warm paper, then add a user-supplied poem or short caption as deterministic vertical typography.
 
-[![Chinese ink landscape with poem overlay](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
+[![Photographic cat at its home window with source-derived ink treatment and poem overlay](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
 
 ## Before / After
 
