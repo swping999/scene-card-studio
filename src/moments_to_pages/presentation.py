@@ -148,7 +148,7 @@ def _render_ink_poetry_svg(
 ) -> None:
     """Present a generated ink scene with user-supplied poetry as an overlay."""
     width = 1200
-    section_height = 1480
+    section_height = 1420
     prompt_ids = list(prompt_map)
     height = 80 + section_height * len(prompt_ids)
     entries = contract.get("entries", [])
@@ -169,19 +169,19 @@ def _render_ink_poetry_svg(
         verse = escape(verse.strip()[:56])
         y = 40 + index * section_height
         parts.append(
-            f'<image href="{encoded_href}" x="90" y="{y+40}" width="1020" height="1280" preserveAspectRatio="xMidYMid meet"/>',
+            f'<image href="{encoded_href}" x="80" y="{y+10}" width="1040" height="1300" preserveAspectRatio="xMidYMid meet"/>',
         )
         if headline:
             parts.append(
-                f'<text x="1048" y="{y+178}" font-family="Songti SC,Noto Serif CJK SC,STSong,serif" font-size="44" letter-spacing="8" fill="#232827" style="writing-mode:vertical-rl">{headline}</text>'
+                f'<text x="1060" y="{y+150}" font-family="Songti SC,Noto Serif CJK SC,STSong,serif" font-size="44" letter-spacing="8" fill="#232827" style="writing-mode:vertical-rl">{headline}</text>'
             )
         if verse:
             parts.append(
-                f'<text x="982" y="{y+194}" font-family="Songti SC,Noto Serif CJK SC,STSong,serif" font-size="24" letter-spacing="5" fill="#4D5550" style="writing-mode:vertical-rl">{verse}</text>'
+                f'<text x="995" y="{y+165}" font-family="Songti SC,Noto Serif CJK SC,STSong,serif" font-size="24" letter-spacing="5" fill="#4D5550" style="writing-mode:vertical-rl">{verse}</text>'
             )
         parts.extend([
-            f'<rect x="1028" y="{y+590}" width="28" height="28" rx="3" fill="#A74A36" opacity="0.92"/>',
-            f'<text x="92" y="{y+1370}" font-family="serif" font-size="18" letter-spacing="5" fill="#6C746F">SCENE CARD STUDIO · INK POETRY</text>',
+            f'<rect x="1040" y="{y+540}" width="28" height="28" rx="3" fill="#A74A36" opacity="0.92"/>',
+            f'<text x="82" y="{y+1355}" font-family="serif" font-size="18" letter-spacing="5" fill="#6C746F">SCENE CARD STUDIO · INK POETRY</text>',
         ])
     parts.append('</svg>')
     output.parent.mkdir(parents=True, exist_ok=True)

@@ -7,7 +7,7 @@ This gallery is intentionally After-only for public presentation. The four image
 | [Selective Material Relief](after/selective-material-relief.png) | Memory Atlas | `selective-material-relief` | real photographic boat + environment-only shallow relief |
 | [Chinese Photo Editorial](after/chinese-photo-editorial.png) | Minimal Editorial | `chinese-photo-editorial` | restrained ink/paper atmosphere with a photographic anchor |
 | [Travel Zine](after/travel-zine.png) | Travel Journal | `travel-zine` | one source-bound journey node, sparse route line, quiet paper field |
-| [Chinese Ink Poetry](after/chinese-ink-poetry-presented.svg) | Memory Atlas | `chinese-ink-poetry` | real photographic cat and its home remain legible while source-derived edges dissolve into ink; user-supplied poem overlay |
+| [Chinese Ink Poetry](after/chinese-ink-poetry-final.png) | Memory Atlas | `chinese-ink-poetry` | real photographic cat and its home remain legible while source-derived edges dissolve into ink; visible user-supplied poem overlay |
 
 The previously published full-redraw study remains available as [Chinese Ink Poetry · full-redraw study](after/chinese-ink-poetry-full-redraw-presented.svg), but it is no longer the behavior represented by `chinese-ink-poetry`.
 
@@ -20,9 +20,9 @@ Each new Profile now has three visibly different subjects so the gallery demonst
 | `travel-zine` | [Railway](after/travel-zine.png) | [Alpine lake](after/travel-zine-alpine.png) | [Coastal harbor](after/travel-zine-harbor.png) |
 | `chinese-photo-editorial` | [Coast](after/chinese-photo-editorial.png) | [Tea setting](after/chinese-photo-editorial-tea.png) | [Reading desk](after/chinese-photo-editorial-desk.png) |
 | `selective-material-relief` | [Boat](after/selective-material-relief.png) | [Bicycle](after/selective-material-relief-bicycle.png) | [Lighthouse](after/selective-material-relief-lighthouse.png) |
-| `chinese-ink-poetry` | [Cat and window](after/chinese-ink-poetry-presented.svg) | [Stone bridge](after/chinese-ink-poetry-bridge-presented.svg) | [Lake boat](after/chinese-ink-poetry-boat-presented.svg) |
+| `chinese-ink-poetry` | [Cat and window](after/chinese-ink-poetry-final.png) | [Stone bridge](after/chinese-ink-poetry-bridge-final.png) | [Lake boat](after/chinese-ink-poetry-boat-final.png) |
 
-The Guofeng examples deliberately cover a pet/interior, architecture/landscape, and object/landscape. Their title and verse are exact deterministic SVG text from each local Render Manifest; the raster image model receives a no-visible-text instruction.
+The Guofeng examples deliberately cover a pet/interior, architecture/landscape, and object/landscape. Their title and verse are exact deterministic text from each local Render Manifest; the README uses flattened 1200×1500 PNGs so GitHub always shows the typography, while the editable SVG sources remain beside them. The image model receives a no-visible-text instruction.
 
 These are original repository examples. They use general visual mechanisms and do not imitate a named artist, studio, publication, or third-party project's protected assets or layout.
 

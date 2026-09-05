@@ -57,9 +57,9 @@ Check compatible combinations with `scene-card-studio profiles`. The compiler re
 
 The public showcase leads with the finished After image. These four new cases are designed to make the visual difference obvious: a real subject with a relief environment, a restrained ink-and-paper editorial, a sparse travel-zine page, and a source-faithful Guofeng photo whose real subject and home dissolve selectively into ink before deterministic verse typography is added. Older Before/After evidence cases remain below and are not deleted.
 
-| Selective Material Relief | Chinese Photo Editorial | Travel Zine | Chinese Ink Poetry |
+| Selective Material Relief | Chinese Photo Editorial | Travel Zine | Chinese Ink Poetry · with verse |
 | --- | --- | --- | --- |
-| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![Photographic cat and home transitioning into Chinese ink with poem](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) |
+| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Ink-and-paper coastal photo editorial](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Sparse travel zine railway image](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![Photographic cat and home transitioning into Chinese ink with visible poem](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-final.png)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-final.png) |
 
 [Open the v0.7 After-only gallery and asset records](examples/cases/v0.7-director-gallery/README.md)
 
@@ -79,7 +79,7 @@ The public showcase leads with the finished After image. These four new cases ar
 
 | Chinese Ink Poetry · Cat | Chinese Ink Poetry · Bridge | Chinese Ink Poetry · Boat |
 | --- | --- | --- |
-| [![Photographic cat with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) | [![Photographic bridge with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-presented.svg) | [![Photographic boat with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-presented.svg) |
+| [![Photographic cat with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-final.png)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-final.png) | [![Photographic bridge with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-final.png)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-final.png) | [![Photographic boat with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-final.png)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-final.png) |
 
 ### Selected After Gallery · strongest material cases
 
@@ -95,7 +95,7 @@ These are the most visually distinctive finished images in the repository. The c
 
 Use `chinese-ink-poetry` when the desired result is explicitly Chinese/Guofeng. It works with people, pets, landscapes, architecture, interiors, vehicles, and objects: keep the photographed subject and original setting recognizable, let only source-derived peripheral regions dissolve into ink and warm paper, then add a user-supplied title and verse as deterministic vertical typography.
 
-[![Photographic cat at its home window with source-derived ink treatment and poem overlay](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
+[![Photographic cat at its home window with source-derived ink treatment and visible poem overlay](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-final.png)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-final.png)
 
 ## Before / After
 
