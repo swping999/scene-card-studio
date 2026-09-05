@@ -395,11 +395,11 @@ CHINESE_INK_POETRY: dict[str, Any] = {
         "typography": {"orientation": ["vertical", "horizontal"], "caption_density": "low", "source": "user-supplied"},
     },
     "subject_fidelity": [
-        "Keep the recognizable subject, pose, window, furniture, architecture, and the user's actual home or location photographic; preserve their identity, perspective, scale, light, and spatial relationships.",
+        "Keep the recognizable primary subject and its actual setting photographic—whether person, pet, object, vehicle, landscape, architecture, home, street, or interior—and preserve identity, perspective, scale, light, and spatial relationships.",
     ],
     "transformation_policy": [
         "Keep the source photograph as the dominant visual anchor and transform only selected peripheral regions into ink wash, light color wash, dry brush, and warm paper.",
-        "Derive every ink passage from the supplied room, wall, window shadow, plant, landscape, or other visible source evidence; do not replace the user's setting with an invented Chinese landscape.",
+        "Derive every ink passage from visible source evidence such as terrain, water, sky, wall, shadow, foliage, fabric, or architecture; do not replace the user's setting with an invented Chinese landscape.",
         "The poem or title is a user-supplied caption rendered later by the deterministic presentation layer, never invented or rasterized by the image model.",
     ],
     "composition": [
@@ -408,9 +408,9 @@ CHINESE_INK_POETRY: dict[str, Any] = {
         "Let the supplied caption occupy the requested quiet text zone; do not crowd the image with ornaments.",
     ],
     "lighting": ["Preserve the source light on the photographic subject and continue that same direction through ink density and transparent washes."],
-    "material": ["Keep photographic fur, skin, fabric, wood, wall, and architectural texture where identity and place live; transition only selected edges into fibrous warm paper, pooled ink, dry brush, and transparent wash."],
+    "material": ["Keep the source's identity-bearing photographic textures—such as skin, fur, fabric, wood, stone, water, foliage, or architecture—where subject and place live; transition only selected edges into fibrous warm paper, pooled ink, dry brush, and transparent wash."],
     "exclusions": ["No full-scene repaint, photo cutout, rectangular collage frame, unrelated mountains, invented bamboo forest, generated poem, pseudo-Chinese glyphs, historical quotation attribution, imperial costume, dragons, clouds, gold ornament, or named-artist imitation."],
-    "output": ["Return one integrated photo-and-ink image with no visible text; the real subject and its own setting must remain recognizable, and the user-supplied poem is added afterward as deterministic typography."],
+    "output": ["Return one integrated photo-and-ink image with no visible text; the real subject and its original setting must remain recognizable regardless of subject category, and the user-supplied poem is added afterward as deterministic typography."],
 }
 
 SELECTIVE_MATERIAL_RELIEF: dict[str, Any] = {

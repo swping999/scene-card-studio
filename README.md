@@ -63,6 +63,24 @@ The public showcase leads with the finished After image. These four new cases ar
 
 [Open the v0.7 After-only gallery and asset records](examples/cases/v0.7-director-gallery/README.md)
 
+### Expanded profile sets · three examples each
+
+| Travel Zine | Travel Zine · Alpine | Travel Zine · Harbor |
+| --- | --- | --- |
+| [![Travel zine railway](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![Travel zine alpine lake](examples/cases/v0.7-director-gallery/after/travel-zine-alpine.png)](examples/cases/v0.7-director-gallery/after/travel-zine-alpine.png) | [![Travel zine coastal harbor](examples/cases/v0.7-director-gallery/after/travel-zine-harbor.png)](examples/cases/v0.7-director-gallery/after/travel-zine-harbor.png) |
+
+| Chinese Photo Editorial | Tea by the Window | Reading Desk |
+| --- | --- | --- |
+| [![Chinese photo editorial coast](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![Photographic tea setting with ink transition](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-tea.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-tea.png) | [![Photographic reading desk with ink transition](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-desk.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-desk.png) |
+
+| Selective Material Relief | Bicycle Alley | Coastal Lighthouse |
+| --- | --- | --- |
+| [![Real boat with relief mountains](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![Real bicycle with relief alley](examples/cases/v0.7-director-gallery/after/selective-material-relief-bicycle.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief-bicycle.png) | [![Real lighthouse with relief coast](examples/cases/v0.7-director-gallery/after/selective-material-relief-lighthouse.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief-lighthouse.png) |
+
+| Chinese Ink Poetry · Cat | Chinese Ink Poetry · Bridge | Chinese Ink Poetry · Boat |
+| --- | --- | --- |
+| [![Photographic cat with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) | [![Photographic bridge with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-presented.svg) | [![Photographic boat with vertical verse](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-presented.svg) |
+
 ### Selected After Gallery · strongest material cases
 
 These are the most visually distinctive finished images in the repository. The complete evidence galleries remain below; this top section is intentionally curated for first-time visitors.
@@ -75,7 +93,7 @@ These are the most visually distinctive finished images in the repository. The c
 
 #### Chinese Ink Poetry · Guofeng
 
-Use `chinese-ink-poetry` when the desired result is explicitly Chinese/Guofeng: keep the photographed subject and the user's own setting recognizable, let only source-derived peripheral regions dissolve into ink and warm paper, then add a user-supplied poem or short caption as deterministic vertical typography.
+Use `chinese-ink-poetry` when the desired result is explicitly Chinese/Guofeng. It works with people, pets, landscapes, architecture, interiors, vehicles, and objects: keep the photographed subject and original setting recognizable, let only source-derived peripheral regions dissolve into ink and warm paper, then add a user-supplied title and verse as deterministic vertical typography.
 
 [![Photographic cat at its home window with source-derived ink treatment and poem overlay](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
 

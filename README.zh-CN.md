@@ -63,6 +63,24 @@ scene-card-studio direct photos/portrait.jpg \
 
 [打开 v0.7 After-only 画廊与资产记录](examples/cases/v0.7-director-gallery/README.md)
 
+### 扩展案例组｜每种视觉语言 3 张
+
+| 旅行 Zine | 高山湖泊 | 海港蓝调 |
+| --- | --- | --- |
+| [![铁路旅行 Zine](examples/cases/v0.7-director-gallery/after/travel-zine.png)](examples/cases/v0.7-director-gallery/after/travel-zine.png) | [![高山湖泊旅行 Zine](examples/cases/v0.7-director-gallery/after/travel-zine-alpine.png)](examples/cases/v0.7-director-gallery/after/travel-zine-alpine.png) | [![海港旅行 Zine](examples/cases/v0.7-director-gallery/after/travel-zine-harbor.png)](examples/cases/v0.7-director-gallery/after/travel-zine-harbor.png) |
+
+| 水墨摄影编辑 | 窗边茶席 | 光影书桌 |
+| --- | --- | --- |
+| [![海岸水墨摄影编辑](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial.png) | [![真实茶席与水墨边缘](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-tea.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-tea.png) | [![真实书桌与水墨边缘](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-desk.png)](examples/cases/v0.7-director-gallery/after/chinese-photo-editorial-desk.png) |
+
+| 选择性材质浮雕 | 巷中单车 | 海岸灯塔 |
+| --- | --- | --- |
+| [![真实小船与浮雕山体](examples/cases/v0.7-director-gallery/after/selective-material-relief.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief.png) | [![真实单车与浮雕街巷](examples/cases/v0.7-director-gallery/after/selective-material-relief-bicycle.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief-bicycle.png) | [![真实灯塔与浮雕海岸](examples/cases/v0.7-director-gallery/after/selective-material-relief-lighthouse.png)](examples/cases/v0.7-director-gallery/after/selective-material-relief-lighthouse.png) |
+
+| 国风诗意·猫与窗 | 国风诗意·石桥 | 国风诗意·泊舟 |
+| --- | --- | --- |
+| [![真实猫与窗台配竖排诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg) | [![真实石桥与原场景水墨过渡配诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-bridge-presented.svg) | [![真实小船与湖岸水墨过渡配诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-boat-presented.svg) |
+
 ### 精选 After 画廊｜最有辨识度的材质案例
 
 下面先展示仓库里视觉差异最明显的成片，完整证据画廊继续保留在后面；这个区域专门服务第一次打开仓库的访客。
@@ -75,7 +93,7 @@ scene-card-studio direct photos/portrait.jpg \
 
 #### Chinese Ink Poetry｜国风诗意
 
-如果你要的是明确的国风照片成片，使用 `chinese-ink-poetry`：猫、人、窗台、家具和自己家的空间仍是可辨认的真实照片，只让照片边缘以及来源于原场景的墙面、植物、窗影等区域逐渐过渡成水墨与宣纸，再把用户提供的诗句或短文案用确定性的竖排文字层叠加。不会凭空换成山水背景，诗句也不会交给图像模型生成。
+如果你要的是明确的国风照片成片，使用 `chinese-ink-poetry`。它不是猫或家居专用：人物、宠物、风景、建筑、室内、车辆和静物都可以。主体和原始环境仍是可辨认的真实照片，只让照片边缘以及来自原场景的地形、水面、墙面、植物、光影等区域逐渐过渡成水墨与宣纸，再把用户提供的标题与诗句用确定性的竖排文字层叠加。不会凭空换成山水背景，文字也不会交给图像模型生成。
 
 [![真实猫与自家窗台逐渐过渡为水墨并配诗句](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)](examples/cases/v0.7-director-gallery/after/chinese-ink-poetry-presented.svg)
 

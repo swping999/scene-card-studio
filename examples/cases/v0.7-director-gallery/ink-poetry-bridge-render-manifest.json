@@ -4,10 +4,10 @@
   "system": "memory-atlas",
   "prompts": [
     {
-      "id": "memory-atlas-ink-poetry-01",
+      "id": "memory-atlas-ink-poetry-bridge-01",
       "candidate_output": {
-        "path": "after/chinese-ink-poetry.png",
-        "sha256": "6ff2e515129655368dd49ed1abdb00d620660e104c14d4a529ef6102e78897a1"
+        "path": "after/chinese-ink-poetry-bridge.png",
+        "sha256": "e2c7068d14208de77e447c298015060e23131606ebbd71692c8bf3437302eb6b"
       }
     }
   ],
@@ -18,8 +18,8 @@
     "allowed_metadata_fields": ["caption"],
     "entries": [
       {
-        "prompt_id": "memory-atlas-ink-poetry-01",
-        "caption": "静观｜窗影入墨，闲看岁长"
+        "prompt_id": "memory-atlas-ink-poetry-bridge-01",
+        "caption": "归桥｜水过石桥静，村深树影闲"
       }
     ]
   }

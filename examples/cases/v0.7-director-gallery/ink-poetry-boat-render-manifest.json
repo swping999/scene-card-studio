@@ -4,10 +4,10 @@
   "system": "memory-atlas",
   "prompts": [
     {
-      "id": "memory-atlas-ink-poetry-01",
+      "id": "memory-atlas-ink-poetry-boat-01",
       "candidate_output": {
-        "path": "after/chinese-ink-poetry.png",
-        "sha256": "6ff2e515129655368dd49ed1abdb00d620660e104c14d4a529ef6102e78897a1"
+        "path": "after/chinese-ink-poetry-boat.png",
+        "sha256": "57a0788098e61dfa764b5d67546069f22ef6b207838e02a8e246e11fc05b1c32"
       }
     }
   ],
@@ -18,8 +18,8 @@
     "allowed_metadata_fields": ["caption"],
     "entries": [
       {
-        "prompt_id": "memory-atlas-ink-poetry-01",
-        "caption": "静观｜窗影入墨，闲看岁长"
+        "prompt_id": "memory-atlas-ink-poetry-boat-01",
+        "caption": "泊舟｜一舟停晓岸，烟水自成诗"
       }
     ]
   }

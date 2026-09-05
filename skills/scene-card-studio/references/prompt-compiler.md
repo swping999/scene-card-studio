@@ -21,7 +21,7 @@ For `memory-atlas`, choose deliberately:
 - `travel-zine` creates a sparse source-bound travel page; it may use only supplied route, date, location, ticket, map, paper, or handwriting evidence.
 - `selective-material-relief` keeps the main subject photographic and transforms only an authorized environment into a continuous relief, with source light and perspective preserved.
 - `chinese-photo-editorial` uses restrained ink and uncoated paper as an editorial language; bamboo, seals, mountains, calligraphy, costume, and other motifs are never automatic.
-- `chinese-ink-poetry` is the explicit Guofeng photo mode: preserve the real subject and its actual setting as the dominant photographic anchor, transition only source-derived peripheral regions into ink and paper, then apply a user-supplied poem or caption in the deterministic presentation layer. Never invent a replacement landscape or ask the image model to generate Chinese text.
+- `chinese-ink-poetry` is the explicit general-purpose Guofeng photo mode for people, pets, landscapes, architecture, interiors, vehicles, and objects: preserve the real subject and its actual setting as the dominant photographic anchor, transition only source-derived peripheral regions into ink and paper, then apply a user-supplied poem or caption in the deterministic presentation layer. Never invent a replacement landscape or ask the image model to generate Chinese text.
 
 `full-watercolor-memory` remains a compatibility alias. Prefer the canonical `watercolor-chronicle` name in new Manifests.
 

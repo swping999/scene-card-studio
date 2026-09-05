@@ -244,7 +244,7 @@ def test_new_systems_and_profiles_have_distinct_director_rules(tmp_path: Path):
     ink_prompt = ink_poetry["prompts"][0]["compiled_prompt"]
     assert "contemporary Chinese photographic ink-and-paper poem image" in ink_prompt
     assert "dominant visual anchor" in ink_prompt
-    assert "actual home or location photographic" in ink_prompt
+    assert "whether person, pet, object, vehicle, landscape, architecture, home, street, or interior" in ink_prompt
     assert "No full-scene repaint" in ink_prompt
     assert "user-supplied poem" in ink_prompt
     assert "no visible text" in ink_prompt
@@ -629,4 +629,5 @@ def test_new_profile_routing_supports_chinese_and_travel_terms(tmp_path: Path):
     assert recommend_expression_profile("travel-journal", [card], "旅行手账，保留真实路线").profile == "travel-zine"
     assert recommend_expression_profile("minimal-editorial", [card], "照片水墨，宣纸编辑").profile == "chinese-photo-editorial"
     assert recommend_expression_profile("memory-atlas", [card], "国风水墨，配古风诗句").profile == "chinese-ink-poetry"
+    assert recommend_expression_profile("minimal-editorial", [card], "普通照片做成国风，旁边留白配字").profile == "chinese-ink-poetry"
     assert recommend_expression_profile("memory-atlas", [card], "船真实背景浮雕").profile == "selective-material-relief"

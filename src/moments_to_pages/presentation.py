@@ -161,12 +161,26 @@ def _render_ink_poetry_svg(
         candidate = prompt["candidate_output"]
         encoded_href = _candidate_href(candidate, prompt_id, output, base_path)
         entry = next((item for item in entries if item.get("prompt_id") == prompt_id), {})
-        caption = escape(str(entry.get("caption", "")).strip()[:80])
+        raw_caption = str(entry.get("caption", "")).strip()[:80]
+        headline, separator, verse = raw_caption.partition("｜")
+        if not separator:
+            headline, verse = "", raw_caption
+        headline = escape(headline.strip()[:8])
+        verse = escape(verse.strip()[:56])
         y = 40 + index * section_height
-        parts.extend([
+        parts.append(
             f'<image href="{encoded_href}" x="90" y="{y+40}" width="1020" height="1280" preserveAspectRatio="xMidYMid meet"/>',
-            f'<text x="1080" y="{y+180}" font-family="serif" font-size="28" fill="#262B2A" style="writing-mode:tb;glyph-orientation-vertical:0">{caption}</text>',
-            f'<circle cx="1083" cy="{y+106}" r="8" fill="#A74A36"/>',
+        )
+        if headline:
+            parts.append(
+                f'<text x="1048" y="{y+178}" font-family="Songti SC,Noto Serif CJK SC,STSong,serif" font-size="44" letter-spacing="8" fill="#232827" style="writing-mode:vertical-rl">{headline}</text>'
+            )
+        if verse:
+            parts.append(
+                f'<text x="982" y="{y+194}" font-family="Songti SC,Noto Serif CJK SC,STSong,serif" font-size="24" letter-spacing="5" fill="#4D5550" style="writing-mode:vertical-rl">{verse}</text>'
+            )
+        parts.extend([
+            f'<rect x="1028" y="{y+590}" width="28" height="28" rx="3" fill="#A74A36" opacity="0.92"/>',
             f'<text x="92" y="{y+1370}" font-family="serif" font-size="18" letter-spacing="5" fill="#6C746F">SCENE CARD STUDIO · INK POETRY</text>',
         ])
     parts.append('</svg>')

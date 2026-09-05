@@ -8,6 +8,7 @@ All notable changes to Scene Card Studio are documented here. Versions follow se
 
 - v0.7 After-only Director Gallery with `travel-zine`, `chinese-photo-editorial`, `selective-material-relief`, and `chinese-ink-poetry` examples.
 - `chinese-ink-poetry` expression profile and `ink-poetry` presentation style for source-faithful Guofeng photo/ink transitions with user-supplied verse overlay.
+- Two additional original examples for each v0.7 Profile, including three Guofeng subjects with deterministic two-column title and verse typography.
 - Structured `expression_profile_tokens` in Prompt Manifests for composition, palette, texture, and typography decisions.
 - Scene Card direction fields for negative space, text zone, typography orientation, material transition, and source-light/perspective preservation.
 

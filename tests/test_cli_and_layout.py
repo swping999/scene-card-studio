@@ -448,6 +448,37 @@ def test_journey_keepsake_is_asymmetric_and_uses_only_supplied_metadata(tmp_path
     assert 'x1="302"' in svg
 
 
+def test_ink_poetry_presentation_splits_only_supplied_title_and_verse(tmp_path: Path, monkeypatch):
+    story = _story(tmp_path, 1)
+    data = json.loads(story.read_text())
+    data[0]["caption"] = "静观｜窗影入墨，闲看岁长"
+    story.write_text(json.dumps(data))
+    manifest = tmp_path / "prompt-manifest.json"
+    assert main([
+        "compile", str(story), "--system", "memory-atlas",
+        "--expression-profile", "chinese-ink-poetry", "-o", str(manifest),
+    ]) == 0
+    prompt = json.loads(manifest.read_text())["prompts"][0]
+    candidate = tmp_path / "candidate.png"
+    contract = prompt["output_contract"]
+    Image.new("RGB", (contract["width"], contract["height"]), "ivory").save(candidate)
+    monkeypatch.chdir(tmp_path)
+    render_manifest = tmp_path / "render-manifest.json"
+    assert main([
+        "bind-outputs", str(manifest), "--result", f"{prompt['id']}={candidate.name}", "-o", str(render_manifest)
+    ]) == 0
+    presentation = tmp_path / "ink-poetry.svg"
+    assert main([
+        "present", str(render_manifest), "--style", "ink-poetry", "-o", str(presentation)
+    ]) == 0
+    svg = presentation.read_text()
+    assert 'data-presentation-style="ink-poetry"' in svg
+    assert "静观" in svg and "窗影入墨，闲看岁长" in svg
+    assert "｜" not in svg
+    assert "writing-mode:vertical-rl" in svg
+    assert "山静云闲" not in svg
+
+
 def test_svg_systems_are_distinct_and_paths_are_output_relative(tmp_path: Path):
     story = _story(tmp_path)
     hashes = set()
