@@ -43,7 +43,7 @@ scene-card-studio direct photos/portrait.jpg \
 | 输出 | 本地 Workprint、版本化 Prompt、经过合同检查的图像、确定性文字层与审核记录 |
 | 隐私 | 默认本地分析；上传云端前必须确认服务商、用途和准确文件清单 |
 
-**快速导航：**[Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#当前叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
+**快速导航：**[视觉选择指南](VISUAL-GUIDE.zh-CN.md) · [Before / After](#before--after-首页案例) · [视觉导演层](#ai-视觉导演层) · [Systems 与 Profiles](#当前叙事系统表达-profile-与确定性文字) · [快速开始](#快速开始) · [参与贡献](CONTRIBUTING.md)
 
 ### 单张或多张都可以
 
@@ -52,6 +52,8 @@ scene-card-studio direct photos/portrait.jpg \
 - **表达风格可以编辑。** Narrative System 决定照片或故事如何被阅读，Expression Profile 决定画面如何表达。因此单张照片也能使用 `source-led`、`watercolor-chronicle`、`heritage-portrait`、`dream-logic`，或所选系统支持的其他 Profile。
 
 运行 `scene-card-studio profiles` 可以查看兼容组合。每份 Manifest 都会明确记录 `single-photo`、`multi-photo-per-source` 或 `multi-photo-synthesis`，防止后续工具悄悄改变用户选择的源图模式。
+
+**不知道选哪一种？** 打开[视觉选择指南](VISUAL-GUIDE.zh-CN.md)：11 个 Narrative Systems 和 24 个 Profile 全部配有仓库实际案例、适合题材、一句话调用方式与自动选择说明。
 
 ## v0.7 After-only 视觉导演画廊
 
@@ -349,7 +351,7 @@ Prompt Compiler 将 Scene Card 证据、一个 Narrative System 与一个可替�
 | `rain-nocturne` | Cinematic Sequence |
 | `quiet-window-light` | Quiet Editorial |
 | `watercolor-contour` | Memory Atlas |
-| `watercolor-chronicle` | Memory Atlas、Family Chronicle、Museum Catalogue、Travel Journal |
+| `watercolor-chronicle` | Memory Atlas、Family Chronicle、Museum Catalogue、Travel Journal、Journey Taxonomy |
 | `graphite-paper` | Family Chronicle |
 | `heritage-portrait` | Family Chronicle、Museum Catalogue |
 | `monochrome-reportage` | Street Reportage |

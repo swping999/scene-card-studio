@@ -2,6 +2,14 @@
 
 Choose a Narrative System for how the photographs are read. Choose an Expression Profile for how that system is visually expressed. Never present the combined list as interchangeable filters.
 
+## Automatic selection contract
+
+1. Inspect every source and complete its observable and interpretive Scene Card fields before trusting a route.
+2. Rank Narrative Systems from visible evidence, source count, and the user's brief. A one-photo request still produces one standalone After under every system.
+3. Select a non-default Expression Profile only when the user explicitly requests that visual/material language or explicitly delegates the visual choice. When choice is delegated, choose from visible evidence and requested outcome; use `source-led` when no non-default Profile has a clear advantage.
+4. If the top Narrative Systems are near-tied or confidence is low, present the strongest two routes and their reasons instead of silently forcing one.
+5. When explaining choices to a user, describe the combination as `Narrative System + Expression Profile`, then state what is preserved and what may transform.
+
 ## Narrative Systems
 
 | ID | Display name | Narrative mechanism |
@@ -43,7 +51,7 @@ Choose a Narrative System for how the photographs are read. Choose an Expression
 | `autochrome-memory` | Family Chronicle, Memory Atlas, Travel Journal, Journey Taxonomy | restrained early-color photographic material without period fiction |
 | `pixel-ink-memory` | Memory Atlas, Journey Taxonomy | experimental two-medium fusion: crisp near evidence, ink-wash distance |
 | `travel-zine` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy | restrained source-bound travel page with one memory node, sparse route evidence, and generous whitespace |
-| `chinese-photo-editorial` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue | contemporary ink-and-paper photo editorial; motifs are source-supported or explicitly requested, never automatic |
+| `chinese-photo-editorial` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal | contemporary ink-and-paper photo editorial; motifs are source-supported or explicitly requested, never automatic |
 | `selective-material-relief` | Memory Atlas, Family Chronicle, Travel Journal, Journey Taxonomy | real photographic subject remains intact while only the authorized environment becomes a continuous shallow relief |
 | `chinese-ink-poetry` | Quiet Editorial, Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal, Journey Taxonomy | real photographic subject and actual setting dissolve selectively into source-derived ink/paper, with user-supplied poem/caption applied later as deterministic typography |
 

@@ -26,7 +26,7 @@ Build a visual story from the user's photographs without imitating a named artis
    - `street-reportage` for observed public gestures and environmental context;
    - `fashion-editorial` for pose, garment construction, movement, and shot-scale rhythm.
    - v0.7 profiles add `travel-zine` (restrained source-bound travel page), `chinese-photo-editorial` (contemporary ink-and-paper photo treatment without invented motifs), and `selective-material-relief` (real photographic subject with an environment-only relief transformation). `chinese-ink-poetry` is the explicit general-purpose Guofeng option for people, pets, landscapes, architecture, interiors, vehicles, and objects: keep the real subject and original setting photographic, dissolve only source-derived peripheral regions into ink/paper, and place only the user's supplied poem or caption in the deterministic typography layer. These are visual expression profiles, not new Narrative Systems.
-   Run `scene-card-studio profiles --system SYSTEM_ID` when available, and use only a Profile listed for the selected system.
+   Run `scene-card-studio profiles --system SYSTEM_ID` when available, and use only a Profile listed for the selected system. If the user explicitly delegates the visual choice, select the compatible Profile whose transformation rule best fits the visible evidence and requested outcome, explain the choice in one sentence, and prefer `source-led` when no non-default Profile has a clear evidence-based advantage.
 6. Choose the source mode before choosing the output tier:
    - **Single-photo mode**: select one compatible Narrative System and Expression Profile, then produce exactly one standalone After for the supplied Before. Do not require a sequence and do not substitute a border, contact sheet, page mockup, or decorative collage for transformation.
    - **Multi-photo per-source mode**: direct every source as its own standalone After while preserving identity and sequence continuity where relevant.
@@ -34,7 +34,7 @@ Build a visual story from the user's photographs without imitating a named artis
 7. Decide the output tier:
    - **Workprint**: use the deterministic renderer for analysis, sequencing, iteration, and editable layout.
    - **Presentation synthesis**: compile versioned prompts and use image generation to create a genuinely transformed artifact. Read `references/synthesis.md`, `references/prompt-compiler.md`, and `references/privacy.md`. Preserve recognizable photographic subjects; do not call a rearranged photo grid an After image.
-8. For a new request, prefer the one-command local preparation path when the package is installed. Pass the user's own words through `--brief`; use `--system` or `--expression-profile` only when the user explicitly selects one:
+8. For a new request, prefer the one-command local preparation path when the package is installed. Pass the user's own words through `--brief`; use `--system` or `--expression-profile` when the user explicitly selects one or has explicitly delegated that choice and you have inspected the sources:
 
 ```bash
 scene-card-studio direct PHOTO [PHOTO ...] --brief "USER-SUPPLIED DIRECTION" --output-dir scene-card-output
@@ -48,7 +48,7 @@ scene-card-studio direct PHOTO [PHOTO ...] --brief "USER-SUPPLIED DIRECTION" \
   --scene-cards scene-card-output/story.json --output-dir scene-card-output --force
 ```
 
-   Continue only when `check` reports `generation-ready` and the rerun reports `prompt-ready`. If two Narrative Systems tie or the automatic System score is low, `direct` reports `needs-route-confirmation`; resolve the system with the user or an explicit `--system`. `direct` may automatically select a non-default Profile only when the brief explicitly requests that expression; otherwise it must remain `source-led`. The Workprint is an analysis artifact, never the finished After. If staged control is required, run:
+   Continue only when `check` reports `generation-ready` and the rerun reports `prompt-ready`. If two Narrative Systems tie or the automatic System score is low, `direct` reports `needs-route-confirmation`; resolve the system with the user or an explicit `--system`. `direct` may automatically select a non-default Profile only when the brief explicitly requests that expression; otherwise it must remain `source-led`. When the user explicitly delegates Profile choice, inspect the source, choose with the rule in step 5, and pass that Profile through `--expression-profile`. The Workprint is an analysis artifact, never the finished After. If staged control is required, run:
 
 ```bash
 scene-card-studio recommend story.json

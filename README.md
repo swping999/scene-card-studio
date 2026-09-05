@@ -43,7 +43,7 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 | Output | Local workprints, versioned prompts, contract-checked images, deterministic typography, review records |
 | Privacy | Local-first analysis; cloud upload requires provider-, purpose-, and file-specific consent |
 
-**Explore:** [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#current-systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
+**Explore:** [Visual Selection Guide](VISUAL-GUIDE.md) · [Before / After](#before--after) · [Visual Director](#the-visual-director-layer) · [Systems and Profiles](#current-systems-profiles-and-deterministic-typography) · [Quick start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
 ### One photo or many
 
@@ -52,6 +52,8 @@ Use multiple paths or a glob for a sequence. `direct` selects a Narrative System
 - **Style remains editable.** The Narrative System controls how the image or story is read; the Expression Profile controls how it is visually expressed. A single photo can therefore use `source-led`, `watercolor-chronicle`, `heritage-portrait`, `dream-logic`, or another profile supported by the selected system.
 
 Check compatible combinations with `scene-card-studio profiles`. The compiler records `single-photo`, `multi-photo-per-source`, or `multi-photo-synthesis` in every Manifest so downstream tools cannot silently change the requested source mode.
+
+**Not sure which result to choose?** Open the [Visual Selection Guide](VISUAL-GUIDE.md) for all 11 Narrative Systems and all 24 Profiles, each with a repository example, recommended subjects, ready-to-copy brief phrases, and an explanation of automatic routing.
 
 ## After-only Director Gallery · v0.7
 
@@ -370,7 +372,7 @@ Twenty-three replaceable Profiles are available beyond the default `source-led`.
 | `rain-nocturne` | Cinematic Sequence |
 | `quiet-window-light` | Quiet Editorial |
 | `watercolor-contour` | Memory Atlas |
-| `watercolor-chronicle` | Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal |
+| `watercolor-chronicle` | Memory Atlas, Family Chronicle, Museum Catalogue, Travel Journal, Journey Taxonomy |
 | `graphite-paper` | Family Chronicle |
 | `heritage-portrait` | Family Chronicle, Museum Catalogue |
 | `monochrome-reportage` | Street Reportage |

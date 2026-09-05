@@ -22,6 +22,8 @@ All notable changes to Scene Card Studio are documented here. Versions follow se
 
 ### Added
 
+- A bilingual Visual Selection Guide covering every Narrative System and all 24 Profiles with repository examples, recommended subjects, and ready-to-copy brief phrases.
+- Explicit delegated visual selection for the Codex Skill: users may ask the director to choose a compatible Profile after source inspection.
 - Semantic Scene Card readiness reports through `scene-card-studio check`.
 - `--scene-cards` support for rerunning `direct` with visually inspected, source-matched semantic direction.
 - Hash-bound `review-template` and `review` commands for a complete Accept/Retry path.
